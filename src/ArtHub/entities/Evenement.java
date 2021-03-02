@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 /**
- *
+ *test
  * @author Fayechi
  */
 public class Evenement  extends RecursiveTreeObject<Evenement> implements Serializable {
