@@ -73,5 +73,55 @@ public class EvenementCRUD {
         return myList;
 
     }
+     public void supprimerEvenement(Evenement p) {
+         try {
+            String requete = "DELETE FROM evenement WHERE id=?";
+
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, p.getId());
+            pst.executeUpdate();
+            System.out.println("Evenement supprimé avec succées");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    
+    public void modifierEvenement(int id, String object, Object obj) {
+        try {
+            String requete = "UPDATE evenement SET ? = ? WHERE id = ?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setString(1, object);
+            pst.setObject(2, obj);
+            pst.setInt(3, id);
+            String ch = pst.toString().replaceFirst("\'", "");
+            String ch2 = ch.replaceFirst("\'", "");
+            int pos = ch2.indexOf("UPDATE");
+            String ch3 = ch2.substring(pos, ch2.length());
+            System.out.println(ch3);
+            pst = cnx.prepareStatement(ch3);
+            pst.executeUpdate();
+            System.out.println("Evenement modifié avec succées");
+
+//            Notifications notifs = Notifications.create()
+//                            .title("Produit ajouté")
+//                            .text("Le produit a été ajouter avec succées!")
+//                            .graphic(new ImageView("file:C:/evenements/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
+//                            .hideAfter(Duration.seconds(5))
+//                            .position(Pos.BOTTOM_RIGHT);
+//
+//                    notifs.darkStyle();
+//                    Platform.runLater(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            notifs.show();
+//                        }
+//                    });
+
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
 }

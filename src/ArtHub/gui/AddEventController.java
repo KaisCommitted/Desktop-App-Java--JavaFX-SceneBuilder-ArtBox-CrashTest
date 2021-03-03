@@ -26,13 +26,14 @@ public class AddEventController implements Initializable {
     @FXML
     private TextField txt_nom;
     @FXML
-    private TextField txt_type;
-    @FXML
     private TextField txt_categorie;
     @FXML
     private TextField txt_description;
     @FXML
     private Button btnValiderA_event;
+    @FXML
+    private TextField txt_type;
+    
 
     /**
      * Initializes the controller class.
