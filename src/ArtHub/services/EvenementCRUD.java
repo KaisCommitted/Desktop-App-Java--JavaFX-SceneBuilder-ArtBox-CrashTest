@@ -86,7 +86,7 @@ public class EvenementCRUD {
         }
     }
 
-    
+
     public void modifierEvenement(int id, String object, Object obj) {
         try {
             String requete = "UPDATE evenement SET ? = ? WHERE id = ?";

@@ -71,7 +71,7 @@ public class AfficherEvenementController implements Initializable {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_org()));
             }
         });
-        
+        //making the cell editable
         id_org.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
@@ -217,7 +217,7 @@ public class AfficherEvenementController implements Initializable {
             ps.modifierEvenement(idd, "description", newValue);
         });
 
-       
+     
         
         List<Evenement> myLst;
         myLst = ps.consulterEvenement();
