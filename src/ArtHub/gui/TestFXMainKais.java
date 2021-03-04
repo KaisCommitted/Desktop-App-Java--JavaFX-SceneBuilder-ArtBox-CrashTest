@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Fayechi
  */
 public class TestFXMainKais extends Application {
     
