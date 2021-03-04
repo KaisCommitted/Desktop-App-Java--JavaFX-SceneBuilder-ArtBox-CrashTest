@@ -5,13 +5,15 @@
  */
 package ArtHub.entities;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import java.io.Serializable;
 import java.sql.Date;
  /**
  *
  * @author louay
  */
-public class User {
-     private int id;
+public class User extends RecursiveTreeObject<User> implements Serializable  {
+     private int id_user;
     private String nom;
     private String prenom;
     private String username;
@@ -23,8 +25,7 @@ public class User {
     public User() {
     }
 
-    public User(String nom, String prenom, String username, String mail,Date date_naissance, String pwd_user,  String ref_admin) {
-        this.id = id;
+    public User(String nom, String prenom, String username, String mail, Date date_naissance, String pwd_user, String ref_admin) {
         this.nom = nom;
         this.prenom = prenom;
         this.username = username;
@@ -34,8 +35,19 @@ public class User {
         this.ref_admin = ref_admin;
     }
 
-    public int getId() {
-        return id;
+    public User(int id_user, String nom, String prenom, String username, String mail,Date date_naissance, String pwd_user,  String ref_admin) {
+        this.id_user = id_user;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
+        this.mail = mail;
+        this.date_naissance = date_naissance;
+        this.pwd_user = pwd_user;
+        this.ref_admin = ref_admin;
+    }
+
+    public int getId_user() {
+        return id_user;
     }
 
     public String getNom() {
@@ -68,8 +80,8 @@ public class User {
         return ref_admin;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public void setNom(String nom) {
@@ -105,7 +117,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", username=" + username + ", mail=" + mail + ", date_naissance=" + date_naissance + ", pwd_user=" + pwd_user + ", ref_admin=" + ref_admin + '}';
+        return "User{" + "id=" + id_user + ", nom=" + nom + ", prenom=" + prenom + ", username=" + username + ", mail=" + mail + ", date_naissance=" + date_naissance + ", pwd_user=" + pwd_user + ", ref_admin=" + ref_admin + '}';
     }
 
    
