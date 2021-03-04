@@ -41,7 +41,7 @@ public class ParticipantCRUD {
                 String name_event = rs.getString("name_event");
                 
                 Participant p = new Participant(id_participation, id_user, id_event,name_user,name_event);
-                p.setId_participation(rs.getInt("id"));
+                p.setId_participation(rs.getInt("id_participation"));
                 myList.add(p);
 
             }
@@ -68,7 +68,7 @@ public class ParticipantCRUD {
 
     public void modifierParticipant(int id, String object, Object obj) {
         try {
-            String requete = "UPDATE participant SET ? = ? WHERE id = ?";
+            String requete = "UPDATE participant SET ? = ? WHERE id_participation=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, object);
             pst.setObject(2, obj);

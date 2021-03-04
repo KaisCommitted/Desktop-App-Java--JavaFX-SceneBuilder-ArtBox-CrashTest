@@ -28,7 +28,7 @@ public class TestFXMainKais extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AfficherEvenement.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AfficherParticipant.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");
