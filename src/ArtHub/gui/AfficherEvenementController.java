@@ -236,6 +236,7 @@ public class AfficherEvenementController implements Initializable {
         treeview.setShowRoot(false);
         treeview.setEditable(true);
         
+        
        
         
         //declarer la button supprimer
