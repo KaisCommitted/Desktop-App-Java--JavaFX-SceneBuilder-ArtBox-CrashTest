@@ -32,7 +32,7 @@ public class RdDelUp_UserFXMain extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("ReadUser.fxml"));
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Backend Users");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
