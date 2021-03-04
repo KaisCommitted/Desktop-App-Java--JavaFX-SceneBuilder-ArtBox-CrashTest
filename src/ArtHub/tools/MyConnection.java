@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Fayechi
+ * @author Kais
  */
 public class MyConnection {
     public String url ="jdbc:mysql://localhost:3306/artbox";

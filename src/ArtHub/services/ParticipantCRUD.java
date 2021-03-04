@@ -1,6 +1,6 @@
 
 package ArtHub.services;
-import ArtHub.entities.Evenement;
+import ArtHub.entities.Participant;
 import ArtHub.tools.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,55 +14,34 @@ import java.util.List;
  * wadup
  * @author Fayechi
  */
-public class EvenementCRUD {
+public class ParticipantCRUD {
     private Connection cnx;
     private PreparedStatement ste;
 
-    public EvenementCRUD() {
+    public ParticipantCRUD() {
         cnx = MyConnection.getInstance().getConnection();
     }
     
-    public void ajouterEvenement(Evenement p){
-        String req ="INSERT INTO evenement ( id_org,date,nom_event,type_event,categorie,description)"+"values (?,?,?,?,?,?)";
-        try {
-            ste = cnx.prepareStatement(req);
-            ste.setInt(1, p.getId_org());
-            ste.setString(2, p.getDate_event());
-            ste.setString(3, p.getNom_event());
-            ste.setInt(4, p.getType_event());
-            ste.setInt(5, p.getCategorie());
-            ste.setString(6, p.getDescription());
-            ste.executeUpdate();
-            System.out.println("Evenement ajoutée");
-            
-        } catch (SQLException ex) {
-            System.out.println("Probléme");
-            System.out.println(ex.getMessage());
-            
-        }
-        
-    }
     
-      public List<Evenement> consulterEvenement() {
+      public List<Participant> consulterParticipant() {
 
-        List<Evenement> myList = new ArrayList<>();
+        List<Participant> myList = new ArrayList<>();
         try {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from evenement");
+            ResultSet rs = pst.executeQuery("SELECT * from participant");
             while (rs.next()) {
 
                
-                int id_org = rs.getInt("id_org");
-                String date = rs.getString("date");
-                String nom_event = rs.getString("nom_event");
-                int type_event = rs.getInt("type_event");
-                int categorie = rs.getInt("categorie");
-                String description = rs.getString("description");
+                int id_participation= rs.getInt("id_participation");
+                int id_user = rs.getInt("id_user");
+                int id_event = rs.getInt("id_event");
+                String name_user = rs.getString("name_user");
+                String name_event = rs.getString("name_event");
                 
-                Evenement p = new Evenement(id_org, date, nom_event,type_event,categorie,description);
-                p.setId(rs.getInt("id"));
+                Participant p = new Participant(id_participation, id_user, id_event,name_user,name_event);
+                p.setId_participation(rs.getInt("id_participation"));
                 myList.add(p);
 
             }
@@ -73,23 +52,23 @@ public class EvenementCRUD {
         return myList;
 
     }
-     public void supprimerEvenement(Evenement p) {
+     public void supprimerParticipant(Participant p) {
          try {
-            String requete = "DELETE FROM evenement WHERE id=?";
+            String requete = "DELETE FROM participant WHERE id_particiaption=?";
 
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setInt(1, p.getId());
+            pst.setInt(1, p.getId_participation());
             pst.executeUpdate();
-            System.out.println("Evenement supprimé avec succées");
+            System.out.println("Participant supprimé avec succées");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
 
-    public void modifierEvenement(int id, String object, Object obj) {
+    public void modifierParticipant(int id, String object, Object obj) {
         try {
-            String requete = "UPDATE evenement SET ? = ? WHERE id = ?";
+            String requete = "UPDATE participant SET ? = ? WHERE id_participation=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, object);
             pst.setObject(2, obj);
@@ -101,12 +80,12 @@ public class EvenementCRUD {
             System.out.println(ch3);
             pst = cnx.prepareStatement(ch3);
             pst.executeUpdate();
-            System.out.println("Evenement modifié avec succées");
+            System.out.println("Participant modifié avec succées");
 
 //            Notifications notifs = Notifications.create()
 //                            .title("Produit ajouté")
 //                            .text("Le produit a été ajouter avec succées!")
-//                            .graphic(new ImageView("file:C:/evenements/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
+//                            .graphic(new ImageView("file:C:/participants/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
 //                            .hideAfter(Duration.seconds(5))
 //                            .position(Pos.BOTTOM_RIGHT);
 //

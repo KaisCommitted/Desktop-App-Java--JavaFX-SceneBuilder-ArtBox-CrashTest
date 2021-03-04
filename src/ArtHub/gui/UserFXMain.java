@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -20,22 +21,22 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Fayechi
+ * @author louay
  */
-public class TestFXMainEvent extends Application {
+public class UserFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AddEvent.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(TestFXMainEvent.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserFXMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -45,5 +46,4 @@ public class TestFXMainEvent extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

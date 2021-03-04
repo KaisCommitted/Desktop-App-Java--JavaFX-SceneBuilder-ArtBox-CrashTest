@@ -9,7 +9,7 @@ import java.sql.Date;
  *test
  * @author Fayechi
  */
-public class Evenement  extends RecursiveTreeObject<Evenement> implements Serializable {
+public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializable {
     private int id;
     private int id_org;
     private String date_event;
@@ -18,7 +18,7 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
     private int categorie;
     private String description;
      
-    public Evenement() {
+    public Annonce() {
     }
 
     /**
@@ -30,7 +30,7 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
      * @param categorie
      * @param description
      */
-    public Evenement(int id_org, String date_event, String nom_event, int type_event, int categorie, String description) {
+    public Annonce(int id_org, String date_event, String nom_event, int type_event, int categorie, String description) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;

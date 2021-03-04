@@ -20,22 +20,21 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Fayechi
  */
-public class TestFXMain extends Application {
+public class TestFXMainKais extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AfficherEvenement.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AfficherParticipant.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(TestFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestFXMainKais.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
