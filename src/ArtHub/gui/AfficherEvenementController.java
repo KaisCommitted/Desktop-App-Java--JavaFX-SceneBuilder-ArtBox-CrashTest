@@ -25,8 +25,11 @@ import javafx.util.Callback;
 import ArtHub.entities.Evenement;
 import ArtHub.services.EvenementCRUD;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
+import java.util.function.Predicate;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -48,6 +51,8 @@ public class AfficherEvenementController implements Initializable {
     @FXML
     private AnchorPane anchorevent;
     EvenementCRUD ps;
+    @FXML
+    private JFXTextField input;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -231,6 +236,8 @@ public class AfficherEvenementController implements Initializable {
         treeview.setShowRoot(false);
         treeview.setEditable(true);
         
+       
+        
         //declarer la button supprimer
         JFXButton DltBtn = new JFXButton("Remove");
         DltBtn.setLayoutY(410D);
@@ -266,10 +273,28 @@ public class AfficherEvenementController implements Initializable {
                 confirmation.showAndWait();
             }
         }); 
+        
+        /* input.setPromptText("Rechercher ..");
+        input.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                treeview.setPredicate(new Predicate<TreeItem<Evenement>>() {
+                    @Override
+                    public boolean test(TreeItem<Produits> t) {
+
+                        boolean flag = t.getValue().getNom_event().getValue().contains(newValue);
+                        return flag;
+                    }
+                });
+            }
+        });*/
+        
+        
         anchorevent.getChildren().addAll(treeview,DltBtn);
+       
+  
         
-        
-        
+  
     }    
     
 
