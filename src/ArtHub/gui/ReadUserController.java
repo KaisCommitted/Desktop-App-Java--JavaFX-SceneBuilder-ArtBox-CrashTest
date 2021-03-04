@@ -168,6 +168,9 @@ public class ReadUserController implements Initializable {
             ps.modifierUser(idd, "username", newValue);
         });
         
+        
+        
+        
          // mail table view
         JFXTreeTableColumn<User, String> mail = new JFXTreeTableColumn<>("mail");
         mail.setPrefWidth(150);
@@ -220,6 +223,32 @@ public class ReadUserController implements Initializable {
             ps.modifierUser(idd, "pwd_user", newValue);
         });
 
+        
+        // ref_admin table view
+        JFXTreeTableColumn<User, String> ref_admin = new JFXTreeTableColumn<>("ref_admin");
+        ref_admin.setPrefWidth(150);
+        ref_admin.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<User, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<User, String> param) {
+                return new SimpleStringProperty((param.getValue().getValue().getRef_admin()));
+            }
+        });
+        ref_admin.setCellFactory((TreeTableColumn<User, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable ref_admin text field
+        ref_admin.setOnEditCommit((TreeTableColumn.CellEditEvent<User, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_user();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setRef_admin(t.getNewValue());
+            ps.modifierUser(idd, "ref_admin", newValue);
+        });
+        
      
         
         List<User> myLst;
@@ -229,7 +258,7 @@ public class ReadUserController implements Initializable {
         myLst.forEach(p -> Users.add(p));
         JFXTreeTableView<User> treeview = new JFXTreeTableView<>();
         final TreeItem<User> root = new RecursiveTreeItem<User>(Users, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id_user, nom,prenom,username,mail,pwd_user);
+        treeview.getColumns().setAll(id_user, nom,prenom,username,mail,pwd_user,ref_admin);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
