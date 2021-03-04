@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author Fayechi
  */
-public class TestFXMain extends Application {
+public class TestFXMainKais extends Application {
     
     @Override
     public void start(Stage primaryStage) {
@@ -35,7 +35,7 @@ public class TestFXMain extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(TestFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestFXMainKais.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
