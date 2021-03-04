@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * @author Fayechi
  */
 public class MyConnection {
-    public String url ="jdbc:mysql://localhost:3306/pidev";
+    public String url ="jdbc:mysql://localhost:3306/artbox";
     public String login="root";
     public String pwd ="";
     public Connection cnx;
