@@ -5,10 +5,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="ArtHub.gui.AddLabelController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.AddLabelController">
    <children>
-      <Button fx:id="button_addlabel" layoutX="274.0" layoutY="302.0" mnemonicParsing="false" text="Ajouter" />
+      <Button fx:id="button_addlabel" layoutX="274.0" layoutY="302.0" mnemonicParsing="false" onAction="#addLabel" text="Ajouter" />
       <TextField fx:id="txt_name" layoutX="226.0" layoutY="144.0" />
       <TextField fx:id="txt_type" layoutX="226.0" layoutY="200.0" />
       <Label layoutX="140.0" layoutY="148.0" text="Name" />

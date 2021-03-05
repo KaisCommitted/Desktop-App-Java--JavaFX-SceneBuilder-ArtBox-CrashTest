@@ -13,20 +13,18 @@ public class Participant  extends RecursiveTreeObject<Participant> implements Se
     private int id_participation;
     private int id_user;
     private int id_event;
-    private String name_user;
-    private String name_event;
 
-    public Participant(int id_participation, int id_user, int id_event, String name_user, String name_event) {
+    public Participant(int id_user, int id_event) {
+        this.id_user = id_user;
+        this.id_event = id_event;
+    }
+
+    public Participant(int id_participation, int id_user, int id_event) {
         this.id_participation = id_participation;
         this.id_user = id_user;
         this.id_event = id_event;
-        this.name_user = name_user;
-        this.name_event = name_event;
     }
-   
-     
-    public Participant() {
-    }
+    
 
     public int getId_participation() {
         return id_participation;
@@ -38,14 +36,6 @@ public class Participant  extends RecursiveTreeObject<Participant> implements Se
 
     public int getId_event() {
         return id_event;
-    }
-
-    public String getName_user() {
-        return name_user;
-    }
-
-    public String getName_event() {
-        return name_event;
     }
 
     public void setId_participation(int id_participation) {
@@ -60,13 +50,41 @@ public class Participant  extends RecursiveTreeObject<Participant> implements Se
         this.id_event = id_event;
     }
 
-    public void setName_user(String name_user) {
-        this.name_user = name_user;
+    @Override
+    public String toString() {
+        return "Participant{" + "id_participation=" + id_participation + ", id_user=" + id_user + ", id_event=" + id_event + '}';
     }
 
-    public void setName_event(String name_event) {
-        this.name_event = name_event;
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + this.id_participation;
+        hash = 97 * hash + this.id_user;
+        hash = 97 * hash + this.id_event;
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Participant other = (Participant) obj;
+        if (this.id_user != other.id_user) {
+            return false;
+        }
+        if (this.id_event != other.id_event) {
+            return false;
+        }
+        return true;
+    }
+  
 
     
   

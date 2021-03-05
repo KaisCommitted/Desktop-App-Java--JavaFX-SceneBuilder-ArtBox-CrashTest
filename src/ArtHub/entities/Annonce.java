@@ -10,99 +10,86 @@ import java.sql.Date;
  * @author Fayechi
  */
 public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializable {
-    private int id;
-    private int id_org;
-    private String date_event;
-    private String nom_event;
-    private int type_event;
+    private int id_ann;
+    private String titre_ann;
+    private String desc_ann;
+    private int pay;
+    private String competences;
     private int categorie;
-    private String description;
+    private String ddl_ann;
      
     public Annonce() {
     }
 
-    /**
-     *
-     * @param id_org
-     * @param date_event
-     * @param nom_event
-     * @param type_event
-     * @param categorie
-     * @param description
-     */
-    public Annonce(int id_org, String date_event, String nom_event, int type_event, int categorie, String description) {
-        this.id_org = id_org;
-        this.date_event = date_event;
-        this.nom_event = nom_event;
-        this.type_event = type_event;
+    public Annonce(String titre_ann, String desc_ann, int pay, String competences, int categorie, String ddl_ann) {
+        this.titre_ann = titre_ann;
+        this.desc_ann = desc_ann;
+        this.pay = pay;
+        this.competences = competences;
         this.categorie = categorie;
-        this.description = description;
+        this.ddl_ann = ddl_ann;
     }
 
-    public int getId() {
-        return id;
+    public int getId_ann() {
+        return id_ann;
     }
 
-    public int getId_org() {
-        return id_org;
+    public String getTitre_ann() {
+        return titre_ann;
     }
 
-    public String getDate_event() {
-        return date_event;
+    public String getDesc_ann() {
+        return desc_ann;
     }
 
-    public String getNom_event() {
-        return nom_event;
+    public int getPay() {
+        return pay;
     }
 
-    public int getType_event() {
-        return type_event;
+    public String getCompetences() {
+        return competences;
     }
 
     public int getCategorie() {
         return categorie;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDdl_ann() {
+        return ddl_ann;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_ann(int id_ann) {
+        this.id_ann = id_ann;
     }
 
-    public void setId_org(int id_org) {
-        this.id_org = id_org;
+    public void setTitre_ann(String titre_ann) {
+        this.titre_ann = titre_ann;
     }
 
-    public void setDate_event(String date_event) {
-        this.date_event = date_event;
+    public void setDesc_ann(String desc_ann) {
+        this.desc_ann = desc_ann;
     }
 
-    public void setNom_event(String nom_event) {
-        this.nom_event = nom_event;
+    public void setPay(int pay) {
+        this.pay = pay;
     }
 
-    public void setType_event(int type_event) {
-        this.type_event = type_event;
+    public void setCompetences(String competences) {
+        this.competences = competences;
     }
 
     public void setCategorie(int categorie) {
         this.categorie = categorie;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDdl_ann(String ddl_ann) {
+        this.ddl_ann = ddl_ann;
     }
 
     @Override
     public String toString() {
-        return "Evenement{" + "id=" + id + ", id_org=" + id_org + ", date_event=" + date_event + ", nom_event=" + nom_event + ", type_event=" + type_event + ", categorie=" + categorie + ", description=" + description + '}';
+        return "Annonce{" + "id_ann=" + id_ann + ", titre_ann=" + titre_ann + ", desc_ann=" + desc_ann + ", pay=" + pay + ", competences=" + competences + ", categorie=" + categorie + ", ddl_ann=" + ddl_ann + '}';
     }
 
-  
-
-  
-    
     
 }

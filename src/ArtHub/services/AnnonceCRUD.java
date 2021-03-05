@@ -1,6 +1,6 @@
 
 package ArtHub.services;
-import ArtHub.entities.Evenement;
+import ArtHub.entities.Annonce;
 import ArtHub.tools.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,26 +14,26 @@ import java.util.List;
  * wadup
  * @author Fayechi
  */
-public class EvenementCRUD {
+public class AnnonceCRUD {
     private Connection cnx;
     private PreparedStatement ste;
 
-    public EvenementCRUD() {
+    public AnnonceCRUD() {
         cnx = MyConnection.getInstance().getConnection();
     }
     
-    public void ajouterEvenement(Evenement p){
-        String req ="INSERT INTO evenement ( id_org,date,nom_event,type_event,categorie,description)"+"values (?,?,?,?,?,?)";
+    public void ajouterAnnonce(Annonce p){
+        String req ="INSERT INTO annonce (titre_ann,desc_ann,pay,competences,categorie,ddl_ann)"+"values (?,?,?,?,?,?)";
         try {
             ste = cnx.prepareStatement(req);
-            ste.setInt(1, p.getId_org());
-            ste.setString(2, p.getDate_event());
-            ste.setString(3, p.getNom_event());
-            ste.setString(4, p.getType_event());
+            ste.setString(1, p.getTitre_ann());
+            ste.setString(2, p.getDesc_ann());
+            ste.setInt(3, p.getPay());
+            ste.setString(4, p.getCompetences());
             ste.setInt(5, p.getCategorie());
-            ste.setString(6, p.getDescription());
+            ste.setString(6, p.getDdl_ann());
             ste.executeUpdate();
-            System.out.println("Evenement ajoutée");
+            System.out.println("Annonce ajoutée");
             
         } catch (SQLException ex) {
             System.out.println("Probléme");
@@ -43,26 +43,26 @@ public class EvenementCRUD {
         
     }
     
-      public List<Evenement> consulterEvenement() {
+      public List<Annonce> consulterAnnonce() {
 
-        List<Evenement> myList = new ArrayList<>();
+        List<Annonce> myList = new ArrayList<>();
         try {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from evenement");
+            ResultSet rs = pst.executeQuery("SELECT * from annonce");
             while (rs.next()) {
 
                
-                int id_org = rs.getInt("id_org");
-                String date = rs.getString("date");
-                String nom_event = rs.getString("nom_event");
-                String type_event = rs.getString("type_event");
+                String titre_ann = rs.getString("titre_ann");
+                String desc_ann = rs.getString("desc_ann");
+                int pay = rs.getInt("pay");
+                String competences = rs.getString("competences");
                 int categorie = rs.getInt("categorie");
-                String description = rs.getString("description");
+                String ddl_ann = rs.getString("ddl_ann");
                 
-                Evenement p = new Evenement(id_org, date, nom_event,type_event,categorie,description);
-                p.setId(rs.getInt("id"));
+                Annonce p = new Annonce(titre_ann, desc_ann, pay,competences,categorie,ddl_ann);
+                p.setId_ann(rs.getInt("id_ann"));
                 myList.add(p);
 
             }
@@ -73,23 +73,23 @@ public class EvenementCRUD {
         return myList;
 
     }
-     public void supprimerEvenement(Evenement p) {
+     public void supprimerAnnonce(Annonce p) {
          try {
-            String requete = "DELETE FROM evenement WHERE id=?";
+            String requete = "DELETE FROM annonce WHERE id_ann=?";
 
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setInt(1, p.getId());
+            pst.setInt(1, p.getId_ann());
             pst.executeUpdate();
-            System.out.println("Evenement supprimé avec succées");
+            System.out.println("Annonce supprimée avec succées");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
 
-    public void modifierEvenement(int id, String object, Object obj) {
+    public void modifierAnnonce(int id, String object, Object obj) {
         try {
-            String requete = "UPDATE evenement SET ? = ? WHERE id = ?";
+            String requete = "UPDATE annonce SET ? = ? WHERE id_ann = ?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, object);
             pst.setObject(2, obj);
@@ -101,12 +101,12 @@ public class EvenementCRUD {
             System.out.println(ch3);
             pst = cnx.prepareStatement(ch3);
             pst.executeUpdate();
-            System.out.println("Evenement modifié avec succées");
+            System.out.println("Annonce modifié avec succées");
 
 //            Notifications notifs = Notifications.create()
 //                            .title("Produit ajouté")
 //                            .text("Le produit a été ajouter avec succées!")
-//                            .graphic(new ImageView("file:C:/evenements/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
+//                            .graphic(new ImageView("file:C:/annonces/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
 //                            .hideAfter(Duration.seconds(5))
 //                            .position(Pos.BOTTOM_RIGHT);
 //
