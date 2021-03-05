@@ -17,9 +17,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
-import javax.mail.Authenticator;
+/*import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
+import javax.mail.Session;*/
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -112,7 +112,7 @@ public class AddUserController implements Initializable {
 		props.put("mail.smtp.auth", "true"); //Enabling SMTP Authentication
 		props.put("mail.smtp.port", "465"); //SMTP Port
 		
-		Authenticator auth = new Authenticator() {
+		/*Authenticator auth = new Authenticator() {
 			//override the getPasswordAuthentication method
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(fromEmail, password);
@@ -127,7 +127,7 @@ public class AddUserController implements Initializable {
 
 	        EmailUtil.sendImageEmail(session, toEmail,"SSLEmail Testing Subject with Image", "SSLEmail Testing Body with Image");
 
-	
+	*/
         
     
            }catch (Exception ex) {
@@ -140,7 +140,7 @@ public class AddUserController implements Initializable {
 
     private static class EmailUtil {
 
-        private static void sendEmail(Session session, String toEmail, String sslEmail_Testing_Subject, String sslEmail_Testing_Body) {
+       /* private static void sendEmail(Session session, String toEmail, String sslEmail_Testing_Subject, String sslEmail_Testing_Body) {
             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
@@ -153,6 +153,6 @@ public class AddUserController implements Initializable {
         }
 
         public EmailUtil() {
-        }
+        }*/
     }
 }

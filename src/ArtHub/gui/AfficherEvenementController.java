@@ -206,7 +206,7 @@ public class AfficherEvenementController implements Initializable {
             }
         });
         
-                 description.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
+            description.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
