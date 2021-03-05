@@ -62,9 +62,9 @@ public class AffichepostesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        postCRUD ps = new postCRUD();
         // id table view
-        JFXTreeTableColumn<Post, String> id = new JFXTreeTableColumn<>("id");
-        id.setPrefWidth(150);
-        id.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
+        JFXTreeTableColumn<Post, String> id_post = new JFXTreeTableColumn<>("id_post");
+        id_post.setPrefWidth(150);
+        id_post.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_post()));
@@ -72,34 +72,19 @@ public class AffichepostesController implements Initializable {
         });
         
          // Nom table view
-        JFXTreeTableColumn<Post, String> Nom = new JFXTreeTableColumn<>("Nom");
-        Nom.setPrefWidth(150);
-        Nom.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
+        JFXTreeTableColumn<Post, String> Nom_post = new JFXTreeTableColumn<>("Nom_post");
+        Nom_post.setPrefWidth(150);
+        Nom_post.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
                 return new SimpleStringProperty(param.getValue().getValue().getNom_post());
             }
         });
-        //making the cell editable
-        Nom.setCellFactory((TreeTableColumn<Post, String> param) -> {
-            return new GenericEditableTreeTableCell<>(
-                    new TextFieldEditorBuilder());
-        });
-        //setting the new value for editable Nom text field
-        Nom.setOnEditCommit((CellEditEvent<Post, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_post();
-            String newValue = t.getNewValue();
 
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setId_post(Integer.parseInt(t.getNewValue()));
-            ps.modifierPost(idd, "Nom", newValue);
-        });
+      
         
         
-        
-         // date table view
+         // Description table view
         JFXTreeTableColumn<Post, String>  Description= new JFXTreeTableColumn<>("Description");
         Description.setPrefWidth(150);
         Description.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
@@ -108,11 +93,17 @@ public class AffichepostesController implements Initializable {
                 return new SimpleStringProperty(param.getValue().getValue().getDescription());
             }
         });
-                 Description.setCellFactory((TreeTableColumn<Post, String> param) -> {
+         
+        //hedhi trod el ceulle Description editable
+        Description.setCellFactory((TreeTableColumn<Post, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
-        //setting the new value for editable date text field
+                  Description.setCellFactory((TreeTableColumn<Post, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable Description text field
         Description.setOnEditCommit((CellEditEvent<Post, String> t) -> {
             int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_post();
             String newValue = t.getNewValue();
@@ -123,83 +114,24 @@ public class AffichepostesController implements Initializable {
                     .getValue().setDescription(t.getNewValue());
             ps.modifierPost(idd, "Description", newValue);
         });
+       
         
-         // Categorie table view
-        JFXTreeTableColumn<Post, String> Categorie = new JFXTreeTableColumn<>("Categorie");
-        Categorie.setPrefWidth(150);
-        Categorie.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
+         // categorie table view
+        JFXTreeTableColumn<Post, String> categorie = new JFXTreeTableColumn<>("categorie");
+        categorie.setPrefWidth(150);
+        categorie.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
                 return new SimpleStringProperty(param.getValue().getValue().getCategorie());
             }
         });
-                 Categorie.setCellFactory((TreeTableColumn<Post, String> param) -> {
+                 categorie.setCellFactory((TreeTableColumn<Post, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
-        //setting the new value for editable Categorie text field
-        Categorie.setOnEditCommit((CellEditEvent<Post, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_post();
-            String newValue = t.getNewValue();
-
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setCategorie(t.getNewValue());
-            ps.modifierPost(idd, "Categorie", newValue);
-        });
         
-         // type_event table view
-        JFXTreeTableColumn<Post, String> date = new JFXTreeTableColumn<>("Date");
-        date.setPrefWidth(150);
-        date.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
-                return new SimpleStringProperty(param.getValue().getValue().getPost_date());
-            }
-        });
-        date.setCellFactory((TreeTableColumn<Post, String> param) -> {
-            return new GenericEditableTreeTableCell<>(
-                    new TextFieldEditorBuilder());
-        });
-        //setting the new value for editable type_event text field
-        date.setOnEditCommit((CellEditEvent<Post, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_post();
-            String newValue = t.getNewValue();
 
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setPost_date(t.getNewValue());
-            ps.modifierPost(idd, "date", newValue);
-        });
-        
-         // categorie table view
-        JFXTreeTableColumn<Post, String> File = new JFXTreeTableColumn<>("File");
-        File.setPrefWidth(150);
-        File.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
-               return new SimpleStringProperty(param.getValue().getValue().getFile());
-           }
-
-       });
-        
-        File.setCellFactory((TreeTableColumn<Post, String> param) -> {
-            return new GenericEditableTreeTableCell<>(
-                    new TextFieldEditorBuilder());
-        });
-        //setting the new value for editable categorie text field
-        File.setOnEditCommit((CellEditEvent<Post, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_post();
-            String newValue = t.getNewValue();
-
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setId_post(Integer.parseInt(t.getNewValue()));
-            ps.modifierPost(idd, "File", newValue);
-        });
+      
         
 
      
@@ -211,14 +143,12 @@ public class AffichepostesController implements Initializable {
         myLst.forEach(p ->postes.add(p));
         JFXTreeTableView<Post> treeview = new JFXTreeTableView<>();
         final TreeItem<Post> root = new RecursiveTreeItem<Post>(postes, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id,Nom,Description,Categorie,date,File);
+        treeview.getColumns().setAll(id_post,Nom_post,Description,categorie);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
         
-       
-        
-        //declarer la button supprimer
+         //declarer la button supprimer
         JFXButton DltBtn = new JFXButton("Remove");
         DltBtn.setLayoutY(410D);
         DltBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -228,7 +158,7 @@ public class AffichepostesController implements Initializable {
             public void handle(ActionEvent event) {
                 Dialog confirmation = new Dialog();
                 GridPane grid2 = new GridPane();
-                Label l1 = new Label("Deletepost?");
+                Label l1 = new Label("Delete Post?");
                 grid2.add(l1, 2, 2);
                 confirmation.setTitle("Confirmation de suppression!");
                 confirmation.getDialogPane().setContent(grid2);
@@ -236,11 +166,11 @@ public class AffichepostesController implements Initializable {
                 ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
                 confirmation.getDialogPane().getButtonTypes().add(Confi);
                 confirmation.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-                confirmation.setResultConverter(new Callback<ButtonType,Post>() {
+                confirmation.setResultConverter(new Callback<ButtonType, Post>() {
                     @Override
                     public Post call(ButtonType param) {
                         if (param == Confi) {
-                           Post p = treeview.getSelectionModel().getSelectedItem().getValue();
+                            Post p = treeview.getSelectionModel().getSelectedItem().getValue();
                             ps.supprimerPost((Post) p);
                             Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
                             cancelButton.fire();
@@ -253,21 +183,11 @@ public class AffichepostesController implements Initializable {
                 confirmation.showAndWait();
             }
         }); 
+       
         
-        /* input.setPromptText("Rechercher ..");
-        input.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                treeview.setPredicate(new Predicate<TreeItem<Post>>() {
-                    @Override
-                    public boolean test(TreeItem<Produits> t) {
-
-                        boolean flag = t.getValue().getNom_event().getValue().contains(newValue);
-                        return flag;
-                    }
-                });
-            }
-        });*/
+        
+        
+   
         
         
         anchorpostes.getChildren().addAll(treeview,DltBtn);
