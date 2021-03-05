@@ -62,12 +62,12 @@ public class AffichepostesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        postCRUD ps = new postCRUD();
         // id table view
-        JFXTreeTableColumn<Post, String> id_post = new JFXTreeTableColumn<>("id_post");
-        id_post.setPrefWidth(150);
-        id_post.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
+        JFXTreeTableColumn<Post, String> poste_date = new JFXTreeTableColumn<>("Date and time");
+       poste_date.setPrefWidth(150);
+        poste_date.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
-                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_post()));
+                return new SimpleStringProperty(param.getValue().getValue().getPost_date());
             }
         });
         
@@ -79,6 +79,23 @@ public class AffichepostesController implements Initializable {
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
                 return new SimpleStringProperty(param.getValue().getValue().getNom_post());
             }
+        });
+        
+         Nom_post.setCellFactory((TreeTableColumn<Post, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        
+         //setting the new value for editable Description text field
+        Nom_post.setOnEditCommit((CellEditEvent<Post, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_post();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setNom_post(t.getNewValue());
+            ps.modifierPost(idd, "Nom_post", newValue);
         });
 
       
@@ -93,6 +110,7 @@ public class AffichepostesController implements Initializable {
                 return new SimpleStringProperty(param.getValue().getValue().getDescription());
             }
         });
+        
          
         //hedhi trod el ceulle Description editable
         Description.setCellFactory((TreeTableColumn<Post, String> param) -> {
@@ -131,10 +149,27 @@ public class AffichepostesController implements Initializable {
         });
         
 
-      
+      //setting the new value for editable Description text field
+        categorie.setOnEditCommit((CellEditEvent<Post, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_post();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setCategorie(t.getNewValue());
+            ps.modifierPost(idd, "categorie", newValue);
+        });
         
 
-     
+     JFXTreeTableColumn<Post, String> id_post = new JFXTreeTableColumn<>("Post id");
+        id_post.setPrefWidth(150);
+        id_post.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_post()));
+            }
+        });
         
         List<Post> myLst;
         myLst = ps.consulterPost();
@@ -143,7 +178,7 @@ public class AffichepostesController implements Initializable {
         myLst.forEach(p ->postes.add(p));
         JFXTreeTableView<Post> treeview = new JFXTreeTableView<>();
         final TreeItem<Post> root = new RecursiveTreeItem<Post>(postes, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id_post,Nom_post,Description,categorie);
+        treeview.getColumns().setAll(id_post,Nom_post,Description,categorie,poste_date);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);

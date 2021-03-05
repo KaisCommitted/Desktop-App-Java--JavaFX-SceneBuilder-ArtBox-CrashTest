@@ -1,4 +1,5 @@
 package ArtHub.services;
+
 import ArtHub.entities.Post;
 import ArtHub.gui.Ajout_PostController;
 import ArtHub.tools.MyConnection;
@@ -68,12 +69,13 @@ public class postCRUD {
             while (rs.next()) {
 
                
-                int id_post= rs.getInt("id_post");
+                int id_post = rs.getInt("id_post");
                 String nom_post = rs.getString("nom_post");
                 String Description = rs.getString("Description");
-                String categorie =rs.getString("categorie");
+                String categorie = rs.getString("categorie");
+                String post_date = rs.getString("post_date");
                 
-                Post p = new Post(id_post,nom_post,Description,categorie);
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date);  
                 p.setId_post(rs.getInt("id_post"));
                 myList.add(p);
 

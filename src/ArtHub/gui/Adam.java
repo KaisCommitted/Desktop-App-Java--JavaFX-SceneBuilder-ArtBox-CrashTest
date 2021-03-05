@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 /**
  *
  */
-public class TestFXMainAdam extends Application {
+public class Adam extends Application {
     
     @Override
     public void start(Stage primaryStage) {
@@ -34,7 +34,7 @@ public class TestFXMainAdam extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(TestFXMainAdam.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Adam.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
