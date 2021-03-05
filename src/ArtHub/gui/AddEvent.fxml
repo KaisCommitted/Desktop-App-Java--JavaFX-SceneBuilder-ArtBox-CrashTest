@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -19,6 +20,6 @@
       <Text layoutX="50.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" />
       <Text layoutX="50.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
       <Button fx:id="btnValiderA_event" layoutX="222.0" layoutY="339.0" mnemonicParsing="false" onAction="#addEvent" text="Valider" />
-      <TextField id="txt_nom" fx:id="txt_type" layoutX="174.0" layoutY="153.0" />
+      <ComboBox fx:id="combo_type" layoutX="174.0" layoutY="153.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
