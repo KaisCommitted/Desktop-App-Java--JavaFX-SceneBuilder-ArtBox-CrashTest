@@ -3,7 +3,7 @@ package ArtHub.entities;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *test
@@ -12,7 +12,7 @@ import java.sql.Date;
 public class Evenement  extends RecursiveTreeObject<Evenement> implements Serializable {
     private int id;
     private int id_org;
-    private String date_event;
+    private LocalDate date_event;
     private String nom_event;
     private String type_event;
     private int categorie;
@@ -20,16 +20,7 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
     public Evenement() {
     }
 
-    /**
-     *
-     * @param id_org
-     * @param date_event
-     * @param nom_event
-     * @param type_event
-     * @param categorie
-     * @param description
-     */
-    public Evenement(int id_org, String date_event, String nom_event, String type_event, int categorie, String description) {
+    public Evenement(int id_org, LocalDate date_event, String nom_event, String type_event, int categorie, String description) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;
@@ -46,7 +37,7 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
         return id_org;
     }
 
-    public String getDate_event() {
+    public LocalDate getDate_event() {
         return date_event;
     }
 
@@ -74,7 +65,7 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
         this.id_org = id_org;
     }
 
-    public void setDate_event(String date_event) {
+    public void setDate_event(LocalDate date_event) {
         this.date_event = date_event;
     }
 
@@ -94,10 +85,16 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Evenement{" + "id=" + id + ", id_org=" + id_org + ", date_event=" + date_event + ", nom_event=" + nom_event + ", type_event=" + type_event + ", categorie=" + categorie + ", description=" + description + '}';
-    }
+    /**
+     *
+     * @param id_org
+     * @param date_event
+     * @param nom_event
+     * @param type_event
+     * @param categorie
+     * @param description
+     */
+ 
 
   
 

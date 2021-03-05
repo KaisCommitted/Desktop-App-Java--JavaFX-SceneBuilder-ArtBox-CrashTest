@@ -2,6 +2,7 @@ package ArtHub.gui;
 
 import ArtHub.entities.Evenement;
 import ArtHub.services.EvenementCRUD;
+import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javax.xml.bind.DatatypeConverter;
+import java.sql.Date;
+import java.time.LocalDate;
 
 
 public class AddEventController implements Initializable {
@@ -33,9 +36,9 @@ public class AddEventController implements Initializable {
     @FXML
     private Button btnValiderA_event;
     @FXML
-    private TextField txt_type;
-    @FXML
     private ComboBox<String> combo_type = new ComboBox<>();
+    @FXML
+    private JFXDatePicker tDatenaiss;
     
 
     /**
@@ -53,16 +56,16 @@ public class AddEventController implements Initializable {
         try {
             // Ajouter Event
             String rOrg = txt_org.getText();
-            String rDate = txt_date.getText();
+       LocalDate Datenaiss = tDatenaiss.getValue();
+        
             String rNom = txt_nom.getText();
              String rType = combo_type.getValue();
              String rCategorie = txt_categorie.getText();
              String rDescription = txt_description.getText();
             int Org = DatatypeConverter.parseInt(rOrg);
-            //int Type = DatatypeConverter.parseInt(rType);
             int Categorie = DatatypeConverter.parseInt(rCategorie);
 
-            Evenement e = new Evenement(Org,rDate,rNom,rType,Categorie,rDescription);
+            Evenement e = new Evenement(Org,Datenaiss,rNom,rType,Categorie,rDescription);
             EvenementCRUD evt = new EvenementCRUD();
             evt.ajouterEvenement(e);
             
