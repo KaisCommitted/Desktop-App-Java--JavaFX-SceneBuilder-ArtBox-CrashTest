@@ -90,7 +90,7 @@ public class postCRUD {
     }
      public void supprimerPost(Post p) {
          try {
-            String requete = "DELETE FROM postes WHERE id=?";
+            String requete = "DELETE FROM postes WHERE id_post=?";
 
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, p.getId_post());
@@ -104,7 +104,7 @@ public class postCRUD {
 
     public void modifierPost(int id, String object, Object obj) {
         try {
-            String requete = "UPDATE postes SET ? = ? WHERE id = ?";
+            String requete = "UPDATE postes SET ? = ? WHERE id_post= ?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, object);
             pst.setObject(2, obj);
