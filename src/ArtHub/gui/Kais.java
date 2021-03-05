@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 /**
  *
  */
-public class TestFXMainKais extends Application {
+public class Kais extends Application {
     
     @Override
     public void start(Stage primaryStage) {
@@ -34,7 +34,7 @@ public class TestFXMainKais extends Application {
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(TestFXMainKais.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Kais.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
