@@ -103,6 +103,7 @@ public class AfficherParticipantController implements Initializable {
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
+        treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
         
        
         

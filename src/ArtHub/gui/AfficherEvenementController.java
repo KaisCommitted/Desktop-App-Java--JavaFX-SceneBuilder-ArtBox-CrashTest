@@ -235,6 +235,7 @@ public class AfficherEvenementController implements Initializable {
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
+        treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
         
         
        
@@ -242,8 +243,8 @@ public class AfficherEvenementController implements Initializable {
         //declarer la button supprimer
         JFXButton DltBtn = new JFXButton("Remove");
         DltBtn.setLayoutY(410D);
+        //DltBtn.getStylesheets().add(getClass(button3).getResource("feed gui.css").toExternalForm());
         DltBtn.setOnAction(new EventHandler<ActionEvent>() {
-            
             //eventHandler de la button supprimer
             @Override
             public void handle(ActionEvent event) {
