@@ -28,10 +28,10 @@ public class TestFXMainMoetezMathalan extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AddFeedback.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AfficherFeedback.fxml"));
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Affichage");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
