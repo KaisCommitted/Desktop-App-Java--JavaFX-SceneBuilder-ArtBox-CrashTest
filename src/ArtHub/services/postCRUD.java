@@ -1,4 +1,3 @@
-
 package ArtHub.services;
 import ArtHub.entities.Post;
 import ArtHub.gui.Ajout_PostController;
@@ -58,26 +57,24 @@ public class postCRUD {
 
     
     
-    public List<Post> consulterPost() {
+        public List<Post> consulterPost() {
 
         List<Post> myList = new ArrayList<>();
         try {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * postes");
+            ResultSet rs = pst.executeQuery("SELECT * from postes");
             while (rs.next()) {
 
                
-                int id_po = rs.getInt("id_post");
-                String date_p = rs.getString("post_date");
-                String categorie_p = rs.getString("categoie");
-                String desc = rs.getString("Description");
-                String file = rs.getString("file");
-                String nom = rs.getString("Nom_post");
+                int id_post= rs.getInt("id_post");
+                String nom_post = rs.getString("nom_post");
+                String Description = rs.getString("Description");
+                String categorie =rs.getString("categorie");
                 
-                Post p = new Post(id_po,date_p,categorie_p,desc,file,nom);
-                p.setId_post(rs.getInt("id_po"));
+                Post p = new Post(id_post,nom_post,Description,categorie);
+                p.setId_post(rs.getInt("id_post"));
                 myList.add(p);
 
             }
@@ -104,7 +101,7 @@ public class postCRUD {
 
     public void modifierPost(int id, String object, Object obj) {
         try {
-            String requete = "UPDATE postes SET ? = ? WHERE id_post= ?";
+            String requete = "UPDATE postes SET ? = ? WHERE id_post = ?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, object);
             pst.setObject(2, obj);
@@ -118,27 +115,12 @@ public class postCRUD {
             pst.executeUpdate();
             System.out.println("Poste modifié avec succées");
 
-//            Notifications notifs = Notifications.create()
-//                            .title("Produit ajouté")
-//                            .text("Le produit a été ajouter avec succées!")
-//                            .graphic(new ImageView("file:C:/evenements/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
-//                            .hideAfter(Duration.seconds(5))
-//                            .position(Pos.BOTTOM_RIGHT);
-//
-//                    notifs.darkStyle();
-//                    Platform.runLater(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            notifs.show();
-//                        }
-//                    });
-
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     
     
     
