@@ -32,7 +32,7 @@ public class UserFXMain extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Sign Up ArtBox");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

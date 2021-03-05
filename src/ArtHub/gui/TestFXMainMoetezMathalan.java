@@ -22,24 +22,20 @@ import javafx.stage.Stage;
  *
  * @author Fayechi
  */
-public class TestFXMainTarek extends Application {
+public class TestFXMainMoetezMathalan extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         
         try {
-<<<<<<< HEAD:src/ArtHub/gui/TestFXMain.java
-            Parent root = FXMLLoader.load(getClass().getResource("AfficherEvenement.fxml")); //replace with add if i wanna add
-=======
-            Parent root = FXMLLoader.load(getClass().getResource("AddLabel.fxml"));
->>>>>>> dd2f1db385aefb086574cc7a3485dc53ff3d9cfe:src/ArtHub/gui/TestFXMainTarek.java
+            Parent root = FXMLLoader.load(getClass().getResource("AddFeedback.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(TestFXMainTarek.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestFXMainMoetezMathalan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
