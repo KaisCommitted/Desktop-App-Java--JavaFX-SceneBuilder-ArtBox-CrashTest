@@ -15,6 +15,11 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,6 +61,11 @@ public class AddUserController implements Initializable {
     private JFXButton btnSignup;
 
        
+    
+    
+    
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -89,7 +99,35 @@ public class AddUserController implements Initializable {
         UserCRUD usrc = new UserCRUD();
         usrc.ajouterUser(u);
         
-        
+        final String fromEmail = "0artbox1@gmail.com"; //requires valid gmail id
+		final String password = "CrashTest01"; // correct password for gmail id
+		final String toEmail = rMail; // can be any email id 
+		
+		System.out.println("SSLEmail Start");
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+		props.put("mail.smtp.socketFactory.port", "465"); //SSL Port
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+		props.put("mail.smtp.auth", "true"); //Enabling SMTP Authentication
+		props.put("mail.smtp.port", "465"); //SMTP Port
+		
+		Authenticator auth = new Authenticator() {
+			//override the getPasswordAuthentication method
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(fromEmail, password);
+			}
+		};
+		
+		Session session = Session.getDefaultInstance(props, auth);
+		System.out.println("Session created");
+	        EmailUtil.sendEmail(session, toEmail,"SSLEmail Testing Subject", "SSLEmail Testing Body");
+
+	        EmailUtil.sendAttachmentEmail(session, toEmail,"SSLEmail Testing Subject with Attachment", "SSLEmail Testing Body with Attachment");
+
+	        EmailUtil.sendImageEmail(session, toEmail,"SSLEmail Testing Subject with Image", "SSLEmail Testing Body with Image");
+
+	
         
     
            }catch (Exception ex) {
@@ -98,5 +136,23 @@ public class AddUserController implements Initializable {
 
     @FXML
     private void addUser(KeyEvent event) {
+    }
+
+    private static class EmailUtil {
+
+        private static void sendEmail(Session session, String toEmail, String sslEmail_Testing_Subject, String sslEmail_Testing_Body) {
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private static void sendAttachmentEmail(Session session, String toEmail, String sslEmail_Testing_Subject_with_Attachment, String sslEmail_Testing_Body_with_Attachment) {
+           // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private static void sendImageEmail(Session session, String toEmail, String sslEmail_Testing_Subject_with_Image, String sslEmail_Testing_Body_with_Image) {
+          //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public EmailUtil() {
+        }
     }
 }
