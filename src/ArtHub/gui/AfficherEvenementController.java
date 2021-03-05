@@ -51,11 +51,11 @@ public class AfficherEvenementController implements Initializable {
     @FXML
     private AnchorPane anchorevent;
     EvenementCRUD ps;
-    @FXML
     private JFXTextField input;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        input = new JFXTextField() ;
         EvenementCRUD ps = new EvenementCRUD();
         // id table view
         JFXTreeTableColumn<Evenement, String> id = new JFXTreeTableColumn<>("id");
@@ -151,7 +151,7 @@ public class AfficherEvenementController implements Initializable {
         type_event.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
-                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getType_event()));
+                return new SimpleStringProperty(param.getValue().getValue().getType_event());
             }
         });
         type_event.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
@@ -166,7 +166,7 @@ public class AfficherEvenementController implements Initializable {
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
-                    .getValue().setType_event(Integer.parseInt(t.getNewValue()));
+                    .getValue().setType_event(t.getNewValue());
             ps.modifierEvenement(idd, "type_event", newValue);
         });
         
@@ -235,6 +235,7 @@ public class AfficherEvenementController implements Initializable {
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
+        treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
         
         
        
@@ -242,8 +243,8 @@ public class AfficherEvenementController implements Initializable {
         //declarer la button supprimer
         JFXButton DltBtn = new JFXButton("Remove");
         DltBtn.setLayoutY(410D);
+        //DltBtn.getStylesheets().add(getClass(button3).getResource("feed gui.css").toExternalForm());
         DltBtn.setOnAction(new EventHandler<ActionEvent>() {
-            
             //eventHandler de la button supprimer
             @Override
             public void handle(ActionEvent event) {
@@ -274,24 +275,25 @@ public class AfficherEvenementController implements Initializable {
                 confirmation.showAndWait();
             }
         }); 
-        
-        /* input.setPromptText("Rechercher ..");
+        input.setLayoutX(100D);
+        input.setLayoutY(410D);
+        input.setPromptText("Rechercher ..");
         input.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                treeview.setPredicate(new Predicate<TreeItem<Evenement>>() {
+               treeview.setPredicate(new Predicate<TreeItem<Evenement>>() {
                     @Override
-                    public boolean test(TreeItem<Produits> t) {
+                    public boolean test(TreeItem<Evenement> t) {
 
-                        boolean flag = t.getValue().getNom_event().getValue().contains(newValue);
+                        boolean flag = t.getValue().getNom_event().toLowerCase().contains(newValue.toLowerCase());
                         return flag;
                     }
                 });
             }
-        });*/
+        });
         
         
-        anchorevent.getChildren().addAll(treeview,DltBtn);
+        anchorevent.getChildren().addAll(treeview,DltBtn, input);
        
   
         

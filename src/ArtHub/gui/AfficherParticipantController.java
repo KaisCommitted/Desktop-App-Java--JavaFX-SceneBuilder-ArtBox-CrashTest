@@ -8,6 +8,7 @@ package ArtHub.gui;
 import ArtHub.entities.Participant;
 import ArtHub.services.ParticipantCRUD;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -17,7 +18,9 @@ import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +50,8 @@ public class AfficherParticipantController implements Initializable {
     @FXML
     private AnchorPane anchorparticipant;
     ParticipantCRUD ps;
+    @FXML
+    private JFXTextField input;
 
     /**
      * Initializes the controller class.
@@ -57,7 +62,7 @@ public class AfficherParticipantController implements Initializable {
        
         // id_participation table view
         JFXTreeTableColumn<Participant, String> id_participation = new JFXTreeTableColumn<>("id_participation");
-        id_participation.setPrefWidth(150);
+        id_participation.setPrefWidth(250);
         id_participation.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Participant, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Participant, String> param) {
@@ -67,7 +72,7 @@ public class AfficherParticipantController implements Initializable {
         
          // id_user table view
         JFXTreeTableColumn<Participant, String> id_user = new JFXTreeTableColumn<>("id_user");
-        id_user.setPrefWidth(150);
+        id_user.setPrefWidth(250);
         id_user.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Participant, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Participant, String> param) {
@@ -76,7 +81,7 @@ public class AfficherParticipantController implements Initializable {
         });
         // id_event table view
         JFXTreeTableColumn<Participant, String> id_event = new JFXTreeTableColumn<>("id_event");
-        id_event.setPrefWidth(150);
+        id_event.setPrefWidth(250);
         id_event.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Participant, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Participant, String> param) {
@@ -84,58 +89,7 @@ public class AfficherParticipantController implements Initializable {
            }
 
        });
-         // name_user table view
-        JFXTreeTableColumn<Participant, String> name_user = new JFXTreeTableColumn<>("name_user");
-        name_user.setPrefWidth(150);
-        name_user.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Participant, String>, ObservableValue<String>>(){
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Participant, String> param) {
-                return new SimpleStringProperty(param.getValue().getValue().getName_user());
-            }
-        });
-                 name_user.setCellFactory((TreeTableColumn<Participant, String> param) -> {
-            return new GenericEditableTreeTableCell<>(
-                    new TextFieldEditorBuilder());
-        });
-        //setting the new value for editable name_user text field
-        name_user.setOnEditCommit((CellEditEvent<Participant, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_participation();
-            String newValue = t.getNewValue();
-
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setName_user(t.getNewValue());
-            ps.modifierParticipant(idd, "name_user", newValue);
-        });
-        
-     
-        // name_event table view
-        JFXTreeTableColumn<Participant, String> name_event = new JFXTreeTableColumn<>("name_event");
-        name_event.setPrefWidth(150);
-        name_event.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Participant, String>, ObservableValue<String>>(){
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Participant, String> param) {
-               return new SimpleStringProperty(param.getValue().getValue().getName_event());
-            }
-        });
-        
-                 name_event.setCellFactory((TreeTableColumn<Participant, String> param) -> {
-            return new GenericEditableTreeTableCell<>(
-                    new TextFieldEditorBuilder());
-        });
-        //setting the new value for editable name_event text field
-        name_event.setOnEditCommit((CellEditEvent<Participant, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_participation();
-            String newValue = t.getNewValue();
-
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setName_event(t.getNewValue());
-            ps.modifierParticipant(idd, "name_event", newValue);
-        });
-
+         
      
         
         List<Participant> myLst;
@@ -145,10 +99,11 @@ public class AfficherParticipantController implements Initializable {
         myLst.forEach(p -> Participants.add(p));
         JFXTreeTableView<Participant> treeview = new JFXTreeTableView<>();
         final TreeItem<Participant> root = new RecursiveTreeItem<Participant>(Participants, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id_participation,id_user,id_event,name_user,name_event);
+        treeview.getColumns().setAll(id_participation,id_user,id_event);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
+        treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
         
        
         
@@ -188,20 +143,20 @@ public class AfficherParticipantController implements Initializable {
             }
         }); 
         
-        /* input.setPromptText("Rechercher ..");
+        input.setPromptText("Rechercher ..");
         input.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 treeview.setPredicate(new Predicate<TreeItem<Participant>>() {
                     @Override
-                    public boolean test(TreeItem<Produits> t) {
+                    public boolean test(TreeItem<Participant> t) {
 
-                        boolean flag = t.getValue().getname_user().getValue().contains(newValue);
+                        boolean flag = String.valueOf(t.getValue().getId_participation()).contains(newValue);
                         return flag;
                     }
                 });
             }
-        });*/
+        });
         
         
         anchorparticipant.getChildren().addAll(treeview,DltBtn);

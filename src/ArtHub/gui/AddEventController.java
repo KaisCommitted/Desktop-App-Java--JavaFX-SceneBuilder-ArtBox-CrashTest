@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javax.xml.bind.DatatypeConverter;
 
@@ -33,6 +34,8 @@ public class AddEventController implements Initializable {
     private Button btnValiderA_event;
     @FXML
     private TextField txt_type;
+    @FXML
+    private ComboBox<String> combo_type = new ComboBox<>();
     
 
     /**
@@ -40,6 +43,8 @@ public class AddEventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        combo_type.setPromptText("Choisissez un type ..");
+        combo_type.getItems().addAll("En ligne", "Exposé", "Festival", "Formation", "Autres");
     
     }    
 
@@ -50,14 +55,14 @@ public class AddEventController implements Initializable {
             String rOrg = txt_org.getText();
             String rDate = txt_date.getText();
             String rNom = txt_nom.getText();
-             String rType = txt_type.getText();
+             String rType = combo_type.getValue();
              String rCategorie = txt_categorie.getText();
              String rDescription = txt_description.getText();
             int Org = DatatypeConverter.parseInt(rOrg);
-            int Type = DatatypeConverter.parseInt(rType);
+            //int Type = DatatypeConverter.parseInt(rType);
             int Categorie = DatatypeConverter.parseInt(rCategorie);
 
-            Evenement e = new Evenement(Org,rDate,rNom,Type,Categorie,rDescription);
+            Evenement e = new Evenement(Org,rDate,rNom,rType,Categorie,rDescription);
             EvenementCRUD evt = new EvenementCRUD();
             evt.ajouterEvenement(e);
             

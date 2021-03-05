@@ -14,10 +14,9 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
     private int id_org;
     private String date_event;
     private String nom_event;
-    private int type_event;
+    private String type_event;
     private int categorie;
     private String description;
-     
     public Evenement() {
     }
 
@@ -30,7 +29,7 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
      * @param categorie
      * @param description
      */
-    public Evenement(int id_org, String date_event, String nom_event, int type_event, int categorie, String description) {
+    public Evenement(int id_org, String date_event, String nom_event, String type_event, int categorie, String description) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;
@@ -55,7 +54,7 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
         return nom_event;
     }
 
-    public int getType_event() {
+    public String getType_event() {
         return type_event;
     }
 
@@ -83,7 +82,7 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
         this.nom_event = nom_event;
     }
 
-    public void setType_event(int type_event) {
+    public void setType_event(String type_event) {
         this.type_event = type_event;
     }
 

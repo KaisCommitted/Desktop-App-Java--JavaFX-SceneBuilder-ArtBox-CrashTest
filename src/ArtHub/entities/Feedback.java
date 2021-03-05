@@ -11,7 +11,7 @@ import java.sql.Date;
 
 
 
-public class Feedback extends RecursiveTreeObject<Evenement> implements Serializable {
+public class Feedback extends RecursiveTreeObject<Feedback> implements Serializable {
     private int id_feedback;
     private String contenu_feedback;
     private String type_feedback;
@@ -34,6 +34,17 @@ public class Feedback extends RecursiveTreeObject<Evenement> implements Serializ
         this.type_feedback = type_feedback;
         this.etat_feedback = "non traité";
     }
+
+    public Feedback(int id_feedback, String contenu_feedback, String type_feedback, String etat_feedback) {
+        this.id_feedback = id_feedback;
+        this.contenu_feedback = contenu_feedback;
+        this.type_feedback = type_feedback;
+        this.etat_feedback = etat_feedback;
+    }
+
+   
+    
+    
 
    
     
@@ -83,9 +94,7 @@ public class Feedback extends RecursiveTreeObject<Evenement> implements Serializ
         return "Feedback{" + "id_feedback=" + id_feedback + ", contenu_feedback=" + contenu_feedback + ", type_feedback=" + type_feedback + ", etat_feedback=" + etat_feedback + ", date_feedback=" + date_feedback + '}';
     }
 
-    public void setId(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
   
 
