@@ -9,12 +9,12 @@ import java.sql.Date;
  *
  * @author Fayechi
  */
-public class Label  extends RecursiveTreeObject<Label> implements Serializable {
+public class Labell  extends RecursiveTreeObject<Labell> implements Serializable {
     private int id;
     private String name;
     private String type;
      
-    public Label() {
+    public Labell() {
     }
 
     /**
@@ -23,8 +23,13 @@ public class Label  extends RecursiveTreeObject<Label> implements Serializable {
      * @param name
      * @param type
      */
-    public Label(int id, String name, String type) {
+    public Labell(int id, String name, String type) {
         this.id = id;
+        this.name = name;
+        this.type = type;
+    }    
+    
+    public Labell(String name, String type) {
         this.name = name;
         this.type = type;
     }
@@ -58,6 +63,10 @@ public class Label  extends RecursiveTreeObject<Label> implements Serializable {
     @Override
     public String toString() {
         return "Label{" + "id=" + id + ", name=" + name + ", type=" + type + '}';
+    }
+
+    public int getId() {
+        return id;
     }
    
     
