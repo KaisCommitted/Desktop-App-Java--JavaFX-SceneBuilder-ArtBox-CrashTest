@@ -23,16 +23,16 @@ import javafx.stage.Stage;
  *
  * @author louay
  */
-public class UserFXMain extends Application {
+public class RdDelUp_UserFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("ReadUser.fxml"));
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Sign Up ArtBox");
+            primaryStage.setTitle("Backend Users");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

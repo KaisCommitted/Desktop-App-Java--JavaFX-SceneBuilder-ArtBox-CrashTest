@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -21,22 +20,22 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author louay
+ * @author Fayechi
  */
-public class UserFXMain extends Application {
+public class TestFXMainAnnonce extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AfficherAnnonce.fxml")); //add my own file !!!!!!!!!!!!!!!!!!!!!
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Sign Up ArtBox");
+            primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(UserFXMain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestFXMainAnnonce.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -46,4 +45,5 @@ public class UserFXMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
 }

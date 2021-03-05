@@ -3,6 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/TestFXMain.java</file>
+            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/entities/Evenement.java</file>
+            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AddEventController.java</file>
+            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/TestFXMainEvent.java</file>
+            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/tools/MyConnection.java</file>
+            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AfficherEvenementController.java</file>
+=======
             <file>file:/C:/Users/21698/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/TestFXMainEvent.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/crashtest-arthub/src/ArtHub/entities/Evenement.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/crashtest-arthub/src/ArtHub/entities/Participant.java</file>
@@ -17,6 +26,12 @@
             <file>file:/C:/Users/21698/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AddEventController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/crashtest-arthub/src/ArtHub/services/EvenementCRUD.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AfficherParticipantController.java</file>
+>>>>>>> df7f36c8b8af0365d6536b623f1244677490756a
+=======
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AddEventController.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/TestFXMain.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/entities/Evenement.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
