@@ -25,7 +25,7 @@
                   <Image url="@../../../Images/beautiful-illustrations-design-inspiration-38@2x.png" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="220.0" layoutY="18.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef">
+            <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="16.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -51,17 +51,17 @@
                   <Image url="@../../../Images/SDFDSFDSF.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="349.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
+            <JFXButton layoutX="316.0" layoutY="16.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="449.0" layoutY="16.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
+            <JFXButton fx:id="btn_event" layoutX="449.0" layoutY="16.0" onAction="#load_event" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="541.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f">
+            <JFXButton layoutX="560.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>

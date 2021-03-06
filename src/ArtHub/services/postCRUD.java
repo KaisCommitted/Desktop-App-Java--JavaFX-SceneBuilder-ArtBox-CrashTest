@@ -39,12 +39,12 @@ public class postCRUD {
         String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date)"+"values (?,?,?,?,CURRENT_TIMESTAMP)";
         try {
             String s=Ajout_PostController.s;
-            InputStream is = new FileInputStream(new File(s));
+            
             ste = cnx.prepareStatement(req);
             ste.setString(1, p.getNom_post());
             ste.setString(2, p.getDescription());
             ste.setString(3, c);
-            ste.setBlob(4,is);
+            ste.setString(4,s);
             ste.executeUpdate();
             System.out.println("Post Added");
             
