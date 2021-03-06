@@ -23,6 +23,7 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import ArtHub.entities.Evenement;
+import ArtHub.entities.User;
 import ArtHub.services.EvenementCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -49,7 +50,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Kais
  */
-public class AfficherEvenementController implements Initializable {
+public class CRUDEventController implements Initializable {
 
     @FXML
     private AnchorPane anchorevent;
@@ -76,7 +77,7 @@ public class AfficherEvenementController implements Initializable {
         id_org.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
-                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_org()));
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_org().getId_user()));
             }
         });
         //making the cell editable
@@ -88,11 +89,12 @@ public class AfficherEvenementController implements Initializable {
         id_org.setOnEditCommit((CellEditEvent<Evenement, String> t) -> {
             int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
             String newValue = t.getNewValue();
-
+            User id_user = new User();
+            id_user.setId_user(Integer.parseInt(t.getNewValue()));
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
-                    .getValue().setId_org(Integer.parseInt(t.getNewValue()));
+                    .getValue().setId_org(id_user);
             ps.modifierEvenement(idd, "id_org", newValue);
         });
         
@@ -227,6 +229,31 @@ public class AfficherEvenementController implements Initializable {
                     .getValue().setDescription(t.getNewValue());
             ps.modifierEvenement(idd, "description", newValue);
         });
+        JFXTreeTableColumn<Evenement, String> capacite_event = new JFXTreeTableColumn<>("capacite_event");
+        capacite_event.setPrefWidth(150);
+        capacite_event.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
+               return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getCapacite_event()));
+           }
+
+       });
+        
+        capacite_event.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable capacite_event text field
+        capacite_event.setOnEditCommit((CellEditEvent<Evenement, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setCapacite_event(Integer.parseInt(t.getNewValue()));
+            ps.modifierEvenement(idd, "capacite_event", newValue);
+        });
 
      
         
@@ -237,15 +264,24 @@ public class AfficherEvenementController implements Initializable {
         myLst.forEach(p -> Evenements.add(p));
         JFXTreeTableView<Evenement> treeview = new JFXTreeTableView<>();
         final TreeItem<Evenement> root = new RecursiveTreeItem<Evenement>(Evenements, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id, id_org,date,nom_event,type_event,categorie,description);
+        treeview.getColumns().setAll(id, id_org,date,nom_event,type_event,categorie,description,capacite_event);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
         treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
         
         
-       
         
+       JFXButton RfrBtn = new JFXButton("Refresh");
+        RfrBtn.setLayoutY(410D);
+        RfrBtn.setLayoutX(300D);
+         RfrBtn.setOnAction(new EventHandler<ActionEvent>() {
+            //eventHandler de la button supprimer
+            @Override
+            public void handle(ActionEvent event) {
+               treeview.refresh();
+            }
+        }); 
         //declarer la button supprimer
         JFXButton DltBtn = new JFXButton("Remove");
         DltBtn.setLayoutY(410D);
@@ -299,7 +335,7 @@ public class AfficherEvenementController implements Initializable {
         });
         
         
-        anchorevent.getChildren().addAll(treeview,DltBtn, input);
+        anchorevent.getChildren().addAll(treeview,DltBtn, input,RfrBtn);
        
   
         

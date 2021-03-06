@@ -1,6 +1,7 @@
 
 package ArtHub.services;
 import ArtHub.entities.Evenement;
+import ArtHub.entities.User;
 import ArtHub.tools.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,17 +26,18 @@ public class EvenementCRUD {
     }
     
     public void ajouterEvenement(Evenement p){
-        String req ="INSERT INTO evenement ( id_org,date,nom_event,type_event,categorie,description)"+"values (?,?,?,?,?,?)";
+        String req ="INSERT INTO evenement ( id_org,date,nom_event,type_event,categorie,description,capacite_event)"+"values (?,?,?,?,?,?,?)";
         try {
            
             Date Date_event = Date.valueOf(p.getDate_event());
             ste = cnx.prepareStatement(req);
-            ste.setInt(1, p.getId_org());
+            ste.setInt(1, p.getId_org().getId_user());
             ste.setDate(2,Date_event);
             ste.setString(3, p.getNom_event());
             ste.setString(4, p.getType_event());
             ste.setInt(5, p.getCategorie());
             ste.setString(6, p.getDescription());
+            ste.setInt(7, p.getCapacite_event());
             ste.executeUpdate();
             System.out.println("Evenement ajoutée");
             
@@ -58,15 +60,17 @@ public class EvenementCRUD {
             while (rs.next()) {
 
                
-                int id_org = rs.getInt("id_org");
+                User id_user = new User();
+                id_user.setId_user(rs.getInt("id_org"));
                 Date dateaux = rs.getDate("date");
                 LocalDate date = dateaux.toLocalDate();
                 String nom_event = rs.getString("nom_event");
                 String type_event = rs.getString("type_event");
                 int categorie = rs.getInt("categorie");
                 String description = rs.getString("description");
+                int capacite_event = rs.getInt("capacite_event");
                 
-                Evenement p = new Evenement(id_org, date, nom_event,type_event,categorie,description);
+                Evenement p = new Evenement(id_user, date, nom_event,type_event,categorie,description,capacite_event);
                 p.setId(rs.getInt("id"));
                 myList.add(p);
 

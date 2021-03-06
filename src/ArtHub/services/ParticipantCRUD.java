@@ -1,6 +1,8 @@
 
 package ArtHub.services;
+import ArtHub.entities.Evenement;
 import ArtHub.entities.Participant;
+import ArtHub.entities.User;
 import ArtHub.tools.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +25,39 @@ public class ParticipantCRUD {
     }
     
     
-      public List<Participant> consulterParticipant() {
+     public void ajouterParticipant(Participant p){
+        String req ="INSERT INTO participant (id_user,id_event)"+"values (?,?)";
+        try {
+           
+             ste = cnx.prepareStatement(req);
+             ste.setInt(1, p.getId_user().getId_user());
+             ste.setInt(2, p.getId_event().getId());
+            
+            ste.executeUpdate();
+            System.out.println("Participant ajoutée");
+            
+        } catch (SQLException ex) {
+            System.out.println("Probléme");
+            System.out.println(ex.getMessage());
+            
+        }
+       String requete = "UPDATE evenement SET capacite_event = capacite_event-1 WHERE id = ?";
+        try {
+           
+             ste.setInt(1, p.getId_event().getId());
+            
+            ste.executeUpdate();
+            System.out.println("Participant ajoutée");
+            
+        } catch (SQLException ex) {
+            System.out.println("Probléme");
+            System.out.println(ex.getMessage());
+            
+        }
+        
+    } 
+    
+    public List<Participant> consulterParticipant() {
 
         List<Participant> myList = new ArrayList<>();
         try {
@@ -32,14 +66,14 @@ public class ParticipantCRUD {
 
             ResultSet rs = pst.executeQuery("SELECT * from participant");
             while (rs.next()) {
-
-               
-                int id_participation= rs.getInt("id_participation");
-                int id_user = rs.getInt("id_user");
-                int id_event = rs.getInt("id_event");
                 
-                
-                Participant p = new Participant(id_participation,id_user,id_event);
+                Participant p = new Participant();
+                User auxU = new User();
+                auxU.setId_user((rs.getInt("id_user")));
+                p.setId_user(auxU);
+                Evenement auxE = new Evenement();
+                auxE.setId((rs.getInt("id_event")));
+                p.setId_event(auxE);
                 p.setId_participation(rs.getInt("id_participation"));
                 myList.add(p);
 

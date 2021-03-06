@@ -27,7 +27,9 @@ public class Kais extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AddEvent.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("CRUDParticipant.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");
@@ -36,6 +38,7 @@ public class Kais extends Application {
         } catch (IOException ex) {
             Logger.getLogger(Kais.class.getName()).log(Level.SEVERE, null, ex);
         }
+          
     }
 
     /**
