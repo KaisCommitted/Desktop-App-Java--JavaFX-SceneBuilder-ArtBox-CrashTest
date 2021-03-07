@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.InputMethodEvent;
@@ -91,15 +92,26 @@ public class FRONT_EventController implements Initializable {
     
     private ResourceBundle b;
     private URL url;
+    private ActionEvent event1;
     
     @FXML
     private JFXTextField input;
+    @FXML
+    private ComboBox<String> comboDate = new ComboBox<>();
+    @FXML
+    private ComboBox<String> comboTrend = new ComboBox<>();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        comboDate.getItems().addAll("This Week", "This Month", "Today");
+        comboDate.setValue("This Week");
+        comboTrend.getItems().addAll("Default","Most Popular", "Most Recent", "Alphabetical");
+        comboTrend.setPromptText("Sort By..");
+         comboTrend.setValue("Default");
         scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
         scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
         scroll2.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -107,6 +119,7 @@ public class FRONT_EventController implements Initializable {
 
         EvenementCRUD ps = new EvenementCRUD();
         List<Evenement> myLst;
+        if (comboDate.getValue()=="This Week") {
         myLst = ps.ThisWeekEvenement();
         event_layout.getChildren().clear();
         event_mostPop.getChildren().clear();
@@ -123,9 +136,10 @@ public class FRONT_EventController implements Initializable {
             }
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        myLst = ps.MostPopularEvenement();
+        }}
+        
+         
+        myLst = ps.consulterEvenement();
         try {
             for (int i = 0; i < myLst.size(); i++) {
 
@@ -238,14 +252,90 @@ public class FRONT_EventController implements Initializable {
 
     @FXML
     private void filterEvent(KeyEvent event) {
-         System.out.println("Im INNNNNNNNNNNNNNNNNNNN");
-            
        
-        EvenementCRUD ps = new EvenementCRUD();
+            
+       if (input.getText() == null || input.getText().trim().equals("")) {
+           
+           SortByTime(event1);
+           SortByTrend(event1);
+       }
+       else {
+      EvenementCRUD ps = new EvenementCRUD();
         List<Evenement> myLst;
-        myLst = ps.ThisWeekEvenementFiltered(input.getText());
        event_layout.getChildren().clear();
         event_mostPop.getChildren().clear();
+        if (comboTrend.getValue()=="Most Recent") {
+        myLst = ps.MostRecentFiltered(input.getText());
+        event_mostPop.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+         if (comboTrend.getValue()=="Most Popular") {
+        myLst = ps.MostPopularFiltered(input.getText());
+        event_mostPop.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+          if (comboTrend.getValue()=="Alphabetical") {
+        myLst = ps.AlphabeticalFiltered(input.getText());
+        event_mostPop.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+          
+           if (comboTrend.getValue()=="Default") {
+        myLst = ps.consulterFiltered(input.getText());
+        event_mostPop.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+        if (comboDate.getValue()=="Today") {
+        myLst = ps.TodayEvenementFiltered(input.getText());
+        event_layout.getChildren().clear();
         try {
             for (int i = 0; i < myLst.size(); i++) {
 
@@ -259,10 +349,110 @@ public class FRONT_EventController implements Initializable {
             }
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
+        if (comboDate.getValue()=="This Month") {
+        myLst = ps.ThisMonthEvenementFiltered(input.getText());
+        event_layout.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_layout.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
         
-    myLst = ps.MostPopularFiltered(input.getText());
-    try {
+        if (comboDate.getValue()=="This Week") {
+        myLst = ps.ThisWeekEvenementFiltered(input.getText());
+        event_layout.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_layout.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+        
+       }
+    }
+
+    @FXML
+    private void SortByTime(ActionEvent event) {
+         EvenementCRUD ps = new EvenementCRUD();
+        event_layout.getChildren().clear();
+        List<Evenement> myLst;
+        if (comboDate.getValue()=="Today") {
+        myLst = ps.TodayEvenement();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_layout.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+        if (comboDate.getValue()=="This Month") {
+        myLst = ps.ThisMonthEvenement();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_layout.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+        if (comboDate.getValue()=="This Week") {
+        myLst = ps.ThisWeekEvenement();
+        event_layout.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_layout.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+    }
+
+    @FXML
+    private void SortByTrend(ActionEvent event) {
+        EvenementCRUD ps = new EvenementCRUD();
+        event_mostPop.getChildren().clear();
+        List<Evenement> myLst;
+        if (comboTrend.getValue()=="Default") {
+        myLst = ps.consulterEvenement();
+        try {
             for (int i = 0; i < myLst.size(); i++) {
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -275,8 +465,61 @@ public class FRONT_EventController implements Initializable {
             }
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }}
+        if (comboTrend.getValue()=="Most Popular") {
+        myLst = ps.MostPopularEvenement();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+        if (comboTrend.getValue()=="Most Recent") {
+        myLst = ps.MostRecentEvenement();
+        event_mostPop.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+        
+        if (comboTrend.getValue()=="Alphabetical") {
+        myLst = ps.AlphabeticalEvenement();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }}
     }
+    
+    
+    
 
     
 
