@@ -21,7 +21,7 @@ public class User extends RecursiveTreeObject<User> implements Serializable  {
     private Date date_naissance;
     private String pwd_user;
     private String ref_admin;
-
+//TO DO : zid private Labell label; + static current user + profil 
     public User() {
     }
 
