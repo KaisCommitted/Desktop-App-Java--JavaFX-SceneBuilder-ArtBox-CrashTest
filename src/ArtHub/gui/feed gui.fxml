@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
@@ -140,7 +141,13 @@
                            <children>
                               <JFXTabPane layoutX="1.0" layoutY="23.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="763.0" prefWidth="2049.0" rotateGraphic="true" side="LEFT">
                                  <tabs>
-                                    <Tab text="Photography" />
+                                    <Tab text="Photography">
+                                       <content>
+                                          <HBox prefHeight="543.0" prefWidth="1712.0" />
+                                       </content>
+                                       <graphic>
+                                          <HBox prefHeight="100.0" prefWidth="200.0" />
+                                       </graphic></Tab>
                                     <Tab text="Music" />
                                     <Tab text="Illustration">
                                       <content>
