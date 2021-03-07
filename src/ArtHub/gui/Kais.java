@@ -28,11 +28,11 @@ public class Kais extends Application {
         
         try {
             //Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("FRONT_Event.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDParticipant.fxml"));
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Trying!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
