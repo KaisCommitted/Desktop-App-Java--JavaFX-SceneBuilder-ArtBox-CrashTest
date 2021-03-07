@@ -27,7 +27,7 @@
                   <Image url="@../../../Images/SDFDSFDSF.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1537.0" layoutY="21.0" onAction="#AddEvent" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Create an event" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1537.0" layoutY="21.0" onAction="#AddEvent" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Host an event" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXTextField focusColor="#405aa800" layoutX="721.0" layoutY="17.0" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
+            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" onKeyReleased="#filterEvent" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
                <font>
                   <Font size="18.0" />
                </font>
@@ -78,7 +78,7 @@
             </ImageView>
             <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="236.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
             <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="261.0" startX="32.0" startY="-106.0" stroke="#fffffffa" />
-            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="822.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Events" textAlignment="CENTER" wrappingWidth="254.8203125">
+            <Text fx:id="refresh" fill="WHITE" fontSmoothingType="LCD" layoutX="822.0" layoutY="125.0" onMouseClicked="#refresh" strokeType="OUTSIDE" strokeWidth="0.0" text="Events" textAlignment="CENTER" wrappingWidth="254.8203125">
                <font>
                   <Font name="Leelawadee UI Semilight" size="34.0" />
                </font>

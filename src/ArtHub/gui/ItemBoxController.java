@@ -47,14 +47,13 @@ public class ItemBoxController implements Initializable {
     @FXML
     private Label id_event;
 
-    User CurrentUser = new User(1);
-
-    ParticipantCRUD ppt = new ParticipantCRUD();
     @FXML
     private Label Event_spots1;
     @FXML
     private Label Event_date;
     DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    User CurrentUser = new User(1);
+    ParticipantCRUD ppt = new ParticipantCRUD();
 
     /**
      * Initializes the controller class.
@@ -84,18 +83,42 @@ public class ItemBoxController implements Initializable {
 
     }
 
+    public static String stripNonDigits(
+            final CharSequence input /* inspired by seh's comment */){
+    final StringBuilder sb = new StringBuilder(
+            input.length() /* also inspired by seh's comment */);
+    for(int i = 0; i < input.length(); i++){
+        final char c = input.charAt(i);
+        if(c > 47 && c < 58){
+            sb.append(c);
+        }
+    }
+    return sb.toString();
+}
     @FXML
     private void JoinEvent(ActionEvent event) {
         Evenement CurrentEvent = new Evenement(Integer.parseInt(id_event.getText()));
         Participant p = new Participant(CurrentUser, CurrentEvent);
         ParticipantCRUD ppt = new ParticipantCRUD();
+        String aux = Event_spots.getText();
+        String aux1 = Event_spots1.getText();   
+        aux = stripNonDigits(aux);
+        aux1 = stripNonDigits(aux1);
+           
         if (ppt.CheckUserExists(p.getId_user().getId_user(), p.getId_event().getId())) {
             ppt.supprimerParticipant(p);
+            
+           
+           
+            Event_spots.setText(Integer.toString(Integer.parseInt(aux) +1)+ " Remaining spots");
+            Event_spots1.setText(Integer.toString(Integer.parseInt(aux1) -1)+ " Participants");
             Btn_participer.setText("Join");
         } else {
             {
                 ppt.ajouterParticipant(p);
                 Btn_participer.setText("Going");
+              Event_spots.setText(Integer.toString(Integer.parseInt(aux) -1)+ " Remaining spots");
+            Event_spots1.setText(Integer.toString(Integer.parseInt(aux1) +1)+ " Participants");
             }
         }
 

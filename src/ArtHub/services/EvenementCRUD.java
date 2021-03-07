@@ -205,7 +205,87 @@ public class EvenementCRUD {
         return myList;
 
     }
+     
+    public List<Evenement> ThisWeekEvenementFiltered(String toCompare) { 
 
+        List<Evenement> myList = new ArrayList<>();
+        try {
+           Statement stmt = cnx.createStatement();
+            String sql = "SELECT * from evenement" + " WHERE nom_event LIKE '%"+toCompare+"%'";
+             sql += " INTERSECT SELECT * from evenement"+ " WHERE DATEDIFF(date,NOW()) <= 7";
+             sql += " UNION SELECT * from evenement"+ " WHERE categorie LIKE '%"+toCompare+"%'";
+             sql += " UNION SELECT * from evenement"+ " WHERE date LIKE '%"+toCompare+"%'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                User id_user = new User();
+                id_user.setId_user(rs.getInt("id_org"));
+                Date dateaux = rs.getDate("date");
+                LocalDate date = dateaux.toLocalDate();
+                String nom_event = rs.getString("nom_event");
+                String type_event = rs.getString("type_event");
+                int categorie = rs.getInt("categorie");
+                String description = rs.getString("description");
+                int capacite_event = rs.getInt("capacite_event");
+                int nb_max = rs.getInt("nb_max");
+                
+                Evenement p = new Evenement(id_user, date, nom_event,type_event,categorie,description,capacite_event,nb_max);
+                p.setId(rs.getInt("id"));
+                myList.add(p);
+                for (int i=0 ; i < myList.size() ; i++)
+                {
+                System.out.println(myList.get(i));
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return myList;
+
+    }
+ public List<Evenement> MostPopularFiltered(String toCompare) {
+
+        List<Evenement> myList = new ArrayList<>();
+        try {
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * from evenement" + " WHERE nom_event LIKE '%"+toCompare+"%'";
+            sql += " UNION SELECT * from evenement"+ " WHERE categorie LIKE '%"+toCompare+"%'";
+             sql += " UNION SELECT * from evenement"+ " WHERE date LIKE '%"+toCompare+"%'";
+             sql += " order by nb_max-capacite_event desc";
+           
+            ResultSet rs = stmt.executeQuery(sql);
+            
+
+          
+            while (rs.next()) {
+
+                User id_user = new User();
+                id_user.setId_user(rs.getInt("id_org"));
+                Date dateaux = rs.getDate("date");
+                LocalDate date = dateaux.toLocalDate();
+                String nom_event = rs.getString("nom_event");
+                String type_event = rs.getString("type_event");
+                int categorie = rs.getInt("categorie");
+                String description = rs.getString("description");
+                int capacite_event = rs.getInt("capacite_event");
+                int nb_max = rs.getInt("nb_max");
+                
+                Evenement p = new Evenement(id_user, date, nom_event,type_event,categorie,description,capacite_event,nb_max);
+                p.setId(rs.getInt("id"));
+                myList.add(p);
+                for (int i=0 ; i < myList.size() ; i++)
+                {
+                System.out.println(myList.get(i));
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return myList;
+
+    }
     
 
     

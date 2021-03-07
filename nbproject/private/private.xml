@@ -6,16 +6,19 @@
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Evenement.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Participant.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FRONT_EventController.java</file>
+            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/Ajout_PostController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/User.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/ParticipantCRUD.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ItemBox.fxml</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ItemBoxController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/feed%20gui.css</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/CRUDParticipantController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/Kais.java</file>
+            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FRONT_Event.fxml</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/CRUDEventController.java</file>
+            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Labell.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ADD_EventController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Annonce.java</file>
+            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/EvenementCRUD.java</file>
         </group>
     </open-files>
