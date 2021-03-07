@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2021 at 10:13 AM
+-- Generation Time: Mar 07, 2021 at 11:27 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -30,20 +30,24 @@ SET time_zone = "+00:00";
 CREATE TABLE `evenement` (
   `id` int(255) NOT NULL,
   `id_org` int(255) NOT NULL,
-  `date` varchar(255) NOT NULL,
+  `date` date NOT NULL,
   `nom_event` varchar(255) NOT NULL,
-  `type_event` int(255) NOT NULL,
+  `type_event` varchar(255) NOT NULL,
   `categorie` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL
+  `description` varchar(255) NOT NULL,
+  `capacite_event` int(11) NOT NULL,
+  `nb_max` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `evenement`
 --
 
-INSERT INTO `evenement` (`id`, `id_org`, `date`, `nom_event`, `type_event`, `categorie`, `description`) VALUES
-(1, 1, '25/02/2021', 'Festival Jazz', 1, 1, 'Beth Hart is coming'),
-(2, 1, '1', '1', 1, 1, '1');
+INSERT INTO `evenement` (`id`, `id_org`, `date`, `nom_event`, `type_event`, `categorie`, `description`, `capacite_event`, `nb_max`) VALUES
+(30, 1, '2021-03-07', 'Lets go', 'Exposé', 1, 'h', 19, 20),
+(31, 1, '2021-03-18', 'yes', 'Festival', 1, 'Yes', 20, 20),
+(32, 1, '2021-03-17', 'Testing', 'Festival', 1, 'leggo', 19, 20),
+(33, 1, '2021-03-10', 'PtitJe', 'En ligne', 1, 'MelaChbik', 20, 20);
 
 --
 -- Indexes for dumped tables
@@ -64,7 +68,7 @@ ALTER TABLE `evenement`
 -- AUTO_INCREMENT for table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables
@@ -74,7 +78,7 @@ ALTER TABLE `evenement`
 -- Constraints for table `evenement`
 --
 ALTER TABLE `evenement`
-  ADD CONSTRAINT `fk_org` FOREIGN KEY (`id_org`) REFERENCES `personne` (`id`);
+  ADD CONSTRAINT `fk_org` FOREIGN KEY (`id_org`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
