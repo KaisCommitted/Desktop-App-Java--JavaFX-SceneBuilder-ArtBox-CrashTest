@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * wadup
@@ -26,7 +28,7 @@ public class EvenementCRUD {
     }
     
     public void ajouterEvenement(Evenement p){
-        String req ="INSERT INTO evenement ( id_org,date,nom_event,type_event,categorie,description,capacite_event)"+"values (?,?,?,?,?,?,?)";
+        String req ="INSERT INTO evenement ( id_org,date,nom_event,type_event,categorie,description,capacite_event,nb_max)"+"values (?,?,?,?,?,?,?,?)";
         try {
            
             Date Date_event = Date.valueOf(p.getDate_event());
@@ -38,6 +40,7 @@ public class EvenementCRUD {
             ste.setInt(5, p.getCategorie());
             ste.setString(6, p.getDescription());
             ste.setInt(7, p.getCapacite_event());
+            ste.setInt(8,p.getCapacite_event());
             ste.executeUpdate();
             System.out.println("Evenement ajoutée");
             
@@ -69,8 +72,9 @@ public class EvenementCRUD {
                 int categorie = rs.getInt("categorie");
                 String description = rs.getString("description");
                 int capacite_event = rs.getInt("capacite_event");
+                int nb_max = rs.getInt("nb_max");
                 
-                Evenement p = new Evenement(id_user, date, nom_event,type_event,categorie,description,capacite_event);
+                Evenement p = new Evenement(id_user, date, nom_event,type_event,categorie,description,capacite_event,nb_max);
                 p.setId(rs.getInt("id"));
                 myList.add(p);
 
@@ -132,5 +136,77 @@ public class EvenementCRUD {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public List<Evenement> MostPopularEvenement() {
+
+        List<Evenement> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from evenement order by nb_max-capacite_event desc");
+            while (rs.next()) {
+
+               
+                User id_user = new User();
+                id_user.setId_user(rs.getInt("id_org"));
+                Date dateaux = rs.getDate("date");
+                LocalDate date = dateaux.toLocalDate();
+                String nom_event = rs.getString("nom_event");
+                String type_event = rs.getString("type_event");
+                int categorie = rs.getInt("categorie");
+                String description = rs.getString("description");
+                int capacite_event = rs.getInt("capacite_event");
+                int nb_max = rs.getInt("nb_max");
+                Evenement p = new Evenement(id_user, date, nom_event,type_event,categorie,description,capacite_event,nb_max);
+                p.setId(rs.getInt("id"));
+                myList.add(p);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+    
+     public List<Evenement> ThisWeekEvenement() {
+
+        List<Evenement> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE DATEDIFF(date,NOW()) <= 7");
+            while (rs.next()) {
+
+               
+                User id_user = new User();
+                id_user.setId_user(rs.getInt("id_org"));
+                Date dateaux = rs.getDate("date");
+                LocalDate date = dateaux.toLocalDate();
+                String nom_event = rs.getString("nom_event");
+                String type_event = rs.getString("type_event");
+                int categorie = rs.getInt("categorie");
+                String description = rs.getString("description");
+                int capacite_event = rs.getInt("capacite_event");
+                int nb_max = rs.getInt("nb_max");
+                
+                Evenement p = new Evenement(id_user, date, nom_event,type_event,categorie,description,capacite_event,nb_max);
+                p.setId(rs.getInt("id"));
+                myList.add(p);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+
+    
+
     
 }

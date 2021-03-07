@@ -46,6 +46,10 @@ public class User extends RecursiveTreeObject<User> implements Serializable  {
         this.ref_admin = ref_admin;
     }
 
+    public User(int id_user) {
+        this.id_user = id_user;
+    }
+
     public int getId_user() {
         return id_user;
     }

@@ -5,7 +5,9 @@
  */
 package ArtHub.gui;
 
+import ArtHub.entities.Evenement;
 import ArtHub.entities.Post;
+import ArtHub.services.EvenementCRUD;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
 import com.jfoenix.controls.JFXButton;
@@ -33,6 +35,12 @@ import javax.swing.JFileChooser;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.HBox;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 //import javafx.scene.control.Tab;
@@ -45,36 +53,35 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FRONT_EventController implements Initializable {
 
-     @FXML
+    @FXML
     private StackPane parentContainer1;
 
     @FXML
     private AnchorPane anchorRoot1;
 
-     @FXML
+    @FXML
     private Button feed_button;
      
-      @FXML
-    private JFXButton upload_image;
-      
-       @FXML
     private JFXTextField p_name;
-
-    @FXML
     private JFXTextArea p_desc;
-    
-     @FXML
     private JFXTabPane pan1;
      
-     @FXML
-    private JFXTextField image_path;
 
-    
-     
+    EvenementCRUD ps;
     public static String s;
     
     
     public static int tindex;
+    @FXML
+    private JFXButton Btn_AddEvent;
+    @FXML
+    private HBox event_layout;
+    @FXML
+    private HBox event_mostPop;
+    @FXML
+    private ScrollPane scroll1;
+    @FXML
+    private ScrollPane scroll2;
 
     
     
@@ -85,7 +92,49 @@ public class FRONT_EventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
+        scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
+        scroll2.setHbarPolicy(ScrollBarPolicy.NEVER);
+        scroll2.setVbarPolicy(ScrollBarPolicy.NEVER);
+        
+        EvenementCRUD ps = new EvenementCRUD();
+        List<Evenement> myLst;
+        myLst = ps.ThisWeekEvenement();
+       try {
+        for (int i = 0 ; i<myLst.size() ; i++) {
+            
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_layout.getChildren().add(EventBox);
+                
+                
+            } 
+        }
+       catch (IOException ex) {
+                Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+       myLst = ps.MostPopularEvenement();
+       try {
+        for (int i = 0 ; i<myLst.size() ; i++) {
+            
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+                
+                
+            } 
+        }
+       catch (IOException ex) {
+                Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
     }  
      @FXML
     private void load_feed(ActionEvent event ) throws IOException {
@@ -110,7 +159,6 @@ public class FRONT_EventController implements Initializable {
     }
     
     
-     @FXML
     private void image_file(ActionEvent event) {
         
      JFileChooser fileChooser = new JFileChooser();
@@ -152,7 +200,6 @@ public class FRONT_EventController implements Initializable {
      }
     
     
-    @FXML
     void create_image(ActionEvent event) throws Exception {
         
             String rNom_post = p_name.getText();
@@ -166,7 +213,13 @@ public class FRONT_EventController implements Initializable {
         
 
     }
+
+    @FXML
+    private void AddEvent(ActionEvent event) {
+    }
     
+    
+  
     
     
         
