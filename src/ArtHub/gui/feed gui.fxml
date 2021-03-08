@@ -4,12 +4,14 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
@@ -143,11 +145,16 @@
                                  <tabs>
                                     <Tab text="Photography">
                                        <content>
-                                          <HBox prefHeight="543.0" prefWidth="1712.0" />
-                                       </content>
-                                       <graphic>
-                                          <HBox prefHeight="100.0" prefWidth="200.0" />
-                                       </graphic></Tab>
+                                          <ScrollPane fx:id="scroll1" prefHeight="200.0" prefWidth="1741.0" styleClass="transparent" stylesheets="@style.css">
+                                             <content>
+                                                <GridPane fx:id="grid" prefHeight="36.0" prefWidth="123.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                </GridPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </content></Tab>
                                     <Tab text="Music" />
                                     <Tab text="Illustration">
                                       <content>

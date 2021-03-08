@@ -148,7 +148,7 @@ public class FRONT_EventController implements Initializable {
                 HBox EventBox = fxmlLoader.load();
                 ItemBoxController eventController = fxmlLoader.getController();
                 eventController.setData(myLst.get(i));
-                event_mostPop.getChildren().add(EventBox);
+                    event_mostPop.getChildren().add(EventBox);
 
             }
         } catch (IOException ex) {
