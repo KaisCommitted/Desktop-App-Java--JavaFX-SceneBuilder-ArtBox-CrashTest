@@ -68,6 +68,9 @@ public class Ajout_PostController implements Initializable {
      
      @FXML
     private JFXTextField image_path;
+     
+     @FXML
+    private JFXButton btn_event;
 
     
      
@@ -161,6 +164,32 @@ public class Ajout_PostController implements Initializable {
             postCRUD prc = new postCRUD();
             prc.ajouterPost(p);
         
+        
+        
+        
+
+    }
+    
+    
+    @FXML
+    void load_event(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("FRONT_Event.fxml"));
+      Scene scene = btn_event.getScene();
+      
+      root.translateXProperty().set(scene.getHeight());
+      parentContainer1.getChildren().add(root);
+      
+           
+      
+      
+      
+      Timeline timeline = new Timeline();
+      KeyValue kv = new KeyValue(root.translateXProperty(),0,Interpolator.EASE_IN);
+      KeyFrame kf = new KeyFrame(Duration.seconds(0.4),kv);
+      timeline.getKeyFrames().add(kf);
+       
+      timeline.play(); 
+        //parentContainer.getChildren().remove(anchorRoot);
         
         
         

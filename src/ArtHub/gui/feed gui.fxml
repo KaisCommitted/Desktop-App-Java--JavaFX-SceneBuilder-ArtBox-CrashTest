@@ -4,11 +4,14 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
@@ -25,7 +28,7 @@
                   <Image url="@../../../Images/beautiful-illustrations-design-inspiration-38@2x.png" />
                </image>
             </ImageView>
-            <JFXButton buttonType="RAISED" layoutX="220.0" layoutY="18.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef">
+            <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="16.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -51,17 +54,17 @@
                   <Image url="@../../../Images/SDFDSFDSF.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="349.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
+            <JFXButton layoutX="316.0" layoutY="16.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="449.0" layoutY="16.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
+            <JFXButton fx:id="btn_event" layoutX="449.0" layoutY="16.0" onAction="#load_event" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="541.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f">
+            <JFXButton layoutX="560.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>
@@ -140,7 +143,18 @@
                            <children>
                               <JFXTabPane layoutX="1.0" layoutY="23.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="763.0" prefWidth="2049.0" rotateGraphic="true" side="LEFT">
                                  <tabs>
-                                    <Tab text="Photography" />
+                                    <Tab text="Photography">
+                                       <content>
+                                          <ScrollPane fx:id="scroll1" prefHeight="200.0" prefWidth="1741.0" styleClass="transparent" stylesheets="@style.css">
+                                             <content>
+                                                <GridPane fx:id="grid" prefHeight="36.0" prefWidth="123.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                </GridPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </content></Tab>
                                     <Tab text="Music" />
                                     <Tab text="Illustration">
                                       <content>

@@ -1,4 +1,3 @@
-
 package ArtHub.entities;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -6,21 +5,47 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- *test
+ * test
+ *
  * @author Fayechi
  */
-public class Evenement  extends RecursiveTreeObject<Evenement> implements Serializable {
+public class Evenement extends RecursiveTreeObject<Evenement> implements Serializable {
+
     private int id;
-    private int id_org;
+    private User id_org;
     private LocalDate date_event;
     private String nom_event;
     private String type_event;
     private int categorie;
     private String description;
+    int capacite_event;
+    int nb_max;
+
     public Evenement() {
     }
 
-    public Evenement(int id_org, LocalDate date_event, String nom_event, String type_event, int categorie, String description) {
+    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, int categorie, String description, int capacite_event, int nb_max) {
+        this.id_org = id_org;
+        this.date_event = date_event;
+        this.nom_event = nom_event;
+        this.type_event = type_event;
+        this.categorie = categorie;
+        this.description = description;
+        this.capacite_event = capacite_event;
+        this.nb_max = nb_max;
+    }
+
+    
+
+    public int getNb_max() {
+        return nb_max;
+    }
+
+    public void setNb_max(int nb_max) {
+        this.nb_max = nb_max;
+    }
+
+    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, int categorie, String description) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;
@@ -29,12 +54,38 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
         this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, int categorie, String description, int capacite_event) {
+        this.id_org = id_org;
+        this.date_event = date_event;
+        this.nom_event = nom_event;
+        this.type_event = type_event;
+        this.categorie = categorie;
+        this.description = description;
+        this.capacite_event = capacite_event;
     }
 
-    public int getId_org() {
+    public Evenement(int id) {
+        this.id = id;
+    }
+
+    public int getCapacite_event() {
+        return capacite_event;
+    }
+
+    public User getId_org() {
         return id_org;
+    }
+
+    public void setId_org(User id_org) {
+        this.id_org = id_org;
+    }
+
+    public void setCapacite_event(int capacite_event) {
+        this.capacite_event = capacite_event;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public LocalDate getDate_event() {
@@ -61,10 +112,6 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
         this.id = id;
     }
 
-    public void setId_org(int id_org) {
-        this.id_org = id_org;
-    }
-
     public void setDate_event(LocalDate date_event) {
         this.date_event = date_event;
     }
@@ -85,20 +132,4 @@ public class Evenement  extends RecursiveTreeObject<Evenement> implements Serial
         this.description = description;
     }
 
-    /**
-     *
-     * @param id_org
-     * @param date_event
-     * @param nom_event
-     * @param type_event
-     * @param categorie
-     * @param description
-     */
- 
-
-  
-
-  
-    
-    
 }

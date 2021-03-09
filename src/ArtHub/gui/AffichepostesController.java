@@ -182,6 +182,7 @@ public class AffichepostesController implements Initializable {
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
+         treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
         
          //declarer la button supprimer
         JFXButton DltBtn = new JFXButton("Remove");

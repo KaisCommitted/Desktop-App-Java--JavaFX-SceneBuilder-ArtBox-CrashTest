@@ -1,4 +1,4 @@
-    /*
+  /*
  * Empty Stylesheet file.
  */
 
@@ -132,4 +132,7 @@
 
 .tab {
     -fx-padding: 3em 0.5em 3em 0.5em;
+}
+scroll-pane .viewport {
+       -fx-background-color: transparent;
 }

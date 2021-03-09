@@ -27,10 +27,10 @@ public class Adam extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Affichepostes.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("feed gui.fxml"));
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Art Box!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

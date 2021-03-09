@@ -45,7 +45,7 @@ import javafx.util.Callback;
  *
  * @author Kais
  */
-public class AfficherParticipantController implements Initializable {
+public class CRUDParticipantController implements Initializable {
 
     @FXML
     private AnchorPane anchorparticipant;
@@ -76,7 +76,7 @@ public class AfficherParticipantController implements Initializable {
         id_user.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Participant, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Participant, String> param) {
-                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user()));
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user().getId_user()));
             }
         });
         // id_event table view
@@ -85,7 +85,7 @@ public class AfficherParticipantController implements Initializable {
         id_event.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Participant, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Participant, String> param) {
-               return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_event()));
+               return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_event().getId()));
            }
 
        });
