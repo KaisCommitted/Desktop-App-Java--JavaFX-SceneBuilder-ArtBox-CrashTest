@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * wadup
@@ -25,9 +27,11 @@ public class EvenementCRUD {
     public void ajouterEvenement(Evenement p){
         String req ="INSERT INTO evenement ( id_org,date,nom_event,type_event,categorie,description)"+"values (?,?,?,?,?,?)";
         try {
+           
+            Date Date_event = Date.valueOf(p.getDate_event());
             ste = cnx.prepareStatement(req);
             ste.setInt(1, p.getId_org());
-            ste.setString(2, p.getDate_event());
+            ste.setDate(2,Date_event);
             ste.setString(3, p.getNom_event());
             ste.setString(4, p.getType_event());
             ste.setInt(5, p.getCategorie());
@@ -55,7 +59,8 @@ public class EvenementCRUD {
 
                
                 int id_org = rs.getInt("id_org");
-                String date = rs.getString("date");
+                Date dateaux = rs.getDate("date");
+                LocalDate date = dateaux.toLocalDate();
                 String nom_event = rs.getString("nom_event");
                 String type_event = rs.getString("type_event");
                 int categorie = rs.getInt("categorie");

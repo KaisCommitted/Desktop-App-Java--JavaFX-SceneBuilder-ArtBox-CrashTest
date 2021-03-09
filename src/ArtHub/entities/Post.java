@@ -26,6 +26,14 @@ public class Post extends RecursiveTreeObject<Post> implements Serializable {
     public void setFile(String file) {
         this.file = file;
     }
+
+    public Post(int id_post, String nom_post, String Description, String categorie, String post_date) {
+        this.id_post = id_post;
+        this.nom_post = nom_post;
+        this.Description = Description;
+        this.categorie = categorie;
+        this.post_date = post_date;
+    }
     
     
     
@@ -41,6 +49,25 @@ public class Post extends RecursiveTreeObject<Post> implements Serializable {
         this.post_date = post_date;
     }
 
+    public Post(int id_post, String nom_post, String Description, String categorie, String post_date, String file) {
+        this.id_post = id_post;
+        this.nom_post = nom_post;
+        this.Description = Description;
+        this.categorie = categorie;
+        this.post_date = post_date;
+        this.file = file;
+    }
+
+    public Post(int id_post, String nom_post, String Description, String categorie) {
+        this.id_post = id_post;
+        this.nom_post = nom_post;
+        this.Description = Description;
+        this.categorie = categorie;
+    }
+    
+    
+    
+    
     public Post(String rNom_post, String rdesc) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

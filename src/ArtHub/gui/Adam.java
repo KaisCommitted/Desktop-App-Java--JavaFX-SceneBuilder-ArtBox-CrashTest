@@ -21,20 +21,20 @@ import javafx.stage.Stage;
 /**
  *
  */
-public class TestFXMainKais extends Application {
+public class Adam extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AfficherEvenement.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Affichepostes.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(TestFXMainKais.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Adam.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

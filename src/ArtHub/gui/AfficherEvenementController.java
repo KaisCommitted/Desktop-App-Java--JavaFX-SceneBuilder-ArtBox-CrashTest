@@ -39,8 +39,11 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.layout.GridPane;
-
-
+import java.sql.Date;
+import java.text.DateFormat;  
+import java.text.SimpleDateFormat;  
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 /**
  * FXML Controller class
  *
@@ -96,12 +99,14 @@ public class AfficherEvenementController implements Initializable {
         
         
          // date table view
+         DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
         JFXTreeTableColumn<Evenement, String> date = new JFXTreeTableColumn<>("date");
         date.setPrefWidth(150);
         date.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
-                return new SimpleStringProperty(param.getValue().getValue().getDate_event());
+                return new SimpleStringProperty(param.getValue().getValue().getDate_event().format(formatters));
             }
         });
                  date.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
@@ -109,18 +114,19 @@ public class AfficherEvenementController implements Initializable {
                     new TextFieldEditorBuilder());
         });
         //setting the new value for editable date text field
-        date.setOnEditCommit((CellEditEvent<Evenement, String> t) -> {
+        date.setOnEditCommit((CellEditEvent<Evenement, String> t) -> {  
             int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
             String newValue = t.getNewValue();
 
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
-                    .getValue().setDate_event(t.getNewValue());
+                    .getValue().setDate_event(LocalDate.parse(t.getNewValue(),formatters));
             ps.modifierEvenement(idd, "date", newValue);
         });
         
          // nom_event table view
+         
         JFXTreeTableColumn<Evenement, String> nom_event = new JFXTreeTableColumn<>("nom_event");
         nom_event.setPrefWidth(150);
         nom_event.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
@@ -206,7 +212,7 @@ public class AfficherEvenementController implements Initializable {
             }
         });
         
-                 description.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
+            description.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
@@ -235,6 +241,7 @@ public class AfficherEvenementController implements Initializable {
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
+        treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
         
         
        
@@ -242,8 +249,8 @@ public class AfficherEvenementController implements Initializable {
         //declarer la button supprimer
         JFXButton DltBtn = new JFXButton("Remove");
         DltBtn.setLayoutY(410D);
+        //DltBtn.getStylesheets().add(getClass(button3).getResource("feed gui.css").toExternalForm());
         DltBtn.setOnAction(new EventHandler<ActionEvent>() {
-            
             //eventHandler de la button supprimer
             @Override
             public void handle(ActionEvent event) {
