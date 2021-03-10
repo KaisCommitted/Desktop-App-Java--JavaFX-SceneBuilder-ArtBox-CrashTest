@@ -184,7 +184,7 @@ public class CRUDEventController implements Initializable {
         categorie.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
-               return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getCategorie()));
+               return new SimpleStringProperty(param.getValue().getValue().getCategorie());
            }
 
        });
@@ -201,7 +201,7 @@ public class CRUDEventController implements Initializable {
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
-                    .getValue().setCategorie(Integer.parseInt(t.getNewValue()));
+                    .getValue().setCategorie(t.getNewValue());
             ps.modifierEvenement(idd, "categorie", newValue);
         });
         // description table view

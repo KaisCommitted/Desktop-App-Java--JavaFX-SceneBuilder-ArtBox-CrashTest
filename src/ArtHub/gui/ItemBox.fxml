@@ -8,37 +8,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="ItemBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="495.0" spacing="15.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.ItemBoxController">
+<HBox fx:id="ItemBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#setDataChosen" prefHeight="250.0" prefWidth="502.0" scaleShape="false" spacing="15.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.ItemBoxController">
    <children>
-      <Label fx:id="id_event" opacity="0.0" prefHeight="0.0" prefWidth="0.0" text="Label" />
-      <ImageView fx:id="BoxImage" fitHeight="159.0" fitWidth="388.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="BoxImage" fitHeight="183.0" fitWidth="325.0" pickOnBounds="true" preserveRatio="true" translateX="20.0">
          <image>
-            <Image url="@../../../../../../Downloads/wallpaper.jpg" />
+            <Image url="@event_pics/testing.jpg" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" prefHeight="250.0" prefWidth="190.0" style="-fx-background-color: rgba(0, 0, 0, 0);">
+      <VBox prefHeight="250.0" prefWidth="176.0" style="-fx-background-color: rgba(0, 0, 0, 0);" translateX="15.0">
          <children>
-            <Label fx:id="Event_name" prefHeight="58.0" prefWidth="190.0" text="Label">
+            <Label fx:id="Event_name" prefHeight="53.0" prefWidth="92.0" text="  Label" textFill="#11042e" translateX="20.0">
+               <font>
+                  <Font name="Arial Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="Event_date" layoutX="10.0" layoutY="26.0" prefHeight="30.0" prefWidth="146.0" text="Label" textFill="#11042e">
                <font>
                   <Font name="System Bold Italic" size="11.0" />
                </font>
             </Label>
-            <Label fx:id="Event_date" layoutX="10.0" layoutY="26.0" prefHeight="24.0" prefWidth="190.0" text="Label">
+            <Label fx:id="Event_spots" layoutX="10.0" layoutY="90.0" prefHeight="31.0" prefWidth="148.0" text="Label" textFill="#11042e">
                <font>
                   <Font name="System Bold Italic" size="11.0" />
                </font>
             </Label>
-            <Label fx:id="Event_spots" layoutX="10.0" layoutY="90.0" prefHeight="42.0" prefWidth="190.0" text="Label">
+            <Label fx:id="Event_spots1" prefHeight="25.0" prefWidth="149.0" text="Label" textFill="#11042e">
                <font>
-                  <Font size="11.0" />
+                  <Font name="System Bold Italic" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="Event_spots1" layoutX="10.0" layoutY="106.0" prefHeight="44.0" prefWidth="190.0" text="Label">
+            <Label fx:id="Event_location" layoutX="10.0" layoutY="102.0" prefHeight="29.0" prefWidth="148.0" text="Label" textFill="#11042e">
                <font>
-                  <Font size="11.0" />
+                  <Font name="System Bold Italic" size="11.0" />
                </font>
             </Label>
-            <Button fx:id="Btn_participer" mnemonicParsing="false" onAction="#JoinEvent" prefHeight="25.0" prefWidth="53.0" styleClass="button3" stylesheets="@feed%20gui.css" text="Join " textFill="#220101" />
+            <Label fx:id="id_event" opacity="0.0" prefHeight="33.0" prefWidth="92.0" text="Label" visible="false" />
+            <Button fx:id="Btn_participer" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#JoinEvent" prefHeight="30.0" prefWidth="77.0" styleClass="button3" stylesheets="@feed%20gui.css" text="Join" textAlignment="CENTER" textFill="#11042e" translateX="30.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
          </children>
       </VBox>
    </children>

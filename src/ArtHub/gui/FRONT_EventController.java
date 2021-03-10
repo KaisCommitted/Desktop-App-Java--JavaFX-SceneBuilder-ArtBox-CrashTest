@@ -7,6 +7,9 @@ package ArtHub.gui;
 
 import ArtHub.entities.Evenement;
 import ArtHub.entities.Post;
+import static ArtHub.gui.ADD_EventController.CurrentUser;
+import static ArtHub.gui.ItemBoxController.id_clicked;
+import static ArtHub.gui.ItemBoxController.style;
 import ArtHub.services.EvenementCRUD;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
@@ -34,17 +37,24 @@ import javax.swing.JFileChooser;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -56,7 +66,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  * FXML Controller class
  *
- * @author Adam Khalfaoui
+ * @author Kais Lamine
  */
 public class FRONT_EventController implements Initializable {
 
@@ -69,14 +79,12 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private Button feed_button;
 
-    private JFXTextField p_name;
-    private JFXTextArea p_desc;
-    private JFXTabPane pan1;
+   
 
     EvenementCRUD ps;
-    public static String s;
+   
 
-    public static int tindex;
+    
     @FXML
     private JFXButton Btn_AddEvent;
     @FXML
@@ -100,12 +108,52 @@ public class FRONT_EventController implements Initializable {
     private ComboBox<String> comboDate = new ComboBox<>();
     @FXML
     private ComboBox<String> comboTrend = new ComboBox<>();
+    @FXML
+    private ImageView event_img;
+    @FXML
+    private Label event_description;
+    @FXML
+    private VBox MoreDetails;
+    @FXML
+    private Label name;
+    @FXML
+    private Label username;
+    @FXML
+    private Label type;
+    @FXML
+    private Label categorie;
+    @FXML
+    private Label date;
+    @FXML
+    private Label location;
+    @FXML
+    private Label spots;
+    @FXML
+    private Label participants;
+    DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    @FXML
+    private JFXButton Btn_AddEvent1;
+    @FXML
+    private JFXButton Btn_AddEvent11;
+    @FXML
+    private JFXButton Btn_AddEvent111;
+    @FXML
+    private Label label_layout;
+    @FXML
+    private Label label_trend;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        label_trend.setText("Filter By..");
+        label_layout.setText("All upcoming Events");
+        comboDate.setVisible(true);
+        comboTrend.setVisible(true);
+        MoreDetails.setVisible(false);
+        comboDate.getItems().clear();
+        comboTrend.getItems().clear();
         
         comboDate.getItems().addAll("This Week", "This Month", "Today");
         comboDate.setValue("This Week");
@@ -132,6 +180,7 @@ public class FRONT_EventController implements Initializable {
                 ItemBoxController eventController = fxmlLoader.getController();
                 eventController.setData(myLst.get(i));
                 event_layout.getChildren().add(EventBox);
+               
 
             }
         } catch (IOException ex) {
@@ -178,49 +227,7 @@ public class FRONT_EventController implements Initializable {
 
     }
 
-    private void image_file(ActionEvent event) {
-
-        JFileChooser fileChooser = new JFileChooser();
-
-        tindex = pan1.getSelectionModel().getSelectedIndex();
-
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-
-        if (tindex == 0) {
-
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
-            fileChooser.addChoosableFileFilter(filter);
-        } else if (tindex == 1) {
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.VIDEO", "mp4", "mov");
-            fileChooser.addChoosableFileFilter(filter);
-        } else {
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.AUDIO", "mp3", "wav");
-            fileChooser.addChoosableFileFilter(filter);
-        }
-
-        int result = fileChooser.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-            s = path;
-
-        } else if (result == JFileChooser.CANCEL_OPTION) {
-            System.out.println("No Data");
-        }
-
-        tindex = pan1.getSelectionModel().getSelectedIndex();
-
-    }
-
-    void create_image(ActionEvent event) throws Exception {
-
-        String rNom_post = p_name.getText();
-        String rdesc = p_desc.getText();
-        Post p = new Post(22, rNom_post, rdesc);
-        postCRUD prc = new postCRUD();
-        prc.ajouterPost(p);
-
-    }
+   
 
     @FXML
     private void AddEvent(ActionEvent event) {
@@ -230,8 +237,10 @@ public class FRONT_EventController implements Initializable {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("ABC");
+            stage.setTitle("Host an event");
+            
             stage.setScene(new Scene(root1));
+            
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
@@ -521,6 +530,112 @@ public class FRONT_EventController implements Initializable {
     
     
 
+    @FXML
+    private void EventClicked(MouseEvent event) throws FileNotFoundException {
+        if (id_clicked != 0) {
+            MoreDetails.setVisible(true);
+            MoreDetails.setStyle(style);
+            EvenementCRUD p = new EvenementCRUD();
+            Evenement Evenement = new Evenement();
+            Evenement = p.FindEvenement(id_clicked);
+            event_description.setText("Description :"+Evenement.getDescription());
+            String pat = Evenement.getImage_event();
+            System.out.println(pat);
+            Image img6 = new Image(new FileInputStream(pat));
+            event_img.setImage(img6);
+            name.setText(Evenement.getNom_event());
+            type.setText("Event Type: "+Evenement.getType_event());
+            username.setText("Event organizer: "+Evenement.getId_org().getUsername()); //LezmLouay yekhdem find User by ID
+            categorie.setText("Event genre: "+Evenement.getCategorie());
+            date.setText("Event date :"+Evenement.getDate_event().format(formatters));
+            if(Evenement.getType_event() != "En ligne")
+            {location.setText("Event location: "+Evenement.getLocation_event());} else {location.setText("Event link"+Evenement.getLocation_event());}
+            spots.setText(Integer.toString(Evenement.getCapacite_event()) + " Remaining spots");
+            participants.setText(Integer.toString(Evenement.getNb_max() - Evenement.getCapacite_event()) + " People going");
+
+           
+           
+            
+    
+  
+        }
+        
+    }
+
+
+    @FXML
+    private void GoingTo(ActionEvent event) {
+       label_trend.setText("Going To..");
+        label_layout.setText("Went To..");
+        comboDate.setVisible(false);
+        comboTrend.setVisible(false);
+        MoreDetails.setVisible(false);
+        comboDate.getItems().clear();
+        comboTrend.getItems().clear();
+        
+      
+
+        EvenementCRUD ps = new EvenementCRUD();
+        List<Evenement> myLst;
+        myLst = ps.GoingTo(CurrentUser.getId_user());
+        event_layout.getChildren().clear();
+        
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_layout.getChildren().add(EventBox);
+               
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void WentTo(ActionEvent event) {
+        label_trend.setText("Going To..");
+        label_layout.setText("Went To..");
+        comboDate.setVisible(false);
+        comboTrend.setVisible(false);
+        MoreDetails.setVisible(false);
+        comboDate.getItems().clear();
+        comboTrend.getItems().clear();
+        
+      
+
+        EvenementCRUD ps = new EvenementCRUD();
+        List<Evenement> myLst;
+        myLst = ps.WentTo(CurrentUser.getId_user());
+       
+        event_mostPop.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+               
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void refresh2(ActionEvent event) {
+        initialize(url, b);
+    }
     
 
 
