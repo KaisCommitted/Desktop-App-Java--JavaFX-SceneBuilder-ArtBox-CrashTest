@@ -1,51 +1,42 @@
-.search-box{
-    -fx-background-color:#FFFFFF;
-    -fx-background-radius: 100;
+.button
+{
+-fx-background-color : #05071F;
+-fx-text-fill : #e7e5e5;
+}
+.button:hover{
+-fx-background-color : #10165F;
+}
+.button:pressed
+{
+-fx-background-color : #1620A1;
 }
 
-.transparent{
-    -fx-background-color: rgba(0,0,0,0);
+.scroll-pane {
+    -fx-background-color: #02030A;
 }
 
-.search-button{
-    -fx-background-color: #828282;
-    -fx-background-radius: 30;
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
 }
 
-.right-bar{
-    -fx-background-color: #D3D3D3;
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 
-.shadow{
-    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
 }
 
-.chosen-fruit-card{
-    -fx-background-color: #F16C31;
-    -fx-background-radius: 30;
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #10165F;
+    -fx-background-radius: 5em;
 }
 
-.comboBox{
-    -fx-background-color: rgba(255,255,255,0.3);
-    -fx-background-radius: 30;
-}
-
-.add-btn{
-    -fx-background-color: #FFFFFF;
-    -fx-background-radius: 100;
-}
-
-.free-delivery-card{
-    -fx-background-color: #D3D3D3;
-    -fx-background-radius: 30;
-}
-
-.shopping-online-card{
-    -fx-background-color: #BAEAC3;
-    -fx-background-radius: 30;
-}
-
-.fruit-item{
-    -fx-background-color: #FFFFFF;
-        -fx-background-radius: 30;
+.scroll-pane > .corner {
+    -fx-background-color: black;
 }
