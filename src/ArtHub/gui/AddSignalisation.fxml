@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.AddSignalisationController">
+    <stylesheets>
+        <URL value="@addsignalisation.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="36.0" layoutY="73.0" prefHeight="18.0" prefWidth="82.0" text="Type du signal" />
+      <Label layoutX="36.0" layoutY="120.0" prefHeight="18.0" prefWidth="121.0" text="Décrivez le problème :" />
+      <ComboBox fx:id="cmboTypeSignal" layoutX="128.0" layoutY="69.0" prefHeight="26.0" prefWidth="258.0" />
+      <TextArea fx:id="txtContenuSignal" layoutX="36.0" layoutY="148.0" prefHeight="229.0" prefWidth="534.0" />
+      <Label alignment="CENTER" layoutX="229.0" layoutY="14.0" prefHeight="18.0" prefWidth="131.0" text="Signalez User">
+         <effect>
+            <Bloom />
+         </effect>
+      </Label>
+   </children>
+</AnchorPane>
