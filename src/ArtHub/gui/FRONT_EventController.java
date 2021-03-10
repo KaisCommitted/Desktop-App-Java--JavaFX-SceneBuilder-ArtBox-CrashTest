@@ -11,6 +11,7 @@ import static ArtHub.gui.ADD_EventController.CurrentUser;
 import static ArtHub.gui.ItemBoxController.id_clicked;
 import static ArtHub.gui.ItemBoxController.style;
 import ArtHub.services.EvenementCRUD;
+import ArtHub.services.UserCRUD;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
 import com.jfoenix.controls.JFXButton;
@@ -147,63 +148,91 @@ public class FRONT_EventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        label_trend.setText("Filter By..");
-        label_layout.setText("All upcoming Events");
-        comboDate.setVisible(true);
-        comboTrend.setVisible(true);
-        MoreDetails.setVisible(false);
-        comboDate.getItems().clear();
-        comboTrend.getItems().clear();
-        
-        comboDate.getItems().addAll("This Week", "This Month", "Today");
-        comboDate.setValue("This Week");
-        comboTrend.getItems().addAll("Default","Most Popular", "Most Recent", "Alphabetical");
-        comboTrend.setPromptText("Sort By..");
-         comboTrend.setValue("Default");
-        scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
-        scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
-        scroll2.setHbarPolicy(ScrollBarPolicy.NEVER);
-        scroll2.setVbarPolicy(ScrollBarPolicy.NEVER);
-
-        EvenementCRUD ps = new EvenementCRUD();
-        List<Evenement> myLst;
-        if (comboDate.getValue()=="This Week") {
-        myLst = ps.ThisWeekEvenement();
-        event_layout.getChildren().clear();
-        event_mostPop.getChildren().clear();
         try {
-            for (int i = 0; i < myLst.size(); i++) {
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
-                HBox EventBox = fxmlLoader.load();
-                ItemBoxController eventController = fxmlLoader.getController();
-                eventController.setData(myLst.get(i));
-                event_layout.getChildren().add(EventBox);
-               
-
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }}
-        
-         
-        myLst = ps.consulterEvenement();
-        try {
-            for (int i = 0; i < myLst.size(); i++) {
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
-                HBox EventBox = fxmlLoader.load();
-                ItemBoxController eventController = fxmlLoader.getController();
-                eventController.setData(myLst.get(i));
+            label_trend.setText("Filter By..");
+            label_layout.setText("All upcoming Events");
+            comboDate.setVisible(true);
+            comboTrend.setVisible(true);
+            MoreDetails.setVisible(false);
+            comboDate.getItems().clear();
+            comboTrend.getItems().clear();
+            
+            comboDate.getItems().addAll("This Week", "This Month", "Today");
+            comboDate.setValue("This Week");
+            comboTrend.getItems().addAll("Default","Most Popular", "Most Recent", "Alphabetical");
+            comboTrend.setPromptText("Sort By..");
+            comboTrend.setValue("Default");
+            scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
+            scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
+            scroll2.setHbarPolicy(ScrollBarPolicy.NEVER);
+            scroll2.setVbarPolicy(ScrollBarPolicy.NEVER);
+            
+            EvenementCRUD ps = new EvenementCRUD();
+            List<Evenement> myLst;
+            if (comboDate.getValue()=="This Week") {
+                myLst = ps.ThisWeekEvenement();
+                event_layout.getChildren().clear();
+                event_mostPop.getChildren().clear();
+                try {
+                    for (int i = 0; i < myLst.size(); i++) {
+                        
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                        HBox EventBox = fxmlLoader.load();
+                        ItemBoxController eventController = fxmlLoader.getController();
+                        eventController.setData(myLst.get(i));
+                        event_layout.getChildren().add(EventBox);
+                        
+                        
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+                }}
+            
+            
+            myLst = ps.consulterEvenement();
+            try {
+                for (int i = 0; i < myLst.size(); i++) {
+                    
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                    HBox EventBox = fxmlLoader.load();
+                    ItemBoxController eventController = fxmlLoader.getController();
+                    eventController.setData(myLst.get(i));
                     event_mostPop.getChildren().add(EventBox);
 
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
+            MoreDetails.setVisible(true);
+            MoreDetails.setStyle("-fx-background-color: #b0ffa7;" + "-fx-background-radius: 15;" + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
+            EvenementCRUD p = new EvenementCRUD();
+            Evenement Evenement = new Evenement();
+            Evenement = p.consulterEvenement().get(1);
+            UserCRUD u = new UserCRUD();
+            event_description.setText("Description :"+Evenement.getDescription());
+            String pat = Evenement.getImage_event();
+            String org= u.FindUser(Evenement.getId_org().getId_user()).getUsername();
+            Image img6 = new Image(new FileInputStream(pat));
+            event_img.setImage(img6);
+            name.setText(Evenement.getNom_event());
+            type.setText("Event Type: "+Evenement.getType_event());
+            username.setText("Event organizer: "+org); 
+            categorie.setText("Event genre: "+Evenement.getCategorie());
+            date.setText("Event date :"+Evenement.getDate_event().format(formatters));
+            if(Evenement.getType_event() != "En ligne")
+            {location.setText("Event location: "+Evenement.getLocation_event());} else {location.setText("Event link"+Evenement.getLocation_event());}
+            spots.setText(Integer.toString(Evenement.getCapacite_event()) + " Remaining spots");
+            participants.setText(Integer.toString(Evenement.getNb_max() - Evenement.getCapacite_event()) + " People going");
+            
+            
+            
+            
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+            
         
        
 
@@ -533,11 +562,15 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private void EventClicked(MouseEvent event) throws FileNotFoundException {
         if (id_clicked != 0) {
+            UserCRUD u = new UserCRUD();
+            String org="";
+            
             MoreDetails.setVisible(true);
             MoreDetails.setStyle(style);
             EvenementCRUD p = new EvenementCRUD();
             Evenement Evenement = new Evenement();
             Evenement = p.FindEvenement(id_clicked);
+            org= u.FindUser(Evenement.getId_org().getId_user()).getUsername();
             event_description.setText("Description :"+Evenement.getDescription());
             String pat = Evenement.getImage_event();
             System.out.println(pat);
@@ -545,7 +578,7 @@ public class FRONT_EventController implements Initializable {
             event_img.setImage(img6);
             name.setText(Evenement.getNom_event());
             type.setText("Event Type: "+Evenement.getType_event());
-            username.setText("Event organizer: "+Evenement.getId_org().getUsername()); //LezmLouay yekhdem find User by ID
+            username.setText("Event organizer: "+org); //LezmLouay yekhdem find User by ID
             categorie.setText("Event genre: "+Evenement.getCategorie());
             date.setText("Event date :"+Evenement.getDate_event().format(formatters));
             if(Evenement.getType_event() != "En ligne")

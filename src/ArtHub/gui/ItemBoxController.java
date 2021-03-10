@@ -38,6 +38,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import ArtHub.gui.FRONT_EventController;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * FXML Controller class
@@ -86,11 +90,12 @@ public class ItemBoxController implements Initializable {
     
 
     public void setData(Evenement p) throws IOException {
-       
+       if(p.getDate_event().isBefore(LocalDate.now())) {Btn_participer.setVisible(false);}
             Event_name.setText(p.getNom_event());
             Event_date.setText(p.getDate_event().format(formatters));
             Event_spots.setText(Integer.toString(p.getCapacite_event()) + " Remaining spots");
-            Event_spots1.setText(Integer.toString(p.getNb_max() - p.getCapacite_event()) + " People going");
+             if(p.getDate_event().isBefore(LocalDate.now())) {Event_spots1.setText(Integer.toString(p.getNb_max() - p.getCapacite_event()) + " People attended");} else
+                 Event_spots1.setText(Integer.toString(p.getNb_max() - p.getCapacite_event()) + " People going");
             String pat=p.getImage_event();
             Event_location.setText(p.getLocation_event());
             System.out.println(pat);
@@ -180,4 +185,30 @@ public class ItemBoxController implements Initializable {
                eventController.setChosenEvenement(Evenement);*/
     }
 
+ @FXML
+ private void FindThem(MouseEvent event) {
+        ParticipantCRUD part = new ParticipantCRUD();
+        User user = new User();
+        String usernames="";
+        List<User> myLst;
+        myLst = part.FindParticipants(Integer.parseInt(id_event.getText()));
+        for (int i = 0; i < myLst.size(); i++) {
+            user = myLst.get(i);
+            usernames += user.getUsername()+ "\n";
+            
+        }
+       
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        
+        alert.setTitle("Participants");
+        alert.setHeaderText(myLst.size()+"Participants");
+        alert.setContentText(usernames);
+        alert.showAndWait().ifPresent(rs -> {
+            if (rs == ButtonType.OK) {
+                System.out.println("Pressed OK.");
+            }
+        });
+    }
+
 }
+
