@@ -25,20 +25,22 @@ public class PostGController {
     private ImageView img;
 
 
-    @FXML
-    private void click(MouseEvent mouseEvent) {
-        myListener.onClickListener(post);
-    }
+    //@FXML
+    //private void click(MouseEvent mouseEvent) {
+       // myListener.onClickListener(post);
+    //}
 
     private Post post;
-    private MyListener myListener;
+    //private MyListener myListener;
 
-    public void setData(Post post, MyListener myListener) {
+    public void setData(Post post) {
         this.post = post;
-        this.myListener = myListener;
+        //this.myListener = myListener;
         nameLabel.setText(post.getNom_post());
         likesLabel.setText(post.getDescription());
+        
         Image image = new Image(getClass().getResourceAsStream(post.getFile()));
         img.setImage(image);
+        
     }
 }
