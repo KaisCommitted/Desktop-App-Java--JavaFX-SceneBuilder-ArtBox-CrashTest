@@ -5,6 +5,8 @@
  */
 package ArtHub.gui;
 
+
+//import com.azure.ai.textanalytics.TextAnalyticsClient;
 import static java.awt.Color.blue;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -32,6 +34,10 @@ public class Kais extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        
+       /*SentimentAnalysis sa = new SentimentAnalysis();
+        sa.getSent("Kais is a filthy faggot");
+        */
 
         try {
             // Color c = Color.rgb(10,30,255,1.200);
@@ -40,6 +46,7 @@ public class Kais extends Application {
             // Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("FRONT_Event.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDParticipant.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
             Scene scene = new Scene(root, 1920, 1080);
             scene.setFill(Color.LIGHTGRAY);
             primaryStage.setX(bounds.getMinX());

@@ -149,12 +149,12 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="763.0" prefWidth="2049.0">
                            <children>
-                              <JFXTextField fx:id="p_name1" focusColor="TRANSPARENT" layoutX="663.0" layoutY="75.0" prefHeight="41.0" prefWidth="542.0" promptText="Name" style="-fx-background-radius: 20; -fx-background-color: white; -fx-text-fill: black;" unFocusColor="TRANSPARENT">
+                              <JFXTextField fx:id="video_name" focusColor="TRANSPARENT" layoutX="663.0" layoutY="75.0" prefHeight="41.0" prefWidth="542.0" promptText="Name" style="-fx-background-radius: 20; -fx-background-color: white; -fx-text-fill: black;" unFocusColor="TRANSPARENT">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXButton fx:id="create_image1" buttonType="RAISED" layoutX="653.0" layoutY="632.0" onAction="#create_image" prefHeight="60.0" prefWidth="530.0" ripplerFill="WHITE" styleClass="button3" text="Create " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                              <JFXButton fx:id="create_video" buttonType="RAISED" layoutX="653.0" layoutY="632.0" onAction="#create_video" prefHeight="60.0" prefWidth="530.0" ripplerFill="WHITE" styleClass="button3" text="Create " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                                  <font>
                                     <Font name="Calibri" size="31.0" />
                                  </font>
@@ -166,7 +166,7 @@
                                     </DropShadow>
                                  </effect>
                               </JFXButton>
-                              <JFXTextArea fx:id="p_desc1" focusColor="WHITE" layoutX="658.0" layoutY="207.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="188.0" prefWidth="533.0" promptText="Descritpion" style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" unFocusColor="#f5f5f500">
+                              <JFXTextArea fx:id="video_desc" focusColor="WHITE" layoutX="658.0" layoutY="207.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="188.0" prefWidth="533.0" promptText="Descritpion" style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" unFocusColor="#f5f5f500">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
@@ -217,12 +217,12 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="1923.0">
                            <children>
-                              <JFXTextField fx:id="p_name11" focusColor="TRANSPARENT" layoutX="640.0" layoutY="81.0" prefHeight="41.0" prefWidth="542.0" promptText="Name" style="-fx-background-radius: 20; -fx-background-color: white; -fx-text-fill: black;" unFocusColor="TRANSPARENT">
+                              <JFXTextField fx:id="song_name" focusColor="TRANSPARENT" layoutX="640.0" layoutY="81.0" prefHeight="41.0" prefWidth="542.0" promptText="Name" style="-fx-background-radius: 20; -fx-background-color: white; -fx-text-fill: black;" unFocusColor="TRANSPARENT">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXButton fx:id="create_image11" buttonType="RAISED" layoutX="647.0" layoutY="565.0" onAction="#create_image" prefHeight="60.0" prefWidth="530.0" ripplerFill="WHITE" styleClass="button3" text="Create " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                              <JFXButton fx:id="create_image11" buttonType="RAISED" layoutX="647.0" layoutY="565.0" onAction="#create_music" prefHeight="60.0" prefWidth="530.0" ripplerFill="WHITE" styleClass="button3" text="Create " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                                  <font>
                                     <Font name="Calibri" size="31.0" />
                                  </font>
@@ -234,7 +234,7 @@
                                     </DropShadow>
                                  </effect>
                               </JFXButton>
-                              <JFXTextArea fx:id="p_desc11" focusColor="WHITE" layoutX="632.0" layoutY="195.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="188.0" prefWidth="533.0" promptText="Descritpion" style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" unFocusColor="#f5f5f500">
+                              <JFXTextArea fx:id="song_desc" focusColor="WHITE" layoutX="632.0" layoutY="195.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="188.0" prefWidth="533.0" promptText="Descritpion" style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" unFocusColor="#f5f5f500">
                                  <font>
                                     <Font size="21.0" />
                                  </font>
@@ -249,7 +249,35 @@
                                     <Font name="Leelawadee UI Semilight" size="22.0" />
                                  </font>
                               </Text>
-                              <JFXButton fx:id="upload_image11" buttonType="RAISED" layoutX="748.0" layoutY="424.0" onAction="#image_file" prefHeight="38.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-radius: 30;" styleClass="button1" text="UPLOAD YOU MUSIC" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                              <JFXButton fx:id="upload_image11" buttonType="RAISED" layoutX="552.0" layoutY="427.0" onAction="#image_file" prefHeight="38.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-radius: 30;" styleClass="button1" text="UPLOAD YOU MUSIC" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Calibri" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                                       <color>
+                                          <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <ripplerFill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.6078431606292725" green="0.1764705926179886" blue="0.9372549057006836" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </ripplerFill>
+                              </JFXButton>
+                              <JFXButton fx:id="upload_cover" buttonType="RAISED" layoutX="939.0" layoutY="427.0" onAction="#cover_file" prefHeight="38.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-radius: 30;" styleClass="button1" text="UPLOAD ALBUM COVER" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                                  <font>
                                     <Font name="Calibri" size="28.0" />
                                  </font>

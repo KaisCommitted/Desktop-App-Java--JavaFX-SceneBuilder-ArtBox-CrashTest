@@ -256,7 +256,32 @@ public class FRONT_EventController implements Initializable {
 
     }
 
-   
+
+    private void image_file(ActionEvent event) {
+
+        JFileChooser fileChooser = new JFileChooser();
+
+        
+
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+
+  FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+            fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+           String  s = path;
+
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No Data");
+        }
+
+     
+
+    }
+
+
 
     @FXML
     private void AddEvent(ActionEvent event) {
