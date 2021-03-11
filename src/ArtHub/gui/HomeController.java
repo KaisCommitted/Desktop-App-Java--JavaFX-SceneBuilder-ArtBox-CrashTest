@@ -51,7 +51,7 @@ import javafx.util.Callback;
 
 public class HomeController implements Initializable {
  
-    EvenementCRUD ps;
+   
     @FXML
     private Button btnUsers;
     @FXML
@@ -231,7 +231,7 @@ public class HomeController implements Initializable {
     
     
     
-    
+    //ShowEvents ahayka louta if u need guidance CSS etc
     
     
     
@@ -270,6 +270,7 @@ public class HomeController implements Initializable {
     
     
     public void ShowEvents(){ 
+        
    
     pnItems1.getChildren().clear();
             EvenementCRUD ps = new EvenementCRUD();
