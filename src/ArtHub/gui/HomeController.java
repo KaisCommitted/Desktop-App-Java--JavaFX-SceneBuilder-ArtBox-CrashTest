@@ -34,11 +34,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -48,7 +52,11 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 public class HomeController implements Initializable {
@@ -82,7 +90,7 @@ public class HomeController implements Initializable {
     private Label Eventsthisweek;
     @FXML
     private ImageView showHistory;
-    private VBox pnItems1;
+    
     @FXML
     private Pane pnlUsers;
     @FXML
@@ -137,6 +145,8 @@ public class HomeController implements Initializable {
     private VBox ItemsCategorie;
     @FXML
     private VBox ItemsPosts;
+    @FXML
+    private ImageView addEvent;
     
 
     @Override
@@ -413,7 +423,7 @@ public class HomeController implements Initializable {
     public void ShowEvents(){ 
         
    
-    pnItems1.getChildren().clear();
+    itemsEvents.getChildren().clear();
             EvenementCRUD ps = new EvenementCRUD();
         // id table view
         JFXTreeTableColumn<Evenement, String> id = new JFXTreeTableColumn<>("id");
@@ -680,12 +690,37 @@ public class HomeController implements Initializable {
                 });
             }
         });
-         event_stats.setVisible(true);
+        event_stats.setVisible(true);
         Events_thisweek.setText(Integer.toString(i));
         Eventsthisweek.setText("Events this week");
         treeview.setStyle("-fx-background-color:rgba(0,255,255,0.2);");
-        pnItems1.getChildren().addAll(treeview,DltBtn);
+        itemsEvents.getChildren().addAll(treeview,DltBtn);
        
     
+    }
+
+    @FXML
+    private void addEvent(MouseEvent event) {
+          try {
+              System.out.println("Waduo");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ADD-EVENT.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+    }
+
+    @FXML
+    private void refresh(MouseEvent event) {
+        ShowEvents();
     }
 }
