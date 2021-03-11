@@ -218,7 +218,7 @@ public class FRONT_EventController implements Initializable {
         String rdesc = p_desc.getText();
         Post p = new Post(22, rNom_post, rdesc);
         postCRUD prc = new postCRUD();
-        prc.ajouterPost(p);
+        //prc.ajouterPost(p);
 
     }
 

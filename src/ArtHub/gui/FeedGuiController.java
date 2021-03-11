@@ -35,6 +35,8 @@ import static java.time.Clock.system;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -60,80 +62,93 @@ public class FeedGuiController implements Initializable {
      @FXML
     private StackPane parentContainer;
     @FXML
-    private JFXButton btn_load;
-    @FXML
     private JFXButton btn_event;
     
-     @FXML
-    private GridPane grid;
-  @FXML
-    private ScrollPane scroll1; 
+    
+    @FXML
+    private ScrollPane scroll1;
+    @FXML
+    private HBox ph_postes;
+
+  
+  
     private MyListener myListener;
+    @FXML
+    private HBox music_postes;
       
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        //Load poste de type image *******************
+         
+        ph_postes.setSpacing(20);
         scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
         scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
        
         postCRUD ps = new postCRUD();
         List<Post> postes ;
-        postes = ps.consulterPost();
-       
-        if (postes.size() > 0) {
-            
-             myListener = new MyListener() {
-                @Override
-                public void onClickListener(Post post) {
-                   // setChosenFruit(post);
-                }
-            };
-            //setChosenFruit(postes.get(0));
-            
-        }
-        int column = 0;
-        int row = 1;
+        postes = ps.consulteImage();
+        
         try {
             for (int i = 0; i < postes.size(); i++) {
                 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("PostG.fxml"));
-                
                 AnchorPane PostBox = fxmlLoader.load();
-                System.out.println("check 1 ");
                 PostGController postController = fxmlLoader.getController();
-                
                 postController.setData(postes.get(i));
-                grid.getChildren().add(PostBox);
-
-                if (column == 3) {
-                    column = 0;
-                    row++;
-                }
-
-                grid.add(PostBox, column++, row); //(child,column,row)
-                //set grid width
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                //set grid height
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(PostBox, new Insets(10));
+                ph_postes.getChildren().add(PostBox);
+                
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+      
+        // TODO
+        
+        //Load poste de type music*************************
+        
+        
+        ph_postes.setSpacing(20);
+        
+        music_postes.setSpacing(20);
+       
+        postCRUD ps1 = new postCRUD();
+        List<Post> postes1  ;
+        postes1 = ps1.consulteMusic();
+        
+        
+        try {
+            for (int j = 0; j < postes1.size(); j++) {
+              
+                FXMLLoader fxmlLoader1 = new FXMLLoader();
+                fxmlLoader1.setLocation(getClass().getResource("mp3.fxml"));
+                
+                AnchorPane MusicBox = fxmlLoader1.load();
+                System.out.println("heeeeeeeeeere");
+                mp3Controller mp3Controller = fxmlLoader1.getController();
+                mp3Controller.setData(postes1.get(j));
+                music_postes.getChildren().add(MusicBox);
+                
+            }   
         } catch (IOException e) {
             e.printStackTrace();
         }
         
         
         
-        // TODO
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }    
     @FXML
     private void load_ajoute(ActionEvent event ) throws IOException {
@@ -195,7 +210,6 @@ public class FeedGuiController implements Initializable {
     
     
 
-    @FXML
     public void affiche(URL location, ResourceBundle resources) {
        
          

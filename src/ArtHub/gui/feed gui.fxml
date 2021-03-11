@@ -4,15 +4,16 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -23,11 +24,6 @@
    <children>
       <AnchorPane id="AnchorPane" fx:id="anchorRoot" prefHeight="1000.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
-            <ImageView fitHeight="998.0" fitWidth="2049.0" layoutX="14.0" layoutY="-28.0">
-               <image>
-                  <Image url="@../../../Images/beautiful-illustrations-design-inspiration-38@2x.png" />
-               </image>
-            </ImageView>
             <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="16.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef">
                <font>
                   <Font name="Calibri" size="20.0" />
@@ -107,108 +103,55 @@
             <JFXTabPane layoutX="1.0" layoutY="172.0" prefHeight="827.0" prefWidth="2049.0" styleClass="panel">
                <tabs>
                   <Tab text="Following">
+                     
                      <content>
-                        <AnchorPane prefHeight="774.0" prefWidth="2049.0">
-                           <children>
-                              <JFXTabPane layoutY="18.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="752.0" prefWidth="2049.0" rotateGraphic="true" side="LEFT">
-                                 <tabs>
-                                    <Tab text="Music" />
-                                    <Tab text="Illustration">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1875.0" />
-                                       </content>
-                                    </Tab>
-                                    <Tab text="Theater">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                       </content>
-                                    </Tab>
-                                    <Tab text="Photography" />
-                                 </tabs>
-                                 <styleClass>
-                                    <String fx:value="headers-region1" />
-                                    <String fx:value="jfx-tab-pane1" />
-                                    <String fx:value="tab-header-background1" />
-                                    <String fx:value="tab-selected-line1" />
-                                    <String fx:value="tab2" />
-                                 </styleClass>
-                              </JFXTabPane>
-                           </children>
-                        </AnchorPane>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background: transparent; -fx-background-color: transparent;" stylesheets="@feed%20gui.css">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                          </content>
+                        </ScrollPane>
                      </content>
                   </Tab>
                   <Tab text="New">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="763.0" prefWidth="2049.0">
-                           <children>
-                              <JFXTabPane layoutX="1.0" layoutY="23.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="763.0" prefWidth="2049.0" rotateGraphic="true" side="LEFT">
-                                 <tabs>
-                                    <Tab text="Photography">
+                     <content>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <VBox prefHeight="790.0" prefWidth="2047.0">
+                                 <children>
+                                    <Label prefHeight="74.0" prefWidth="339.0" text="      Photography" textFill="WHITE">
+                                       <font>
+                                          <Font size="39.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="scroll1" prefHeight="332.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
                                        <content>
-                                          <ScrollPane fx:id="scroll1" prefHeight="200.0" prefWidth="1741.0" styleClass="transparent" stylesheets="@style.css">
-                                             <content>
-                                                <GridPane fx:id="grid" prefHeight="36.0" prefWidth="123.0">
-                                                  <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                  </columnConstraints>
-                                                </GridPane>
-                                             </content>
-                                          </ScrollPane>
-                                       </content></Tab>
-                                    <Tab text="Music" />
-                                    <Tab text="Illustration">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1875.0" />
-                                      </content>
-                                    </Tab>
-                                    <Tab text="Theater">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                 </tabs>
-                                 <styleClass>
-                                    <String fx:value="headers-region1" />
-                                    <String fx:value="jfx-tab-pane1" />
-                                    <String fx:value="tab-header-background1" />
-                                    <String fx:value="tab-selected-line1" />
-                                    <String fx:value="tab2" />
-                                 </styleClass>
-                              </JFXTabPane>
-                           </children>
-                        </AnchorPane>
-                    </content>
+                                          <HBox fx:id="ph_postes" prefHeight="201.0" prefWidth="2031.0" />
+                                       </content>
+                                    </ScrollPane>
+                                    <Label prefHeight="74.0" prefWidth="339.0" text="    Music" textFill="WHITE">
+                                       <font>
+                                          <Font size="39.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane prefHeight="256.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                       <content>
+                                          <HBox fx:id="music_postes" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
                   </Tab>
                   <Tab text="Popular">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="1923.0">
-                           <children>
-                              <JFXTabPane layoutY="16.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="754.0" prefWidth="2049.0" rotateGraphic="true" side="LEFT">
-                                 <tabs>
-                                    <Tab text="Photography" />
-                                    <Tab text="Music" />
-                                    <Tab text="Illustration">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1875.0" />
-                                       </content>
-                                    </Tab>
-                                    <Tab text="Theater">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                       </content>
-                                    </Tab>
-                                 </tabs>
-                                 <styleClass>
-                                    <String fx:value="headers-region1" />
-                                    <String fx:value="jfx-tab-pane1" />
-                                    <String fx:value="tab-header-background1" />
-                                    <String fx:value="tab-selected-line1" />
-                                    <String fx:value="tab2" />
-                                 </styleClass>
-                              </JFXTabPane>
-                           </children>
-                        </AnchorPane>
-                    </content>
+                     <content>
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                          </content>
+                        </ScrollPane>
+                     </content>
                   </Tab>
                </tabs>
             </JFXTabPane>
