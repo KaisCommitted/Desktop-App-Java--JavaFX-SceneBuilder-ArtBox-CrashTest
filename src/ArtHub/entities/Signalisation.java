@@ -13,25 +13,44 @@ import java.sql.Date;
 
 public class Signalisation extends RecursiveTreeObject<Signalisation> implements Serializable {
     private int id_signal;
+    private int id_user;
+    private int id_post;
     private String contenu_signal;
     private String type_signal;
     private String etat_signal;
     private Date date_signal;
-     
-    public Signalisation() {
-    }
 
-    public Signalisation(int id_signal, String contenu_signal, String type_signal, String etat_signal, Date date_signal) {
+    public Signalisation(String contenu_signal, String type_signal) {
+        this.contenu_signal = contenu_signal;
+        this.type_signal = type_signal;
+        this.etat_signal="non traité";
+    }
+     
+    
+
+    public Signalisation(int id_signal, int id_user,int id_post, String contenu_signal, String type_signal, String etat_signal, Date date_signal) {
         this.id_signal = id_signal;
+        this.id_user = id_user;
+        this.id_post = id_post;
         this.contenu_signal =contenu_signal;
         this.type_signal = type_signal;
         this.etat_signal = etat_signal;
         this.date_signal = date_signal;
     }
 
+  
+
 
     public int getId_signal() {
         return id_signal;
+    }
+    
+    public int getId_user() {
+        return id_user;
+    }
+    
+    public int getId_post() {
+        return id_post;
     }
 
     public String getContenu_signal() {
@@ -53,6 +72,14 @@ public class Signalisation extends RecursiveTreeObject<Signalisation> implements
     public void setId_signal(int id_signal) {
         this.id_signal = id_signal;
     }
+    
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public void setId_post(int id_post) {
+        this.id_post = id_post;
+    }
 
     public void setContenu_signal(String contenu_signal) {
         this.contenu_signal = contenu_signal;
@@ -72,7 +99,7 @@ public class Signalisation extends RecursiveTreeObject<Signalisation> implements
 
     @Override
     public String toString() {
-        return "Signalisation{" + "id_signal=" + id_signal + ", contenu_signal=" + contenu_signal + ", type_signal=" + type_signal + ", etat_signal=" + etat_signal + ", date_signal=" + date_signal + '}';
+        return "Signalement{" + "id_signal=" + id_signal + ", id_user=" + id_user +", id_post=" + id_post + ", type_signal=" + type_signal + ", contenu_signal=" + contenu_signal + ", etat_signal" + etat_signal + ", date_signal" + date_signal +'}';
     }
 
     

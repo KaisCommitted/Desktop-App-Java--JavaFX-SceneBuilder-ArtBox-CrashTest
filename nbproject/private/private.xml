@@ -1,51 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/ArtHub/gui/ItemBoxController.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>112</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/AffichepostesController.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Evenement.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/postCRUD.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/Adam.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Participant.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FRONT_EventController.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Feedback.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/CRUDParticipantController.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/CRUDEventController.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/AnnonceCRUD.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ADD_EventController.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/Ajout_PostController.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/User.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/ParticipantCRUD.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ADD-Event.fxml</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ItemBox.fxml</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ItemBoxController.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/feed%20gui.css</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/Kais.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Labell.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/MyListener.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Download.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Annonce.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Post.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/UserCRUD.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/EvenementCRUD.java</file>
-=======
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/entities/Feedback.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/ADD_EventController.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/entities/User.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AddUserController.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/services/FeedbackCRUD.java</file>
-            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AddEventController.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AddSignalisationController.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/entities/Signalisation.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AfficherFeedbackController.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/tests/ConnexionTest.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/entities/Evenement.java</file>
->>>>>>> Stashed changes
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/tools/MyConnection.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/TestFXMainMoetezMathalan.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AddFeedbackController.java</file>
         </group>
     </open-files>
 </project-private>

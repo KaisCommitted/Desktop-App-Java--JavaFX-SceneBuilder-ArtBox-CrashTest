@@ -5,9 +5,9 @@
  */
 package ArtHub.gui;
 
-import ArtHub.entities Signalisation;
+
 import ArtHub.entities.Signalisation;
-import ArtHub.services SignalisationCRUD;
+import ArtHub.services.SignalisationCRUD;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 
@@ -29,6 +30,8 @@ public class AddSignalisationController implements Initializable {
     private ComboBox<String> cmboTypeSignal;
     @FXML
     private TextArea txtContenuSignal;
+    @FXML
+    private Button btnAddSignal;
 
    /**
      * Initializes the controller class.
@@ -45,18 +48,18 @@ public class AddSignalisationController implements Initializable {
     @FXML
     private void addSignalisation(ActionEvent event) {
         try {
-             Ajouter Signalisation
-            String rtypesignal = cmboTypeSingal.getValue();
+             //Ajouter Signalisation
+            String rtypesignal = cmboTypeSignal.getValue();
             String rcontenusignal = txtContenuSignal.getText();
          
            
-            Signalisation f = new Signalisation(rcontenusignal,rtypesignal);
+            Signalisation s = new Signalisation(rcontenusignal,rtypesignal);
             SignalisationCRUD feed = new SignalisationCRUD();
-            feed.ajoute Signalisation(f);
+            feed.ajouterSignalisation(s);
             
             
         }catch (Exception ex) {
-        Logger.getLogger(Ad SignalisationController.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(AddSignalisationController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
         
