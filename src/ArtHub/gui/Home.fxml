@@ -415,7 +415,7 @@
                   </HBox>
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
                      <content>
-                        <VBox fx:id="pnItems1111" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                        <VBox fx:id="itemsLabels" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

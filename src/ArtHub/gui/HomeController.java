@@ -1,8 +1,10 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Evenement;
+import ArtHub.entities.Labell;
 import ArtHub.entities.User;
 import ArtHub.services.EvenementCRUD;
+import ArtHub.services.LabelCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
@@ -109,8 +111,6 @@ public class HomeController implements Initializable {
     @FXML
     private ImageView showHistory111;
     @FXML
-    private VBox pnItems1111;
-    @FXML
     private Pane pnlFeedback;
     @FXML
     private HBox Feedback_stats;
@@ -134,6 +134,8 @@ public class HomeController implements Initializable {
     private ImageView showHistory111111;
     @FXML
     private VBox pnItems1111111;
+    @FXML
+    private VBox itemsLabels;
     
 
     @Override
@@ -212,6 +214,144 @@ public class HomeController implements Initializable {
       }
       public void ShowLabels()
       { 
+          LabelCRUD ps = new LabelCRUD();
+        // id table view
+        JFXTreeTableColumn<Labell, String> id = new JFXTreeTableColumn<>("id");
+        id.setPrefWidth(150);
+        id.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId()));
+            }
+        });
+        
+         // name table view
+        JFXTreeTableColumn<Labell, String> name = new JFXTreeTableColumn<>("name");
+        name.setPrefWidth(150);
+        name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
+                return new SimpleStringProperty((param.getValue().getValue().getname()));
+            }
+        });
+        //making the cell editable
+        name.setCellFactory((TreeTableColumn<Labell, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable name text field
+        name.setOnEditCommit((CellEditEvent<Labell, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setname(t.getNewValue());
+            ps.modifierLabel(idd, "name", newValue);
+        });
+        
+        
+        
+        
+         // type table view
+        JFXTreeTableColumn<Labell, String> type = new JFXTreeTableColumn<>("type");
+        type.setPrefWidth(150);
+        type.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
+                return new SimpleStringProperty((param.getValue().getValue().gettype()));
+            }
+        });
+        //making the cell editable
+        type.setCellFactory((TreeTableColumn<Labell, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable type text field
+        type.setOnEditCommit((CellEditEvent<Labell, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().settype(t.getNewValue());
+            ps.modifierLabel(idd, "type", newValue);
+        });
+        
+        
+        ///////////////////////////////////////////////////////////////////////////////////
+        
+        
+        List<Labell> myLst;
+        myLst = ps.consulterLabel();
+        ObservableList<Labell> Labels = FXCollections.observableArrayList();
+
+        myLst.forEach(p -> Labels.add(p));
+        JFXTreeTableView<Labell> treeview = new JFXTreeTableView<>();
+        final TreeItem<Labell> root = new RecursiveTreeItem<Labell>(Labels, RecursiveTreeObject::getChildren);
+        treeview.getColumns().setAll(id,name,type);
+        treeview.setRoot(root);
+        treeview.setShowRoot(false);
+        treeview.setEditable(true);
+        
+        
+       
+        
+        //declarer la button supprimer
+        JFXButton DltBtn = new JFXButton("Remove");
+        DltBtn.setLayoutY(410D);
+        DltBtn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            //eventHandler de la button supprimer
+            @Override
+            public void handle(ActionEvent event) {
+                Dialog confirmation = new Dialog();
+                GridPane grid2 = new GridPane();
+                Label l1 = new Label("Delete Label?");
+                grid2.add(l1, 2, 2);
+                confirmation.setTitle("Confirmation de suppression!");
+                confirmation.getDialogPane().setContent(grid2);
+                ButtonType Confi = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
+                confirmation.getDialogPane().getButtonTypes().add(Confi);
+                confirmation.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+                confirmation.setResultConverter(new Callback<ButtonType, Labell>() {
+                    @Override
+                    public Labell call(ButtonType param) {
+                        if (param == Confi) {
+                            Labell p = treeview.getSelectionModel().getSelectedItem().getValue();
+                            ps.supprimerLabel((Labell) p);
+                            Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
+                            cancelButton.fire();
+                            ShowLabels();
+                        }
+
+                        return null;
+                    }
+                });
+                confirmation.showAndWait();
+            }
+        }); 
+        
+        /* input.setPromptText("Rechercher ..");
+        input.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                treeview.setPredicate(new Predicate<TreeItem<Label>>() {
+                    @Override
+                    public boolean test(TreeItem<Produits> t) {
+
+                        boolean flag = t.getValue().getNom_event().getValue().contains(newValue);
+                        return flag;
+                    }
+                });
+            }
+        });*/
+          treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
+       treeview.setStyle("-fx-background-color:rgba(0,255,255,0.2);");
+       itemsLabels.getChildren().addAll(treeview,DltBtn);
           Labels_stats.setVisible(true);
       }
      public void ShowFeeback()
