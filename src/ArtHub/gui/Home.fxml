@@ -196,7 +196,7 @@
                   </HBox>
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
                      <content>
-                        <VBox fx:id="pnItems1" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                        <VBox fx:id="itemsEvents" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -269,7 +269,7 @@
                   </HBox>
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
                      <content>
-                        <VBox fx:id="pnItems11" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                        <VBox fx:id="itemsUsers" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -342,7 +342,7 @@
                   </HBox>
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
                      <content>
-                        <VBox fx:id="pnItems111" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                        <VBox fx:id="itemsJobs" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -488,7 +488,7 @@
                   </HBox>
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
                      <content>
-                        <VBox fx:id="pnItems11111" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                        <VBox fx:id="itemsFeedback" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -561,7 +561,7 @@
                   </HBox>
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
                      <content>
-                        <VBox fx:id="pnItems111111" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                        <VBox fx:id="ItemsCategorie" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -634,7 +634,7 @@
                   </HBox>
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
                      <content>
-                        <VBox fx:id="pnItems1111111" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                        <VBox fx:id="ItemsPosts" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

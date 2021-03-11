@@ -82,7 +82,6 @@ public class HomeController implements Initializable {
     private Label Eventsthisweek;
     @FXML
     private ImageView showHistory;
-    @FXML
     private VBox pnItems1;
     @FXML
     private Pane pnlUsers;
@@ -93,8 +92,6 @@ public class HomeController implements Initializable {
     @FXML
     private ImageView showHistory1;
     @FXML
-    private VBox pnItems11;
-    @FXML
     private Pane pnlJobs;
     @FXML
     private TextField inputJobs;
@@ -102,8 +99,6 @@ public class HomeController implements Initializable {
     private HBox Jobs_stats;
     @FXML
     private ImageView showHistory11;
-    @FXML
-    private VBox pnItems111;
     @FXML
     private Pane pnlLabels;
     @FXML
@@ -117,15 +112,11 @@ public class HomeController implements Initializable {
     @FXML
     private ImageView showHistory1111;
     @FXML
-    private VBox pnItems11111;
-    @FXML
     private Pane pnlCategorie;
     @FXML
     private HBox Categorie_stats;
     @FXML
     private ImageView showHistory11111;
-    @FXML
-    private VBox pnItems111111;
     @FXML
     private Pane pnlPosts;
     @FXML
@@ -133,9 +124,19 @@ public class HomeController implements Initializable {
     @FXML
     private ImageView showHistory111111;
     @FXML
-    private VBox pnItems1111111;
-    @FXML
     private VBox itemsLabels;
+    @FXML
+    private VBox itemsEvents;
+    @FXML
+    private VBox itemsUsers;
+    @FXML
+    private VBox itemsJobs;
+    @FXML
+    private VBox itemsFeedback;
+    @FXML
+    private VBox ItemsCategorie;
+    @FXML
+    private VBox ItemsPosts;
     
 
     @Override
