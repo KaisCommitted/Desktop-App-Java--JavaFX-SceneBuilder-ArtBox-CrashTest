@@ -18,7 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -49,57 +49,92 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 
-public class Controller implements Initializable {
+public class HomeController implements Initializable {
  
     EvenementCRUD ps;
     @FXML
-    private VBox pnItems = null;
+    private Button btnUsers;
     @FXML
-    private VBox pnItems1 = null;
+    private Button btnJobs;
     @FXML
-    private Button btnOverview;
-
+    private Button BtnLabels;
     @FXML
-    private Button btnOrders;
-
+    private Button btnFeedbacks;
     @FXML
-    private Button btnCustomers;
-
+    private Button btnEvents;
     @FXML
-    private Button btnMenus;
-
+    private Button btnCategories;
     @FXML
-    private Button btnPackages;
-
-    @FXML
-    private Button btnSettings;
-
+    private Button btnPosts;
     @FXML
     private Button btnSignout;
-
     @FXML
-    private Pane pnlCustomer;
-
+    private Pane pnlEvents;
     @FXML
-    private Pane pnlOrders;
-@FXML
-private Pane pnlPackages;
-
+    private TextField inputEvents;
     @FXML
-    private Pane pnlOverview;
-
-    @FXML
-    private Pane pnlMenus;
-    @FXML
-    private TextField input;
-    @FXML
-    private VBox event_stats;
+    private HBox event_stats;
     @FXML
     private Label Events_thisweek;
     @FXML
     private Label Eventsthisweek;
     @FXML
     private ImageView showHistory;
+    @FXML
+    private VBox pnItems1;
+    @FXML
+    private Pane pnlUsers;
+    @FXML
+    private TextField inputUsers;
+    @FXML
+    private HBox Users_stats;
+    @FXML
+    private ImageView showHistory1;
+    @FXML
+    private VBox pnItems11;
+    @FXML
+    private Pane pnlJobs;
+    @FXML
+    private TextField inputJobs;
+    @FXML
+    private HBox Jobs_stats;
+    @FXML
+    private ImageView showHistory11;
+    @FXML
+    private VBox pnItems111;
+    @FXML
+    private Pane pnlLabels;
+    @FXML
+    private HBox Labels_stats;
+    @FXML
+    private ImageView showHistory111;
+    @FXML
+    private VBox pnItems1111;
+    @FXML
+    private Pane pnlFeedback;
+    @FXML
+    private HBox Feedback_stats;
+    @FXML
+    private ImageView showHistory1111;
+    @FXML
+    private VBox pnItems11111;
+    @FXML
+    private Pane pnlCategorie;
+    @FXML
+    private HBox Categorie_stats;
+    @FXML
+    private ImageView showHistory11111;
+    @FXML
+    private VBox pnItems111111;
+    @FXML
+    private Pane pnlPosts;
+    @FXML
+    private HBox Posts_stats;
+    @FXML
+    private ImageView showHistory111111;
+    @FXML
+    private VBox pnItems1111111;
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,35 +145,119 @@ private Pane pnlPackages;
 
     @FXML
     public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnCustomers) {
-            
-            pnlCustomer.setStyle("-fx-background-color : #1620A1");
-            pnlCustomer.toFront();
-        }
-        if (actionEvent.getSource() == btnMenus) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
-            pnlMenus.toFront();
-        }
-        if (actionEvent.getSource() == btnOverview) {
+        if (actionEvent.getSource() == BtnLabels) {
+            ShowLabels();
+            pnlLabels.setStyle("-fx-background-color : #02030A");
+            pnlLabels.toFront();
           
-       
-            
-            pnlOverview.setStyle("-fx-background-color : #02030A");
-            pnlOverview.toFront();
+           
         }
-        if(actionEvent.getSource()==btnOrders)
+        if (actionEvent.getSource() == btnCategories) {
+            ShowCategorie();
+            pnlCategorie.setStyle("-fx-background-color : #02030A");
+            pnlCategorie.toFront();
+            
+           
+        }
+        if (actionEvent.getSource() == btnFeedbacks) {
+             ShowFeeback();
+            pnlFeedback.setStyle("-fx-background-color : #02030A");
+            pnlFeedback.toFront();
+            
+        }
+        if (actionEvent.getSource() == btnUsers)
+       
         {
-            pnlOrders.setStyle("-fx-background-color : #02030A");
-            pnlOrders.toFront();
+             ShowUsers();
+            pnlUsers.setStyle("-fx-background-color : #02030A");
+            pnlUsers.toFront();
+               
+            
+        }
+        if(actionEvent.getSource()==btnJobs)
+        {
+            ShowJobs();
+            pnlJobs.setStyle("-fx-background-color : #02030A");
+            pnlJobs.toFront();
+        }
+        if(actionEvent.getSource()==btnSignout)
+        {
+            
+        }
+        if(actionEvent.getSource()==btnPosts)
+        {
+            ShowPosts();
+            pnlPosts.setStyle("-fx-background-color : #02030A");
+            pnlPosts.toFront();
+            
         }
         
-        if(actionEvent.getSource()==btnPackages)
+        if(actionEvent.getSource()==btnEvents)
         {  
             ShowEvents();
-            pnlPackages.setStyle("-fx-background-color : #02030A");
-            pnlPackages.toFront();
+            pnlEvents.setStyle("-fx-background-color : #02030A");
+            pnlEvents.toFront();
         }
     }
+    
+    
+    
+      public void ShowUsers()
+      { 
+        Users_stats.setVisible(true);
+      }
+      public void ShowJobs()
+      { 
+           Jobs_stats.setVisible(true);
+      }
+      public void ShowLabels()
+      { 
+          Labels_stats.setVisible(true);
+      }
+     public void ShowFeeback()
+      { 
+           Feedback_stats.setVisible(true);
+      }
+      public void ShowCategorie()
+      { 
+           Categorie_stats.setVisible(true);
+      }
+          
+     public void ShowPosts()
+      { 
+            Posts_stats.setVisible(true);
+      }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -406,7 +525,7 @@ private Pane pnlPackages;
             }
         }); 
         
-        input.textProperty().addListener(new ChangeListener<String>() {
+        inputEvents.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                treeview.setPredicate(new Predicate<TreeItem<Evenement>>() {

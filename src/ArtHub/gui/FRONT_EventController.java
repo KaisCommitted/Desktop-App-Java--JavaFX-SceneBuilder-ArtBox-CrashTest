@@ -281,15 +281,7 @@ public class FRONT_EventController implements Initializable {
 
     }
 
-    void create_image(ActionEvent event) throws Exception {
 
-        String rNom_post = p_name.getText();
-        String rdesc = p_desc.getText();
-        Post p = new Post(22, rNom_post, rdesc);
-        postCRUD prc = new postCRUD();
-        //prc.ajouterPost(p);
-
-    }
 
     @FXML
     private void AddEvent(ActionEvent event) {
