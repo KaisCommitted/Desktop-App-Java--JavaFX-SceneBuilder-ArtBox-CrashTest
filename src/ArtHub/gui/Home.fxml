@@ -126,7 +126,6 @@
       <StackPane layoutX="258.0" prefHeight="628.0" prefWidth="946.0" style="-fx-background-color: #02030A;">
          <children>
             <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
                <children>
@@ -358,6 +357,79 @@
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
                      <content>
                         <VBox fx:id="pnItems11" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Search_52px.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane fx:id="pnlOrders" layoutX="10.0" layoutY="10.0" prefHeight="671.0" prefWidth="793.0">
+               <children>
+                  <TextField fx:id="input11" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <Label layoutX="57.0" layoutY="25.0" textFill="#e7e5e5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" layoutX="45.0" layoutY="72.0" prefHeight="92.0" prefWidth="894.0" spacing="50.0">
+                     <children>
+                        <VBox fx:id="event_stats11" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" visible="false">
+                           <children>
+                              <Label fx:id="Events_thisweek11" text="22000" textFill="#2a73ff">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="Eventsthisweek11" text="Total Orders" textFill="#e7e5e5" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="1500" textFill="#26bfbc">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Total delivered" textFill="#e7e5e5" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="1000" textFill="#fa5f7e">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Peding Orders" textFill="#e7e5e5" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label text="780" textFill="#de0000">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Orders on Hold" textFill="#e7e5e5" />
+                           </children>
+                        </VBox>
+                        <ImageView fx:id="showHistory11" fitHeight="41.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" translateX="230.0" translateY="20.0">
+                           <image>
+                              <Image url="@../images/icons8_Box_32px.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
+                     <content>
+                        <VBox fx:id="pnItems111" prefHeight="483.0" prefWidth="933.0" spacing="5.0" style="-fx-background-color: #02030A;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>

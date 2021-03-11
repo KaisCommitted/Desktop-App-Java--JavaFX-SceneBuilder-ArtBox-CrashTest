@@ -128,7 +128,7 @@ private Pane pnlPackages;
         }
         if(actionEvent.getSource()==btnOrders)
         {
-            pnlOrders.setStyle("-fx-background-color : #464F67");
+            pnlOrders.setStyle("-fx-background-color : #02030A");
             pnlOrders.toFront();
         }
         
