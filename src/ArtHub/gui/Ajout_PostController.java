@@ -33,8 +33,19 @@ import javax.swing.JFileChooser;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.ws.spi.http.HttpContext;
+
+
+import sun.net.www.http.HttpClient;
+
 //import javafx.scene.control.Tab;
 
 
@@ -163,11 +174,6 @@ public class Ajout_PostController implements Initializable {
             Post p = new Post(22,rNom_post,rdesc);
             postCRUD prc = new postCRUD();
             prc.ajouterPost(p);
-        
-        
-        
-        
-
     }
     
     
@@ -196,6 +202,13 @@ public class Ajout_PostController implements Initializable {
 
     }
     
+    static long download(String sourceUrl, String targetFileName) throws Exception {
+    try (InputStream in = URI.create(sourceUrl).toURL().openStream()) {
+        return Files.copy(in, Paths.get(targetFileName));
+    }
+}
+    
+   
     
     
         

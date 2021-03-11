@@ -119,4 +119,35 @@ public class ParticipantCRUD {
 
    
     
+public List<User> FindParticipants(int id) {
+
+        List<User> myList = new ArrayList<>();
+        try {
+
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * from participant " + " WHERE id_event=" + id;
+
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                if (rs.getInt("id_event") != 0  ) {
+                  UserCRUD aux = new UserCRUD();
+                    User p = aux.FindUser(rs.getInt("id_user"));
+                    myList.add(p);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+
+
+
+
+   
+    
 }
+

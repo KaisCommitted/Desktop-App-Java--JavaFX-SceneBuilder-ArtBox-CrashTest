@@ -25,10 +25,14 @@ public class User extends RecursiveTreeObject<User> implements Serializable  {
     public User() {
     }
 
-    public User(int id_user, String ref_admin) {
+    public User(int id_user, String nom, String ref_admin) {
         this.id_user = id_user;
+        this.nom = nom;
         this.ref_admin = ref_admin;
     }
+
+    
+    
 
     public User(String nom, String prenom, String username, String mail, Date date_naissance, String pwd_user, String ref_admin) {
         this.nom = nom;
