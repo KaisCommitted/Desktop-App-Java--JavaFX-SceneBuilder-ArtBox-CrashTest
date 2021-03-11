@@ -28,7 +28,7 @@ public class TestFXMainEvent extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AddEvent.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");

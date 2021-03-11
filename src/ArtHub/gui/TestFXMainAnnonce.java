@@ -28,10 +28,10 @@ public class TestFXMainAnnonce extends Application {
     public void start(Stage primaryStage) {
         
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("AfficherAnnonce.fxml")); //add my own file !!!!!!!!!!!!!!!!!!!!!
+            Parent root = FXMLLoader.load(getClass().getResource("AddAnnonce.fxml")); //add my own file !!!!!!!!!!!!!!!!!!!!!
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Ajouter une annonce");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {

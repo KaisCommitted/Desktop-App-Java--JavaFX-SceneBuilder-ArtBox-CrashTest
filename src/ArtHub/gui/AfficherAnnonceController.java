@@ -25,11 +25,12 @@ import javafx.util.Callback;
 import ArtHub.entities.Annonce;
 import ArtHub.services.AnnonceCRUD;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
-import java.util.function.Predicate;
-import javafx.beans.value.ChangeListener;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -64,6 +65,35 @@ public class AfficherAnnonceController implements Initializable {
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Annonce, String> param) {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_ann()));
             }
+        });
+        
+        
+        
+         // id user table view
+        JFXTreeTableColumn<Annonce, String> id_user = new JFXTreeTableColumn<>("id_user");
+        id_user.setPrefWidth(150);
+        id_user.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Annonce, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Annonce, String> param) {
+               return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user()));
+           }
+
+       });
+        
+        id_user.setCellFactory((TreeTableColumn<Annonce, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable id_user text field
+        id_user.setOnEditCommit((CellEditEvent<Annonce, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_user();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setId_user(Integer.parseInt(t.getNewValue()));
+            ps.modifierAnnonce(idd, "id_user", newValue);
         });
         
         
@@ -154,47 +184,13 @@ public class AfficherAnnonceController implements Initializable {
         });
         
         
-        
-        
-        
-        
-        
-         // competences table view
-        JFXTreeTableColumn<Annonce, String> competences = new JFXTreeTableColumn<>("competences");
-        competences.setPrefWidth(150);
-        competences.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Annonce, String>, ObservableValue<String>>(){
-            @Override
-            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Annonce, String> param) {
-                return new SimpleStringProperty(param.getValue().getValue().getCompetences());
-            }
-        });
-                 competences.setCellFactory((TreeTableColumn<Annonce, String> param) -> {
-            return new GenericEditableTreeTableCell<>(
-                    new TextFieldEditorBuilder());
-        });
-        //setting the new value for editable competences text field
-        competences.setOnEditCommit((CellEditEvent<Annonce, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_ann();
-            String newValue = t.getNewValue();
-
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setTitre_ann(t.getNewValue());
-            ps.modifierAnnonce(idd, "competences", newValue);
-        });
-        
-        
-        
-        
-        
-         // categorie table view
+        // categorie table view
         JFXTreeTableColumn<Annonce, String> categorie = new JFXTreeTableColumn<>("categorie");
         categorie.setPrefWidth(150);
         categorie.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Annonce, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Annonce, String> param) {
-               return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getCategorie()));
+               return new SimpleStringProperty(param.getValue().getValue().getCategorie());
            }
 
        });
@@ -211,15 +207,13 @@ public class AfficherAnnonceController implements Initializable {
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
-                    .getValue().setCategorie(Integer.parseInt(t.getNewValue()));
+                    .getValue().setCategorie(t.getNewValue());
             ps.modifierAnnonce(idd, "categorie", newValue);
         });
         
         
         
-        
-        
-        
+      /*  
         // ddl_ann table view
         JFXTreeTableColumn<Annonce, String> ddl_ann = new JFXTreeTableColumn<>("ddl_ann");
         ddl_ann.setPrefWidth(150);
@@ -245,9 +239,37 @@ public class AfficherAnnonceController implements Initializable {
                     .getValue().setDdl_ann(t.getNewValue());
             ps.modifierAnnonce(idd, "ddl_ann", newValue);
         });
+*/
+      
+/*
+ // ddl_ann table view
+         DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        JFXTreeTableColumn<Annonce, String> date = new JFXTreeTableColumn<>("ddl_ann");
+        date.setPrefWidth(150);
+        date.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Annonce, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Annonce, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getDdl_ann().format(formatters));
+            }
+        });
+                 date.setCellFactory((TreeTableColumn<Annonce, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable date text field
+        date.setOnEditCommit((CellEditEvent<Annonce, String> t) -> {  
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_ann();
+            String newValue = t.getNewValue();
 
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setDdl_ann(Date.parse(t.getNewValue(),formatters));
+            ps.modifierAnnonce(idd, "ddl_ann", newValue);
+        });
      
-        
+        */
         List<Annonce> myLst;
         myLst = ps.consulterAnnonce();
         ObservableList<Annonce> Annonces = FXCollections.observableArrayList();
@@ -255,7 +277,7 @@ public class AfficherAnnonceController implements Initializable {
         myLst.forEach(p -> Annonces.add(p));
         JFXTreeTableView<Annonce> treeview = new JFXTreeTableView<>();
         final TreeItem<Annonce> root = new RecursiveTreeItem<Annonce>(Annonces, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id_ann, titre_ann,desc_ann,pay,competences,categorie,ddl_ann);
+        treeview.getColumns().setAll(id_ann, id_user, titre_ann,desc_ann,pay,categorie/*,ddl_ann*/);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
