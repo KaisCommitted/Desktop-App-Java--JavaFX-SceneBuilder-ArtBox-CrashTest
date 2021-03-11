@@ -10,18 +10,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 
 public class AddFeedbackController implements Initializable {
 
-    @FXML
-    private TextField txtTypeFeedback;
+    
     @FXML
     private TextArea txtContenuFeedback;
     @FXML
     private Button btnEnvoyerFeedback;
+    @FXML
+    private ComboBox<String> cmboTypeFeedback;
 
     /**
      * Initializes the controller class.
@@ -30,13 +32,16 @@ public class AddFeedbackController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
+     cmboTypeFeedback.getItems().add("Feed");
+     cmboTypeFeedback.getItems().add("Discover");
+     cmboTypeFeedback.getItems().add("Events");
+     cmboTypeFeedback.getItems().add("Jobs");
     }    
     @FXML
     private void addFeedback(ActionEvent event) {
         try {
             // Ajouter Feedback
-            String rtypefeedback = txtTypeFeedback.getText();
+            String rtypefeedback = cmboTypeFeedback.getValue();
             String rcontenufeedback = txtContenuFeedback.getText();
          
            

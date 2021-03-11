@@ -8,6 +8,6 @@
         <URL value="@afficherfeedback.css" />
     </stylesheets>
    <children>
-      <AnchorPane fx:id="anchorfeedback" prefHeight="400.0" prefWidth="600.0" />
+      <AnchorPane fx:id="anchorfeedback" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css" />
    </children>
 </AnchorPane>
