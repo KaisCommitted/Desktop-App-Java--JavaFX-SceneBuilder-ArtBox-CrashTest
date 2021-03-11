@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2021 at 04:11 PM
+-- Generation Time: Mar 12, 2021 at 12:45 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.14
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `test`
+-- Database: `pidev`
 --
 
 -- --------------------------------------------------------
@@ -35,15 +35,9 @@ CREATE TABLE `user` (
   `mail` varchar(255) NOT NULL,
   `date_naissance` date NOT NULL,
   `pwd_user` varchar(255) NOT NULL,
-  `ref_admin` tinyint(1) NOT NULL
+  `ref_admin` tinyint(1) NOT NULL,
+  `id_label` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id_user`, `nom`, `prenom`, `username`, `mail`, `date_naissance`, `pwd_user`, `ref_admin`) VALUES
-(1, 'f', 'g', 'f', 'f', '2021-03-04', 'schtonks', 0);
 
 --
 -- Indexes for dumped tables
@@ -53,7 +47,9 @@ INSERT INTO `user` (`id_user`, `nom`, `prenom`, `username`, `mail`, `date_naissa
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `ref_admin` (`ref_admin`),
+  ADD KEY `id_label` (`id_label`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -63,7 +59,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `label_fk` FOREIGN KEY (`id_label`) REFERENCES `label` (`id_label`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
