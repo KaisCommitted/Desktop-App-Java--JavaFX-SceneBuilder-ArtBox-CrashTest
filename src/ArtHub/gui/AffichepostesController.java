@@ -172,7 +172,7 @@ public class AffichepostesController implements Initializable {
         });
         
         List<Post> myLst;
-        myLst = ps.consulterPost();
+        myLst = ps.consultePostes();
         ObservableList<Post>postes = FXCollections.observableArrayList();
 
         myLst.forEach(p ->postes.add(p));

@@ -9,7 +9,7 @@ import java.sql.Date;
  *test
  * @author Fayechi
  */
-public class Participant  extends RecursiveTreeObject<Participant> implements Serializable {
+    public class Participant  extends RecursiveTreeObject<Participant> implements Serializable {
     private int id_participation;
     private User id_user;
     private Evenement id_event;

@@ -6,6 +6,7 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Post;
+import ArtHub.entities.User;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
 import com.jfoenix.controls.JFXButton;
@@ -77,8 +78,6 @@ public class Ajout_PostController implements Initializable {
      @FXML
     private JFXTabPane pan1;
      
-     @FXML
-    private JFXTextField image_path;
      
      @FXML
     private JFXButton btn_event;
@@ -86,12 +85,33 @@ public class Ajout_PostController implements Initializable {
     
      
     public static String s;
+    public static String s1;
     
     
     public static int tindex;
 
     
-    
+    User CurrentUser = new User(2);
+    @FXML
+    private JFXButton create_image;
+    @FXML
+    private JFXTextField video_name;
+    @FXML
+    private JFXButton create_video;
+    @FXML
+    private JFXTextArea video_desc;
+    @FXML
+    private JFXButton upload_image1;
+    @FXML
+    private JFXButton create_image11;
+    @FXML
+    private JFXButton upload_image11;
+    @FXML
+    private JFXTextField song_name;
+    @FXML
+    private JFXTextArea song_desc;
+    @FXML
+    private JFXButton upload_cover;
     
     
     /**
@@ -165,16 +185,83 @@ public class Ajout_PostController implements Initializable {
          
      }
     
+    @FXML
+    private void cover_file(ActionEvent event) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+         FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg","gif","png");
+         fileChooser.addChoosableFileFilter(filter);
+         int result = fileChooser.showSaveDialog(null);
+         if(result == JFileChooser.APPROVE_OPTION){
+             File selectedFile = fileChooser.getSelectedFile();
+             String path = selectedFile.getAbsolutePath();
+            s1 = path;
+            
+              }
+         else if(result == JFileChooser.CANCEL_OPTION){
+             System.out.println("No Data");
+         }
+        
+    }
+    
+    
+    
+    
     
     @FXML
     void create_image(ActionEvent event) throws Exception {
         
             String rNom_post = p_name.getText();
             String rdesc = p_desc.getText();
-            Post p = new Post(22,rNom_post,rdesc);
+            User id_user = CurrentUser;
+            Post p = new Post(id_user,rNom_post,rdesc);
             postCRUD prc = new postCRUD();
-            prc.ajouterPost(p);
+            prc.ajouterImage(p);
+        
+        
+        
+        
+
     }
+    
+    
+    @FXML
+    void create_video(ActionEvent event) throws Exception {
+        
+            String rNom_post = video_name.getText();
+            String rdesc = video_desc.getText();
+            User id_user = CurrentUser;
+            Post p = new Post(id_user,rNom_post,rdesc);
+            postCRUD prc = new postCRUD();
+            prc.ajouterVideo(p);
+        
+        
+        
+        
+
+    }
+    
+    
+    @FXML
+    void create_music(ActionEvent event) throws Exception {
+        
+            String rNom_post = song_name.getText();
+            String rdesc = song_desc.getText();
+            User id_user = CurrentUser;
+            Post p = new Post(id_user,rNom_post,rdesc);
+            postCRUD prc = new postCRUD();
+
+            prc.ajouterMusic(p);
+        
+        
+        
+        
+
+
+    }
+    
+    
+    
     
     
     @FXML
@@ -201,6 +288,8 @@ public class Ajout_PostController implements Initializable {
         
 
     }
+
+    
     
     static long download(String sourceUrl, String targetFileName) throws Exception {
     try (InputStream in = URI.create(sourceUrl).toURL().openStream()) {

@@ -26,17 +26,13 @@ public class postCRUD {
         cnx = MyConnection.getInstance().getConnection();
     }
     
-    public void ajouterPost(Post p)throws Exception{
-    String c;
-    if (Ajout_PostController.tindex == 0){
-     c = "photography"; }
-    else if (Ajout_PostController.tindex == 1){
-          c = "video";}
-    else { c  = "music";}
+    public void ajouterImage(Post p)throws Exception{
+    String c = "photography" ;
+    
         
     
     
-        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date)"+"values (?,?,?,?,CURRENT_TIMESTAMP)";
+        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?)";
         try {
             String s=Ajout_PostController.s;
             
@@ -45,6 +41,35 @@ public class postCRUD {
             ste.setString(2, p.getDescription());
             ste.setString(3, c);
             ste.setString(4,s);
+            ste.setInt(5, p.getid_user().getId_user());
+            ste.executeUpdate();
+            System.out.println("Post Added");
+            
+        } catch (SQLException ex) {
+            System.out.println("Probléme");
+            System.out.println(ex.getMessage());
+            
+        }
+        
+    }
+    
+    
+    public void ajouterVideo(Post p)throws Exception{
+    String c="video";
+    
+        
+    
+    
+        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?)";
+        try {
+            String s=Ajout_PostController.s;
+            
+            ste = cnx.prepareStatement(req);
+            ste.setString(1, p.getNom_post());
+            ste.setString(2, p.getDescription());
+            ste.setString(3, c);
+            ste.setString(4,s);
+            ste.setInt(5, p.getid_user().getId_user());
             ste.executeUpdate();
             System.out.println("Post Added");
             
@@ -57,15 +82,52 @@ public class postCRUD {
     }
 
     
+    public void ajouterMusic(Post p)throws Exception{
+    String c="music";
     
-        public List<Post> consulterPost() {
+        
+    
+    
+        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user,album_cover)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?,?)";
+        try {
+            String s=Ajout_PostController.s;
+            String s1=Ajout_PostController.s1;
+            
+            ste = cnx.prepareStatement(req);
+            ste.setString(1, p.getNom_post());
+            ste.setString(2, p.getDescription());
+            ste.setString(3, c);
+            ste.setString(4,s);
+            ste.setInt(5, p.getid_user().getId_user());
+            ste.setString(6,s1);
+            ste.executeUpdate();
+            System.out.println("Post Added");
+            
+        } catch (SQLException ex) {
+            System.out.println("Probléme");
+            System.out.println(ex.getMessage());
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        public List<Post> consultePostes() {
 
         List<Post> myList = new ArrayList<>();
         try {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from postes");
+            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'photography' ");
             while (rs.next()) {
 
                
@@ -74,8 +136,11 @@ public class postCRUD {
                 String Description = rs.getString("Description");
                 String categorie = rs.getString("categorie");
                 String post_date = rs.getString("post_date");
+                String file = rs.getString("file");
+                int Likes = rs.getInt("Likes");
                 
-                Post p = new Post(id_post,nom_post,Description,categorie,post_date);  
+                
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes);  
                 p.setId_post(rs.getInt("id_post"));
                 myList.add(p);
 
@@ -87,6 +152,78 @@ public class postCRUD {
         return myList;
 
     }
+        
+        
+     public List<Post> consulteImage() {
+
+        List<Post> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'photography' ");
+            while (rs.next()) {
+
+               
+                int id_post = rs.getInt("id_post");
+                String nom_post = rs.getString("nom_post");
+                String Description = rs.getString("Description");
+                String categorie = rs.getString("categorie");
+                String post_date = rs.getString("post_date");
+                String file = rs.getString("file");
+                int Likes = rs.getInt("Likes");
+                
+                
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes);  
+                p.setId_post(rs.getInt("id_post"));
+                myList.add(p);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+        
+        
+       public List<Post> consulteMusic() {
+
+        List<Post> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'music' ");
+            while (rs.next()) {
+
+               
+                int id_post = rs.getInt("id_post");
+                String nom_post = rs.getString("nom_post");
+                String Description = rs.getString("Description");
+                String categorie = rs.getString("categorie");
+                String post_date = rs.getString("post_date");
+                String file = rs.getString("file");
+                int Likes = rs.getInt("Likes");
+                String album_cover = rs.getString("album_cover");
+                
+                
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes,album_cover);  
+                p.setId_post(rs.getInt("id_post"));
+                myList.add(p);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    } 
+        
+        
+        
      public void supprimerPost(Post p) {
          try {
             String requete = "DELETE FROM postes WHERE id_post=?";
@@ -101,6 +238,7 @@ public class postCRUD {
     }
 
 
+     
     public void modifierPost(int id, String object, Object obj) {
         try {
             String requete = "UPDATE postes SET ? = ? WHERE id_post = ?";

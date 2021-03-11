@@ -237,7 +237,40 @@ public class FRONT_EventController implements Initializable {
 
     }
 
-   
+
+    private void image_file(ActionEvent event) {
+
+        JFileChooser fileChooser = new JFileChooser();
+
+        
+
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+
+  FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg", "gif", "png");
+            fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+           String  s = path;
+
+        } else if (result == JFileChooser.CANCEL_OPTION) {
+            System.out.println("No Data");
+        }
+
+     
+
+    }
+
+    void create_image(ActionEvent event) throws Exception {
+
+        String rNom_post = p_name.getText();
+        String rdesc = p_desc.getText();
+        Post p = new Post(22, rNom_post, rdesc);
+        postCRUD prc = new postCRUD();
+        //prc.ajouterPost(p);
+
+    }
 
     @FXML
     private void AddEvent(ActionEvent event) {
