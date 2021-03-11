@@ -566,4 +566,29 @@ public List<Evenement> GoingTo(int id) {
 
     }
 
+ public List<Evenement> RecommendEvenement(int id) {
+
+        List<Evenement> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from participant where");
+            while (rs.next()) {
+
+                if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
+
+                    Evenement p = FindEvenement(rs.getInt("id"));
+                    myList.add(p);
+                }
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+
 }
