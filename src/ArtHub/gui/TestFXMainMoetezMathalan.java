@@ -33,7 +33,7 @@ public class TestFXMainMoetezMathalan extends Application {
           //  Parent root = FXMLLoader.load(getClass().getResource("AddSignalisation.fxml"));
             
             
-            Parent root = FXMLLoader.load(getClass().getResource("AddSignalisation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("StatFeedback.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Affichage");
