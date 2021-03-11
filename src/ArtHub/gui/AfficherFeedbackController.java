@@ -5,7 +5,7 @@
  */
 package ArtHub.gui;
 
-import ArtHub.entities.Evenement;
+
 import ArtHub.entities.Feedback;
 import ArtHub.services.FeedbackCRUD;
 import com.jfoenix.controls.JFXButton;

@@ -118,6 +118,34 @@ public class UserCRUD {
     }
     
     
-    
+       public User FindUser(int id_user) {
+
+        User p = new User();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from User WHERE id_user=" + id_user + "");
+
+            while (rs.next()) {
+
+                
+                p.setId_user(id_user);
+                p.setRef_admin(rs.getString("ref_admin"));
+                p.setNom(rs.getString("nom"));
+                p.setPrenom(rs.getString("prenom"));
+                p.setUsername(rs.getString("Username"));
+            //Kamel lbe9i wahdek 
+
+
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return p;
+
+    } 
     
 }

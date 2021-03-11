@@ -21,7 +21,7 @@
             <Font name="Lucida Sans Unicode" size="12.0" />
          </font>
       </Label>
-      <JFXButton fx:id="like_btn" layoutX="340.0" layoutY="212.0" onAction="#like" text="  ">
+      <JFXButton fx:id="like_btn" layoutX="340.0" layoutY="212.0" onAction="#like" style="-fx-background-color: transparent;" text="  ">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="25.0">
                <image>
