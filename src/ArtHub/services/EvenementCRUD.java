@@ -62,23 +62,24 @@ public class EvenementCRUD {
 
         List<Evenement> myList = new ArrayList<>();
         try {
-
+             
             Statement pst = cnx.createStatement();
 
             ResultSet rs = pst.executeQuery("SELECT * from evenement");
             while (rs.next()) {
-
+                
+                     
                 if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
-
-                    Evenement p = FindEvenement(rs.getInt("id"));
+                  Evenement p = FindEvenement(rs.getInt("id"));
                     myList.add(p);
+                    
                 }
 
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+ System.out.println(myList.size());
         return myList;
 
     }
@@ -566,16 +567,17 @@ public List<Evenement> GoingTo(int id) {
 
     }
 
- public List<Evenement> RecommendEvenement(int id) {
+ public List<Evenement> RecommendEvenement(String cat) {
 
         List<Evenement> myList = new ArrayList<>();
         try {
 
             Statement pst = cnx.createStatement();
-
-            ResultSet rs = pst.executeQuery("SELECT * from participant where");
-            while (rs.next()) {
-
+                ResultSet rs = pst.executeQuery("SELECT *,STRCMP(categorie,"+ cat+ ") AS Cmp_value from evenement");
+               
+            
+                while (rs.next()) {
+                  
                 if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
 
                     Evenement p = FindEvenement(rs.getInt("id"));
@@ -590,5 +592,8 @@ public List<Evenement> GoingTo(int id) {
         return myList;
 
     }
+ 
+ 
+    
 
 }

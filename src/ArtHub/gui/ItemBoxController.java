@@ -98,7 +98,7 @@ public class ItemBoxController implements Initializable {
                  Event_spots1.setText(Integer.toString(p.getNb_max() - p.getCapacite_event()) + " People going");
             String pat=p.getImage_event();
             Event_location.setText(p.getLocation_event());
-            System.out.println(pat);
+            
             Image img6 = new Image(new FileInputStream(pat));
            // Image image = new Image(getClass().getResourceAsStream(pat));
             //URL urll;

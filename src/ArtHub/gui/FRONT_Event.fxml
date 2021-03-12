@@ -194,6 +194,18 @@
                   </DropShadow>
                </effect>
             </JFXButton>
+            <JFXButton fx:id="Btn_AddEvent1111" buttonType="RAISED" disable="true" layoutX="1188.0" layoutY="156.0" onAction="#Recommended" prefHeight="41.0" prefWidth="172.0" ripplerFill="WHITE" styleClass="button3" text="Recommended" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                     <color>
+                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </JFXButton>
             
             
             

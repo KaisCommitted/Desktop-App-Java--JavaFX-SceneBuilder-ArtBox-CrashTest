@@ -6,11 +6,13 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Evenement;
+import ArtHub.entities.Participant;
 import ArtHub.entities.Post;
 import static ArtHub.gui.ADD_EventController.CurrentUser;
 import static ArtHub.gui.ItemBoxController.id_clicked;
 import static ArtHub.gui.ItemBoxController.style;
 import ArtHub.services.EvenementCRUD;
+import ArtHub.services.ParticipantCRUD;
 import ArtHub.services.UserCRUD;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
@@ -142,6 +144,8 @@ public class FRONT_EventController implements Initializable {
     private Label label_layout;
     @FXML
     private Label label_trend;
+    @FXML
+    private JFXButton Btn_AddEvent1111;
 
     /**
      * Initializes the controller class.
@@ -193,7 +197,7 @@ public class FRONT_EventController implements Initializable {
             myLst = ps.consulterEvenement();
             try {
                 for (int i = 0; i < myLst.size(); i++) {
-                    
+                  
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
                     HBox EventBox = fxmlLoader.load();
@@ -693,6 +697,45 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private void refresh2(ActionEvent event) {
         initialize(url, b);
+    }
+
+    @FXML
+    private void Recommended(ActionEvent event) {
+        label_trend.setText("Recommended");
+        label_layout.setText("Went To..");
+        comboDate.setVisible(false);
+        comboTrend.setVisible(false);
+        MoreDetails.setVisible(false);
+        comboDate.getItems().clear();
+        comboTrend.getItems().clear();
+        
+      
+
+        EvenementCRUD ps = new EvenementCRUD();
+        Participant aux = new Participant();
+        ParticipantCRUD par = new ParticipantCRUD();
+        String max = par.RecommendParticip(CurrentUser.getId_user());
+        
+        
+        List<Evenement> myLst;
+        myLst = ps.RecommendEvenement(max);
+       
+        event_mostPop.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                event_mostPop.getChildren().add(EventBox);
+               
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 
