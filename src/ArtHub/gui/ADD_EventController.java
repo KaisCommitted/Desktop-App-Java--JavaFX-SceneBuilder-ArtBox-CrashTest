@@ -91,8 +91,7 @@ public class ADD_EventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        combo_type.getItems().clear();
-           txt_categorie.getItems().clear();
+      
         Control.setVisible(false);
         combo_type.getItems().addAll("En ligne", "Exposé", "Festival", "Formation", "Autres");
 

@@ -17,11 +17,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +48,6 @@ public class LoginController implements Initializable {
     private Button reinit;
     @FXML
     private Hyperlink signup;
-
     /**
      * Initializes the controller class.
      */
@@ -63,12 +69,18 @@ public class LoginController implements Initializable {
          
          int UserID = us.currentUser.getId_user();
                 if (verify) {
-                try {
-                    JOptionPane.showMessageDialog(null, "Welcome to ArtBox " + usr.getUsername() + "!");
+                try { Stage primaryStage;
+                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event" );
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
                     
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AddUser.fxml"));
-                    Parent root = loader.load();
-                    tfusername.getScene().setRoot(root);
                     
                 } catch (IOException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
