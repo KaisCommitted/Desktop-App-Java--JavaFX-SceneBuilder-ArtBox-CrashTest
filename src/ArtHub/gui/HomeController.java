@@ -1,9 +1,11 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Evenement;
+import ArtHub.entities.Feedback;
 import ArtHub.entities.Labell;
 import ArtHub.entities.User;
 import ArtHub.services.EvenementCRUD;
+import ArtHub.services.FeedbackCRUD;
 import ArtHub.services.LabelCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -367,6 +369,127 @@ public class HomeController implements Initializable {
       }
      public void ShowFeeback()
       { 
+            FeedbackCRUD ps = new FeedbackCRUD();
+            
+            itemsEvents.getChildren().clear();
+        // id_feedback table view
+        JFXTreeTableColumn<Feedback, String> id_feedback = new JFXTreeTableColumn<>("id_feedback");
+        id_feedback.setPrefWidth(250);
+        id_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Feedback, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_feedback()));
+            }
+        });
+        
+         //contenu_feedback table view
+        JFXTreeTableColumn<Feedback, String> contenu_feedback = new JFXTreeTableColumn<>("contenu_feedback");
+        contenu_feedback.setPrefWidth(250);
+        contenu_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Feedback, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getContenu_feedback());
+            }
+        });
+        
+        // type_feedback table view
+        JFXTreeTableColumn<Feedback, String> type_feedback = new JFXTreeTableColumn<>("type_feedback");
+        type_feedback.setPrefWidth(250);
+        type_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Feedback, String> param) {
+               return new SimpleStringProperty(param.getValue().getValue().getType_feedback());
+           }
+        });
+        
+         // etat_feedback table view
+        JFXTreeTableColumn<Feedback, String> etat_feedback = new JFXTreeTableColumn<>("etat_feedback");
+        etat_feedback.setPrefWidth(250);
+        etat_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Feedback, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getEtat_feedback());
+            }
+        });
+                 etat_feedback.setCellFactory((TreeTableColumn<Feedback, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable etat_feedback text field
+        etat_feedback.setOnEditCommit((CellEditEvent<Feedback, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_feedback();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setEtat_feedback(t.getNewValue());
+            ps.modifierFeedback(idd, "etat_feedback", newValue);
+        });
+        
+        
+        List<Feedback> myLst;
+        myLst = ps.consulterFeedback();
+        ObservableList<Feedback> Feedbacks = FXCollections.observableArrayList();
+        myLst.forEach(f -> Feedbacks.add(f));
+        JFXTreeTableView<Feedback> treeview = new JFXTreeTableView<>();
+        final TreeItem<Feedback> root = new RecursiveTreeItem<>(Feedbacks, RecursiveTreeObject::getChildren);
+        treeview.getColumns().setAll(id_feedback,contenu_feedback,type_feedback,etat_feedback);
+        treeview.setRoot(root);
+        treeview.setShowRoot(false);
+        treeview.setEditable(true);
+         
+        
+        //declarer la bouton supprimer
+        JFXButton DltBtn = new JFXButton("Remove");
+        DltBtn.setLayoutY(410D);
+        DltBtn.setOnAction(new EventHandler<ActionEvent>() {
+        //eventHandler de la button supprimer
+        @Override
+        public void handle(ActionEvent event) {
+        Dialog confirmation = new Dialog();
+        GridPane grid2 = new GridPane();
+        Label l1 = new Label("Delete Feedback?");
+        grid2.add(l1, 2, 2);
+        confirmation.setTitle("Confirmation de suppression!");
+        confirmation.getDialogPane().setContent(grid2);
+        ButtonType Confi = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
+        confirmation.getDialogPane().getButtonTypes().add(Confi);
+        confirmation.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        confirmation.setResultConverter(new Callback<ButtonType, Feedback>() {
+        @Override
+        public Feedback call(ButtonType param) {
+        if (param == Confi) {
+        Feedback p = treeview.getSelectionModel().getSelectedItem().getValue();
+        ps.supprimerFeedback((Feedback) p);
+        Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
+        cancelButton.fire();
+        //initialize(url, rb);
+        }
+        return null;
+        }
+        });
+        confirmation.showAndWait();
+        }
+        });
+         
+        /* input.setPromptText("Rechercher ..");
+        input.textProperty().addListener(new ChangeListener<String>() {
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        treeview.setPredicate(new Predicate<TreeItem<Feedback>>() {
+        @Override
+        public boolean test(TreeItem<Produits> t) {
+        boolean flag = t.getValue().getEtat_feedback().getValue().contains(newValue);
+        return flag;
+        }
+        });
+        }
+        });*/
+        treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
+       treeview.setStyle("-fx-background-color:rgba(0,255,255,0.2);");
+        itemsFeedback.getChildren().addAll(treeview,DltBtn);
            Feedback_stats.setVisible(true);
       }
       public void ShowCategorie()
