@@ -5,7 +5,7 @@
  */
 package ArtHub.gui;
 
-import ArtHub.RestAPI.SentimentAnalysis;
+
 //import com.azure.ai.textanalytics.TextAnalyticsClient;
 import static java.awt.Color.blue;
 import java.io.IOException;

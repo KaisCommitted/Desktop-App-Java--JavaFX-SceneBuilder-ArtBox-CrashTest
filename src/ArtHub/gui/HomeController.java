@@ -1,8 +1,10 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Evenement;
+import ArtHub.entities.Labell;
 import ArtHub.entities.User;
 import ArtHub.services.EvenementCRUD;
+import ArtHub.services.LabelCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
@@ -18,7 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -32,11 +34,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -46,60 +52,102 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
-public class Controller implements Initializable {
+public class HomeController implements Initializable {
  
-    EvenementCRUD ps;
+   
     @FXML
-    private VBox pnItems = null;
+    private Button btnUsers;
     @FXML
-    private VBox pnItems1 = null;
+    private Button btnJobs;
     @FXML
-    private Button btnOverview;
-
+    private Button BtnLabels;
     @FXML
-    private Button btnOrders;
-
+    private Button btnFeedbacks;
     @FXML
-    private Button btnCustomers;
-
+    private Button btnEvents;
     @FXML
-    private Button btnMenus;
-
+    private Button btnCategories;
     @FXML
-    private Button btnPackages;
-
-    @FXML
-    private Button btnSettings;
-
+    private Button btnPosts;
     @FXML
     private Button btnSignout;
-
     @FXML
-    private Pane pnlCustomer;
-
+    private Pane pnlEvents;
     @FXML
-    private Pane pnlOrders;
-@FXML
-private Pane pnlPackages;
-
+    private TextField inputEvents;
     @FXML
-    private Pane pnlOverview;
-
-    @FXML
-    private Pane pnlMenus;
-    @FXML
-    private TextField input;
-    @FXML
-    private VBox event_stats;
+    private HBox event_stats;
     @FXML
     private Label Events_thisweek;
     @FXML
     private Label Eventsthisweek;
     @FXML
     private ImageView showHistory;
+    
+    @FXML
+    private Pane pnlUsers;
+    @FXML
+    private TextField inputUsers;
+    @FXML
+    private HBox Users_stats;
+    @FXML
+    private ImageView showHistory1;
+    @FXML
+    private Pane pnlJobs;
+    @FXML
+    private TextField inputJobs;
+    @FXML
+    private HBox Jobs_stats;
+    @FXML
+    private ImageView showHistory11;
+    @FXML
+    private Pane pnlLabels;
+    @FXML
+    private HBox Labels_stats;
+    @FXML
+    private ImageView showHistory111;
+    @FXML
+    private Pane pnlFeedback;
+    @FXML
+    private HBox Feedback_stats;
+    @FXML
+    private ImageView showHistory1111;
+    @FXML
+    private Pane pnlCategorie;
+    @FXML
+    private HBox Categorie_stats;
+    @FXML
+    private ImageView showHistory11111;
+    @FXML
+    private Pane pnlPosts;
+    @FXML
+    private HBox Posts_stats;
+    @FXML
+    private ImageView showHistory111111;
+    @FXML
+    private VBox itemsLabels;
+    @FXML
+    private VBox itemsEvents;
+    @FXML
+    private VBox itemsUsers;
+    @FXML
+    private VBox itemsJobs;
+    @FXML
+    private VBox itemsFeedback;
+    @FXML
+    private VBox ItemsCategorie;
+    @FXML
+    private VBox ItemsPosts;
+    @FXML
+    private ImageView addEvent;
+    
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,35 +158,257 @@ private Pane pnlPackages;
 
     @FXML
     public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnCustomers) {
-            
-            pnlCustomer.setStyle("-fx-background-color : #1620A1");
-            pnlCustomer.toFront();
-        }
-        if (actionEvent.getSource() == btnMenus) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
-            pnlMenus.toFront();
-        }
-        if (actionEvent.getSource() == btnOverview) {
+        if (actionEvent.getSource() == BtnLabels) {
+            ShowLabels();
+            pnlLabels.setStyle("-fx-background-color : #02030A");
+            pnlLabels.toFront();
           
-       
-            
-            pnlOverview.setStyle("-fx-background-color : #02030A");
-            pnlOverview.toFront();
+           
         }
-        if(actionEvent.getSource()==btnOrders)
+        if (actionEvent.getSource() == btnCategories) {
+            ShowCategorie();
+            pnlCategorie.setStyle("-fx-background-color : #02030A");
+            pnlCategorie.toFront();
+            
+           
+        }
+        if (actionEvent.getSource() == btnFeedbacks) {
+             ShowFeeback();
+            pnlFeedback.setStyle("-fx-background-color : #02030A");
+            pnlFeedback.toFront();
+            
+        }
+        if (actionEvent.getSource() == btnUsers)
+       
         {
-            pnlOrders.setStyle("-fx-background-color : #02030A");
-            pnlOrders.toFront();
+             ShowUsers();
+            pnlUsers.setStyle("-fx-background-color : #02030A");
+            pnlUsers.toFront();
+               
+            
+        }
+        if(actionEvent.getSource()==btnJobs)
+        {
+            ShowJobs();
+            pnlJobs.setStyle("-fx-background-color : #02030A");
+            pnlJobs.toFront();
+        }
+        if(actionEvent.getSource()==btnSignout)
+        {
+            
+        }
+        if(actionEvent.getSource()==btnPosts)
+        {
+            ShowPosts();
+            pnlPosts.setStyle("-fx-background-color : #02030A");
+            pnlPosts.toFront();
+            
         }
         
-        if(actionEvent.getSource()==btnPackages)
+        if(actionEvent.getSource()==btnEvents)
         {  
             ShowEvents();
-            pnlPackages.setStyle("-fx-background-color : #02030A");
-            pnlPackages.toFront();
+            pnlEvents.setStyle("-fx-background-color : #02030A");
+            pnlEvents.toFront();
         }
     }
+    
+    
+    
+      public void ShowUsers()
+      { 
+        Users_stats.setVisible(true);
+      }
+      public void ShowJobs()
+      { 
+           Jobs_stats.setVisible(true);
+      }
+      public void ShowLabels()
+      { 
+          LabelCRUD ps = new LabelCRUD();
+        // id table view
+        JFXTreeTableColumn<Labell, String> id = new JFXTreeTableColumn<>("id");
+        id.setPrefWidth(150);
+        id.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId()));
+            }
+        });
+        
+         // name table view
+        JFXTreeTableColumn<Labell, String> name = new JFXTreeTableColumn<>("name");
+        name.setPrefWidth(150);
+        name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
+                return new SimpleStringProperty((param.getValue().getValue().getname()));
+            }
+        });
+        //making the cell editable
+        name.setCellFactory((TreeTableColumn<Labell, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable name text field
+        name.setOnEditCommit((CellEditEvent<Labell, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setname(t.getNewValue());
+            ps.modifierLabel(idd, "name", newValue);
+        });
+        
+        
+        
+        
+         // type table view
+        JFXTreeTableColumn<Labell, String> type = new JFXTreeTableColumn<>("type");
+        type.setPrefWidth(150);
+        type.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
+                return new SimpleStringProperty((param.getValue().getValue().gettype()));
+            }
+        });
+        //making the cell editable
+        type.setCellFactory((TreeTableColumn<Labell, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable type text field
+        type.setOnEditCommit((CellEditEvent<Labell, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().settype(t.getNewValue());
+            ps.modifierLabel(idd, "type", newValue);
+        });
+        
+        
+        ///////////////////////////////////////////////////////////////////////////////////
+        
+        
+        List<Labell> myLst;
+        myLst = ps.consulterLabel();
+        ObservableList<Labell> Labels = FXCollections.observableArrayList();
+
+        myLst.forEach(p -> Labels.add(p));
+        JFXTreeTableView<Labell> treeview = new JFXTreeTableView<>();
+        final TreeItem<Labell> root = new RecursiveTreeItem<Labell>(Labels, RecursiveTreeObject::getChildren);
+        treeview.getColumns().setAll(id,name,type);
+        treeview.setRoot(root);
+        treeview.setShowRoot(false);
+        treeview.setEditable(true);
+        
+        
+       
+        
+        //declarer la button supprimer
+        JFXButton DltBtn = new JFXButton("Remove");
+        DltBtn.setLayoutY(410D);
+        DltBtn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            //eventHandler de la button supprimer
+            @Override
+            public void handle(ActionEvent event) {
+                Dialog confirmation = new Dialog();
+                GridPane grid2 = new GridPane();
+                Label l1 = new Label("Delete Label?");
+                grid2.add(l1, 2, 2);
+                confirmation.setTitle("Confirmation de suppression!");
+                confirmation.getDialogPane().setContent(grid2);
+                ButtonType Confi = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
+                confirmation.getDialogPane().getButtonTypes().add(Confi);
+                confirmation.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+                confirmation.setResultConverter(new Callback<ButtonType, Labell>() {
+                    @Override
+                    public Labell call(ButtonType param) {
+                        if (param == Confi) {
+                            Labell p = treeview.getSelectionModel().getSelectedItem().getValue();
+                            ps.supprimerLabel((Labell) p);
+                            Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
+                            cancelButton.fire();
+                            ShowLabels();
+                        }
+
+                        return null;
+                    }
+                });
+                confirmation.showAndWait();
+            }
+        }); 
+        
+        /* input.setPromptText("Rechercher ..");
+        input.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                treeview.setPredicate(new Predicate<TreeItem<Label>>() {
+                    @Override
+                    public boolean test(TreeItem<Produits> t) {
+
+                        boolean flag = t.getValue().getNom_event().getValue().contains(newValue);
+                        return flag;
+                    }
+                });
+            }
+        });*/
+          treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
+       treeview.setStyle("-fx-background-color:rgba(0,255,255,0.2);");
+       itemsLabels.getChildren().addAll(treeview,DltBtn);
+          Labels_stats.setVisible(true);
+      }
+     public void ShowFeeback()
+      { 
+           Feedback_stats.setVisible(true);
+      }
+      public void ShowCategorie()
+      { 
+           Categorie_stats.setVisible(true);
+      }
+          
+     public void ShowPosts()
+      { 
+            Posts_stats.setVisible(true);
+      }
+    
+    
+    
+    
+    //ShowEvents ahayka louta if u need guidance CSS etc
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -151,8 +421,9 @@ private Pane pnlPackages;
     
     
     public void ShowEvents(){ 
+        
    
-    pnItems1.getChildren().clear();
+    itemsEvents.getChildren().clear();
             EvenementCRUD ps = new EvenementCRUD();
         // id table view
         JFXTreeTableColumn<Evenement, String> id = new JFXTreeTableColumn<>("id");
@@ -406,7 +677,7 @@ private Pane pnlPackages;
             }
         }); 
         
-        input.textProperty().addListener(new ChangeListener<String>() {
+        inputEvents.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                treeview.setPredicate(new Predicate<TreeItem<Evenement>>() {
@@ -419,12 +690,37 @@ private Pane pnlPackages;
                 });
             }
         });
-         event_stats.setVisible(true);
+        event_stats.setVisible(true);
         Events_thisweek.setText(Integer.toString(i));
         Eventsthisweek.setText("Events this week");
         treeview.setStyle("-fx-background-color:rgba(0,255,255,0.2);");
-        pnItems1.getChildren().addAll(treeview,DltBtn);
+        itemsEvents.getChildren().addAll(treeview,DltBtn);
        
     
+    }
+
+    @FXML
+    private void addEvent(MouseEvent event) {
+          try {
+              System.out.println("Waduo");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ADD-EVENT.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+    }
+
+    @FXML
+    private void refresh(MouseEvent event) {
+        ShowEvents();
     }
 }
