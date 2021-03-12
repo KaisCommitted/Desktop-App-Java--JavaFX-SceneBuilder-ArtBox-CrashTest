@@ -90,13 +90,9 @@ public class FRONT_EventController implements Initializable {
     
     @FXML
     private JFXButton Btn_AddEvent;
-    @FXML
     private HBox event_layout;
-    @FXML
     private HBox event_mostPop;
-    @FXML
     private ScrollPane scroll1;
-    @FXML
     private ScrollPane scroll2;
     @FXML
     private Text refresh;
@@ -107,31 +103,18 @@ public class FRONT_EventController implements Initializable {
     
     @FXML
     private JFXTextField input;
-    @FXML
     private ComboBox<String> comboDate = new ComboBox<>();
-    @FXML
     private ComboBox<String> comboTrend = new ComboBox<>();
-    @FXML
     private ImageView event_img;
-    @FXML
     private Label event_description;
-    @FXML
     private VBox MoreDetails;
-    @FXML
     private Label name;
-    @FXML
     private Label username;
-    @FXML
     private Label type;
-    @FXML
     private Label categorie;
-    @FXML
     private Label date;
-    @FXML
     private Label location;
-    @FXML
     private Label spots;
-    @FXML
     private Label participants;
     DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @FXML
@@ -140,9 +123,7 @@ public class FRONT_EventController implements Initializable {
     private JFXButton Btn_AddEvent11;
     @FXML
     private JFXButton Btn_AddEvent111;
-    @FXML
     private Label label_layout;
-    @FXML
     private Label label_trend;
     @FXML
     private JFXButton Btn_AddEvent1111;
@@ -456,7 +437,6 @@ public class FRONT_EventController implements Initializable {
        }
     }
 
-    @FXML
     private void SortByTime(ActionEvent event) {
          EvenementCRUD ps = new EvenementCRUD();
         event_layout.getChildren().clear();
@@ -512,7 +492,6 @@ public class FRONT_EventController implements Initializable {
         }}
     }
 
-    @FXML
     private void SortByTrend(ActionEvent event) {
         EvenementCRUD ps = new EvenementCRUD();
         event_mostPop.getChildren().clear();
@@ -588,7 +567,6 @@ public class FRONT_EventController implements Initializable {
     
     
 
-    @FXML
     private void EventClicked(MouseEvent event) throws FileNotFoundException {
         if (id_clicked != 0) {
             UserCRUD u = new UserCRUD();
@@ -625,7 +603,6 @@ public class FRONT_EventController implements Initializable {
     }
 
 
-    @FXML
     private void GoingTo(ActionEvent event) {
        label_trend.setText("Going To..");
         label_layout.setText("Went To..");
@@ -660,7 +637,6 @@ public class FRONT_EventController implements Initializable {
         
     }
 
-    @FXML
     private void WentTo(ActionEvent event) {
         label_trend.setText("Going To..");
         label_layout.setText("Went To..");
@@ -694,7 +670,6 @@ public class FRONT_EventController implements Initializable {
         }
     }
 
-    @FXML
     private void refresh2(ActionEvent event) {
         initialize(url, b);
     }

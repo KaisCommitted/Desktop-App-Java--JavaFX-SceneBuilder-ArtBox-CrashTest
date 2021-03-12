@@ -3,55 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-            <file>file:/C:/Users/louay/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AddUserController.java</file>
-            <file>file:/C:/Users/louay/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Controller.java</file>
-            <file>file:/C:/Users/louay/Documents/GitHub/crashtest-arthub/src/ArtHub/tools/MailSend.java</file>
-            <file>file:/C:/Users/louay/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Home.java</file>
-=======
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/services/InteractionsCrud.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/ItemBox.fxml</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/mp3.fxml</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/JAVAFXMusicPlayer.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/TestFXMainTarek.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Affichepostes.fxml</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/services/ParticipantCRUD.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/entities/Evenement.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/treetableview.css</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/ItemBoxController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/entities/User.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/ReadUserController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/CRUDEventController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Ajout_Post.fxml</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/FRONT_EventController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/PostGController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AfficherAnnonceController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/services/postCRUD.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/entities/interactions.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Adam.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/FeedGuiController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/style.css</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/services/UserCRUD.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Kais.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/entities/Post.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Ajout_PostController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/tests/ConnexionTest.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AffichepostesController.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/feed%20gui.fxml</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/PostG.fxml</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/mp3Controller.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/feed%20gui.css</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/tools/MyConnection.java</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/styler.css</file>
-            <file>file:/C:/Users/Adam%20Khalfaoui/Documents/GitHub/crashtest-arthub/src/ArtHub/services/EvenementCRUD.java</file>
->>>>>>> 7f09b560b34c5f67198eaee768f1d7c6c1138535
-=======
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/entities/Feedback.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/ADD_EventController.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/StatFeedback.fxml</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/entities/User.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AddUserController.java</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AfficherSignalisationController.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/services/FeedbackCRUD.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/StatFeedbackController.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/entities/Signalisation.java</file>
@@ -63,8 +20,8 @@
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/tools/MyConnection.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/TestFXMainMoetezMathalan.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/statfeedback.css</file>
+            <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/HomeController.java</file>
             <file>file:/C:/Users/Moetez/Documents/GitHub/src/ArtHub/gui/AddFeedbackController.java</file>
->>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

@@ -15,10 +15,13 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -26,8 +29,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -36,8 +42,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 /**
@@ -175,6 +185,25 @@ public class AfficherFeedbackController implements Initializable {
         });*/
         anchorfeedback.getChildren().addAll(treeview,DltBtn);
     }    
+
+    @FXML
+    private void GoToStat(MouseEvent event) {
+         try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StatFeedback.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Statistiques");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+    }
     
 }
         
