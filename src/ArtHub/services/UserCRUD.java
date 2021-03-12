@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -21,7 +23,7 @@ public class UserCRUD {
     
      private Connection cnx;
     private PreparedStatement ste;
-
+public static User currentUser=new User();
     public UserCRUD() {
         
         cnx = MyConnection.getInstance().getConnection();
@@ -147,5 +149,50 @@ public class UserCRUD {
         return p;
 
     } 
+       
+        public Boolean Authentifier(String u,String p) throws SQLException
+    {
+        String req = "SELECT * FROM `user` WHERE username =\'"+u+"\' and pwd_user=\'"+p+"\'";
+        System.out.println(req);
+        
+        
+        try {
+            Statement ste = cnx.createStatement();
+             ResultSet rs= ste.executeQuery(req);
+            System.out.println(rs);
+            if (rs!=null)
+            {
+                        while (rs.next())
+                        {
+                            System.out.println(rs.getInt(1));
+                            System.out.println(rs.getString(2));
+                            System.out.println(rs.getString(3));
+                            System.out.println(rs.getString(4));
+                            System.out.println(rs.getString(5));
+                            System.out.println(rs.getDate(6));
+                            System.out.println(rs.getString(7));
+                            System.out.println(rs.getString(8));
+                            
+                            
+                            currentUser.setId_user(rs.getInt("id_user"));
+                            currentUser.setNom(rs.getString("nom"));
+                            currentUser.setPrenom(rs.getString("prenom"));
+                            currentUser.setUsername(rs.getString("username"));
+                            currentUser.setMail(rs.getString("mail"));
+                            currentUser.setDate_naissance(rs.getDate("date_naissance"));
+                            currentUser.setPwd_user(rs.getString("pwd_user"));
+                            currentUser.setRef_admin(rs.getString("ref_admin"));
+                            
+ return true;
+                        }
+            }
+            
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
     
 }
