@@ -62,23 +62,24 @@ public class EvenementCRUD {
 
         List<Evenement> myList = new ArrayList<>();
         try {
-
+             
             Statement pst = cnx.createStatement();
 
             ResultSet rs = pst.executeQuery("SELECT * from evenement");
             while (rs.next()) {
-
+                
+                     
                 if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
-
-                    Evenement p = FindEvenement(rs.getInt("id"));
+                  Evenement p = FindEvenement(rs.getInt("id"));
                     myList.add(p);
+                    
                 }
 
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+ System.out.println(myList.size());
         return myList;
 
     }
@@ -565,5 +566,58 @@ public List<Evenement> GoingTo(int id) {
         return myList;
 
     }
+
+ public List<Evenement> RecommendEvenement(String cat) {
+
+        List<Evenement> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+                ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE categorie='"+cat+"'");
+                
+              
+            
+                while (rs.next()) {
+                  
+                if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
+
+                    Evenement p = FindEvenement(rs.getInt("id"));
+                    myList.add(p);
+                     System.out.println("Recom event");
+                }
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+ 
+  public List<Evenement> ArchiveEvenement() {
+
+        List<Evenement> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE DATEDIFF(date,NOW()) < 0");
+            while (rs.next()) {
+
+                if (rs.getInt("id") != 0  ) {
+
+                    Evenement p = FindEvenement(rs.getInt("id"));
+                    myList.add(p);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+    
 
 }

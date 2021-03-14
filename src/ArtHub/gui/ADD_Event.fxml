@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="721.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.ADD_EventController">
+<AnchorPane id="AnchorPane" fx:id="anchor" prefHeight="527.0" prefWidth="721.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.ADD_EventController">
    <children>
       <TextField id="txt_nom" fx:id="txt_nom" layoutX="195.0" layoutY="93.0" prefHeight="25.0" prefWidth="353.0" promptText="Add event name.." style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" stylesheets="@feed%20gui.css" AnchorPane.leftAnchor="195.0">
          <padding>

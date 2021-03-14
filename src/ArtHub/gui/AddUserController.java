@@ -73,8 +73,10 @@ public class AddUserController implements Initializable {
                 usrc.ajouterUser(u);
                 
                 MailSend m = new MailSend();
-                String subject = "Password recovery";
-                String message = "your token is its valid only for 1 hour !!";
+                String subject = "Sign Up Confirmation";
+                String message = "Welcome to ArtBox.";
+                
+                
                 m.sendMail("0artbox1@gmail.com", rMail, subject, message);
                 
             } catch (Exception ex) {

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 /**
  * wadup
@@ -23,15 +24,15 @@ public class AnnonceCRUD {
     }
     
     public void ajouterAnnonce(Annonce p){
-        String req ="INSERT INTO annonce (titre_ann,desc_ann,pay,competences,categorie,ddl_ann)"+"values (?,?,?,?,?,?)";
+        String req ="INSERT INTO annonce (id_user,titre_ann,desc_ann,pay,categorie,ddl_ann)"+"values (?,?,?,?,?,?)";
         try {
             ste = cnx.prepareStatement(req);
-            ste.setString(1, p.getTitre_ann());
-            ste.setString(2, p.getDesc_ann());
-            ste.setInt(3, p.getPay());
-            ste.setString(4, p.getCompetences());
-            ste.setInt(5, p.getCategorie());
-            ste.setString(6, p.getDdl_ann());
+            ste.setInt(1, p.getId_user());
+            ste.setString(2, p.getTitre_ann());
+            ste.setString(3, p.getDesc_ann());
+            ste.setInt(4, p.getPay());
+            ste.setString(5, p.getCategorie());
+            ste.setDate(6, p.getDdl_ann());
             ste.executeUpdate();
             System.out.println("Annonce ajoutée");
             
@@ -53,15 +54,14 @@ public class AnnonceCRUD {
             ResultSet rs = pst.executeQuery("SELECT * from annonce");
             while (rs.next()) {
 
-               
+                int id_user = rs.getInt("id_user");
                 String titre_ann = rs.getString("titre_ann");
                 String desc_ann = rs.getString("desc_ann");
                 int pay = rs.getInt("pay");
-                String competences = rs.getString("competences");
-                int categorie = rs.getInt("categorie");
-                String ddl_ann = rs.getString("ddl_ann");
+                String categorie = rs.getString("categorie");
+                Date ddl_ann = rs.getDate("ddl_ann");
                 
-                Annonce p = new Annonce(titre_ann, desc_ann, pay,competences,categorie,ddl_ann);
+                Annonce p = new Annonce(id_user,titre_ann, desc_ann, pay,categorie,ddl_ann);
                 p.setId_ann(rs.getInt("id_ann"));
                 myList.add(p);
 

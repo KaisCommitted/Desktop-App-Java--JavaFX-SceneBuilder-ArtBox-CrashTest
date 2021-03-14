@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : ven. 05 mars 2021 à 00:22
--- Version du serveur :  5.7.31
--- Version de PHP : 7.3.21
+-- Host: 127.0.0.1
+-- Generation Time: Mar 12, 2021 at 12:45 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,30 +18,41 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `artbox`
+-- Database: `pidev`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `label`
+-- Table structure for table `label`
 --
 
-DROP TABLE IF EXISTS `label`;
-CREATE TABLE IF NOT EXISTS `label` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `label` (
+  `id_label` int(11) NOT NULL,
+  `Nom` varchar(255) NOT NULL,
+  `Type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `label`
+-- Indexes for dumped tables
 --
 
-INSERT INTO `label` (`id`, `name`, `type`) VALUES
-(1, 'sdfd', 'housem'),
-(2, 'hsin', 'hsan');
+--
+-- Indexes for table `label`
+--
+ALTER TABLE `label`
+  ADD PRIMARY KEY (`id_label`),
+  ADD KEY `id_label` (`id_label`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `label`
+--
+ALTER TABLE `label`
+  MODIFY `id_label` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

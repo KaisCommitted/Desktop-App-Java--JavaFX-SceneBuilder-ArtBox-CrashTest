@@ -11,27 +11,31 @@ import java.sql.Date;
  */
 public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializable {
     private int id_ann;
+    private int id_user;
     private String titre_ann;
     private String desc_ann;
     private int pay;
-    private String competences;
-    private int categorie;
-    private String ddl_ann;
+    private String categorie;
+    private Date ddl_ann;
      
     public Annonce() {
     }
 
-    public Annonce(String titre_ann, String desc_ann, int pay, String competences, int categorie, String ddl_ann) {
+    public Annonce(int id_user, String titre_ann, String desc_ann, int pay, String categorie, Date ddl_ann) {
+        this.id_user = id_user;
         this.titre_ann = titre_ann;
         this.desc_ann = desc_ann;
         this.pay = pay;
-        this.competences = competences;
         this.categorie = categorie;
         this.ddl_ann = ddl_ann;
     }
 
     public int getId_ann() {
         return id_ann;
+    }
+    
+    public int getId_user() {
+        return id_user;
     }
 
     public String getTitre_ann() {
@@ -46,20 +50,20 @@ public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializab
         return pay;
     }
 
-    public String getCompetences() {
-        return competences;
-    }
-
-    public int getCategorie() {
+    public String getCategorie() {
         return categorie;
     }
 
-    public String getDdl_ann() {
+    public Date getDdl_ann() {
         return ddl_ann;
     }
 
     public void setId_ann(int id_ann) {
         this.id_ann = id_ann;
+    }
+    
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public void setTitre_ann(String titre_ann) {
@@ -74,21 +78,17 @@ public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializab
         this.pay = pay;
     }
 
-    public void setCompetences(String competences) {
-        this.competences = competences;
-    }
-
-    public void setCategorie(int categorie) {
+    public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
 
-    public void setDdl_ann(String ddl_ann) {
+    public void setDdl_ann(Date ddl_ann) {
         this.ddl_ann = ddl_ann;
     }
 
     @Override
     public String toString() {
-        return "Annonce{" + "id_ann=" + id_ann + ", titre_ann=" + titre_ann + ", desc_ann=" + desc_ann + ", pay=" + pay + ", competences=" + competences + ", categorie=" + categorie + ", ddl_ann=" + ddl_ann + '}';
+        return "Annonce{" + "id_ann=" + id_ann + ", id_user=" + id_user +", titre_ann=" + titre_ann + ", desc_ann=" + desc_ann + ", pay=" + pay + ", categorie=" + categorie + ", ddl_ann=" + ddl_ann + '}';
     }
 
     

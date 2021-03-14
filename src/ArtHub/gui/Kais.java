@@ -54,8 +54,8 @@ public class Kais extends Application {
             primaryStage.setWidth(bounds.getWidth());
             primaryStage.setHeight(bounds.getHeight());
             //primaryStage.initModality(Modality.APPLICATION_MODAL);
-            
-            //primaryStage.initStyle(StageStyle.UNDECORATED);
+            primaryStage.setFullScreen(true);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("ArtBox");
             primaryStage.setScene(scene);
             primaryStage.setResizable(true);
