@@ -143,51 +143,46 @@ String sql = "SELECT * from participant " + " WHERE id_event=" + id;
 
     }
 
-    public String RecommendParticip(int id) {
-
-        List<Participant> myList = new ArrayList<>();
-        String max = "";
-
-        try {
-
-            Statement stmt = cnx.createStatement();
-           String sql = "SELECT * from participant " + " WHERE id_event=" + id;
-
-            ResultSet rs = stmt.executeQuery("SELECT * from participant WHERE id_event=" + id + "");
-            while (rs.next()) {
-
-                if (rs.getInt("id_event") != 0) {
-                    Participant p = new Participant();
-                    User auxU = new User();
-                    auxU.setId_user((rs.getInt("id_user")));
-                    p.setId_user(auxU);
-                    Evenement auxE = new Evenement();
-                    auxE.setId((rs.getInt("id_event")));
-                    p.setId_event(auxE);
-                    p.setId_participation(rs.getInt("id_participation"));
-                    myList.add(p);
-                    int a = 0;
+   
+    
+    
+    
+       public String RecommendParticip(int id) {
+        String max= "";
+        int a = 0;
                     int b = 0;
                     int c = 0;
                     int d = 0;
                     int e = 0;
-                    if (p.getId_event().getCategorie() == "Dancing") {
-                        a++;
-                    }
-                    if (p.getId_event().getCategorie() == "Theatre") {
-                        b++;
-                    }
-                    if (p.getId_event().getCategorie() == "Slam") {
-                        c++;
-                    }
-                    if (p.getId_event().getCategorie() == "Singing") {
-                        d++;
-                    }
-                    if (p.getId_event().getCategorie() == "Street Art") {
-                        e++;
-                    }
+        List<Evenement> myList = new ArrayList<>();
+        try {
 
-                    if ((a >= b) && (a >= c) && (a >= d) && (a >= e)) { 
+            Statement stmt = cnx.createStatement();
+            
+          String sql = "SELECT * from participant " + " WHERE id_user=" + id;
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+                if (rs.getInt("id_user") != 0) {
+                   EvenementCRUD aux = new EvenementCRUD();
+                   Evenement evt= new Evenement();
+                   evt= aux.FindEvenement(rs.getInt("id_event"));
+                    System.out.println(evt.getCategorie());
+                   myList.add(evt);
+                    max += evt.getCategorie();
+                    
+                   
+                   
+    
+                }  
+                
+            }
+            a= count(max, "Dancing");
+                b= count(max, "Theatre"); 
+                c= count(max, "Slam");
+                d= count(max, "Singing");
+                e= count(max, "Street Art");
+                if ((a >= b) && (a >= c) && (a >= d) && (a >= e)) { 
                        max="Dancing";
                     } else if ((b >= c) && (b >= d) && (b >= e)) {      
                         max="Theatre";
@@ -198,14 +193,16 @@ String sql = "SELECT * from participant " + " WHERE id_event=" + id;
                     } else {                                            
                         max="Street Art";
                     }
-
-                }
-            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-         System.out.println(max);
+           System.out.println("MAAAX :"+max);
         return max;
+
     }
+       
+public static int count(String str, String target) {
+    return (str.length() - str.replace(target, "").length()) / target.length(); 
+}
 
 }

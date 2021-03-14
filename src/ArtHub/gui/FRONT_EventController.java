@@ -98,8 +98,6 @@ public class FRONT_EventController implements Initializable {
     private ScrollPane scroll1;
     @FXML
     private ScrollPane scroll2;
-    @FXML
-    private Text refresh;
     
     private ResourceBundle b;
     private URL url;
@@ -135,8 +133,6 @@ public class FRONT_EventController implements Initializable {
     private Label participants;
     DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @FXML
-    private JFXButton Btn_AddEvent1;
-    @FXML
     private JFXButton Btn_AddEvent11;
     @FXML
     private JFXButton Btn_AddEvent111;
@@ -145,7 +141,13 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private Label label_trend;
     @FXML
-    private JFXButton Btn_AddEvent1111;
+    private ScrollPane scroll21;
+    @FXML
+    private HBox recommended_layout;
+    @FXML
+    private Label label_layout1;
+    @FXML
+    private ScrollPane scroll22;
 
     /**
      * Initializes the controller class.
@@ -153,6 +155,14 @@ public class FRONT_EventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            scroll21.setFitToHeight(true);
+            scroll21.setFitToWidth(true);
+            scroll21.setHbarPolicy(ScrollBarPolicy.NEVER);
+            scroll21.setVbarPolicy(ScrollBarPolicy.NEVER);
+            scroll22.setFitToHeight(true);
+            scroll22.setFitToWidth(true);
+            scroll22.setHbarPolicy(ScrollBarPolicy.NEVER);
+            scroll22.setVbarPolicy(ScrollBarPolicy.NEVER);
             label_trend.setText("Filter By..");
             label_layout.setText("All upcoming Events");
             comboDate.setVisible(true);
@@ -166,8 +176,15 @@ public class FRONT_EventController implements Initializable {
             comboTrend.getItems().addAll("Default","Most Popular", "Most Recent", "Alphabetical");
             comboTrend.setPromptText("Sort By..");
             comboTrend.setValue("Default");
+            
+			scroll1.setFitToHeight(true);
+            scroll1.setFitToWidth(true);
             scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
-            scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
+            scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);scroll2.setHbarPolicy(ScrollBarPolicy.NEVER);
+            
+
+			scroll2.setFitToHeight(true);
+            scroll2.setFitToWidth(true);
             scroll2.setHbarPolicy(ScrollBarPolicy.NEVER);
             scroll2.setVbarPolicy(ScrollBarPolicy.NEVER);
             
@@ -192,7 +209,34 @@ public class FRONT_EventController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
                 }}
+             
             
+            
+             Participant aux = new Participant();
+        ParticipantCRUD par = new ParticipantCRUD();
+            String max = par.RecommendParticip(CurrentUser.getId_user());
+        
+       
+        
+           
+        myLst = ps.RecommendEvenement(max);
+        
+        recommended_layout.getChildren().clear();
+        try {
+            for (int i = 0; i < myLst.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
+                HBox EventBox = fxmlLoader.load();
+                ItemBoxController eventController = fxmlLoader.getController();
+                eventController.setData(myLst.get(i));
+                recommended_layout.getChildren().add(EventBox);
+               
+
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
             
             myLst = ps.consulterEvenement();
             try {
@@ -306,10 +350,7 @@ public class FRONT_EventController implements Initializable {
  
    }
 
-    @FXML
-    private void refresh(MouseEvent event) {
-        initialize(url, b);
-    }
+    
 
   
 
@@ -634,6 +675,7 @@ public class FRONT_EventController implements Initializable {
         MoreDetails.setVisible(false);
         comboDate.getItems().clear();
         comboTrend.getItems().clear();
+       
         
       
 
@@ -669,7 +711,7 @@ public class FRONT_EventController implements Initializable {
         MoreDetails.setVisible(false);
         comboDate.getItems().clear();
         comboTrend.getItems().clear();
-        
+                
       
 
         EvenementCRUD ps = new EvenementCRUD();
@@ -695,48 +737,13 @@ public class FRONT_EventController implements Initializable {
     }
 
     @FXML
-    private void refresh2(ActionEvent event) {
+    private void refresh2(MouseEvent event) {
         initialize(url, b);
     }
 
-    @FXML
-    private void Recommended(ActionEvent event) {
-        label_trend.setText("Recommended");
-        label_layout.setText("Went To..");
-        comboDate.setVisible(false);
-        comboTrend.setVisible(false);
-        MoreDetails.setVisible(false);
-        comboDate.getItems().clear();
-        comboTrend.getItems().clear();
-        
-      
+    
 
-        EvenementCRUD ps = new EvenementCRUD();
-        Participant aux = new Participant();
-        ParticipantCRUD par = new ParticipantCRUD();
-        String max = par.RecommendParticip(CurrentUser.getId_user());
-        
-        
-        List<Evenement> myLst;
-        myLst = ps.RecommendEvenement(max);
-       
-        event_mostPop.getChildren().clear();
-        try {
-            for (int i = 0; i < myLst.size(); i++) {
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ItemBox.fxml"));
-                HBox EventBox = fxmlLoader.load();
-                ItemBoxController eventController = fxmlLoader.getController();
-                eventController.setData(myLst.get(i));
-                event_mostPop.getChildren().add(EventBox);
-               
-
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
     
 
 

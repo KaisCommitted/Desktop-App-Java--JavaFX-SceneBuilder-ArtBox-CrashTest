@@ -573,8 +573,9 @@ public List<Evenement> GoingTo(int id) {
         try {
 
             Statement pst = cnx.createStatement();
-                ResultSet rs = pst.executeQuery("SELECT *,STRCMP(categorie,"+ cat+ ") AS Cmp_value from evenement");
-               
+                ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE categorie='"+cat+"'");
+                
+              
             
                 while (rs.next()) {
                   
@@ -582,6 +583,7 @@ public List<Evenement> GoingTo(int id) {
 
                     Evenement p = FindEvenement(rs.getInt("id"));
                     myList.add(p);
+                     System.out.println("Recom event");
                 }
 
             }

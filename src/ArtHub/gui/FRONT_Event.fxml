@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <StackPane fx:id="parentContainer1" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_EventController">
    <children>
@@ -57,18 +57,6 @@
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="Btn_AddEvent1" buttonType="RAISED" layoutX="862.0" layoutY="156.0" onAction="#refresh2" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Reset" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Calibri" size="20.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
-                     <color>
-                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </JFXButton>
             <JFXButton layoutX="1851.0" layoutY="4.0" prefHeight="23.0" prefWidth="86.0" styleClass="button2" text="  " textFill="WHITE">
                <font>
                   <Font size="20.0" />
@@ -77,14 +65,9 @@
             
          </graphic>
             </JFXButton>
-            <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="236.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
-            <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="261.0" startX="32.0" startY="-106.0" stroke="#fffffffa" />
-            <Text fx:id="refresh" fill="WHITE" fontSmoothingType="LCD" layoutX="810.0" layoutY="136.0" onMouseClicked="#refresh" strokeType="OUTSIDE" strokeWidth="0.0" text="Events" textAlignment="CENTER" wrappingWidth="254.8203125">
-               <font>
-                  <Font name="Leelawadee UI Semilight" size="34.0" />
-               </font>
-            </Text>
-            <Label alignment="CENTER_RIGHT" layoutX="65.0" layoutY="226.0" prefHeight="48.0" prefWidth="255.0" styleClass="button2" stylesheets="@feed%20gui.css" text="More details" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+            <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="145.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
+            <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="189.0" startX="32.0" startY="-106.0" stroke="#fffffffa" />
+            <Label alignment="CENTER_RIGHT" layoutX="95.0" layoutY="139.0" prefHeight="39.0" prefWidth="230.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="More details" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="MS Gothic" size="37.0" />
                </font>
@@ -94,33 +77,47 @@
                   <Font name="Calibri" size="20.0" />
                </font>
             </JFXButton>
-            <VBox alignment="CENTER_LEFT" layoutX="530.0" layoutY="229.0" onMouseClicked="#EventClicked" prefHeight="710.0" prefWidth="1329.0" style="-fx-background-color: linear-gradient(to bottom, #0B1E34, #646366); -fx-background-radius: 10;">
-               <children>
-                  <Label fx:id="label_layout" prefHeight="40.0" prefWidth="445.0" styleClass="button2" stylesheets="@feed%20gui.css" text="All upcoming Events" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-                     <font>
-                        <Font name="MS Gothic" size="37.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="comboTrend" layoutX="10.0" layoutY="10.0" onAction="#SortByTrend" prefWidth="150.0" />
-                  <ScrollPane fx:id="scroll1" prefHeight="290.0" prefWidth="1498.0" style="-fx-background-color: linear-gradient(to bottom, #0B1E34, #646366);">
-                     <content>
-                        <HBox fx:id="event_mostPop" prefHeight="312.0" prefWidth="1611.0" spacing="15.0" style="-fx-background-color: linear-gradient(to bottom, #0B1E34, #646366);" />
-                     </content>
-                  </ScrollPane>
-                  <Label fx:id="label_trend" layoutX="10.0" layoutY="10.0" styleClass="button2" stylesheets="@feed%20gui.css" text="Filter By.." textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-                     <font>
-                        <Font name="MS Gothic" size="37.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="comboDate" onAction="#SortByTime" prefWidth="150.0" />
-                  <ScrollPane fx:id="scroll2" prefHeight="316.0" prefWidth="1611.0" style="-fx-background-color: linear-gradient(to bottom, #0B1E34, #646366);">
-                     <content>
-                        <HBox fx:id="event_layout" prefHeight="312.0" prefWidth="1611.0" spacing="15.0" style="-fx-background-color: linear-gradient(to bottom, #0B1E34, #646366);" />
-                     </content>
-                  </ScrollPane>
-               </children>
-            </VBox>
-            <VBox fx:id="MoreDetails" alignment="CENTER" layoutX="98.0" layoutY="269.0" prefHeight="663.0" prefWidth="421.0" style="-fx-background-color: rgba(255, 0, 0, 0.3); fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);">
+            <ScrollPane fx:id="scroll22" layoutX="526.0" layoutY="139.0" prefHeight="897.0" prefWidth="1282.0" style="-fx-background-color: transparent;">
+               <content>
+                  <VBox alignment="CENTER_LEFT" onMouseClicked="#EventClicked" prefHeight="710.0" prefWidth="1527.0" style="-fx-background-color: transparent;">
+                     <children>
+                        <Label fx:id="label_layout" prefHeight="40.0" prefWidth="354.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="All upcoming Events" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="MS Gothic" size="37.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboTrend" layoutX="10.0" layoutY="10.0" onAction="#SortByTrend" prefWidth="150.0" />
+                        <ScrollPane fx:id="scroll1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="1200.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <HBox fx:id="event_mostPop" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" spacing="15.0" style="-fx-background-color: transparent;" />
+                           </content>
+                        </ScrollPane>
+                        <Label fx:id="label_trend" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="Filter By.." textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="MS Gothic" size="37.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboDate" onAction="#SortByTime" prefWidth="150.0" />
+                        <ScrollPane fx:id="scroll2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="1200.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <HBox fx:id="event_layout" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" spacing="15.0" style="-fx-background-color: transparent;" />
+                           </content>
+                        </ScrollPane>
+                        <Label fx:id="label_layout1" prefHeight="40.0" prefWidth="341.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="Recommended to you" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font name="MS Gothic" size="37.0" />
+                           </font>
+                        </Label>
+                        <ScrollPane fx:id="scroll21" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="1200.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <HBox fx:id="recommended_layout" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" spacing="15.0" style="-fx-background-color: transparent;" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <VBox fx:id="MoreDetails" alignment="CENTER" layoutX="95.0" layoutY="179.0" prefHeight="663.0" prefWidth="425.0" style="-fx-background-color: rgba(255, 0, 0, 0.3); fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);">
                <children>
                   <Label fx:id="name" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="13.0" layoutY="375.0" prefHeight="43.0" prefWidth="255.0" text="Description" textAlignment="CENTER" textFill="#2b052bd1" translateX="40.0">
                      <font>
@@ -170,7 +167,7 @@
                   </Label>
                </children>
             </VBox>
-            <JFXButton fx:id="Btn_AddEvent11" buttonType="RAISED" layoutX="705.0" layoutY="156.0" onAction="#GoingTo" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Going to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent11" buttonType="RAISED" layoutX="859.0" layoutY="88.0" onAction="#GoingTo" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Going to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -182,7 +179,7 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <JFXButton fx:id="Btn_AddEvent111" buttonType="RAISED" layoutX="1021.0" layoutY="156.0" onAction="#WentTo" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Went to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent111" buttonType="RAISED" layoutX="1025.0" layoutY="88.0" onAction="#WentTo" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Went to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -194,18 +191,11 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <JFXButton fx:id="Btn_AddEvent1111" buttonType="RAISED" disable="true" layoutX="1188.0" layoutY="156.0" onAction="#Recommended" prefHeight="41.0" prefWidth="172.0" ripplerFill="WHITE" styleClass="button3" text="Recommended" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Calibri" size="20.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
-                     <color>
-                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </JFXButton>
+            <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="1677.0" layoutY="95.0" onMouseClicked="#refresh2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/refr.png" />
+               </image>
+            </ImageView>
             
             
             
