@@ -62,7 +62,7 @@ public class Labell  extends RecursiveTreeObject<Labell> implements Serializable
 
     @Override
     public String toString() {
-        return "Label{" + "id=" + id + ", name=" + name + ", type=" + type + '}';
+        return "Labell{" + "id=" + id + ", name=" + name + ", type=" + type + '}';
     }
 
     public int getId() {

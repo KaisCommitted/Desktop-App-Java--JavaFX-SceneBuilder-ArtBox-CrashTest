@@ -213,11 +213,11 @@ public class HomeController implements Initializable {
            Jobs_stats.setVisible(true);
       }
       public void ShowLabels()
-      { 
-          LabelCRUD ps = new LabelCRUD();
+      { itemsLabels.getChildren().clear();        
+      LabelCRUD ps = new LabelCRUD();
         // id table view
         JFXTreeTableColumn<Labell, String> id = new JFXTreeTableColumn<>("id");
-        id.setPrefWidth(150);
+        id.setPrefWidth(300);
         id.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
@@ -227,7 +227,7 @@ public class HomeController implements Initializable {
         
          // name table view
         JFXTreeTableColumn<Labell, String> name = new JFXTreeTableColumn<>("name");
-        name.setPrefWidth(150);
+        name.setPrefWidth(300);
         name.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
@@ -256,7 +256,7 @@ public class HomeController implements Initializable {
         
          // type table view
         JFXTreeTableColumn<Labell, String> type = new JFXTreeTableColumn<>("type");
-        type.setPrefWidth(150);
+        type.setPrefWidth(300);
         type.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Labell, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Labell, String> param) {
