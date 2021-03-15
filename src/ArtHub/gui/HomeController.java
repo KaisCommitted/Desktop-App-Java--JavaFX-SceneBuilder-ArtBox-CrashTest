@@ -9,6 +9,7 @@ import ArtHub.services.EvenementCRUD;
 import ArtHub.services.FeedbackCRUD;
 import ArtHub.services.LabelCRUD;
 import ArtHub.services.ParticipantCRUD;
+import ArtHub.services.UserCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableColumn;
@@ -561,6 +562,8 @@ public class HomeController implements Initializable {
    
     itemsEvents.getChildren().clear();
             EvenementCRUD ps = new EvenementCRUD();
+            UserCRUD us = new UserCRUD();
+           
        
         
          // id_org table view
@@ -569,26 +572,12 @@ public class HomeController implements Initializable {
         id_org.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
-                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_org().getId_user()));
+                 int x =param.getValue().getValue().getId_org().getId_user();
+                User user = us.FindUser(x);
+                return new SimpleStringProperty(user.getUsername());
             }
         });
-        //making the cell editable
-        id_org.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
-            return new GenericEditableTreeTableCell<>(
-                    new TextFieldEditorBuilder());
-        });
-        //setting the new value for editable id_org text field
-        id_org.setOnEditCommit((CellEditEvent<Evenement, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
-            String newValue = t.getNewValue();
-            User id_user = new User();
-            id_user.setId_user(Integer.parseInt(t.getNewValue()));
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setId_org(id_user);
-            ps.modifierEvenement(idd, "id_org", newValue);
-        });
+        
         
         
         
@@ -792,7 +781,10 @@ public class HomeController implements Initializable {
                     @Override
                     public Evenement call(ButtonType param) {
                         if (param == Confi) {
-                            Evenement p = treeview.getSelectionModel().getSelectedItem().getValue();
+                            
+                            String name = treeview.getSelectionModel().getSelectedItem().getValue().getNom_event();
+                            
+                            Evenement p = ps.FindEvenementByName(name);
                             ps.supprimerEvenement((Evenement) p);
                             Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
                             cancelButton.fire();
@@ -865,7 +857,8 @@ public class HomeController implements Initializable {
    
           itemsEvents.getChildren().clear();
             EvenementCRUD ps = new EvenementCRUD();
-       
+        UserCRUD us = new UserCRUD();
+          
         
         
          // id_org table view
@@ -874,26 +867,12 @@ public class HomeController implements Initializable {
         id_org.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
-                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_org().getId_user()));
+                int x =param.getValue().getValue().getId_org().getId_user();
+                User user = us.FindUser(x);
+                return new SimpleStringProperty(user.getUsername());
             }
         });
-        //making the cell editable
-        id_org.setCellFactory((TreeTableColumn<Evenement, String> param) -> {
-            return new GenericEditableTreeTableCell<>(
-                    new TextFieldEditorBuilder());
-        });
-        //setting the new value for editable id_org text field
-        id_org.setOnEditCommit((CellEditEvent<Evenement, String> t) -> {
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
-            String newValue = t.getNewValue();
-            User id_user = new User();
-            id_user.setId_user(Integer.parseInt(t.getNewValue()));
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setId_org(id_user);
-            ps.modifierEvenement(idd, "id_org", newValue);
-        });
+        
         
         
         
@@ -1094,7 +1073,8 @@ public class HomeController implements Initializable {
                     @Override
                     public Evenement call(ButtonType param) {
                         if (param == Confi) {
-                            Evenement p = treeview.getSelectionModel().getSelectedItem().getValue();
+                          String name = treeview.getSelectionModel().getSelectedItem().getValue().getNom_event();
+                            Evenement p = ps.FindEvenementByName(name);
                             ps.supprimerEvenement((Evenement) p);
                             Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
                             cancelButton.fire();

@@ -15,7 +15,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static ArtHub.gui.ADD_EventController.CurrentUser;
+import static ArtHub.gui.LoginController.CurrentUser;
 
 /**
  * wadup
@@ -127,7 +127,50 @@ public class EvenementCRUD {
         return p;
 
     }
+  public Evenement FindEvenementByName(String name) {
 
+        Evenement p = new Evenement();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE nom_event='" + name + "'");
+
+            while (rs.next()) {
+
+                User id_user = new User();
+                int id = rs.getInt("id");
+                id_user.setId_user(rs.getInt("id_org"));
+                Date dateaux = rs.getDate("date");
+                LocalDate date = dateaux.toLocalDate();
+                String nom_event = rs.getString("nom_event");
+                String type_event = rs.getString("type_event");
+                String categorie = rs.getString("categorie");
+                String description = rs.getString("description");
+                int capacite_event = rs.getInt("capacite_event");
+                int nb_max = rs.getInt("nb_max");
+                String image_event = rs.getString("image_event");
+                String location_event = rs.getString("location_event");
+                p.setId(id);
+                p.setId_org(id_user);
+                p.setDate_event(date);
+                p.setCategorie(categorie);
+                p.setCapacite_event(capacite_event);
+                p.setDescription(description);
+                p.setImage_event(image_event);
+                p.setNb_max(nb_max);
+                p.setNom_event(nom_event);
+                p.setType_event(type_event);
+                p.setLocation_event(location_event);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return p;
+
+    }
     public void supprimerEvenement(Evenement p) {
         try {
             String requete = "DELETE FROM evenement WHERE id=?";

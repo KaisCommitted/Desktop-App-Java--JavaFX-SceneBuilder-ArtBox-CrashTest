@@ -8,7 +8,7 @@ package ArtHub.gui;
 import ArtHub.entities.Evenement;
 import ArtHub.entities.Participant;
 import ArtHub.entities.Post;
-import static ArtHub.gui.ADD_EventController.CurrentUser;
+import static ArtHub.gui.LoginController.CurrentUser;
 import static ArtHub.gui.ItemBoxController.id_clicked;
 import static ArtHub.gui.ItemBoxController.style;
 import ArtHub.services.EvenementCRUD;

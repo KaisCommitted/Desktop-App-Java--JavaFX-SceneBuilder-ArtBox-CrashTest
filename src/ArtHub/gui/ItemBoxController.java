@@ -37,11 +37,17 @@ import javafx.scene.paint.Color;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import ArtHub.gui.FRONT_EventController;
+import static ArtHub.gui.LoginController.CurrentUser;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -67,12 +73,13 @@ public class ItemBoxController implements Initializable {
     private Label id_event;
     static int id_clicked;
     static String style;
+    static int id_part;
     @FXML
     private Label Event_spots1;
     @FXML
     private Label Event_date;
     DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    User CurrentUser = new User(1);
+    
     ParticipantCRUD ppt = new ParticipantCRUD();
     @FXML
     private Label Event_location;
@@ -187,28 +194,20 @@ public class ItemBoxController implements Initializable {
 
  @FXML
  private void FindThem(MouseEvent event) {
-        ParticipantCRUD part = new ParticipantCRUD();
-        User user = new User();
-        String usernames="";
-        List<User> myLst;
-        myLst = part.FindParticipants(Integer.parseInt(id_event.getText()));
-        for (int i = 0; i < myLst.size(); i++) {
-            user = myLst.get(i);
-            usernames += user.getUsername()+ "\n";
-            
+        
+        try {
+            id_part=Integer.parseInt(id_event.getText());
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("showParticipants.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Participants" );   
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ItemBoxController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        
-        alert.setTitle("Participants");
-        alert.setHeaderText(myLst.size()+"Participants");
-        alert.setContentText(usernames);
-        alert.showAndWait().ifPresent(rs -> {
-            if (rs == ButtonType.OK) {
-                System.out.println("Pressed OK.");
-            }
-        });
-    }
 
 }
 
+}

@@ -48,6 +48,7 @@ public class LoginController implements Initializable {
     private Button reinit;
     @FXML
     private Hyperlink signup;
+    static public User CurrentUser = new User();
     /**
      * Initializes the controller class.
      */
@@ -67,7 +68,7 @@ public class LoginController implements Initializable {
          boolean verify = us.Authentifier(usr.getUsername(),usr.getPwd_user());
          boolean verifyAd = false;
          
-         int UserID = us.currentUser.getId_user();
+        
                 if (verify) {
                 try { Stage primaryStage;
                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
@@ -76,7 +77,7 @@ public class LoginController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Host an event" );
-            
+            CurrentUser = us.AssignCurrentUser(usr.getUsername(),usr.getPwd_user());
             stage.setScene(new Scene(root1));
             
             stage.show();
@@ -110,6 +111,22 @@ tfusername.getScene().setRoot(root);
 
     @FXML
     private void register(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddUser.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event" );
+            
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }
     
 }

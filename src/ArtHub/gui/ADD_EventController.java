@@ -3,7 +3,7 @@ package ArtHub.gui;
 import ArtHub.entities.Download;
 import ArtHub.entities.Evenement;
 import static ArtHub.entities.Evenement.isNotInteger;
-
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.entities.User;
 import ArtHub.services.EvenementCRUD;
 import com.jfoenix.controls.JFXButton;
@@ -73,7 +73,7 @@ public class ADD_EventController implements Initializable {
     private JFXDatePicker tDatenaiss;
     @FXML
     private TextField txt_capacite;
-    public static User CurrentUser = new User(1, "Louay", "0");
+    
     @FXML
     private JFXButton upload_image;
     public static String path="";

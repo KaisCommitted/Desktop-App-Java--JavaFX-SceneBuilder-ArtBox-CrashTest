@@ -23,7 +23,7 @@ public class UserCRUD {
     
      private Connection cnx;
     private PreparedStatement ste;
-public static User currentUser=new User();
+
     public UserCRUD() {
         
         cnx = MyConnection.getInstance().getConnection();
@@ -154,7 +154,7 @@ public static User currentUser=new User();
     {
         String req = "SELECT * FROM `user` WHERE username =\'"+u+"\' and pwd_user=\'"+p+"\'";
         System.out.println(req);
-        
+        User user = new User();
         
         try {
             Statement ste = cnx.createStatement();
@@ -164,24 +164,17 @@ public static User currentUser=new User();
             {
                         while (rs.next())
                         {
-                            System.out.println(rs.getInt(1));
-                            System.out.println(rs.getString(2));
-                            System.out.println(rs.getString(3));
-                            System.out.println(rs.getString(4));
-                            System.out.println(rs.getString(5));
-                            System.out.println(rs.getDate(6));
-                            System.out.println(rs.getString(7));
-                            System.out.println(rs.getString(8));
                             
                             
-                            currentUser.setId_user(rs.getInt("id_user"));
-                            currentUser.setNom(rs.getString("nom"));
-                            currentUser.setPrenom(rs.getString("prenom"));
-                            currentUser.setUsername(rs.getString("username"));
-                            currentUser.setMail(rs.getString("mail"));
-                            currentUser.setDate_naissance(rs.getDate("date_naissance"));
-                            currentUser.setPwd_user(rs.getString("pwd_user"));
-                            currentUser.setRef_admin(rs.getString("ref_admin"));
+                            
+                            user.setId_user(rs.getInt("id_user"));
+                            user.setNom(rs.getString("nom"));
+                            user.setPrenom(rs.getString("prenom"));
+                            user.setUsername(rs.getString("username"));
+                            user.setMail(rs.getString("mail"));
+                            user.setDate_naissance(rs.getDate("date_naissance"));
+                            user.setPwd_user(rs.getString("pwd_user"));
+                            user.setRef_admin(rs.getString("ref_admin"));
                             
  return true;
                         }
@@ -193,6 +186,77 @@ public static User currentUser=new User();
         }
         return false;
     }
+        
+          public User AssignCurrentUser(String u,String p) throws SQLException
+    {   User user = new User();
+        String req = "SELECT * FROM `user` WHERE username =\'"+u+"\' and pwd_user=\'"+p+"\'";
+        System.out.println(req);
+        
+        
+        try {
+            Statement ste = cnx.createStatement();
+             ResultSet rs= ste.executeQuery(req);
+            System.out.println(rs);
+            if (rs!=null)
+            {
+                        while (rs.next())
+                        {
+                           
+                            
+                            
+                            user.setId_user(rs.getInt("id_user"));
+                            user.setNom(rs.getString("nom"));
+                            user.setPrenom(rs.getString("prenom"));
+                            user.setUsername(rs.getString("username"));
+                            user.setMail(rs.getString("mail"));
+                            user.setDate_naissance(rs.getDate("date_naissance"));
+                            user.setPwd_user(rs.getString("pwd_user"));
+                            user.setRef_admin(rs.getString("ref_admin"));
+                            
+                        }
+            }
+            
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
 
+           public User FindByUsername(String u) throws SQLException
+    {   User user = new User();
+        String req = "SELECT * FROM `user` WHERE username =\'"+u+"\' ";
+        System.out.println(req);
+        
+        
+        try {
+            Statement ste = cnx.createStatement();
+             ResultSet rs= ste.executeQuery(req);
+            System.out.println(rs);
+            if (rs!=null)
+            {
+                        while (rs.next())
+                        {
+                           
+                            
+                            
+                            user.setId_user(rs.getInt("id_user"));
+                            user.setNom(rs.getString("nom"));
+                            user.setPrenom(rs.getString("prenom"));
+                            user.setUsername(rs.getString("username"));
+                            user.setMail(rs.getString("mail"));
+                            user.setDate_naissance(rs.getDate("date_naissance"));
+                            user.setPwd_user(rs.getString("pwd_user"));
+                            user.setRef_admin(rs.getString("ref_admin"));
+                            
+                        }
+            }
+            
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
     
 }
