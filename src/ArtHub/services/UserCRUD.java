@@ -212,6 +212,7 @@ public class UserCRUD {
                             user.setDate_naissance(rs.getDate("date_naissance"));
                             user.setPwd_user(rs.getString("pwd_user"));
                             user.setRef_admin(rs.getString("ref_admin"));
+                            System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEF  "+user.getRef_admin());
                             
                         }
             }

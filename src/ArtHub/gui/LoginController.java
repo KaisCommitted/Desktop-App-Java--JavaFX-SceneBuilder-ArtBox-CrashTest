@@ -70,17 +70,39 @@ public class LoginController implements Initializable {
          
         
                 if (verify) {
-                try { Stage primaryStage;
-                   FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
+                try {
+                     CurrentUser = us.AssignCurrentUser(usr.getUsername(),usr.getPwd_user());
+                  Stage primaryStage;
+                  
+                  if (CurrentUser.getRef_admin()== "1") {
+                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));  
+                      
+                          
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Host an event" );
-            CurrentUser = us.AssignCurrentUser(usr.getUsername(),usr.getPwd_user());
+           
             stage.setScene(new Scene(root1));
             
             stage.show();
+                  
+                  } 
+                  else  {
+                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FRONT_event.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event" );
+           
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+   
+                  }
+          
                     
                     
                 } catch (IOException ex) {
