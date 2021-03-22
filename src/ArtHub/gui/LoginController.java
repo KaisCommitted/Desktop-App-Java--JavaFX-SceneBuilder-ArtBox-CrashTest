@@ -103,7 +103,8 @@ public class LoginController implements Initializable {
    
                   }
           
-                    
+                Stage CurrentStage = (Stage)login.getScene().getWindow();
+                CurrentStage.close();
                     
                 } catch (IOException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

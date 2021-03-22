@@ -148,6 +148,8 @@ public class FRONT_EventController implements Initializable {
     private Label label_layout1;
     @FXML
     private ScrollPane scroll22;
+    @FXML
+    private ImageView BtnClose;
 
     /**
      * Initializes the controller class.
@@ -739,6 +741,12 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private void refresh2(MouseEvent event) {
         initialize(url, b);
+    }
+
+    @FXML
+    private void close(MouseEvent event) {
+         Stage CurrentStage = (Stage)BtnClose.getScene().getWindow();
+                CurrentStage.close();
     }
 
     

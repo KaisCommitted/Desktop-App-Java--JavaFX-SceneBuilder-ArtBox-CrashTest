@@ -196,6 +196,12 @@
                   <Image url="@../images/refr.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="BtnClose" fitHeight="48.0" fitWidth="48.0" layoutX="1949.0" layoutY="7.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/close.png" />
+               </image>
+            </ImageView>
             
             
             
