@@ -107,6 +107,7 @@ public class EvenementCRUD {
                 int nb_max = rs.getInt("nb_max");
                 String image_event = rs.getString("image_event");
                 String location_event = rs.getString("location_event");
+                int rating = rs.getInt("rating_event");
                 p.setId(id);
                 p.setId_org(id_user);
                 p.setDate_event(date);
@@ -118,6 +119,7 @@ public class EvenementCRUD {
                 p.setNom_event(nom_event);
                 p.setType_event(type_event);
                 p.setLocation_event(location_event);
+                p.setRating(rating);
 
             }
         } catch (SQLException ex) {
@@ -274,23 +276,24 @@ public class EvenementCRUD {
         try {
             Statement stmt = cnx.createStatement();
             String sql = "SELECT * from evenement" + " WHERE nom_event LIKE '%" + toCompare + "%'";
-            sql += " INTERSECT SELECT * from evenement" + " WHERE DATEDIFF(date,NOW()) <= 7";
             sql += " UNION SELECT * from evenement" + " WHERE categorie LIKE '%" + toCompare + "%'";
             sql += " UNION SELECT * from evenement" + " WHERE date LIKE '%" + toCompare + "%'";
+            sql += " INTERSECT SELECT * from evenement" + " WHERE DATEDIFF(date,NOW()) = 7";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
 
                 if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
 
                     Evenement p = FindEvenement(rs.getInt("id"));
-                    myList.add(p);
+                    if (p.getDate_event().compareTo(LocalDate.now().plusDays(8))<0) { myList.add(p);}
+                   
                 }
                 
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+ System.out.println("WEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEK");
         return myList;
 
     }
@@ -460,16 +463,18 @@ if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAft
         try {
             Statement stmt = cnx.createStatement();
             String sql = "SELECT * from evenement" + " WHERE nom_event LIKE '%" + toCompare + "%'";
-            sql += " INTERSECT SELECT * from evenement" + " WHERE DATEDIFF(date,NOW()) <= 30";
             sql += " UNION SELECT * from evenement" + " WHERE categorie LIKE '%" + toCompare + "%'";
             sql += " UNION SELECT * from evenement" + " WHERE date LIKE '%" + toCompare + "%'";
+            sql += " INTERSECT SELECT * from evenement" + " WHERE DATEDIFF(date,NOW()) <= 30";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
 
                 if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
+                    
 
                     Evenement p = FindEvenement(rs.getInt("id"));
-                    myList.add(p);
+                     if (p.getDate_event().compareTo(LocalDate.now().plusMonths(1))<0) { myList.add(p);}
+                   
                 }
             }
         } catch (SQLException ex) {
@@ -480,7 +485,7 @@ if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAft
 
     }
 
-    public List<Evenement> TodayEvenement() {
+     public List<Evenement> TodayEvenement() {
 
         List<Evenement> myList = new ArrayList<>();
         try {
@@ -490,7 +495,7 @@ if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAft
             ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE DATEDIFF(date,NOW()) = 0");
             while (rs.next()) {
 
-                if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
+                if (rs.getInt("id") != 0  ) {
 
                     Evenement p = FindEvenement(rs.getInt("id"));
                     myList.add(p);
@@ -499,7 +504,7 @@ if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAft
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+         
         return myList;
 
     }
@@ -510,22 +515,22 @@ if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAft
         try {
             Statement stmt = cnx.createStatement();
             String sql = "SELECT * from evenement" + " WHERE nom_event LIKE '%" + toCompare + "%'";
-            sql += " INTERSECT SELECT * from evenement" + " WHERE DATEDIFF(date,NOW()) = 0";
             sql += " UNION SELECT * from evenement" + " WHERE categorie LIKE '%" + toCompare + "%'";
             sql += " UNION SELECT * from evenement" + " WHERE date LIKE '%" + toCompare + "%'";
+            
+            sql += " INTERSECT SELECT * from evenement" + " WHERE DATEDIFF(date,NOW()) = 0";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
 
-                if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
-
+                if (rs.getInt("id") != 0 ) {
+                          
                     Evenement p = FindEvenement(rs.getInt("id"));
-                    myList.add(p);
+                    if (p.getDate_event().isEqual(LocalDate.now())) { myList.add(p);}
                 }
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
         return myList;
 
     }
@@ -550,6 +555,7 @@ if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAft
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
 
         return myList;
 
@@ -661,6 +667,59 @@ public List<Evenement> GoingTo(int id) {
         return myList;
 
     }
+  
+   public List<Evenement> AllEvenement() {
+
+        List<Evenement> myList = new ArrayList<>();
+        try {
+             
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from evenement");
+            while (rs.next()) {
+                
+                     
+                if (rs.getInt("id") != 0  ) {
+                  Evenement p = FindEvenement(rs.getInt("id"));
+                    myList.add(p);
+                    
+                }
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+ System.out.println(myList.size());
+        return myList;
+
+    }
+
+ public List<Evenement> AllFiltered(String toCompare) {
+
+        List<Evenement> myList = new ArrayList<>();
+        try {
+            Statement stmt = cnx.createStatement();
+            String sql = "SELECT * from evenement" + " WHERE nom_event LIKE '%" + toCompare + "%'";
+            sql += " UNION SELECT * from evenement" + " WHERE categorie LIKE '%" + toCompare + "%'";
+            sql += " UNION SELECT * from evenement" + " WHERE date LIKE '%" + toCompare + "%'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+
+               if (rs.getInt("id") != 0  ) {
+
+                    Evenement p = FindEvenement(rs.getInt("id"));
+                    myList.add(p);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+
+        return myList;
+
+    }
+  
     
 
 }

@@ -167,7 +167,7 @@ String sql = "SELECT * from participant " + " WHERE id_event=" + id;
                    EvenementCRUD aux = new EvenementCRUD();
                    Evenement evt= new Evenement();
                    evt= aux.FindEvenement(rs.getInt("id_event"));
-                    System.out.println(evt.getCategorie());
+                    
                    myList.add(evt);
                     max += evt.getCategorie();
                     
@@ -196,7 +196,7 @@ String sql = "SELECT * from participant " + " WHERE id_event=" + id;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-           System.out.println("MAAAX :"+max);
+           
         return max;
 
     }
