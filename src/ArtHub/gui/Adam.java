@@ -5,6 +5,8 @@
  */
 package ArtHub.gui;
 
+//import ArtHub.RestAPI.SentimentAnalysis;
+import SentimentAnalysis.SentimentAPI;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +30,7 @@ public class Adam extends Application {
         
         try {
             
-            Parent root = FXMLLoader.load(getClass().getResource("Feed gui.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("feed gui.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Art Box!");
@@ -42,7 +44,7 @@ public class Adam extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         launch(args);
     }
     

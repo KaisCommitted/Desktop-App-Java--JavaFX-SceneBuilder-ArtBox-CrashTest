@@ -1,6 +1,7 @@
 package ArtHub.services;
 
 import ArtHub.entities.Post;
+import ArtHub.entities.User;
 import ArtHub.gui.Ajout_PostController;
 import ArtHub.tools.MyConnection;
 import java.io.File;
@@ -19,6 +20,9 @@ import java.util.List;
  * @author Adam
  */
 public class postCRUD {
+    int countp;
+    
+    
     private Connection cnx;
     private PreparedStatement ste;
 
@@ -32,7 +36,7 @@ public class postCRUD {
         
     
     
-        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?)";
+        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user,desc_analys)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?,?)";
         try {
             String s=Ajout_PostController.s;
             
@@ -42,6 +46,7 @@ public class postCRUD {
             ste.setString(3, c);
             ste.setString(4,s);
             ste.setInt(5, p.getid_user().getId_user());
+            ste.setString(6, p.getDesc_analys());
             ste.executeUpdate();
             System.out.println("Post Added");
             
@@ -60,7 +65,7 @@ public class postCRUD {
         
     
     
-        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?)";
+        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user,desc_analys)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?,?)";
         try {
             String s=Ajout_PostController.s;
             
@@ -70,6 +75,7 @@ public class postCRUD {
             ste.setString(3, c);
             ste.setString(4,s);
             ste.setInt(5, p.getid_user().getId_user());
+            ste.setString(6, p.getDesc_analys());
             ste.executeUpdate();
             System.out.println("Post Added");
             
@@ -88,7 +94,7 @@ public class postCRUD {
         
     
     
-        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user,album_cover)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?,?)";
+        String req ="INSERT INTO postes (Nom_post,Description,categorie,file,post_date,id_user,album_cover,desc_analys)"+"values (?,?,?,?,CURRENT_TIMESTAMP,?,?,?)";
         try {
             String s=Ajout_PostController.s;
             String s1=Ajout_PostController.s1;
@@ -100,9 +106,10 @@ public class postCRUD {
             ste.setString(4,s);
             ste.setInt(5, p.getid_user().getId_user());
             ste.setString(6,s1);
+            ste.setString(7, p.getDesc_analys());
             ste.executeUpdate();
             System.out.println("Post Added");
-            
+            ste.setString(7, p.getDesc_analys());
         } catch (SQLException ex) {
             System.out.println("Probléme");
             System.out.println(ex.getMessage());
@@ -127,7 +134,7 @@ public class postCRUD {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'photography' ");
+            ResultSet rs = pst.executeQuery("SELECT * from postes ");
             while (rs.next()) {
 
                
@@ -138,9 +145,13 @@ public class postCRUD {
                 String post_date = rs.getString("post_date");
                 String file = rs.getString("file");
                 int Likes = rs.getInt("Likes");
+                String desc_analys = rs.getString("desc_analys");
+                User id_user = new User();
+                id_user.setId_user(rs.getInt("id_user"));
                 
                 
-                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes);  
+                
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes,desc_analys,id_user);  
                 p.setId_post(rs.getInt("id_post"));
                 myList.add(p);
 
@@ -172,9 +183,10 @@ public class postCRUD {
                 String post_date = rs.getString("post_date");
                 String file = rs.getString("file");
                 int Likes = rs.getInt("Likes");
+                String desc_analys = rs.getString("desc_analys");
                 
                 
-                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes);  
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes,desc_analys);  
                 p.setId_post(rs.getInt("id_post"));
                 myList.add(p);
 
@@ -207,9 +219,10 @@ public class postCRUD {
                 String file = rs.getString("file");
                 int Likes = rs.getInt("Likes");
                 String album_cover = rs.getString("album_cover");
+                String desc_analys = rs.getString("desc_analys");
                 
                 
-                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes,album_cover);  
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes,album_cover,desc_analys);  
                 p.setId_post(rs.getInt("id_post"));
                 myList.add(p);
 
@@ -262,7 +275,35 @@ public class postCRUD {
     }
 
     
+    public void CountPhotography() {
+        
     
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'photography' ");
+            while (rs.next()) {
+
+               
+             countp = rs.getInt(1);
+            System.out.println(countp);
+                
+                
+               
+                
+                
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+      
+
+    
+    
+    }
     
     
 }
