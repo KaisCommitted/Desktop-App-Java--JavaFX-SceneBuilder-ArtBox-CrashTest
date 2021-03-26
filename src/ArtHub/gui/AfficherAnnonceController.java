@@ -213,7 +213,7 @@ public class AfficherAnnonceController implements Initializable {
         
         
         
-      /*  
+      /* 
         // ddl_ann table view
         JFXTreeTableColumn<Annonce, String> ddl_ann = new JFXTreeTableColumn<>("ddl_ann");
         ddl_ann.setPrefWidth(150);
@@ -241,35 +241,35 @@ public class AfficherAnnonceController implements Initializable {
         });
 */
       
-/*
+
  // ddl_ann table view
          DateTimeFormatter formatters = DateTimeFormatter.ofPattern("yyyy-MM-dd");
          DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        JFXTreeTableColumn<Annonce, String> date = new JFXTreeTableColumn<>("ddl_ann");
-        date.setPrefWidth(150);
-        date.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Annonce, String>, ObservableValue<String>>(){
+        JFXTreeTableColumn<Annonce, String> ddl_ann = new JFXTreeTableColumn<>("ddl_ann");
+        ddl_ann.setPrefWidth(150);
+        ddl_ann.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Annonce, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Annonce, String> param) {
-                return new SimpleStringProperty(param.getValue().getValue().getDdl_ann().format(formatters));
+                return new SimpleStringProperty(param.getValue().getValue().getDdl_ann().toString());
+                        //.format(formatters));
             }
         });
-                 date.setCellFactory((TreeTableColumn<Annonce, String> param) -> {
+                 ddl_ann.setCellFactory((TreeTableColumn<Annonce, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
         //setting the new value for editable date text field
-        date.setOnEditCommit((CellEditEvent<Annonce, String> t) -> {  
-            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_ann();
-            String newValue = t.getNewValue();
-
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().setDdl_ann(Date.parse(t.getNewValue(),formatters));
-            ps.modifierAnnonce(idd, "ddl_ann", newValue);
-        });
+//        date.setOnEditCommit((CellEditEvent<Annonce, String> t) -> {  
+//            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_ann();
+//            String newValue = t.getNewValue();
+//
+//            t.getTreeTableView()
+//                    .getTreeItem(t.getTreeTablePosition()
+//                            .getRow()).getValue().setDdl_ann(Date.parse(t.getNewValue(),formatters));
+//            ps.modifierAnnonce(idd, "ddl_ann", newValue);
+//        });
      
-        */
+        
         List<Annonce> myLst;
         myLst = ps.consulterAnnonce();
         ObservableList<Annonce> Annonces = FXCollections.observableArrayList();
@@ -277,7 +277,7 @@ public class AfficherAnnonceController implements Initializable {
         myLst.forEach(p -> Annonces.add(p));
         JFXTreeTableView<Annonce> treeview = new JFXTreeTableView<>();
         final TreeItem<Annonce> root = new RecursiveTreeItem<Annonce>(Annonces, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id_ann, id_user, titre_ann,desc_ann,pay,categorie/*,ddl_ann*/);
+        treeview.getColumns().setAll(id_ann, id_user, titre_ann,desc_ann,pay,categorie,ddl_ann);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);

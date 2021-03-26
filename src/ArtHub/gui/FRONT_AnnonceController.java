@@ -44,15 +44,9 @@ public class FRONT_AnnonceController implements Initializable {
     @FXML
     private JFXTextField input;
     @FXML
-    private JFXButton Btn_AddEvent1;
-    @FXML
     private Text refresh;
     @FXML
     private JFXButton feed_button;
-    @FXML
-    private JFXButton Btn_AddEvent11;
-    @FXML
-    private JFXButton Btn_AddEvent111;
     @FXML
     private GridPane grid_annonce;
 

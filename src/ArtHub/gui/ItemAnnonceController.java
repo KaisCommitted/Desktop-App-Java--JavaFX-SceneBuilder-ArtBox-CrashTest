@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -26,6 +27,8 @@ public class ItemAnnonceController implements Initializable {
 
     @FXML
     private Label titre_annonce;
+    @FXML
+    private Label categ_annonce;
 
     /**
      * Initializes the controller class.
@@ -33,17 +36,19 @@ public class ItemAnnonceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void click(MouseEvent event) {
     }
-    
-    
+
     public void setData(Annonce p) {
-     
-           titre_annonce.setText(p.getTitre_ann());
-           
-  
-}
+
+        titre_annonce.setText(p.getTitre_ann());
+        categ_annonce.setText(p.getCategorie());
+    }
+
+    @FXML
+    private void JoinEvent(ActionEvent event) {
+    }
 }
