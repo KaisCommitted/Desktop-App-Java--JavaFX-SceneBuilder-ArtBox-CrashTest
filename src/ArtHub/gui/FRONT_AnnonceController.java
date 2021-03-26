@@ -16,10 +16,12 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +29,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -44,15 +48,9 @@ public class FRONT_AnnonceController implements Initializable {
     @FXML
     private JFXTextField input;
     @FXML
-    private JFXButton Btn_AddEvent1;
-    @FXML
     private Text refresh;
     @FXML
     private JFXButton feed_button;
-    @FXML
-    private JFXButton Btn_AddEvent11;
-    @FXML
-    private JFXButton Btn_AddEvent111;
     @FXML
     private GridPane grid_annonce;
 
@@ -61,7 +59,16 @@ public class FRONT_AnnonceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         int column = 0;
+        Notifications notificationBuilder = Notifications.create()
+               .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
+               .position(Pos.BASELINE_CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {
+                       
+                       System.out.println("clicked ON ");
+               }}); 
+        int column = 0;
         int row = 1;
          AnnonceCRUD ps = new AnnonceCRUD();
             List<Annonce> myLst;
@@ -110,6 +117,15 @@ public class FRONT_AnnonceController implements Initializable {
 
     @FXML
     private void AddEvent(ActionEvent event) {
+        Notifications notificationBuilder = Notifications.create()
+               .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
+               .position(Pos.BASELINE_CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {
+                       
+                       System.out.println("clicked ON ");
+               }}); 
         
     }
 

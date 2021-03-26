@@ -15,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="parentContainer1" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_AnnonceController">
+<StackPane fx:id="parentContainer1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="994.0" prefWidth="1964.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_AnnonceController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="anchorRoot1" prefHeight="1080.0" prefWidth="2004.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+      <AnchorPane id="AnchorPane" fx:id="anchorRoot1" prefHeight="994.0" prefWidth="1020.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
-            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1537.0" layoutY="21.0" onAction="#AddEvent" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Host an event" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1398.0" layoutY="185.0" onAction="#AddEvent" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Ajouter une annonce" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -31,17 +31,17 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <JFXButton layoutX="294.0" layoutY="15.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
+            <JFXButton layoutX="418.0" layoutY="180.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="544.0" layoutY="22.0" prefHeight="44.0" prefWidth="172.0" style="-fx-border-radius: 20;" styleClass="button1" text="Jobs" textFill="#0ec3f5">
+            <JFXButton layoutX="647.0" layoutY="182.0" prefHeight="44.0" prefWidth="172.0" style="-fx-border-radius: 20;" styleClass="button1" text="Jobs" textFill="#0ec3f5">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" onKeyReleased="#filterEvent" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
+            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="837.0" layoutY="186.0" onKeyReleased="#filterEvent" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
                <font>
                   <Font size="18.0" />
                </font>
@@ -50,22 +50,10 @@
                   <String fx:value="text-fieldf" />
                </styleClass>
             </JFXTextField>
-            <JFXButton layoutX="417.0" layoutY="18.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
+            <JFXButton layoutX="511.0" layoutY="180.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>
-            </JFXButton>
-            <JFXButton fx:id="Btn_AddEvent1" buttonType="RAISED" layoutX="862.0" layoutY="156.0" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Reset" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Calibri" size="20.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
-                     <color>
-                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
-                     </color>
-                  </DropShadow>
-               </effect>
             </JFXButton>
             <JFXButton layoutX="1851.0" layoutY="4.0" prefHeight="23.0" prefWidth="86.0" styleClass="button2" text="  " textFill="WHITE">
                <font>
@@ -75,56 +63,28 @@
             
          </graphic>
             </JFXButton>
-            <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="236.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
+            <Line endX="1699.0" endY="-10.0" layoutX="150.0" layoutY="259.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
             <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="261.0" startX="32.0" startY="-106.0" stroke="#fffffffa" />
-            <Text fx:id="refresh" fill="WHITE" fontSmoothingType="LCD" layoutX="810.0" layoutY="136.0" onMouseClicked="#refresh" strokeType="OUTSIDE" strokeWidth="0.0" text="Jobs" textAlignment="CENTER" wrappingWidth="254.8203125">
+            <Text fx:id="refresh" fill="WHITE" fontSmoothingType="LCD" layoutX="853.0" layoutY="109.0" onMouseClicked="#refresh" strokeType="OUTSIDE" strokeWidth="0.0" text="Jobs" textAlignment="CENTER" wrappingWidth="254.8203125">
                <font>
                   <Font name="Leelawadee UI Semilight" size="34.0" />
                </font>
             </Text>
-            <JFXButton fx:id="feed_button" layoutX="198.0" layoutY="21.0" onAction="#load_feed" prefHeight="41.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button2" text="Feed" textFill="#99999f">
+            <JFXButton fx:id="feed_button" layoutX="346.0" layoutY="183.0" onAction="#load_feed" prefHeight="41.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button2" text="Feed" textFill="#99999f">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="Btn_AddEvent11" buttonType="RAISED" layoutX="705.0" layoutY="156.0" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Going to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Calibri" size="20.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
-                     <color>
-                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </JFXButton>
-            <JFXButton fx:id="Btn_AddEvent111" buttonType="RAISED" layoutX="1021.0" layoutY="156.0" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Went to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Calibri" size="20.0" />
-               </font>
-               <effect>
-                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
-                     <color>
-                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </JFXButton>
-            <HBox layoutX="489.0" layoutY="306.0" prefHeight="674.0" prefWidth="934.0">
+            <HBox layoutX="489.0" layoutY="306.0" prefHeight="525.0" prefWidth="934.0">
                <children>
                   <ScrollPane prefHeight="674.0" prefWidth="990.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <GridPane fx:id="grid_annonce" layoutY="55.0" prefHeight="1.0" prefWidth="0.0">
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
-                           </children>
-                        </AnchorPane>
-                    </content>
+                     <content>
+                        <GridPane fx:id="grid_annonce" prefHeight="1.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
                   </ScrollPane>
                </children>
             </HBox>
