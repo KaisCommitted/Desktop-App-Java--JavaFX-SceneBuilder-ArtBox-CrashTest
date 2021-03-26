@@ -21,6 +21,10 @@ import javafx.scene.control.TextField;
 import javax.xml.bind.DatatypeConverter;
 import java.sql.Date;
 import java.time.LocalDate;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -50,7 +54,17 @@ public class AddAnnonceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       //  Control.setVisible(false);
-        txt_categorie.getItems().addAll("Dancing", "Theatre", "Painting", "Singing", "Photography");
+ Notifications notificationBuilder = Notifications.create()
+               .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
+               .position(Pos.BASELINE_CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {
+                       Stage stage = (Stage) btnAddAnn.getScene().getWindow();
+                       stage.close();
+                       System.out.println("clicked ON ");
+               }});
+      txt_categorie.getItems().addAll("Dancing", "Theatre", "Painting", "Singing", "Photography");
 
     }
 
@@ -89,7 +103,16 @@ public class AddAnnonceController implements Initializable {
             }else {*/
             System.out.println("Pressed");
             // Ajouter Annonce
-
+             Notifications notificationBuilder = Notifications.create()
+               .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
+               .position(Pos.BASELINE_CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {
+                       Stage stage = (Stage) btnAddAnn.getScene().getWindow();
+                       stage.close();
+                       System.out.println("clicked ON ");
+               }});
             String rIdUser = txt_id_user.getText();
             String rTitreAnn = txt_titre_ann.getText();
             String rDescAnn = txt_desc_ann.getText();
@@ -104,6 +127,8 @@ public class AddAnnonceController implements Initializable {
             Annonce a = new Annonce(IdUser, rTitreAnn, rDescAnn, Pay, Categorie, rDdlAnn);
             AnnonceCRUD ann = new AnnonceCRUD();
             ann.ajouterAnnonce(a);
+            
+           
        // }
         } catch (Exception ex) {
             Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);

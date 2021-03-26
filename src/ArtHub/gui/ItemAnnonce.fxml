@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMousePressed="#click" prefHeight="168.0" prefWidth="202.0" style="-fx-background-color: rgba(0, 0, 0, 0);" stylesheets="@../values/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.ItemAnnonceController">
+<AnchorPane onMousePressed="#click" prefHeight="168.0" prefWidth="202.0" style="-fx-background-color: rgba(255,0,0,0.3);" stylesheets="@../values/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.ItemAnnonceController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="215.0" prefWidth="225.0" style="-fx-background-color: rgba(0, 0, 0, 0); -fx-background-image: https://www.google.com/url?sa=i&amp;url=https%3A%2F%2Fwallpaperaccess.com%2Fpastel-gradient&amp;psig=AOvVaw2Lzse5i_Cc1PL5gob3CUm9&amp;ust=1615596884547000&amp;source=images&amp;cd=vfe&amp;ved=0CAIQjRxqFwoTCIiRicbFqe8CFQAAAAAdAAAAABAD;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="215.0" prefWidth="225.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="51.0" prefWidth="0.0">
                <children>
