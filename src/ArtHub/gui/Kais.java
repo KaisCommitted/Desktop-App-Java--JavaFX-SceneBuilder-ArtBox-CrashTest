@@ -37,7 +37,7 @@ public class Kais extends Application {
     public void start(Stage primaryStage) {
         
        /*SentimentAnalysis sa = new SentimentAnalysis();
-        sa.getSent("Kais is a filthy faggot");
+        sa.getSent("Kais is dummy thick");
         */
 
         try {

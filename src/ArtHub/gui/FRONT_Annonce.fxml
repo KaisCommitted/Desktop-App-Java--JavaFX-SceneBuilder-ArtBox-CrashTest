@@ -75,20 +75,16 @@
                   <Font name="Calibri" size="20.0" />
                </font>
             </JFXButton>
-            <HBox layoutX="489.0" layoutY="306.0" prefHeight="674.0" prefWidth="934.0">
+            <HBox layoutX="489.0" layoutY="306.0" prefHeight="525.0" prefWidth="934.0">
                <children>
                   <ScrollPane prefHeight="674.0" prefWidth="990.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <GridPane fx:id="grid_annonce" layoutY="55.0" prefHeight="1.0" prefWidth="0.0">
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
-                           </children>
-                        </AnchorPane>
-                    </content>
+                     <content>
+                        <GridPane fx:id="grid_annonce" prefHeight="1.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
                   </ScrollPane>
                </children>
             </HBox>
