@@ -1,5 +1,6 @@
 package ArtHub.services;
 
+import ArtHub.entities.Categorie;
 import ArtHub.entities.Evenement;
 import ArtHub.entities.User;
 import ArtHub.gui.ADD_EventController;
@@ -41,7 +42,7 @@ public class EvenementCRUD {
             ste.setDate(2, Date_event);
             ste.setString(3, p.getNom_event());
             ste.setString(4, p.getType_event());
-            ste.setString(5, p.getCategorie());
+            ste.setString(5, p.getCategorie().getCategorie_name());
             ste.setString(6, p.getDescription());
             ste.setInt(7, p.getCapacite_event());
             ste.setInt(8, p.getCapacite_event());
@@ -94,14 +95,15 @@ public class EvenementCRUD {
             ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE id=" + id + "");
 
             while (rs.next()) {
-
+                 Categorie categorie = new Categorie();
+                 categorie.setCategorie_name(rs.getString("categorie"));
                 User id_user = new User();
                 id_user.setId_user(rs.getInt("id_org"));
                 Date dateaux = rs.getDate("date");
                 LocalDate date = dateaux.toLocalDate();
                 String nom_event = rs.getString("nom_event");
                 String type_event = rs.getString("type_event");
-                String categorie = rs.getString("categorie");
+                
                 String description = rs.getString("description");
                 int capacite_event = rs.getInt("capacite_event");
                 int nb_max = rs.getInt("nb_max");
@@ -139,7 +141,8 @@ public class EvenementCRUD {
             ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE nom_event='" + name + "'");
 
             while (rs.next()) {
-
+                 Categorie categorie = new Categorie();
+                 categorie.setCategorie_name(rs.getString("categorie"));
                 User id_user = new User();
                 int id = rs.getInt("id");
                 id_user.setId_user(rs.getInt("id_org"));
@@ -147,7 +150,7 @@ public class EvenementCRUD {
                 LocalDate date = dateaux.toLocalDate();
                 String nom_event = rs.getString("nom_event");
                 String type_event = rs.getString("type_event");
-                String categorie = rs.getString("categorie");
+                
                 String description = rs.getString("description");
                 int capacite_event = rs.getInt("capacite_event");
                 int nb_max = rs.getInt("nb_max");
@@ -205,7 +208,7 @@ public class EvenementCRUD {
 //            Notifications notifs = Notifications.create()
 //                            .title("Produit ajouté")
 //                            .text("Le produit a été ajouter avec succées!")
-//                            .graphic(new ImageView("file:C:/evenements/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
+//                            .graphic(new ImageView("file:categorie:/evenements/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
 //                            .hideAfter(Duration.seconds(5))
 //                            .position(Pos.BOTTOM_RIGHT);
 //

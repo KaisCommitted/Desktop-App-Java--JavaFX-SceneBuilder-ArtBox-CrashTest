@@ -1,10 +1,13 @@
 package ArtHub.gui;
 
+import ArtHub.entities.Categorie;
 import ArtHub.entities.Download;
 import ArtHub.entities.Evenement;
 import static ArtHub.entities.Evenement.isNotInteger;
 import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.entities.User;
+import ArtHub.entities.Whatsapp;
+import ArtHub.services.CategorieCRUD;
 import ArtHub.services.EvenementCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -32,11 +35,15 @@ import javax.xml.bind.DatatypeConverter;
 import java.sql.Date;
 import java.time.LocalDate;
 import static java.time.LocalDate.now;
+import java.util.List;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -44,6 +51,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -55,7 +64,11 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import nl.captcha.Captcha;
+import org.controlsfx.control.Notifications;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 public class ADD_EventController implements Initializable {
 
@@ -84,8 +97,17 @@ public class ADD_EventController implements Initializable {
     private URL urll;
     private ResourceBundle rbb;
     int i=0;
+      Captcha captcha;
     @FXML
     private AnchorPane anchor;
+    List<Categorie> myLst;
+             CategorieCRUD CC= new CategorieCRUD();
+    @FXML
+    private ImageView cap;
+    @FXML
+    private TextField code;
+    @FXML
+    private Button reset;
     /**
      * Initializes the controller class.
      */
@@ -94,15 +116,28 @@ public class ADD_EventController implements Initializable {
       
         Control.setVisible(false);
         combo_type.getItems().addAll("En ligne", "Exposé", "Festival", "Formation", "Autres");
-
-            txt_categorie.getItems().addAll("Dancing", "Theatre", "Slam", "Singing", "Street Art");
+             myLst = CC.consulterCategorie();
+             for (i=0;i<myLst.size();i++) { txt_categorie.getItems().add(myLst.get(i).getCategorie_name());}
+             captcha = setCaptcha();
+           
 
     }
 
     @FXML
     private void addEvent(ActionEvent event) {
          
+if (captcha.isCorrect(code.getText())) {
 
+            String tilte = "Captcha";
+            String message = "Correct";
+            TrayNotification tray = new TrayNotification();
+            AnimationType type = AnimationType.POPUP;
+
+            tray.setAnimationType(type);
+            tray.setTitle(tilte);
+            tray.setMessage(message);
+            tray.setNotificationType(NotificationType.SUCCESS);
+            tray.showAndDismiss(Duration.millis(3000)); 
        
         try {
             
@@ -112,28 +147,34 @@ public class ADD_EventController implements Initializable {
             System.out.println(i);
             Control.setVisible(false);
             String control = "";
+            
+                
             if (txt_nom.getText() == null || txt_nom.getText().trim().isEmpty() || combo_type.getValue() == null || combo_type.getValue().isEmpty()
                     || txt_categorie.getValue() == null || txt_categorie.getValue().isEmpty() || tDatenaiss.getValue() == null || txt_description.getText() == null
                     || txt_description.getText().trim().isEmpty() || txt_capacite.getText() == null || txt_capacite.getText().trim().isEmpty() || event_location.getText() == null
                     || event_location.getText().trim().isEmpty()) {
                 control = "Make sure to fill all the fields";
-                Control.setVisible(true);
+               // Control.setVisible(true);
                 Control.setText(control);
+                 notificationShow("Alert!",control);
             } else if (Evenement.isNotInteger(txt_capacite.getText())) {
                 control += "\nEvent capacity should be an integer";
                 txt_capacite.clear();
                 Control.setText(control);
-                Control.setVisible(true);
+               // Control.setVisible(true);
+                notificationShow("Alert!",control);
                 txt_capacite.setStyle("background-color: rgba(255,0,0,0.2);");
             } else if (path=="") {
                 control += "\nMake sure to upload event picture ";
                 Control.setText(control);
-                Control.setVisible(true);
+               // Control.setVisible(true);
+                notificationShow("Alert!",control);
                  upload_image.setStyle("background-color: rgba(255,0,0,0.2);");
             } else if (tDatenaiss.getValue().isBefore(LocalDate.now())) {
                 control += "\nMake sure to select an upcoming date ";
                 Control.setText(control);
-                Control.setVisible(true);
+               // Control.setVisible(true);
+                notificationShow("Alert!",control);
                 tDatenaiss.setStyle("background-color: rgba(255,0,0,0.2);");
             }else {
 
@@ -142,22 +183,45 @@ public class ADD_EventController implements Initializable {
                 String rType = combo_type.getValue();
                 String Categorie = txt_categorie.getValue();
                 String rDescription = txt_description.getText();
-
+                Categorie C =new Categorie();
                 String Scapacite = txt_capacite.getText();
                 int Capacite = DatatypeConverter.parseInt(Scapacite);
                 String location = event_location.getText();
-
-                Evenement e = new Evenement(CurrentUser, Datenaiss, rNom, rType, Categorie, rDescription, Capacite, Capacite, path, location);
+                C.setCategorie_name(Categorie);
+                Evenement e = new Evenement(CurrentUser, Datenaiss, rNom, rType,C, rDescription, Capacite, Capacite, path, location);
                 EvenementCRUD evt = new EvenementCRUD();
                 evt.ajouterEvenement(e);
 
                 // if (CurrentUser.getRef_admin().equals("0")) {
-                Stage stage = (Stage) btnValiderA_event.getScene().getWindow();
-                stage.close();
+                 Notifications notificationBuilder = Notifications.create()
+               .title("Event added").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
+               .position(Pos.CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {    
+                       Stage stage = (Stage) btnValiderA_event.getScene().getWindow();
+                       stage.close();
+                       System.out.println("clicked ON ");
+               }});
+       notificationBuilder.darkStyle();
+       notificationBuilder.show();
+       
+       
+       
+      
+                
+               
+               
 
             }
         } catch (Exception ex) {
             Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+} else {
+           notificationShow("Alert!","Incorrect captcha!");
+
+            captcha = setCaptcha();
+            code.setText("");
         }
     }
 
@@ -204,4 +268,46 @@ public class ADD_EventController implements Initializable {
             event_location.setPromptText("Add event location");
         }
     }
+    
+    
+    public void notificationShow(String title,String message) {
+    Notifications notificationBuilder = Notifications.create()
+               .title(title).text(message).graphic(null).hideAfter(javafx.util.Duration.seconds(20))
+               .position(Pos.CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {    
+                       
+                       System.out.println("clicked ON ");
+               }});
+       notificationBuilder.darkStyle();
+       notificationBuilder.show();}
+
+public Captcha setCaptcha() {
+        Captcha captcha = new Captcha.Builder(250, 200)
+                .addText()
+                .addBackground()
+                .addNoise()
+                .gimp()
+                .addBorder()
+                .build();
+
+        System.out.println(captcha.getImage());
+        Image image = SwingFXUtils.toFXImage(captcha.getImage(), null);
+
+        cap.setImage(image);
+          
+        return captcha;
+    }
+
+    @FXML
+    private void resetCaptcha(ActionEvent event) {
+        captcha = setCaptcha();
+        code.setText("");
+    }
+
+
+
+
+
 }

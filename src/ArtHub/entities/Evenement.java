@@ -21,7 +21,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
     private LocalDate date_event;
     private String nom_event;
     private String type_event;
-    private String categorie;
+    private Categorie categorie;
     private String description;
     private int capacite_event;
     private int nb_max;
@@ -33,7 +33,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
     public Evenement() {
     }
 
-    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, String categorie, String description, int capacite_event, int nb_max, String image_event) {
+    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, Categorie categorie, String description, int capacite_event, int nb_max, String image_event) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;
@@ -45,7 +45,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
         this.image_event = image_event;
     }
 
-    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, String categorie, String description, int capacite_event, int nb_max) {
+    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, Categorie categorie, String description, int capacite_event, int nb_max) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;
@@ -64,7 +64,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
         this.image_event = image_event;
     }
 
-    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, String categorie, String description, int capacite_event, int nb_max, String image_event, String location_event) {
+    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, Categorie categorie, String description, int capacite_event, int nb_max, String image_event, String location_event) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;
@@ -94,7 +94,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
         this.nb_max = nb_max;
     }
 
-    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, String categorie, String description) {
+    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, Categorie categorie, String description) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;
@@ -111,7 +111,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
         this.rating = rating;
     }
 
-    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, String categorie, String description, int capacite_event) {
+    public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, Categorie categorie, String description, int capacite_event) {
         this.id_org = id_org;
         this.date_event = date_event;
         this.nom_event = nom_event;
@@ -157,7 +157,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
         return type_event;
     }
 
-    public String getCategorie() {
+    public Categorie getCategorie() {
         return categorie;
     }
 
@@ -181,7 +181,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
         this.type_event = type_event;
     }
 
-    public void setCategorie(String categorie) {
+    public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
 

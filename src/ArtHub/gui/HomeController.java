@@ -1,5 +1,6 @@
 package ArtHub.gui;
 
+import ArtHub.entities.Categorie;
 import ArtHub.entities.Evenement;
 import ArtHub.entities.Feedback;
 import ArtHub.entities.Labell;
@@ -665,7 +666,7 @@ public class HomeController implements Initializable {
         categorie.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
-               return new SimpleStringProperty(param.getValue().getValue().getCategorie());
+               return new SimpleStringProperty(param.getValue().getValue().getCategorie().getCategorie_name());
            }
 
        });
@@ -678,11 +679,12 @@ public class HomeController implements Initializable {
         categorie.setOnEditCommit((CellEditEvent<Evenement, String> t) -> {
             int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
             String newValue = t.getNewValue();
-
+            Categorie C = new Categorie();
+           C.setCategorie_name(t.getNewValue());
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
-                    .getValue().setCategorie(t.getNewValue());
+                    .getValue().setCategorie(C);
             ps.modifierEvenement(idd, "categorie", newValue);
         });
         // description table view
@@ -960,7 +962,7 @@ public class HomeController implements Initializable {
         categorie.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Evenement, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Evenement, String> param) {
-               return new SimpleStringProperty(param.getValue().getValue().getCategorie());
+               return new SimpleStringProperty(param.getValue().getValue().getCategorie().getCategorie_name());
            }
 
        });
@@ -973,11 +975,12 @@ public class HomeController implements Initializable {
         categorie.setOnEditCommit((CellEditEvent<Evenement, String> t) -> {
             int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId();
             String newValue = t.getNewValue();
-
+           Categorie C = new Categorie();
+           C.setCategorie_name(t.getNewValue());
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
-                    .getValue().setCategorie(t.getNewValue());
+                    .getValue().setCategorie(C);
             ps.modifierEvenement(idd, "categorie", newValue);
         });
         // description table view

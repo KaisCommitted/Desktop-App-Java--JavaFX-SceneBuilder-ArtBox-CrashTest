@@ -11,6 +11,7 @@ import ArtHub.entities.Rating;
 import ArtHub.services.ParticipantCRUD;
 import ArtHub.services.EvenementCRUD;
 import ArtHub.entities.User;
+import ArtHub.entities.Whatsapp;
 import com.jfoenix.controls.JFXButton;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -43,6 +44,8 @@ import ArtHub.services.RatingCRUD;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,6 +56,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -119,8 +123,8 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Empty = "C:\\Users\\21698\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\1024px-Empty_Star.svg.png";
-        Full = "C:\\Users\\21698\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Star_.svg.png";
+        Empty = "C:\\Users\\21698\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Empty.png";
+        Full = "C:\\Users\\21698\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Full.png";
         AVG = "C:\\Users\\21698\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\peach.png";
         
 
@@ -191,6 +195,7 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
 
     @FXML
     private void JoinEvent(ActionEvent event) {
+         //Whatsapp.send("Yo");
         EvenementCRUD ec = new EvenementCRUD();
         Evenement CurrentEvent = ec.FindEvenement(Integer.parseInt(id_event.getText()));
 
@@ -217,6 +222,16 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
                 Event_spots1.setText(Integer.toString(Integer.parseInt(aux1) + 1) + " Participants");
             }
         }
+        Notifications notificationBuilder = Notifications.create()
+               .title("Alert").text("You joined").graphic(null).hideAfter(javafx.util.Duration.minutes(10))
+               .position(Pos.TOP_RIGHT)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {
+                       System.out.println("clicked ON ");
+               }});
+       notificationBuilder.darkStyle();
+       notificationBuilder.show();
 
     }
 

@@ -1,5 +1,6 @@
 package ArtHub.services;
 
+import ArtHub.entities.Categorie;
 import ArtHub.entities.Evenement;
 import ArtHub.entities.Participant;
 import ArtHub.entities.User;
@@ -124,8 +125,8 @@ public class ParticipantCRUD {
         try {
 
             Statement stmt = cnx.createStatement();
-            
-String sql = "SELECT * from participant " + " WHERE id_event=" + id;
+
+            String sql = "SELECT * from participant " + " WHERE id_event=" + id;
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
 
@@ -143,66 +144,57 @@ String sql = "SELECT * from participant " + " WHERE id_event=" + id;
 
     }
 
-   
-    
-    
-    
-       public String RecommendParticip(int id) {
-        String max= "";
-        int a = 0;
-                    int b = 0;
-                    int c = 0;
-                    int d = 0;
-                    int e = 0;
+    public String RecommendParticip(int id) {
+        String AllCats = "";
+        String toReturn = "";
         List<Evenement> myList = new ArrayList<>();
         try {
 
             Statement stmt = cnx.createStatement();
-            
-          String sql = "SELECT * from participant " + " WHERE id_user=" + id;
+
+            String sql = "SELECT * from participant " + " WHERE id_user=" + id;
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
 
                 if (rs.getInt("id_user") != 0) {
-                   EvenementCRUD aux = new EvenementCRUD();
-                   Evenement evt= new Evenement();
-                   evt= aux.FindEvenement(rs.getInt("id_event"));
-                    
-                   myList.add(evt);
-                    max += evt.getCategorie();
-                    
-                   
-                   
-    
-                }  
-                
+                    EvenementCRUD aux = new EvenementCRUD();
+                    Evenement evt = new Evenement();
+                    evt = aux.FindEvenement(rs.getInt("id_event"));
+
+                    myList.add(evt);
+                    AllCats += evt.getCategorie().getCategorie_name();
+
+                }
+
             }
-            a= count(max, "Dancing");
-                b= count(max, "Theatre"); 
-                c= count(max, "Slam");
-                d= count(max, "Singing");
-                e= count(max, "Street Art");
-                if ((a >= b) && (a >= c) && (a >= d) && (a >= e)) { 
-                       max="Dancing";
-                    } else if ((b >= c) && (b >= d) && (b >= e)) {      
-                        max="Theatre";
-                    } else if ((c >= d) && (c >= e)) {                  
-                         max="Slam";
-                    } else if (d >= e) {                               
-                         max="Singing";
-                    } else {                                            
-                        max="Street Art";
-                    }
+            int x = 0;
+            List<Categorie> myLst;
+            CategorieCRUD CC = new CategorieCRUD();
+            myLst = CC.consulterCategorie();
+            for (int i = 0; i < myLst.size(); i++) {
+
+                String categorie = "";
+                categorie = myLst.get(i).getCategorie_name();
+
+                if (count(AllCats, categorie) > x) {
+
+                    x = count(AllCats, categorie);
+                    toReturn = myLst.get(i).getCategorie_name();
+
+                }
+
+            }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-           
-        return max;
+
+        return toReturn;
 
     }
-       
-public static int count(String str, String target) {
-    return (str.length() - str.replace(target, "").length()) / target.length(); 
-}
+
+    public static int count(String str, String target) {
+        return (str.length() - str.replace(target, "").length()) / target.length();
+    }
 
 }

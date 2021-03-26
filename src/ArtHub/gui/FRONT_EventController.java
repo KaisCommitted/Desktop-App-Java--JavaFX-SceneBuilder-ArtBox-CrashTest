@@ -8,6 +8,7 @@ package ArtHub.gui;
 import ArtHub.entities.Evenement;
 import ArtHub.entities.Participant;
 import ArtHub.entities.Post;
+import ArtHub.entities.Whatsapp;
 import static ArtHub.gui.ItemBoxController.highlight;
 import static ArtHub.gui.ItemBoxController.highlightBtn;
 import static ArtHub.gui.LoginController.CurrentUser;
@@ -81,7 +82,6 @@ public class FRONT_EventController implements Initializable {
 
     @FXML
     private StackPane parentContainer1;
-
 
     @FXML
     private Button feed_button;
@@ -157,6 +157,25 @@ public class FRONT_EventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            //////////////////////////////////WHATSAPPP//////////////////////////////////////////
+            List<Evenement> myLiist;
+           
+            ParticipantCRUD pc = new ParticipantCRUD();
+            myLiist = ps.TodayEvenement();
+            if (!myLiist.isEmpty()) {
+
+                for (int i = 0; i < myLiist.size(); i++) {
+                  //  if (pc.CheckUserExists(CurrentUser.getId_user(), myLiist.get(i).getId())) {
+                        
+                        String content = "";
+                        content = "Don't forget to show up today," + myLiist.get(i).getNom_event() + " is happening TODAY and we have a spot reserved especially for you, find us in " + myLiist.get(i).getLocation_event();
+                        System.out.println(content);
+                        Whatsapp.send(content);
+                   // }
+                }
+            }
+            ///////////////////////////////////WHATSAAAAAP////////////////////////////////////////////
+
             scroll21.setFitToHeight(true);
             scroll21.setFitToWidth(true);
             scroll21.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -173,7 +192,7 @@ public class FRONT_EventController implements Initializable {
             comboDate.getItems().clear();
             comboTrend.getItems().clear();
 
-            comboDate.getItems().addAll("All Events","Upcoming","This Week", "This Month", "Today");
+            comboDate.getItems().addAll("All Events", "Upcoming", "This Week", "This Month", "Today");
             comboDate.setValue("Upcoming");
             comboTrend.getItems().addAll("Default", "Most Popular", "Most Recent", "Alphabetical");
             comboTrend.setPromptText("Sort By..");
@@ -186,7 +205,7 @@ public class FRONT_EventController implements Initializable {
 
             EvenementCRUD ps = new EvenementCRUD();
             List<Evenement> myLst;
-            
+
             Participant aux = new Participant();
             ParticipantCRUD par = new ParticipantCRUD();
             String max = par.RecommendParticip(CurrentUser.getId_user());
@@ -212,7 +231,7 @@ public class FRONT_EventController implements Initializable {
             name.setText(Evenement.getNom_event());
             type.setText("Event Type: " + Evenement.getType_event());
             username.setText("Event organizer: " + org);
-            categorie.setText("Event genre: " + Evenement.getCategorie());
+            categorie.setText("Event genre: " + Evenement.getCategorie().getCategorie_name());
             date.setText("Event date :" + Evenement.getDate_event().format(formatters));
             if (Evenement.getType_event() != "En ligne") {
                 location.setText("Event location: " + Evenement.getLocation_event());
@@ -221,10 +240,12 @@ public class FRONT_EventController implements Initializable {
             }
             spots.setText(Integer.toString(Evenement.getCapacite_event()) + " Remaining spots");
             participants.setText(Integer.toString(Evenement.getNb_max() - Evenement.getCapacite_event()) + " People going");
-            if(Evenement.getRating() == 0) {
-        ratedImg.setVisible(false);
-        ratedLbl.setVisible(false);
-    } else {ratedLbl.setText(Integer.toString(Evenement.getRating()));}
+            if (Evenement.getRating() == 0) {
+                ratedImg.setVisible(false);
+                ratedLbl.setVisible(false);
+            } else {
+                ratedLbl.setText(Integer.toString(Evenement.getRating()));
+            }
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
@@ -273,6 +294,7 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private void AddEvent(ActionEvent event) {
         try {
+            //sendWhatsapp();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ADD_Event.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -297,115 +319,112 @@ public class FRONT_EventController implements Initializable {
             SortByTime(event1);
 
         } else {
-            
+
             EvenementCRUD ps = new EvenementCRUD();
-            List<Evenement> myLst; 
-                 if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Default") {
-                    myLst = ps.AllFiltered(input.getText());
-                    FillHbox1(myLst, event_mostPop);
+            List<Evenement> myLst;
+            if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Default") {
+                myLst = ps.AllFiltered(input.getText());
+                FillHbox1(myLst, event_mostPop);
 
-                }
+            }
 
-                if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Most Popular") {
-                    myLst = ps.AllFiltered(input.getText());
-                    Collections.sort(myLst, compareByParticipants);
-                    FillHbox1(myLst, event_mostPop);
+            if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Most Popular") {
+                myLst = ps.AllFiltered(input.getText());
+                Collections.sort(myLst, compareByParticipants);
+                FillHbox1(myLst, event_mostPop);
 
-                }
-                if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Most Recent") {
-                    myLst = ps.AllFiltered(input.getText());
-                    Collections.sort(myLst, compareByMostRecent);
-                    FillHbox1(myLst, event_mostPop);
+            }
+            if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Most Recent") {
+                myLst = ps.AllFiltered(input.getText());
+                Collections.sort(myLst, compareByMostRecent);
+                FillHbox1(myLst, event_mostPop);
 
-                }
-                if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Alphabetical") {
-                    myLst = ps.AllFiltered(input.getText());
-                    Collections.sort(myLst, compareByAlphabetical);
-                    FillHbox1(myLst, event_mostPop);
+            }
+            if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Alphabetical") {
+                myLst = ps.AllFiltered(input.getText());
+                Collections.sort(myLst, compareByAlphabetical);
+                FillHbox1(myLst, event_mostPop);
 
-                }
-                
-                if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Default") {
-                    myLst = ps.consulterFiltered(input.getText());
-                    FillHbox1(myLst, event_mostPop);
+            }
 
-                }
+            if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Default") {
+                myLst = ps.consulterFiltered(input.getText());
+                FillHbox1(myLst, event_mostPop);
 
-                if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Most Popular") {
-                    myLst = ps.consulterFiltered(input.getText());
-                    Collections.sort(myLst, compareByParticipants);
-                    FillHbox1(myLst, event_mostPop);
+            }
 
-                }
-                if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Most Recent") {
-                    myLst = ps.consulterFiltered(input.getText());
-                    Collections.sort(myLst, compareByMostRecent);
-                    FillHbox1(myLst, event_mostPop);
+            if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Most Popular") {
+                myLst = ps.consulterFiltered(input.getText());
+                Collections.sort(myLst, compareByParticipants);
+                FillHbox1(myLst, event_mostPop);
 
-                }
-                if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Alphabetical") {
-                    myLst = ps.consulterFiltered(input.getText());
-                    Collections.sort(myLst, compareByAlphabetical);
-                    FillHbox1(myLst, event_mostPop);
+            }
+            if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Most Recent") {
+                myLst = ps.consulterFiltered(input.getText());
+                Collections.sort(myLst, compareByMostRecent);
+                FillHbox1(myLst, event_mostPop);
 
-                }
+            }
+            if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Alphabetical") {
+                myLst = ps.consulterFiltered(input.getText());
+                Collections.sort(myLst, compareByAlphabetical);
+                FillHbox1(myLst, event_mostPop);
+
+            }
 
             if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Default") {
                 myLst = ps.TodayEvenementFiltered(input.getText());
                 FillHbox1(myLst, event_mostPop);
-                
+
             }
 
             if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Most Popular") {
                 myLst = ps.TodayEvenementFiltered(input.getText());
                 Collections.sort(myLst, compareByParticipants);
                 FillHbox1(myLst, event_mostPop);
-                 
+
             }
             if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Most Recent") {
                 myLst = ps.TodayEvenementFiltered(input.getText());
                 Collections.sort(myLst, compareByMostRecent);
                 FillHbox1(myLst, event_mostPop);
-                 
+
             }
             if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Alphabetical") {
                 myLst = ps.TodayEvenementFiltered(input.getText());
                 Collections.sort(myLst, compareByAlphabetical);
                 FillHbox1(myLst, event_mostPop);
-                 
+
             }
 
             if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Default") {
                 myLst = ps.ThisMonthEvenementFiltered(input.getText());
                 FillHbox1(myLst, event_mostPop);
-                
-                 
+
             }
             if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Most Popular") {
                 myLst = ps.ThisMonthEvenementFiltered(input.getText());
                 Collections.sort(myLst, compareByParticipants);
                 FillHbox1(myLst, event_mostPop);
-                
-                 
+
             }
             if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Most Recent") {
                 myLst = ps.ThisMonthEvenementFiltered(input.getText());
                 Collections.sort(myLst, compareByMostRecent);
                 FillHbox1(myLst, event_mostPop);
-                
-                 
+
             }
             if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Alphabetical") {
                 myLst = ps.ThisMonthEvenementFiltered(input.getText());
                 Collections.sort(myLst, compareByAlphabetical);
                 FillHbox1(myLst, event_mostPop);
-                
+
             }
 
             if (comboDate.getValue() == "This Week" && comboTrend.getValue() == "Default") {
                 myLst = ps.ThisWeekEvenementFiltered(input.getText());
                 FillHbox1(myLst, event_mostPop);
-               
+
             }
             if (comboDate.getValue() == "This Week" && comboTrend.getValue() == "Most Popular") {
                 myLst = ps.ThisWeekEvenementFiltered(input.getText());
@@ -432,53 +451,53 @@ public class FRONT_EventController implements Initializable {
         EvenementCRUD ps = new EvenementCRUD();
         event_mostPop.getChildren().clear();
         List<Evenement> myLst;
-        
-         if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Default") {
-              label_layout.setText("All Events");
+
+        if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Default") {
+            label_layout.setText("All Events");
             myLst = ps.AllEvenement();
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Most Popular") {
-             label_layout.setText("All Events");
+            label_layout.setText("All Events");
             myLst = ps.AllEvenement();
-           Collections.sort(myLst, compareByParticipants);
+            Collections.sort(myLst, compareByParticipants);
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Most Recent") {
-             label_layout.setText("All Events");
+            label_layout.setText("All Events");
             myLst = ps.AllEvenement();
-           Collections.sort(myLst, compareByMostRecent);
+            Collections.sort(myLst, compareByMostRecent);
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Alphabetical") {
-             label_layout.setText("All Events");
+            label_layout.setText("All Events");
             myLst = ps.AllEvenement();
-           Collections.sort(myLst, compareByAlphabetical);
+            Collections.sort(myLst, compareByAlphabetical);
             FillHbox1(myLst, event_mostPop);
         }
 
         if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Default") {
-             label_layout.setText("All upcoming Events");
+            label_layout.setText("All upcoming Events");
             myLst = ps.consulterEvenement();
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Most Popular") {
-           label_layout.setText("All upcoming Events");
+            label_layout.setText("All upcoming Events");
             myLst = ps.consulterEvenement();
-           Collections.sort(myLst, compareByParticipants);
+            Collections.sort(myLst, compareByParticipants);
             FillHbox1(myLst, event_mostPop);
         }
-        
+
         if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Most Recent") {
             label_layout.setText("All upcoming Events");
             myLst = ps.consulterEvenement();
-           Collections.sort(myLst, compareByMostRecent);
+            Collections.sort(myLst, compareByMostRecent);
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Alphabetical") {
             label_layout.setText("All upcoming Events");
             myLst = ps.consulterEvenement();
-           Collections.sort(myLst, compareByAlphabetical);
+            Collections.sort(myLst, compareByAlphabetical);
             FillHbox1(myLst, event_mostPop);
         }
 
@@ -488,26 +507,26 @@ public class FRONT_EventController implements Initializable {
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Most Popular") {
-             label_layout.setText("This month's Events");
+            label_layout.setText("This month's Events");
             myLst = ps.ThisMonthEvenement();
             Collections.sort(myLst, compareByParticipants);
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Most Recent") {
-             label_layout.setText("This month's Events");
+            label_layout.setText("This month's Events");
             myLst = ps.ThisMonthEvenement();
             Collections.sort(myLst, compareByMostRecent);
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Alphabetical") {
-             label_layout.setText("This month's Events");
+            label_layout.setText("This month's Events");
             myLst = ps.ThisMonthEvenement();
             Collections.sort(myLst, compareByAlphabetical);
             FillHbox1(myLst, event_mostPop);
         }
 
         if (comboDate.getValue() == "This Week" && comboTrend.getValue() == "Default") {
-             label_layout.setText("This week's Events");
+            label_layout.setText("This week's Events");
             myLst = ps.ThisWeekEvenement();
             FillHbox1(myLst, event_mostPop);
         }
@@ -529,7 +548,7 @@ public class FRONT_EventController implements Initializable {
             FillHbox1(myLst, event_mostPop);
         }
         if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Default") {
-             label_layout.setText("Happening Today");
+            label_layout.setText("Happening Today");
             myLst = ps.TodayEvenement();
             FillHbox1(myLst, event_mostPop);
         }
@@ -572,7 +591,7 @@ public class FRONT_EventController implements Initializable {
             name.setText(Evenement.getNom_event());
             type.setText("Event Type: " + Evenement.getType_event());
             username.setText("Event organizer: " + org); //LezmLouay yekhdem find User by ID
-            categorie.setText("Event genre: " + Evenement.getCategorie());
+            categorie.setText("Event genre: " + Evenement.getCategorie().getCategorie_name());
             date.setText("Event date :" + Evenement.getDate_event().format(formatters));
             if (Evenement.getType_event() != "En ligne") {
                 location.setText("Event location: " + Evenement.getLocation_event());
@@ -581,14 +600,15 @@ public class FRONT_EventController implements Initializable {
             }
             spots.setText(Integer.toString(Evenement.getCapacite_event()) + " Remaining spots");
             participants.setText(Integer.toString(Evenement.getNb_max() - Evenement.getCapacite_event()) + " People going");
-             if(Evenement.getRating() == 0) {
-        ratedImg.setVisible(false);
-        ratedLbl.setVisible(false);
-    } else {ratedLbl.setText(Integer.toString(Evenement.getRating()));
-             ratedImg.setVisible(true);
-        ratedLbl.setVisible(true);
-             }
- System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSRAAAAAAAAAAAAAAAAAAAANK " + (Evenement.getRating()));
+            if (Evenement.getRating() == 0) {
+                ratedImg.setVisible(false);
+                ratedLbl.setVisible(false);
+            } else {
+                ratedLbl.setText(Integer.toString(Evenement.getRating()));
+                ratedImg.setVisible(true);
+                ratedLbl.setVisible(true);
+            }
+            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSRAAAAAAAAAAAAAAAAAAAANK " + (Evenement.getRating()));
 
         }
 
@@ -597,21 +617,20 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private void GoingTo(ActionEvent event) {
 
-      
-            label_layout.setText("Going To..");
-            comboDate.setVisible(false);
-            comboTrend.setVisible(false);
-            MoreDetails.setVisible(false);
-            comboDate.getItems().clear();
-            comboTrend.getItems().clear();
-            
-            EvenementCRUD ps = new EvenementCRUD();
-            List<Evenement> myLst;
-            myLst = ps.GoingTo(CurrentUser.getId_user());
-            FillHbox1(myLst, event_mostPop);
-            
-            MoreDetails.setVisible(true);
-           
+        label_layout.setText("Going To..");
+        comboDate.setVisible(false);
+        comboTrend.setVisible(false);
+        MoreDetails.setVisible(false);
+        comboDate.getItems().clear();
+        comboTrend.getItems().clear();
+
+        EvenementCRUD ps = new EvenementCRUD();
+        List<Evenement> myLst;
+        myLst = ps.GoingTo(CurrentUser.getId_user());
+        FillHbox1(myLst, event_mostPop);
+
+        MoreDetails.setVisible(true);
+
     }
 
     @FXML
@@ -621,15 +640,14 @@ public class FRONT_EventController implements Initializable {
         comboTrend.setVisible(false);
         MoreDetails.setVisible(false);
         comboDate.getItems().clear();
-        comboTrend.getItems().clear(); 
+        comboTrend.getItems().clear();
 
         EvenementCRUD ps = new EvenementCRUD();
         List<Evenement> myLst;
         myLst = ps.WentTo(CurrentUser.getId_user());
         FillHbox1(myLst, event_mostPop);
-         
-                MoreDetails.setVisible(true);
-                
+
+        MoreDetails.setVisible(true);
 
     }
 
@@ -694,45 +712,62 @@ public class FRONT_EventController implements Initializable {
 
     @FXML
     private void onEffectBtn(MouseEvent event) {
-          Btn_AddEvent111.setEffect(highlightBtn);
-         Btn_AddEvent111.setCursor(Cursor.HAND);
+        Btn_AddEvent111.setEffect(highlightBtn);
+        Btn_AddEvent111.setCursor(Cursor.HAND);
     }
 
     @FXML
     private void offEffectBtnHost(MouseEvent event) {
-         Btn_AddEvent.setEffect(null);
+        Btn_AddEvent.setEffect(null);
     }
 
     @FXML
     private void onEffectBtnHost(MouseEvent event) {
         Btn_AddEvent.setEffect(highlightBtn);
-         Btn_AddEvent.setCursor(Cursor.HAND);
+        Btn_AddEvent.setCursor(Cursor.HAND);
     }
 
     @FXML
     private void offEffectBtnGoing(MouseEvent event) {
-         Btn_AddEvent11.setEffect(null);
+        Btn_AddEvent11.setEffect(null);
     }
 
     @FXML
     private void onEffectBtnGoing(MouseEvent event) {
         Btn_AddEvent11.setEffect(highlightBtn);
-         Btn_AddEvent11.setCursor(Cursor.HAND);
+        Btn_AddEvent11.setCursor(Cursor.HAND);
     }
 
     @FXML
     private void offEffectSearch(MouseEvent event) {
-       input.setEffect(null);
+        input.setEffect(null);
     }
 
     @FXML
     private void onEffectSearch(MouseEvent event) {
-         Btn_AddEvent11.setEffect(highlightBtn);
-         Btn_AddEvent11.setCursor(Cursor.TEXT);
+        Btn_AddEvent11.setEffect(highlightBtn);
+        Btn_AddEvent11.setCursor(Cursor.TEXT);
     }
-    
-    
 
-   
+    
+    /*private void sendWhatsapp() {
+        List<Evenement> myLst;
+        Evenement E = new Evenement();
+        ParticipantCRUD pc = new ParticipantCRUD();
+        myLst = ps.TodayEvenement();
+        if (!myLst.isEmpty()) {
+            if (pc.CheckUserExists(CurrentUser.getId_user(), E.getId())) {
+                for (int i = 0; i < myLst.size(); i++) {
+                    E = myLst.get(i);
+                    String content = "";
+                    content = "Don't forget to show up today," + E.getNom_event() + " is happening TODAY and we have a spot reserved especially for you, find us in " + E.getLocation_event();
+                    System.out.println(content);
+                    Whatsapp.send(content);
+                }
+            }
+
+        }
+
+    }*/
 
 }
