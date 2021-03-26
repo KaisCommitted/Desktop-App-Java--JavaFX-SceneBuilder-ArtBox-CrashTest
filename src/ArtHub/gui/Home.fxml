@@ -135,6 +135,11 @@
             </Button>
          </children>
       </VBox>
+      <ImageView fx:id="SwitchFront" fitHeight="25.0" fitWidth="34.0" onMouseClicked="#SwitchFront" pickOnBounds="true" preserveRatio="true" translateX="220.0" translateY="630.0" visible="false">
+         <image>
+            <Image url="@../images/icons8_Home_32px.png" />
+         </image>
+      </ImageView>
       <StackPane layoutX="258.0" prefHeight="628.0" prefWidth="946.0" style="-fx-background-color: #02030A;">
          <children>
             <Pane fx:id="pnlEvents" layoutX="10.0" layoutY="10.0" prefHeight="671.0" prefWidth="793.0">
@@ -164,37 +169,47 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="1500" textFill="#26bfbc">
+                              <Label fx:id="events_this_month" text="200" textFill="#26bfbc">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label text="Total delivered" textFill="#e7e5e5" />
+                              <Label text="Events this month" textFill="#e7e5e5" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="92.0" prefWidth="123.0">
+                           <children>
+                              <Label fx:id="Total_events" text="1000" textFill="#fa5f7e">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="17.0" prefWidth="138.0" text="Total upcoming events" textFill="#e7e5e5" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="1000" textFill="#fa5f7e">
+                              <Label fx:id="Total_participants" text="780" textFill="#de0000">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <Label text="Peding Orders" textFill="#e7e5e5" />
+                              <Label text="Total participants" textFill="#e7e5e5" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <Label text="780" textFill="#de0000">
-                                 <font>
-                                    <Font name="System Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Orders on Hold" textFill="#e7e5e5" />
-                           </children>
-                        </VBox>
-                        <ImageView fx:id="showHistory" fitHeight="41.0" fitWidth="49.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true" translateX="150.0" translateY="20.0">
+                        <ImageView fx:id="showHistory" fitHeight="41.0" fitWidth="49.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true" translateX="130.0" translateY="15.0">
                            <image>
                               <Image url="@../images/refr.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="archive" fitHeight="27.0" fitWidth="33.0" layoutX="10.0" layoutY="43.0" onMouseClicked="#archive" pickOnBounds="true" preserveRatio="true" translateX="-40.0" translateY="20.0">
+                           <image>
+                              <Image url="@../images/icons8_Box_32px.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="27.0" fitWidth="33.0" layoutX="801.0" layoutY="43.0" onMouseClicked="#showParticipants" pickOnBounds="true" preserveRatio="true" translateX="-150.0" translateY="20.0">
+                           <image>
+                              <Image url="@../images/icons8_Person_32px.png" />
                            </image>
                         </ImageView>
                      </children>

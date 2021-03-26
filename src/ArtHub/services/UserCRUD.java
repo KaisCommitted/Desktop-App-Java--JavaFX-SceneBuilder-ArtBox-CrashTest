@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -147,5 +149,115 @@ public class UserCRUD {
         return p;
 
     } 
+       
+        public Boolean Authentifier(String u,String p) throws SQLException
+    {
+        String req = "SELECT * FROM `user` WHERE username =\'"+u+"\' and pwd_user=\'"+p+"\'";
+        System.out.println(req);
+        User user = new User();
+        
+        try {
+            Statement ste = cnx.createStatement();
+             ResultSet rs= ste.executeQuery(req);
+            System.out.println(rs);
+            if (rs!=null)
+            {
+                        while (rs.next())
+                        {
+                            
+                            
+                            
+                            user.setId_user(rs.getInt("id_user"));
+                            user.setNom(rs.getString("nom"));
+                            user.setPrenom(rs.getString("prenom"));
+                            user.setUsername(rs.getString("username"));
+                            user.setMail(rs.getString("mail"));
+                            user.setDate_naissance(rs.getDate("date_naissance"));
+                            user.setPwd_user(rs.getString("pwd_user"));
+                            user.setRef_admin(rs.getString("ref_admin"));
+                            
+ return true;
+                        }
+            }
+            
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+        
+          public User AssignCurrentUser(String u,String p) throws SQLException
+    {   User user = new User();
+        String req = "SELECT * FROM `user` WHERE username =\'"+u+"\' and pwd_user=\'"+p+"\'";
+        System.out.println(req);
+        
+        
+        try {
+            Statement ste = cnx.createStatement();
+             ResultSet rs= ste.executeQuery(req);
+            System.out.println(rs);
+            if (rs!=null)
+            {
+                        while (rs.next())
+                        {
+                           
+                            
+                            
+                            user.setId_user(rs.getInt("id_user"));
+                            user.setNom(rs.getString("nom"));
+                            user.setPrenom(rs.getString("prenom"));
+                            user.setUsername(rs.getString("username"));
+                            user.setMail(rs.getString("mail"));
+                            user.setDate_naissance(rs.getDate("date_naissance"));
+                            user.setPwd_user(rs.getString("pwd_user"));
+                            user.setRef_admin(rs.getString("ref_admin"));
+                            System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEF  "+user.getRef_admin());
+                            
+                        }
+            }
+            
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
+
+           public User FindByUsername(String u) throws SQLException
+    {   User user = new User();
+        String req = "SELECT * FROM `user` WHERE username =\'"+u+"\' ";
+        System.out.println(req);
+        
+        
+        try {
+            Statement ste = cnx.createStatement();
+             ResultSet rs= ste.executeQuery(req);
+            System.out.println(rs);
+            if (rs!=null)
+            {
+                        while (rs.next())
+                        {
+                           
+                            
+                            
+                            user.setId_user(rs.getInt("id_user"));
+                            user.setNom(rs.getString("nom"));
+                            user.setPrenom(rs.getString("prenom"));
+                            user.setUsername(rs.getString("username"));
+                            user.setMail(rs.getString("mail"));
+                            user.setDate_naissance(rs.getDate("date_naissance"));
+                            user.setPwd_user(rs.getString("pwd_user"));
+                            user.setRef_admin(rs.getString("ref_admin"));
+                            
+                        }
+            }
+            
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
     
 }

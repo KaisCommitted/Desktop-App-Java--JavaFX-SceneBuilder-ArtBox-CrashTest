@@ -27,6 +27,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
 /**
  *
  */
@@ -44,18 +45,18 @@ public class Kais extends Application {
             Screen screen = Screen.getPrimary();
             Rectangle2D bounds = screen.getVisualBounds();
             // Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("FRONT_Event.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDParticipant.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
-            Scene scene = new Scene(root, 1920, 1080);
+            Scene scene = new Scene(root);//root, 1920, 1080);
             scene.setFill(Color.LIGHTGRAY);
-            primaryStage.setX(bounds.getMinX());
-            primaryStage.setY(bounds.getMinY());
-            primaryStage.setWidth(bounds.getWidth());
-            primaryStage.setHeight(bounds.getHeight());
+//            primaryStage.setX(bounds.getMinX());
+//            primaryStage.setY(bounds.getMinY());
+//            primaryStage.setWidth(bounds.getWidth());
+//            primaryStage.setHeight(bounds.getHeight());
             //primaryStage.initModality(Modality.APPLICATION_MODAL);
-            
-            //primaryStage.initStyle(StageStyle.UNDECORATED);
+            //primaryStage.setFullScreen(true);
+            primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setTitle("ArtBox");
             primaryStage.setScene(scene);
             primaryStage.setResizable(true);

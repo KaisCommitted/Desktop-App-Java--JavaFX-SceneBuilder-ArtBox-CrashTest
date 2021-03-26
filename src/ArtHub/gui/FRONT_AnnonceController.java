@@ -104,6 +104,7 @@ public class FRONT_AnnonceController implements Initializable {
 
     @FXML
     private void AddEvent(ActionEvent event) {
+        
     }
 
     @FXML

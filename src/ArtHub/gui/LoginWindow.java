@@ -9,38 +9,29 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
- * @author Fayechi
+ * @author louay
  */
-public class TestFXMainMoetezMathalan extends Application {
-    
+public class LoginWindow extends Application {
+
     @Override
     public void start(Stage primaryStage) {
-        
         try {
-          //  Parent root = FXMLLoader.load(getClass().getResource("AfficherFeedback.fxml"));
-            
-          //  Parent root = FXMLLoader.load(getClass().getResource("AddSignalisation.fxml"));
-            
-            
-            Parent root = FXMLLoader.load(getClass().getResource("AfficherFeedback.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Scene scene = new Scene(root);
-            
-            primaryStage.setTitle("Affichage");
+            primaryStage.setTitle("Welcome to ArtBox");
             primaryStage.setScene(scene);
+             primaryStage.initStyle(StageStyle.UNDECORATED);   
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(TestFXMainMoetezMathalan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -50,5 +41,6 @@ public class TestFXMainMoetezMathalan extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
+

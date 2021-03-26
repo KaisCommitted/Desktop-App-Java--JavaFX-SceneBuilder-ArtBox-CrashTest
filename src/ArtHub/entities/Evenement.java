@@ -5,6 +5,10 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.time.LocalDate;
 
+
+
+
+
 /**
  * test
  *
@@ -23,6 +27,7 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
     private int nb_max;
     private String image_event;
     private String location_event;
+    private int rating;
     
 
     public Evenement() {
@@ -96,6 +101,14 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
         this.type_event = type_event;
         this.categorie = categorie;
         this.description = description;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public Evenement(User id_org, LocalDate date_event, String nom_event, String type_event, String categorie, String description, int capacite_event) {

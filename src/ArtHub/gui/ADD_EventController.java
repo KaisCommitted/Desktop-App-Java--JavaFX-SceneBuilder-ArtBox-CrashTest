@@ -3,7 +3,7 @@ package ArtHub.gui;
 import ArtHub.entities.Download;
 import ArtHub.entities.Evenement;
 import static ArtHub.entities.Evenement.isNotInteger;
-
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.entities.User;
 import ArtHub.services.EvenementCRUD;
 import com.jfoenix.controls.JFXButton;
@@ -44,6 +44,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -54,6 +55,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 public class ADD_EventController implements Initializable {
 
@@ -71,7 +73,7 @@ public class ADD_EventController implements Initializable {
     private JFXDatePicker tDatenaiss;
     @FXML
     private TextField txt_capacite;
-    public static User CurrentUser = new User(1, "Louay", "0");
+    
     @FXML
     private JFXButton upload_image;
     public static String path="";
@@ -82,21 +84,26 @@ public class ADD_EventController implements Initializable {
     private URL urll;
     private ResourceBundle rbb;
     int i=0;
+    @FXML
+    private AnchorPane anchor;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+      
         Control.setVisible(false);
         combo_type.getItems().addAll("En ligne", "Exposé", "Festival", "Formation", "Autres");
 
-        txt_categorie.getItems().addAll("Dancing", "Theatre", "Slam", "Singing", "Street Art");
+            txt_categorie.getItems().addAll("Dancing", "Theatre", "Slam", "Singing", "Street Art");
 
     }
 
     @FXML
     private void addEvent(ActionEvent event) {
-      
+         
+
+       
         try {
             
             if(i>0){initialize(urll, rbb)
@@ -152,7 +159,6 @@ public class ADD_EventController implements Initializable {
         } catch (Exception ex) {
             Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML

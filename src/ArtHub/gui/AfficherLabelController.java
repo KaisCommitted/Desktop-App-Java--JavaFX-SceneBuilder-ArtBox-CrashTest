@@ -4,12 +4,6 @@
  * and open the template in the editor.
  */
 package ArtHub.gui;
-
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.AnchorPane;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
@@ -33,8 +27,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
-import java.util.function.Predicate;
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -42,6 +34,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.layout.GridPane;
 
@@ -185,7 +178,7 @@ public class AfficherLabelController implements Initializable {
         input.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                treeview.setPredicate(new Predicate<TreeItem<Label>>() {
+                treeview.setPredicate(new Predicate<TreeItem<Labell>>() {
                     @Override
                     public boolean test(TreeItem<Produits> t) {
 
