@@ -574,7 +574,7 @@ public class FRONT_EventController implements Initializable {
 
     @FXML
     private void EventClicked(MouseEvent event) throws FileNotFoundException {
-        qrcode();
+    
         ParticipantCRUD pc= new ParticipantCRUD();
         if (id_clicked != 0) {
             UserCRUD u = new UserCRUD();
@@ -813,28 +813,5 @@ public class FRONT_EventController implements Initializable {
      
     
     
-    public void qrcode()  {
-  EvenementCRUD ec= new EvenementCRUD();
-ParticipantCRUD pc = new ParticipantCRUD();
-Evenement E = new Evenement();
-Participant P = new Participant();
- UserCRUD u = new UserCRUD();
-        try {
-       P= pc.FindParticipant(CurrentUser.getId_user(), id_clicked);
-        String str ="testing";
-           
-        
-        String imageFormat = "png";
-        String outputFileName = "C:\\Users\\21698\\Desktop\\Studies\\3A\\SEM2\\PIDEV\\ArtHub\\src\\ArtHub\\images\\QR code\\test.png";
-                BitMatrix matrix = new MultiFormatWriter().encode("test", BarcodeFormat.QR_CODE, 500, 500);
-        try {
-            MatrixToImageWriter.writeToPath(matrix, imageFormat, Paths.get(outputFileName));
-        } catch (IOException ex) {
-            Logger.getLogger(EventTicketController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    } catch (WriterException ex) {
-        Logger.getLogger(EventTicketController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    } 
-
+   
 }
