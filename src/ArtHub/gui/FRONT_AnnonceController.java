@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -42,17 +43,15 @@ public class FRONT_AnnonceController implements Initializable {
     @FXML
     private StackPane parentContainer1;
     @FXML
-    private AnchorPane anchorRoot1;
-    @FXML
     private JFXButton Btn_AddEvent;
     @FXML
     private JFXTextField input;
     @FXML
-    private Text refresh;
-    @FXML
     private JFXButton feed_button;
     @FXML
     private GridPane grid_annonce;
+    @FXML
+    private ImageView BtnClose;
 
     /**
      * Initializes the controller class.
@@ -133,12 +132,23 @@ public class FRONT_AnnonceController implements Initializable {
     private void filterEvent(KeyEvent event) {
     }
 
-    @FXML
-    private void refresh(MouseEvent event) {
-    }
 
     @FXML
     private void load_feed(ActionEvent event) {
+    }
+
+    @FXML
+    private void offEffectSearch(MouseEvent event) {
+    }
+
+    @FXML
+    private void onEffectSearch(MouseEvent event) {
+    }
+
+    @FXML
+    private void close(MouseEvent event) {
+        Stage CurrentStage = (Stage) BtnClose.getScene().getWindow();
+        CurrentStage.close();
     }
     
 }

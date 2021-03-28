@@ -41,7 +41,14 @@ import javax.swing.ImageIcon;
 import ArtHub.gui.FRONT_EventController;
 import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.RatingCRUD;
+import ArtHub.services.UserCRUD;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 import javafx.event.EventHandler;
@@ -195,7 +202,7 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
 
     @FXML
     private void JoinEvent(ActionEvent event) {
-         //Whatsapp.send("Yo");
+       
         EvenementCRUD ec = new EvenementCRUD();
         Evenement CurrentEvent = ec.FindEvenement(Integer.parseInt(id_event.getText()));
 
@@ -222,7 +229,7 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
                 Event_spots1.setText(Integer.toString(Integer.parseInt(aux1) + 1) + " Participants");
             }
         }
-        Notifications notificationBuilder = Notifications.create()
+       /* Notifications notificationBuilder = Notifications.create()
                .title("Alert").text("You joined").graphic(null).hideAfter(javafx.util.Duration.minutes(10))
                .position(Pos.TOP_RIGHT)
                .onAction(new EventHandler<ActionEvent>(){
@@ -232,7 +239,7 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
                }});
        notificationBuilder.darkStyle();
        notificationBuilder.show();
-
+*/
     }
 
     @FXML
@@ -610,4 +617,6 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
          ItemBox.setEffect(highlight);
         ItemBox.setCursor(Cursor.HAND);
     }
+    
+   
 }

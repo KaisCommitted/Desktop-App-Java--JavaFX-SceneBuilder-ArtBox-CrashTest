@@ -209,6 +209,16 @@
                         </Label>
                      </children>
                   </VBox>
+                  <Label fx:id="ticketlbl" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="222.0" layoutY="634.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="133.0" text="Get your ticket now" textFill="#11042e" visible="false">
+                     <font>
+                        <Font name="Cambria Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="ticketimg" fitHeight="52.0" fitWidth="63.0" layoutX="355.0" layoutY="615.0" onMouseClicked="#GetYourTicket" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../images/ticket.png" />
+                     </image>
+                  </ImageView>
                </children>
                <padding>
                   <Insets top="20.0" />

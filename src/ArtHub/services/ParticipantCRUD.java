@@ -28,13 +28,15 @@ public class ParticipantCRUD {
     }
 
     public void ajouterParticipant(Participant p) {
-        String req = "INSERT INTO participant (id_user,id_event)" + "values (?,?)";
+        String req = "INSERT INTO participant (id_user,id_event,ticket)" + "values (?,?,?)";
         try {
-
+ String ticket= "" + p.getId_participation()+  p.getId_user().getId_user()+ p.getId_event().getId() ;
+ 
             ste = cnx.prepareStatement(req);
             ste.setInt(1, p.getId_user().getId_user());
             ste.setInt(2, p.getId_event().getId());
-
+            ste.setString(3,ticket); 
+          
             ste.executeUpdate();
             System.out.println("Participant ajoutée");
 
@@ -119,6 +121,23 @@ public class ParticipantCRUD {
         return UserExists;
     }
 
+    
+     public Participant FindParticipant(int id_user, int id_event) {
+
+       Participant P = new Participant();
+        try {
+            PreparedStatement st = cnx.prepareStatement("select * from participant where id_user = ? AND id_event = ? ");
+            st.setInt(1, id_user);
+            st.setInt(2, id_event);
+            ResultSet r1 = st.executeQuery();
+            if (r1.next()) {
+                P.setTicket(r1.getString("ticket"));
+            }
+        } catch (Exception e) {
+            System.out.println("SQL Exception: " + e.toString());
+        }
+        return P;
+    }
     public List<User> FindParticipants(int id) {
 
         List<User> myList = new ArrayList<>();

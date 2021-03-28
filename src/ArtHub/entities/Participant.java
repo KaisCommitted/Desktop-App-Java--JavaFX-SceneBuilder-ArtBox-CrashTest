@@ -13,6 +13,22 @@ import java.sql.Date;
     private int id_participation;
     private User id_user;
     private Evenement id_event;
+    private String ticket;
+
+    public Participant(User id_user, Evenement id_event, String ticket) {
+        this.id_user = id_user;
+        this.id_event = id_event;
+        this.ticket = ticket;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
+    
 
     public Participant(User id_user, Evenement id_event) {
         this.id_user = id_user;

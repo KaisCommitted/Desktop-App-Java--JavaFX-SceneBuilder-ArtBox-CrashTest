@@ -14,11 +14,17 @@ import static ArtHub.gui.ItemBoxController.highlightBtn;
 import static ArtHub.gui.LoginController.CurrentUser;
 import static ArtHub.gui.ItemBoxController.id_clicked;
 import static ArtHub.gui.ItemBoxController.style;
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.EvenementCRUD;
 import ArtHub.services.ParticipantCRUD;
 import ArtHub.services.UserCRUD;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
@@ -45,6 +51,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,13 +60,16 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Cursor;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -69,6 +79,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.imageio.ImageIO;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 //import javafx.scene.control.Tab;
@@ -150,6 +161,10 @@ public class FRONT_EventController implements Initializable {
     private ImageView ratedImg;
     @FXML
     private Label ratedLbl;
+    @FXML
+    private Label ticketlbl;
+    @FXML
+    private ImageView ticketimg;
 
     /**
      * Initializes the controller class.
@@ -158,22 +173,7 @@ public class FRONT_EventController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             //////////////////////////////////WHATSAPPP//////////////////////////////////////////
-            List<Evenement> myLiist;
-           
-            ParticipantCRUD pc = new ParticipantCRUD();
-            myLiist = ps.TodayEvenement();
-            if (!myLiist.isEmpty()) {
-
-                for (int i = 0; i < myLiist.size(); i++) {
-                  //  if (pc.CheckUserExists(CurrentUser.getId_user(), myLiist.get(i).getId())) {
-                        
-                        String content = "";
-                        content = "Don't forget to show up today," + myLiist.get(i).getNom_event() + " is happening TODAY and we have a spot reserved especially for you, find us in " + myLiist.get(i).getLocation_event();
-                        System.out.println(content);
-                        Whatsapp.send(content);
-                   // }
-                }
-            }
+            //sendWhatsapp();
             ///////////////////////////////////WHATSAAAAAP////////////////////////////////////////////
 
             scroll21.setFitToHeight(true);
@@ -294,7 +294,8 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private void AddEvent(ActionEvent event) {
         try {
-            //sendWhatsapp();
+           
+            
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ADD_Event.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -573,6 +574,8 @@ public class FRONT_EventController implements Initializable {
 
     @FXML
     private void EventClicked(MouseEvent event) throws FileNotFoundException {
+        qrcode();
+        ParticipantCRUD pc= new ParticipantCRUD();
         if (id_clicked != 0) {
             UserCRUD u = new UserCRUD();
             String org = "";
@@ -607,8 +610,15 @@ public class FRONT_EventController implements Initializable {
                 ratedLbl.setText(Integer.toString(Evenement.getRating()));
                 ratedImg.setVisible(true);
                 ratedLbl.setVisible(true);
-            }
-            System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSRAAAAAAAAAAAAAAAAAAAANK " + (Evenement.getRating()));
+            } 
+            System.out.println("IDDDDDD clicked  "+id_clicked +"CUrreeent USER ID    "+CurrentUser.getId_user());
+             if(pc.CheckUserExists(CurrentUser.getId_user(), id_clicked))
+            {
+                ticketimg.setVisible(true);
+              ticketlbl.setVisible(true);
+            } else { ticketimg.setVisible(false);
+              ticketlbl.setVisible(false);}
+           
 
         }
 
@@ -750,24 +760,80 @@ public class FRONT_EventController implements Initializable {
     }
 
     
-    /*private void sendWhatsapp() {
-        List<Evenement> myLst;
-        Evenement E = new Evenement();
-        ParticipantCRUD pc = new ParticipantCRUD();
-        myLst = ps.TodayEvenement();
-        if (!myLst.isEmpty()) {
-            if (pc.CheckUserExists(CurrentUser.getId_user(), E.getId())) {
-                for (int i = 0; i < myLst.size(); i++) {
-                    E = myLst.get(i);
-                    String content = "";
-                    content = "Don't forget to show up today," + E.getNom_event() + " is happening TODAY and we have a spot reserved especially for you, find us in " + E.getLocation_event();
-                    System.out.println(content);
-                    Whatsapp.send(content);
+    private void sendWhatsapp() {
+       List<Evenement> myLiist;
+           EvenementCRUD ec = new EvenementCRUD();
+            ParticipantCRUD pc = new ParticipantCRUD();
+            myLiist = ec.TodayEvenement();
+            if (!myLiist.isEmpty()) {
+
+                for (int i = 0; i < myLiist.size(); i++) {
+                    if (pc.CheckUserExists(CurrentUser.getId_user(), myLiist.get(i).getId())) {
+                        
+                        String content = "";
+                        content = "Don't forget to show up today," + myLiist.get(i).getNom_event() + " is happening TODAY and we have a spot reserved especially for you, find us in " + myLiist.get(i).getLocation_event();
+                        System.out.println(content);
+                        Whatsapp.send(content);
+                   }
                 }
             }
 
-        }
+    }
 
-    }*/
+    @FXML
+    private void GetYourTicket(MouseEvent event) {
+              
+            
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventTicket.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event");
+           
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+            String userHomeFolder = System.getProperty("user.home");
+            
+            WritableImage image = root1.snapshot(new SnapshotParameters(), null);
+           File file1 = new File(userHomeFolder+"\\Downloads\\ArtHub Tickets");
+           file1.mkdir();
+            File file = new File(userHomeFolder+"\\Downloads\\ArtHub Tickets\\Ticket"+CurrentUser.getId_user()+id_clicked+".png");
+          
+              ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        
+    }
+     
+    
+    
+    public void qrcode()  {
+  EvenementCRUD ec= new EvenementCRUD();
+ParticipantCRUD pc = new ParticipantCRUD();
+Evenement E = new Evenement();
+Participant P = new Participant();
+ UserCRUD u = new UserCRUD();
+        try {
+       P= pc.FindParticipant(CurrentUser.getId_user(), id_clicked);
+        String str ="testing";
+           
+        
+        String imageFormat = "png";
+        String outputFileName = "C:\\Users\\21698\\Desktop\\Studies\\3A\\SEM2\\PIDEV\\ArtHub\\src\\ArtHub\\images\\QR code\\test.png";
+                BitMatrix matrix = new MultiFormatWriter().encode("test", BarcodeFormat.QR_CODE, 500, 500);
+        try {
+            MatrixToImageWriter.writeToPath(matrix, imageFormat, Paths.get(outputFileName));
+        } catch (IOException ex) {
+            Logger.getLogger(EventTicketController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } catch (WriterException ex) {
+        Logger.getLogger(EventTicketController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    } 
 
 }
