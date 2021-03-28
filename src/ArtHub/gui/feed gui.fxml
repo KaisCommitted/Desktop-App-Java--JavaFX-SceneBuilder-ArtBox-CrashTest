@@ -155,6 +155,11 @@
                   </Tab>
                </tabs>
             </JFXTabPane>
+            <Label fx:id="lblfeedback" layoutX="1908.0" layoutY="153.0" onMouseClicked="#addFeedback" prefHeight="18.0" prefWidth="64.0" text="Feedback" textFill="#fff8f8" translateY="820.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             
             
             

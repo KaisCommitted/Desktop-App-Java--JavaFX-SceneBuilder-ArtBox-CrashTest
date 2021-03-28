@@ -21,7 +21,7 @@
 
 <StackPane fx:id="parentContainer1" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_EventController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="2004.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+      <AnchorPane id="AnchorPane" onMouseClicked="#AddFeedback" prefHeight="1080.0" prefWidth="2004.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
             <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1537.0" layoutY="21.0" onAction="#AddEvent" onMouseEntered="#onEffectBtnHost" onMouseExited="#offEffectBtnHost" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Host an event" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
@@ -81,7 +81,7 @@
             </JFXButton>
             <ScrollPane fx:id="scroll22" layoutX="526.0" layoutY="139.0" prefHeight="897.0" prefWidth="1282.0" style="-fx-background-color: transparent;">
                <content>
-                  <VBox alignment="CENTER_LEFT" onMouseClicked="#EventClicked" prefHeight="710.0" prefWidth="1527.0" spacing="20.0" style="-fx-background-color: transparent;">
+                  <VBox alignment="CENTER_LEFT" onMouseClicked="#AddFeedback" prefHeight="710.0" prefWidth="1527.0" spacing="20.0" style="-fx-background-color: transparent;">
                      <children>
                         <Label fx:id="label_layout" prefHeight="40.0" prefWidth="354.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="All upcoming Events" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" translateY="10.0" wrapText="true">
                            <font>
@@ -224,6 +224,11 @@
                   <Insets top="20.0" />
                </padding>
             </AnchorPane>
+            <Label fx:id="addFeedback1" layoutX="1851.0" layoutY="107.0" onMouseClicked="#AddFeedback" prefHeight="18.0" prefWidth="74.0" text="Feedback" textAlignment="CENTER" textFill="WHITE" translateY="935.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             
             
             

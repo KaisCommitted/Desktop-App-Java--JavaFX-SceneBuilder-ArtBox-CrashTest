@@ -86,7 +86,6 @@ public class ADD_EventController implements Initializable {
     private JFXDatePicker tDatenaiss;
     @FXML
     private TextField txt_capacite;
-    
     @FXML
     private JFXButton upload_image;
     public static String path="";

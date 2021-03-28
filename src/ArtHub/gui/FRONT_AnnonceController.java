@@ -22,6 +22,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -30,7 +32,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -52,6 +56,8 @@ public class FRONT_AnnonceController implements Initializable {
     private GridPane grid_annonce;
     @FXML
     private ImageView BtnClose;
+    @FXML
+    private AnchorPane addFeedback3;
 
     /**
      * Initializes the controller class.
@@ -149,6 +155,24 @@ public class FRONT_AnnonceController implements Initializable {
     private void close(MouseEvent event) {
         Stage CurrentStage = (Stage) BtnClose.getScene().getWindow();
         CurrentStage.close();
+    }
+
+    @FXML
+    private void AddFeedback(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddFeedback.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Statistiques");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
