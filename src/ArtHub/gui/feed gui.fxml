@@ -20,9 +20,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="parentContainer" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FeedGuiController">
+<StackPane fx:id="parentContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FeedGuiController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="anchorRoot" prefHeight="1000.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+      <AnchorPane id="AnchorPane" fx:id="anchorRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
             <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="16.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef">
                <font>
@@ -100,7 +100,7 @@
                </image>
             </ImageView>
             <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="236.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
-            <JFXTabPane layoutX="1.0" layoutY="172.0" prefHeight="827.0" prefWidth="2049.0" styleClass="panel">
+            <JFXTabPane layoutX="1.0" layoutY="172.0" prefHeight="827.0" prefWidth="1920.0" styleClass="panel">
                <tabs>
                   <Tab text="Following">
                      
@@ -155,7 +155,7 @@
                   </Tab>
                </tabs>
             </JFXTabPane>
-            <Label fx:id="lblfeedback" layoutX="1908.0" layoutY="153.0" onMouseClicked="#addFeedback" prefHeight="18.0" prefWidth="64.0" text="Feedback" textFill="#fff8f8" translateY="820.0">
+            <Label fx:id="lblfeedback" layoutX="1908.0" layoutY="153.0" onMouseClicked="#addFeedback" prefHeight="18.0" prefWidth="64.0" text="Feedback" textFill="#fff8f8" translateX="-80.0" translateY="850.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
