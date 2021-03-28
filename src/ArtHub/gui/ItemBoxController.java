@@ -82,6 +82,9 @@ public class ItemBoxController implements Initializable {
     private Button Btn_participer;
     @FXML
     private Label Event_spots;
+    
+    String userHomeFolder = System.getProperty("user.home");
+           
 public static final DropShadow highlight = new DropShadow(80, Color.web("#11042e"));
 public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#11042e"));
     private String[] colors = {"c992d6", "b0ffa7", "e2aa8e", "f9ffac", "ffecc5", "a0c7c2", "aec6cf"};
@@ -127,12 +130,12 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
      * Initializes the controller class.
      *
      * @ param url
-     */
+     */ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Empty = "C:\\Users\\21698\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Empty.png";
-        Full = "C:\\Users\\21698\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Full.png";
-        AVG = "C:\\Users\\21698\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\peach.png";
+        Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Empty.png";
+        Full = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Full.png";
+        AVG = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\peach.png";
         
 
     }

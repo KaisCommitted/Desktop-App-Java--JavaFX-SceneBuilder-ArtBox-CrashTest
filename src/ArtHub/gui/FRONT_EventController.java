@@ -797,6 +797,7 @@ public class FRONT_EventController implements Initializable {
             stage.show();
             String userHomeFolder = System.getProperty("user.home");
             
+            
             WritableImage image = root1.snapshot(new SnapshotParameters(), null);
            File file1 = new File(userHomeFolder+"\\Downloads\\ArtHub Tickets");
            file1.mkdir();
