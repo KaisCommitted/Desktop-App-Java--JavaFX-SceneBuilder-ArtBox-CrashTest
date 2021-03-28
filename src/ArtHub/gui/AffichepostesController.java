@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package ArtHub.gui;
-
+import ArtHub.entities.User;
 import ArtHub.entities.Post;
 import ArtHub.services.postCRUD;
 import com.jfoenix.controls.JFXButton;
@@ -171,6 +171,59 @@ public class AffichepostesController implements Initializable {
             }
         });
         
+        
+         JFXTreeTableColumn<Post, String> id_user = new JFXTreeTableColumn<>("id_user");
+        id_user.setPrefWidth(150);
+        id_user.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user().getId_user()));
+            }
+        });
+        
+        
+         JFXTreeTableColumn<Post, String> likes = new JFXTreeTableColumn<>("likes");
+        likes.setPrefWidth(150);
+        likes.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getLikes()));
+            }
+        });
+        
+        
+        
+         JFXTreeTableColumn<Post, String> Descrition_Analysis = new JFXTreeTableColumn<>("Description Analysis");
+        Descrition_Analysis.setPrefWidth(150);
+        Descrition_Analysis.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Post, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Post, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getDesc_analys());
+            }
+        });
+        Descrition_Analysis.setCellFactory((TreeTableColumn<Post, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        
+
+      //setting the new value for editable Description text field
+       Descrition_Analysis.setOnEditCommit((CellEditEvent<Post, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_post();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setCategorie(t.getNewValue());
+            ps.modifierPost(idd, "Desc_analys", newValue);
+        });
+        
+        
+        
+        
+        
+        
         List<Post> myLst;
         myLst = ps.consultePostes();
         ObservableList<Post>postes = FXCollections.observableArrayList();
@@ -178,7 +231,7 @@ public class AffichepostesController implements Initializable {
         myLst.forEach(p ->postes.add(p));
         JFXTreeTableView<Post> treeview = new JFXTreeTableView<>();
         final TreeItem<Post> root = new RecursiveTreeItem<Post>(postes, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id_post,Nom_post,Description,categorie,poste_date);
+        treeview.getColumns().setAll(id_user,id_post,Nom_post,Description,categorie,likes,poste_date,Descrition_Analysis);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);
@@ -236,5 +289,7 @@ public class AffichepostesController implements Initializable {
     
 
     
+
+
 
 

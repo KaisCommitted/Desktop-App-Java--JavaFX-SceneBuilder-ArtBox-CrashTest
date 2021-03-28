@@ -80,7 +80,7 @@ public class InteractionsCrud {
              ste.setInt(1, p.getId_post().getId_post());
             
             ste.executeUpdate();
-            System.out.println("Likes added");
+            System.out.println("Likes deleted");
             
         } catch (SQLException ex) {
             System.out.println("Probléme");

@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.collections.MapChangeListener;
@@ -69,6 +71,10 @@ public class mp3Controller implements Initializable {
     private Label idLabel;
     @FXML
     private JFXButton like_btn;
+    
+     @FXML
+    private ImageView imgbtn = new ImageView();
+    
     @FXML
     private Label likesLabel;
     String s;
@@ -78,7 +84,7 @@ public class mp3Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
       
-                    System.out.println("Rani dkhalet 7 ");
+                    
 
         
 
@@ -97,6 +103,43 @@ public class mp3Controller implements Initializable {
        s=post.getFile();
        img.setImage(image);
      
+       
+       
+       
+       
+       
+        Post CurrentPost = new Post(Integer.parseInt(idLabel.getText()));
+         interactions p = new interactions(CurrentPost, CurrentUser);      
+         InteractionsCrud  ppt = new InteractionsCrud();
+         Image image1;
+       if (ppt.Checklike(p.getId_user().getId_user(), p.getId_post().getId_post())){
+           
+           
+       try {
+           image1 = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like_selec.png"));
+           
+           imgbtn.setImage(image1);
+           
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+       
+       }
+       else{
+       
+       
+        try {
+           image1 = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like_null.png"));
+           
+           imgbtn.setImage(image1);
+           
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+       
+       }
         
     }
     
@@ -182,11 +225,34 @@ void like(ActionEvent event) {
         if (ppt.Checklike(p.getId_user().getId_user(), p.getId_post().getId_post())){
          ppt.supprimerInteraction(p);
           likesLabel.setText(Integer.toString(Integer.parseInt(aux) -1) );
+          
+          
+           Image image;
+       try {
+           image = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like2.gif"));
+           
+           imgbtn.setImage(image);
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+          
         }
         else{
         
         likesLabel.setText(Integer.toString(Integer.parseInt(aux) +1));
         ppt.ajouterInteraction(p);
+        
+        
+        
+        Image image;
+       try {
+           image = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like.gif"));
+           
+           imgbtn.setImage(image);
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
         }
         
 
