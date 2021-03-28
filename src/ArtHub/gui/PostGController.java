@@ -18,9 +18,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.Initializable;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 
 public class PostGController implements Initializable {
@@ -35,6 +42,11 @@ public class PostGController implements Initializable {
 
     @FXML
     private ImageView img;
+    
+     @FXML
+    private ImageView imgbtn = new ImageView();
+
+    
 
  @FXML
     private VBox Postbox;
@@ -56,16 +68,41 @@ public class PostGController implements Initializable {
     //private void click(MouseEvent mouseEvent) {
        // myListener.onClickListener(post);
     //}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-
+ //String path="file:///C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\gui\\post_pics\\like_selec.png" ;
+        
+ 
+ //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
+         
+ 
+     
+ 
+ 
+        
+       
+        
+ 
+ 
+ 
+        
     }
     
     //private MyListener myListener;
 
     public void setData(Post post) throws FileNotFoundException {
-        System.out.println("Rani dkhalet 2 ");
+        
         
         nameLabel.setText(post.getNom_post());
         descreption.setText(post.getDescription());
@@ -74,6 +111,62 @@ public class PostGController implements Initializable {
         System.out.println(post.getFile());
        Image image =new Image(new FileInputStream(post.getFile())); 
       img.setImage(image);
+      
+      
+      // set a clip to apply rounded border to the original image.
+            Rectangle clip = new Rectangle(img.getFitWidth(), img.getFitHeight()
+);
+            clip.setArcWidth(30);
+            clip.setArcHeight(30);
+            img.setClip(clip);
+
+            // snapshot the rounded image.
+            SnapshotParameters parameters = new SnapshotParameters();
+            parameters.setFill(Color.TRANSPARENT);
+            WritableImage imag = img.snapshot(parameters, null);
+
+            // remove the rounding clip so that our effect can show through.
+            img.setClip(null);
+
+            // apply a shadow effect.
+            img.setEffect(new DropShadow(20, Color.BLACK));
+
+            img.setImage(imag);
+           
+      
+      Post CurrentPost = new Post(Integer.parseInt(idLabel.getText()));
+         interactions p = new interactions(CurrentPost, CurrentUser);      
+         InteractionsCrud  ppt = new InteractionsCrud();
+         Image image1;
+       if (ppt.Checklike(p.getId_user().getId_user(), p.getId_post().getId_post())){
+           
+           
+       try {
+           image1 = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like_selec.png"));
+           
+           imgbtn.setImage(image1);
+           
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+       
+       }
+       else{
+       
+       
+        try {
+           image1 = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like_null.png"));
+           
+           imgbtn.setImage(image1);
+           
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+       
+       }
+      
         
       
         
@@ -93,6 +186,7 @@ public class PostGController implements Initializable {
     }
     @FXML
     void like(ActionEvent event) {
+        
         Post CurrentPost = new Post(Integer.parseInt(idLabel.getText()));   
         interactions p = new interactions(CurrentPost, CurrentUser);
         InteractionsCrud  ppt = new InteractionsCrud();
@@ -104,12 +198,33 @@ public class PostGController implements Initializable {
         
         if (ppt.Checklike(p.getId_user().getId_user(), p.getId_post().getId_post())){
          ppt.supprimerInteraction(p);
-          likesLabel.setText(Integer.toString(Integer.parseInt(aux) -1));
+         
+         likesLabel.setText(Integer.toString(Integer.parseInt(aux) -1));
+           Image image;
+       try {
+           image = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like2.gif"));
+           
+           imgbtn.setImage(image);
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+          
         }
         else{
         
         likesLabel.setText(Integer.toString(Integer.parseInt(aux) +1));
         ppt.ajouterInteraction(p);
+       
+        Image image;
+       try {
+           image = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like.gif"));
+           
+           imgbtn.setImage(image);
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
+        
         }
         
 

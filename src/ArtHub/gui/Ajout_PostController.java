@@ -9,6 +9,7 @@ import ArtHub.entities.Post;
 import ArtHub.entities.User;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
+import SentimentAnalysis.SentimentAPI;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +47,9 @@ import javax.xml.ws.spi.http.HttpContext;
 
 
 import sun.net.www.http.HttpClient;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 //import javafx.scene.control.Tab;
 
@@ -172,8 +176,13 @@ public class Ajout_PostController implements Initializable {
          int result = fileChooser.showSaveDialog(null);
          if(result == JFileChooser.APPROVE_OPTION){
              File selectedFile = fileChooser.getSelectedFile();
-             String path = selectedFile.getAbsolutePath();
-            s = path;
+             File src = new File(selectedFile.getPath());
+             File dest = new File("C:/xampp/php/www/pidev/Postes/");
+             java.nio.file.Path sr = src.toPath();
+            java.nio.file.Path ds = new File(dest, src.getName()).toPath();
+            File newDes = new File("C:/xampp/php/www/pidev/Postes/" + selectedFile.getName());
+            selectedFile.renameTo(newDes);
+            s = "C:/xampp/php/www/pidev/Postes/" + selectedFile.getName().toString();
             
               }
          else if(result == JFileChooser.CANCEL_OPTION){
@@ -211,13 +220,38 @@ public class Ajout_PostController implements Initializable {
     @FXML
     void create_image(ActionEvent event) throws Exception {
         
+        String resp=null;
+         try{
+            resp = SentimentAPI.GetSentiment(p_desc.getText());
+            
+            
+        }catch(IOException ex){
+            System.out.println("Check the bugs in the Sent API on Azure");
+        }
+        
             String rNom_post = p_name.getText();
             String rdesc = p_desc.getText();
             User id_user = CurrentUser;
-            Post p = new Post(id_user,rNom_post,rdesc);
+            String desc_analys= resp;
+            
+            
+            
+            
+            Post p = new Post(id_user,rNom_post,rdesc,desc_analys);
             postCRUD prc = new postCRUD();
             prc.ajouterImage(p);
+            
+            
+            
+          String title = "Congratulations";
+        String message = "You've successfully created your post";
+        //Notification notification = Notifications.SUCCESS;
         
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
         
         
         
@@ -228,13 +262,35 @@ public class Ajout_PostController implements Initializable {
     @FXML
     void create_video(ActionEvent event) throws Exception {
         
+        String resp=null;
+         try{
+            resp = SentimentAPI.GetSentiment(video_desc.getText());
+            
+            
+        }catch(IOException ex){
+            System.out.println("Check the bugs in the Sent API on Azure");
+        }
+        
+        
+        
             String rNom_post = video_name.getText();
             String rdesc = video_desc.getText();
             User id_user = CurrentUser;
-            Post p = new Post(id_user,rNom_post,rdesc);
+            String desc_analys= resp;
+            Post p = new Post(id_user,rNom_post,rdesc,desc_analys);
             postCRUD prc = new postCRUD();
             prc.ajouterVideo(p);
         
+            
+             String title = "Congratulations";
+        String message = "You've successfully created your post";
+        //Notification notification = Notifications.SUCCESS;
+        
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
         
         
         
@@ -245,17 +301,46 @@ public class Ajout_PostController implements Initializable {
     @FXML
     void create_music(ActionEvent event) throws Exception {
         
+        
+        
+        
+        String resp=null;
+         try{
+            resp = SentimentAPI.GetSentiment(song_desc.getText());
+            
+            
+        }catch(IOException ex){
+            System.out.println("Check the bugs in the Sent API on Azure");
+        }
+        
+        
+        
             String rNom_post = song_name.getText();
             String rdesc = song_desc.getText();
             User id_user = CurrentUser;
-            Post p = new Post(id_user,rNom_post,rdesc);
+            String desc_analys= resp;
+            
+            
+            
+            
+            
+            Post p = new Post(id_user,rNom_post,rdesc,desc_analys);
             postCRUD prc = new postCRUD();
 
             prc.ajouterMusic(p);
         
         
         
+         String title = "Congratulations";
+        String message = "You've successfully created your post";
+        //Notification notification = Notifications.SUCCESS;
         
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
 
 
     }
