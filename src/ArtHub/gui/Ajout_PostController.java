@@ -7,6 +7,7 @@ package ArtHub.gui;
 
 import ArtHub.entities.Post;
 import ArtHub.entities.User;
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
 import SentimentAnalysis.SentimentAPI;
@@ -95,7 +96,7 @@ public class Ajout_PostController implements Initializable {
     public static int tindex;
 
     
-    User CurrentUser = new User(2);
+    
     @FXML
     private JFXButton create_image;
     @FXML

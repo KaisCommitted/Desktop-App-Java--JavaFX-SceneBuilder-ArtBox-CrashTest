@@ -221,7 +221,7 @@ public class FRONT_EventController implements Initializable {
             MoreDetails.setStyle("-fx-background-color: #b0ffa7;" + "-fx-background-radius: 15;" + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
             EvenementCRUD p = new EvenementCRUD();
             Evenement Evenement = new Evenement();
-            Evenement = p.consulterEvenement().get(1);
+            Evenement = p.consulterEvenement().get(0);
             UserCRUD u = new UserCRUD();
             event_description.setText("Description :" + Evenement.getDescription());
             String pat = Evenement.getImage_event();
