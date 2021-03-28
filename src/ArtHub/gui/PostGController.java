@@ -16,11 +16,15 @@ import ArtHub.services.InteractionsCrud;
 import com.jfoenix.controls.JFXButton;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.WritableImage;
@@ -28,6 +32,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class PostGController implements Initializable {
@@ -37,8 +44,6 @@ public class PostGController implements Initializable {
     @FXML
     private Label likesLabel;
 
-    @FXML
-    private Label commentsLabel;
 
     @FXML
     private ImageView img;
@@ -46,13 +51,8 @@ public class PostGController implements Initializable {
      @FXML
     private ImageView imgbtn = new ImageView();
 
-    
+     String userHomeFolder = System.getProperty("user.home");
 
- @FXML
-    private VBox Postbox;
- 
-   @FXML
-    private AnchorPane anchorpane;
 
  @FXML
     private Label descreption;
@@ -68,6 +68,8 @@ public class PostGController implements Initializable {
     //private void click(MouseEvent mouseEvent) {
        // myListener.onClickListener(post);
     //}
+    @FXML
+    private ImageView addsignal;
  
  
  
@@ -81,12 +83,17 @@ public class PostGController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
- //String path="file:///C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\gui\\post_pics\\like_selec.png" ;
-        
- 
- //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
-         
- 
+       try {
+           //String path="file:///C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\gui\\post_pics\\like_selec.png" ;
+           
+           
+           //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
+           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\flag.png";
+           Image image =new Image(new FileInputStream(Empty));
+           addsignal.setImage(image);
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
      
  
  
@@ -142,7 +149,7 @@ public class PostGController implements Initializable {
            
            
        try {
-           image1 = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like_selec.png"));
+           image1 = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like_selec.png"));
            
            imgbtn.setImage(image1);
            
@@ -156,7 +163,7 @@ public class PostGController implements Initializable {
        
        
         try {
-           image1 = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like_null.png"));
+           image1 = new Image(new FileInputStream(userHomeFolder+ "\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like_null.png"));
            
            imgbtn.setImage(image1);
            
@@ -202,7 +209,7 @@ public class PostGController implements Initializable {
          likesLabel.setText(Integer.toString(Integer.parseInt(aux) -1));
            Image image;
        try {
-           image = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like2.gif"));
+           image = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like2.gif"));
            
            imgbtn.setImage(image);
        } catch (FileNotFoundException ex) {
@@ -217,7 +224,7 @@ public class PostGController implements Initializable {
        
         Image image;
        try {
-           image = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like.gif"));
+           image = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like.gif"));
            
            imgbtn.setImage(image);
        } catch (FileNotFoundException ex) {
@@ -228,6 +235,24 @@ public class PostGController implements Initializable {
         }
         
 
+    }
+
+    @FXML
+    private void addReport(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddSignalisation.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Statistiques");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

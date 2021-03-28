@@ -224,7 +224,7 @@
                   <Insets top="20.0" />
                </padding>
             </AnchorPane>
-            <Label fx:id="addFeedback1" layoutX="1851.0" layoutY="107.0" onMouseClicked="#AddFeedback" prefHeight="18.0" prefWidth="74.0" text="Feedback" textAlignment="CENTER" textFill="WHITE" translateY="935.0">
+            <Label fx:id="addFeedback1" layoutX="1851.0" layoutY="33.0" onMouseClicked="#AddFeedback" prefHeight="18.0" prefWidth="74.0" text="Feedback" textAlignment="CENTER" textFill="WHITE" translateY="980.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

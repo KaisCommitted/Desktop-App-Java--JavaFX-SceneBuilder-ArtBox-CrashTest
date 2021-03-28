@@ -27,6 +27,7 @@
       </JFXButton>
       <Label fx:id="likesLabel" layoutX="384.0" layoutY="219.0" text="Likes" textFill="WHITE" />
       <Label fx:id="idLabel" layoutX="209.0" layoutY="250.0" opacity="0.0" text="id" textFill="WHITE" />
+      <ImageView fx:id="addsignal" fitHeight="50.0" fitWidth="52.0" layoutX="397.0" layoutY="14.0" onMouseClicked="#addReport" pickOnBounds="true" preserveRatio="true" />
    </children>
    <styleClass>
       <String fx:value="fruit-item" />
