@@ -27,6 +27,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
 /**
  *
  */
@@ -36,10 +37,10 @@ public class Kais extends Application {
     public void start(Stage primaryStage) {
         
        /*SentimentAnalysis sa = new SentimentAnalysis();
-        sa.getSent("Kais is a filthy faggot");
+        sa.getSent("Kais is dummy thick");
         */
 
-        try {
+        try {   
             // Color c = Color.rgb(10,30,255,1.200);
             Screen screen = Screen.getPrimary();
             Rectangle2D bounds = screen.getVisualBounds();

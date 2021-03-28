@@ -3,9 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,9 +21,9 @@
 
 <StackPane fx:id="parentContainer1" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_EventController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="anchorRoot1" prefHeight="1080.0" prefWidth="2004.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+      <AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="2004.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
-            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1537.0" layoutY="21.0" onAction="#AddEvent" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Host an event" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1537.0" layoutY="21.0" onAction="#AddEvent" onMouseEntered="#onEffectBtnHost" onMouseExited="#offEffectBtnHost" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Host an event" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -43,7 +45,7 @@
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" onKeyReleased="#filterEvent" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
+            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" onKeyReleased="#filterEvent" onMouseEntered="#onEffectSearch" onMouseExited="#offEffectSearch" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
                <font>
                   <Font size="18.0" />
                </font>
@@ -67,7 +69,7 @@
             </JFXButton>
             <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="145.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
             <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="189.0" startX="32.0" startY="-106.0" stroke="#fffffffa" />
-            <Label alignment="CENTER_RIGHT" layoutX="95.0" layoutY="139.0" prefHeight="39.0" prefWidth="230.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="More details" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+            <Label alignment="CENTER_RIGHT" layoutX="95.0" layoutY="139.0" prefHeight="39.0" prefWidth="230.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="More details" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" translateX="-20.0" translateY="90.0" wrapText="true">
                <font>
                   <Font name="MS Gothic" size="37.0" />
                </font>
@@ -79,28 +81,17 @@
             </JFXButton>
             <ScrollPane fx:id="scroll22" layoutX="526.0" layoutY="139.0" prefHeight="897.0" prefWidth="1282.0" style="-fx-background-color: transparent;">
                <content>
-                  <VBox alignment="CENTER_LEFT" onMouseClicked="#EventClicked" prefHeight="710.0" prefWidth="1527.0" style="-fx-background-color: transparent;">
+                  <VBox alignment="CENTER_LEFT" onMouseClicked="#EventClicked" prefHeight="710.0" prefWidth="1527.0" spacing="20.0" style="-fx-background-color: transparent;">
                      <children>
-                        <Label fx:id="label_layout" prefHeight="40.0" prefWidth="354.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="All upcoming Events" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                        <Label fx:id="label_layout" prefHeight="40.0" prefWidth="354.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="All upcoming Events" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" translateY="10.0" wrapText="true">
                            <font>
                               <Font name="MS Gothic" size="37.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="comboTrend" layoutX="10.0" layoutY="10.0" onAction="#SortByTrend" prefWidth="150.0" />
-                        <ScrollPane fx:id="scroll1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="1200.0" style="-fx-background-color: transparent;">
+                        <ComboBox fx:id="comboTrend" layoutX="10.0" layoutY="10.0" onAction="#SortByTime" prefWidth="150.0" styleClass="text-field" stylesheets="@feed%20gui.css" />
+                        <ScrollPane fx:id="scroll1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="1200.0" style="-fx-background-color: transparent;">
                            <content>
-                              <HBox fx:id="event_mostPop" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" spacing="15.0" style="-fx-background-color: transparent;" />
-                           </content>
-                        </ScrollPane>
-                        <Label fx:id="label_trend" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="Filter By.." textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-                           <font>
-                              <Font name="MS Gothic" size="37.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="comboDate" onAction="#SortByTime" prefWidth="150.0" />
-                        <ScrollPane fx:id="scroll2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="1200.0" style="-fx-background-color: transparent;">
-                           <content>
-                              <HBox fx:id="event_layout" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" spacing="15.0" style="-fx-background-color: transparent;" />
+                              <HBox fx:id="event_mostPop" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="300.0" spacing="15.0" style="-fx-background-color: transparent;" />
                            </content>
                         </ScrollPane>
                         <Label fx:id="label_layout1" prefHeight="40.0" prefWidth="341.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="Recommended to you" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" wrapText="true">
@@ -108,66 +99,17 @@
                               <Font name="MS Gothic" size="37.0" />
                            </font>
                         </Label>
-                        <ScrollPane fx:id="scroll21" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="1200.0" style="-fx-background-color: transparent;">
+                        <ScrollPane fx:id="scroll21" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="1200.0" style="-fx-background-color: transparent;">
                            <content>
-                              <HBox fx:id="recommended_layout" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" spacing="15.0" style="-fx-background-color: transparent;" />
+                              <HBox fx:id="recommended_layout" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="300.0" spacing="15.0" style="-fx-background-color: transparent;" />
                            </content>
                         </ScrollPane>
+                        <ComboBox fx:id="comboDate" onAction="#SortByTime" prefWidth="150.0" styleClass="text-field" stylesheets="@feed%20gui.css" translateX="1050.0" translateY="-740.0" />
                      </children>
                   </VBox>
                </content>
             </ScrollPane>
-            <VBox fx:id="MoreDetails" alignment="CENTER" layoutX="95.0" layoutY="179.0" prefHeight="663.0" prefWidth="425.0" style="-fx-background-color: rgba(255, 0, 0, 0.3); fx-effect: dropshadow(gaussian, red, 50, 0, 0, 0);">
-               <children>
-                  <Label fx:id="name" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="13.0" layoutY="375.0" prefHeight="43.0" prefWidth="255.0" text="Description" textAlignment="CENTER" textFill="#2b052bd1" translateX="40.0">
-                     <font>
-                        <Font name="Impact" size="34.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="event_img" fitHeight="302.0" fitWidth="393.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="username" alignment="TOP_LEFT" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="415.0" text="Description" textFill="#11042e" translateX="25.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="type" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="13.0" layoutY="501.0" prefHeight="40.0" prefWidth="415.0" text="Description" textFill="#11042e" translateX="25.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categorie" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="13.0" layoutY="521.0" prefHeight="40.0" prefWidth="415.0" text="Description" textFill="#11042e" translateX="25.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="date" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="13.0" layoutY="541.0" prefHeight="40.0" prefWidth="415.0" text="Description" textFill="#11042e" translateX="25.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="location" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="13.0" layoutY="561.0" prefHeight="40.0" prefWidth="415.0" text="Description" textFill="#11042e" translateX="25.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="spots" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="13.0" layoutY="581.0" prefHeight="40.0" prefWidth="415.0" text="Description" textFill="#11042e" translateX="25.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="participants" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="13.0" layoutY="521.0" prefHeight="40.0" prefWidth="415.0" text="Description" textFill="#11042e" translateX="25.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="event_description" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="13.0" layoutY="556.0" prefHeight="40.0" prefWidth="415.0" text="Description" textFill="#11042e" translateX="25.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-            <JFXButton fx:id="Btn_AddEvent11" buttonType="RAISED" layoutX="859.0" layoutY="88.0" onAction="#GoingTo" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Going to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent11" buttonType="RAISED" layoutX="829.0" layoutY="95.0" onAction="#GoingTo" onMouseEntered="#onEffectBtnGoing" onMouseExited="#offEffectBtnGoing" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Going to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" translateY="-5.0">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -179,7 +121,7 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <JFXButton fx:id="Btn_AddEvent111" buttonType="RAISED" layoutX="1025.0" layoutY="88.0" onAction="#WentTo" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Went to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent111" buttonType="RAISED" layoutX="990.0" layoutY="95.0" onAction="#WentTo" onMouseEntered="#onEffectBtn" onMouseExited="#offEffectBtn" prefHeight="41.0" prefWidth="150.0" ripplerFill="WHITE" styleClass="button3" text="Went to" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" translateY="-5.0">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -191,17 +133,97 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="1677.0" layoutY="95.0" onMouseClicked="#refresh2" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="1677.0" layoutY="95.0" onMouseClicked="#refresh2" onMouseEntered="#onEffectBtn" onMouseExited="#offEffectBtn" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/refr.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="BtnClose" fitHeight="48.0" fitWidth="48.0" layoutX="1949.0" layoutY="7.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="BtnClose" fitHeight="27.0" fitWidth="40.0" layoutX="1957.0" layoutY="7.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" translateX="-25.0">
                <image>
                   <Image url="@../images/close.png" />
                </image>
             </ImageView>
+            <AnchorPane fx:id="MoreDetails" layoutX="75.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="425.0">
+               <children>
+                  <Label fx:id="name" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="94.0" layoutY="5.0" prefHeight="43.0" prefWidth="255.0" text="Description" textAlignment="CENTER" textFill="#2b052bd1">
+                     <font>
+                        <Font name="Impact" size="34.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="event_img" fitHeight="302.0" fitWidth="393.0" layoutX="16.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="ratedImg" fitHeight="52.0" fitWidth="56.0" layoutX="368.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/peach.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.1" contrast="-0.02" hue="0.02" saturation="1.0" />
+                     </effect>
+                  </ImageView>
+                  <Label fx:id="ratedLbl" alignment="CENTER" layoutX="376.0" layoutY="14.0" prefHeight="34.0" prefWidth="36.0" text="5" textAlignment="CENTER" textFill="#11042e">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="16.0" layoutY="416.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="218.0" prefWidth="393.0">
+                     <children>
+                        <Label fx:id="username" alignment="TOP_LEFT" contentDisplay="RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="393.0" text="username" textFill="#11042e">
+                           <font>
+                              <Font name="Cambria Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="type" alignment="TOP_LEFT" contentDisplay="RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="415.0" text="type" textFill="#11042e">
+                           <font>
+                              <Font name="Cambria Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="categorie" alignment="TOP_LEFT" contentDisplay="RIGHT" maxWidth="-Infinity" minWidth="-Infinity" onMouseEntered="#onEffectBtn" onMouseExited="#offEffectBtn" prefHeight="30.0" prefWidth="415.0" text="categorie" textFill="#11042e">
+                           <font>
+                              <Font name="Cambria Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="date" alignment="TOP_LEFT" contentDisplay="RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="415.0" text="date" textFill="#11042e">
+                           <font>
+                              <Font name="Cambria Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="location" alignment="TOP_LEFT" contentDisplay="RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="415.0" text="location" textFill="#11042e">
+                           <font>
+                              <Font name="Cambria Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="spots" alignment="TOP_LEFT" contentDisplay="RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="415.0" text="spots" textFill="#11042e">
+                           <font>
+                              <Font name="Cambria Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="participants" alignment="TOP_LEFT" contentDisplay="RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="415.0" text="participants" textFill="#11042e">
+                           <font>
+                              <Font name="Cambria Italic" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="event_description" alignment="TOP_LEFT" contentDisplay="RIGHT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="415.0" text="Description" textFill="#11042e">
+                           <font>
+                              <Font name="Cambria Italic" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Label fx:id="ticketlbl" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="222.0" layoutY="634.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="133.0" text="Get your ticket now" textFill="#11042e" visible="false">
+                     <font>
+                        <Font name="Cambria Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="ticketimg" fitHeight="52.0" fitWidth="63.0" layoutX="355.0" layoutY="615.0" onMouseClicked="#GetYourTicket" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../images/ticket.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </AnchorPane>
             
             
             
