@@ -7,6 +7,8 @@ package ArtHub.gui;
 
 import ArtHub.entities.Post;
 import ArtHub.entities.User;
+import static ArtHub.gui.ADD_EventController.copyContent;
+import static ArtHub.gui.ADD_EventController.path;
 import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
@@ -36,12 +38,17 @@ import javax.swing.JFileChooser;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.ws.spi.http.HttpContext;
@@ -151,7 +158,7 @@ public class Ajout_PostController implements Initializable {
     
      @FXML
     private void image_file(ActionEvent event) {
-        
+         
      JFileChooser fileChooser = new JFileChooser();
          
           tindex = pan1.getSelectionModel().getSelectedIndex();
@@ -176,13 +183,29 @@ public class Ajout_PostController implements Initializable {
          
          int result = fileChooser.showSaveDialog(null);
          if(result == JFileChooser.APPROVE_OPTION){
+             String userHomeFolder = System.getProperty("user.home");
              File selectedFile = fileChooser.getSelectedFile();
              File src = new File(selectedFile.getPath());
              File dest = new File("C:/xampp/php/www/pidev/Postes/");
              java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
             File newDes = new File("C:/xampp/php/www/pidev/Postes/" + selectedFile.getName());
-            selectedFile.renameTo(newDes);
+            try {
+                copyContent(selectedFile,newDes);
+            } catch (Exception ex) {
+                Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Postes\\" +   selectedFile.getName());
+           
+           
+           
+            try {
+                copyContent(newDes, local.toFile());
+            } catch (Exception ex) {
+                Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        
             s = "C:/xampp/php/www/pidev/Postes/" + selectedFile.getName().toString();
             
               }
@@ -385,7 +408,35 @@ public class Ajout_PostController implements Initializable {
     
    
     
-    
+    public static void copyContent(File a, File b)
+        throws Exception
+    {
+        FileInputStream in = new FileInputStream(a);
+        FileOutputStream out = new FileOutputStream(b);
+  
+        try {
+  
+            int n;
+  
+            
+            while ((n = in.read()) != -1) {
+                
+                out.write(n);
+            }
+        }
+        finally {
+            if (in != null) {
+  
+               
+                in.close();
+            }
+            
+            if (out != null) {
+                out.close();
+            }
+        }
+        System.out.println("File Copied");
+    }
         
     
     
