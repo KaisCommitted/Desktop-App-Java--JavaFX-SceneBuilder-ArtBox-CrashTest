@@ -96,6 +96,7 @@ public class LoginController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Host an event" );
+            
            
             stage.setScene(new Scene(root1));
             

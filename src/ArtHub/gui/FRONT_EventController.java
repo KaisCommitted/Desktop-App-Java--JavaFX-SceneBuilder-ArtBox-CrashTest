@@ -165,8 +165,6 @@ public class FRONT_EventController implements Initializable {
     private Label ticketlbl;
     @FXML
     private ImageView ticketimg;
-    @FXML
-    private Label addFeedback1;
 
     /**
      * Initializes the controller class.
@@ -574,6 +572,7 @@ public class FRONT_EventController implements Initializable {
         }
     }
 
+    @FXML
     private void EventClicked(MouseEvent event) throws FileNotFoundException {
     
         ParticipantCRUD pc= new ParticipantCRUD();
@@ -811,7 +810,8 @@ public class FRONT_EventController implements Initializable {
        
         
     }
-
+    
+    
     @FXML
     private void AddFeedback(MouseEvent event) {
             try {
