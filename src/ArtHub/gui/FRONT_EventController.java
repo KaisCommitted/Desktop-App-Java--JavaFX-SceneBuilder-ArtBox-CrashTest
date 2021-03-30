@@ -221,7 +221,7 @@ public class FRONT_EventController implements Initializable {
             MoreDetails.setStyle("-fx-background-color: #b0ffa7;" + "-fx-background-radius: 15;" + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
             EvenementCRUD p = new EvenementCRUD();
             Evenement Evenement = new Evenement();
-            Evenement = p.consulterEvenement().get(1);
+            Evenement = p.consulterEvenement().get(0);
             UserCRUD u = new UserCRUD();
             event_description.setText("Description :" + Evenement.getDescription());
             String pat = Evenement.getImage_event();
@@ -574,7 +574,7 @@ public class FRONT_EventController implements Initializable {
 
     @FXML
     private void EventClicked(MouseEvent event) throws FileNotFoundException {
-        qrcode();
+    
         ParticipantCRUD pc= new ParticipantCRUD();
         if (id_clicked != 0) {
             UserCRUD u = new UserCRUD();
@@ -797,6 +797,7 @@ public class FRONT_EventController implements Initializable {
             stage.show();
             String userHomeFolder = System.getProperty("user.home");
             
+          
             WritableImage image = root1.snapshot(new SnapshotParameters(), null);
            File file1 = new File(userHomeFolder+"\\Downloads\\ArtHub Tickets");
            file1.mkdir();
@@ -809,31 +810,27 @@ public class FRONT_EventController implements Initializable {
        
         
     }
+    
+    
+    @FXML
+    private void AddFeedback(MouseEvent event) {
+            try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddFeedback.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Statistiques");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
      
     
     
-    public void qrcode()  {
-  EvenementCRUD ec= new EvenementCRUD();
-ParticipantCRUD pc = new ParticipantCRUD();
-Evenement E = new Evenement();
-Participant P = new Participant();
- UserCRUD u = new UserCRUD();
-        try {
-       P= pc.FindParticipant(CurrentUser.getId_user(), id_clicked);
-        String str ="testing";
-           
-        
-        String imageFormat = "png";
-        String outputFileName = "C:\\Users\\21698\\Desktop\\Studies\\3A\\SEM2\\PIDEV\\ArtHub\\src\\ArtHub\\images\\QR code\\test.png";
-                BitMatrix matrix = new MultiFormatWriter().encode("test", BarcodeFormat.QR_CODE, 500, 500);
-        try {
-            MatrixToImageWriter.writeToPath(matrix, imageFormat, Paths.get(outputFileName));
-        } catch (IOException ex) {
-            Logger.getLogger(EventTicketController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    } catch (WriterException ex) {
-        Logger.getLogger(EventTicketController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    } 
-
+   
 }

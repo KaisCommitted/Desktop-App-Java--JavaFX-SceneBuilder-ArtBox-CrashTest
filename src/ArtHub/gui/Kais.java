@@ -45,7 +45,7 @@ public class Kais extends Application {
             Screen screen = Screen.getPrimary();
             Rectangle2D bounds = screen.getVisualBounds();
             // Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("FRONT_Annonce.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDParticipant.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
             Scene scene = new Scene(root);//root, 1920, 1080);

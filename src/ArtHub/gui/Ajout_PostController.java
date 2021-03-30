@@ -7,8 +7,12 @@ package ArtHub.gui;
 
 import ArtHub.entities.Post;
 import ArtHub.entities.User;
+import static ArtHub.gui.ADD_EventController.copyContent;
+import static ArtHub.gui.ADD_EventController.path;
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.postCRUD;
 import ArtHub.services.postCRUD;
+import SentimentAnalysis.SentimentAPI;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
@@ -34,18 +38,26 @@ import javax.swing.JFileChooser;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.ws.spi.http.HttpContext;
 
 
 import sun.net.www.http.HttpClient;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 //import javafx.scene.control.Tab;
 
@@ -91,7 +103,7 @@ public class Ajout_PostController implements Initializable {
     public static int tindex;
 
     
-    User CurrentUser = new User(2);
+    
     @FXML
     private JFXButton create_image;
     @FXML
@@ -146,7 +158,7 @@ public class Ajout_PostController implements Initializable {
     
      @FXML
     private void image_file(ActionEvent event) {
-        
+         
      JFileChooser fileChooser = new JFileChooser();
          
           tindex = pan1.getSelectionModel().getSelectedIndex();
@@ -171,9 +183,30 @@ public class Ajout_PostController implements Initializable {
          
          int result = fileChooser.showSaveDialog(null);
          if(result == JFileChooser.APPROVE_OPTION){
+             String userHomeFolder = System.getProperty("user.home");
              File selectedFile = fileChooser.getSelectedFile();
-             String path = selectedFile.getAbsolutePath();
-            s = path;
+             File src = new File(selectedFile.getPath());
+             File dest = new File("C:/xampp/php/www/pidev/Postes/");
+             java.nio.file.Path sr = src.toPath();
+            java.nio.file.Path ds = new File(dest, src.getName()).toPath();
+            File newDes = new File("C:/xampp/php/www/pidev/Postes/" + selectedFile.getName());
+            try {
+                copyContent(selectedFile,newDes);
+            } catch (Exception ex) {
+                Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Postes\\" +   selectedFile.getName());
+           
+           
+           
+            try {
+                copyContent(newDes, local.toFile());
+            } catch (Exception ex) {
+                Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        
+            s = "C:/xampp/php/www/pidev/Postes/" + selectedFile.getName().toString();
             
               }
          else if(result == JFileChooser.CANCEL_OPTION){
@@ -211,13 +244,38 @@ public class Ajout_PostController implements Initializable {
     @FXML
     void create_image(ActionEvent event) throws Exception {
         
+        String resp=null;
+         try{
+            resp = SentimentAPI.GetSentiment(p_desc.getText());
+            
+            
+        }catch(IOException ex){
+            System.out.println("Check the bugs in the Sent API on Azure");
+        }
+        
             String rNom_post = p_name.getText();
             String rdesc = p_desc.getText();
             User id_user = CurrentUser;
-            Post p = new Post(id_user,rNom_post,rdesc);
+            String desc_analys= resp;
+            
+            
+            
+            
+            Post p = new Post(id_user,rNom_post,rdesc,desc_analys);
             postCRUD prc = new postCRUD();
             prc.ajouterImage(p);
+            
+            
+            
+          String title = "Congratulations";
+        String message = "You've successfully created your post";
+        //Notification notification = Notifications.SUCCESS;
         
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
         
         
         
@@ -228,13 +286,35 @@ public class Ajout_PostController implements Initializable {
     @FXML
     void create_video(ActionEvent event) throws Exception {
         
+        String resp=null;
+         try{
+            resp = SentimentAPI.GetSentiment(video_desc.getText());
+            
+            
+        }catch(IOException ex){
+            System.out.println("Check the bugs in the Sent API on Azure");
+        }
+        
+        
+        
             String rNom_post = video_name.getText();
             String rdesc = video_desc.getText();
             User id_user = CurrentUser;
-            Post p = new Post(id_user,rNom_post,rdesc);
+            String desc_analys= resp;
+            Post p = new Post(id_user,rNom_post,rdesc,desc_analys);
             postCRUD prc = new postCRUD();
             prc.ajouterVideo(p);
         
+            
+             String title = "Congratulations";
+        String message = "You've successfully created your post";
+        //Notification notification = Notifications.SUCCESS;
+        
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
         
         
         
@@ -245,17 +325,46 @@ public class Ajout_PostController implements Initializable {
     @FXML
     void create_music(ActionEvent event) throws Exception {
         
+        
+        
+        
+        String resp=null;
+         try{
+            resp = SentimentAPI.GetSentiment(song_desc.getText());
+            
+            
+        }catch(IOException ex){
+            System.out.println("Check the bugs in the Sent API on Azure");
+        }
+        
+        
+        
             String rNom_post = song_name.getText();
             String rdesc = song_desc.getText();
             User id_user = CurrentUser;
-            Post p = new Post(id_user,rNom_post,rdesc);
+            String desc_analys= resp;
+            
+            
+            
+            
+            
+            Post p = new Post(id_user,rNom_post,rdesc,desc_analys);
             postCRUD prc = new postCRUD();
 
             prc.ajouterMusic(p);
         
         
         
+         String title = "Congratulations";
+        String message = "You've successfully created your post";
+        //Notification notification = Notifications.SUCCESS;
         
+        TrayNotification tray = new TrayNotification();
+        AnimationType type = AnimationType.POPUP;
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(3000));
 
 
     }
@@ -299,7 +408,35 @@ public class Ajout_PostController implements Initializable {
     
    
     
-    
+    public static void copyContent(File a, File b)
+        throws Exception
+    {
+        FileInputStream in = new FileInputStream(a);
+        FileOutputStream out = new FileOutputStream(b);
+  
+        try {
+  
+            int n;
+  
+            
+            while ((n = in.read()) != -1) {
+                
+                out.write(n);
+            }
+        }
+        finally {
+            if (in != null) {
+  
+               
+                in.close();
+            }
+            
+            if (out != null) {
+                out.close();
+            }
+        }
+        System.out.println("File Copied");
+    }
         
     
     

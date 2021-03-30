@@ -12,14 +12,18 @@ import ArtHub.services.EvenementCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import static java.lang.ProcessBuilder.Redirect.to;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +38,7 @@ import javafx.scene.control.TextField;
 import javax.xml.bind.DatatypeConverter;
 import java.sql.Date;
 import java.time.LocalDate;
+import static java.time.LocalDate.from;
 import static java.time.LocalDate.now;
 import java.util.List;
 import javafx.animation.Interpolator;
@@ -86,7 +91,6 @@ public class ADD_EventController implements Initializable {
     private JFXDatePicker tDatenaiss;
     @FXML
     private TextField txt_capacite;
-    
     @FXML
     private JFXButton upload_image;
     public static String path="";
@@ -240,19 +244,34 @@ if (captcha.isCorrect(code.getText())) {
         File selectedFile = fileChooser.showOpenDialog(currentStage);
 
         if (selectedFile != null) {
-            //System.out.println("C:/" + selectedFile.getPath());
-            //System.out.println("userfiles/"+UNAME+"/"+ANAME+"/");
+            String userHomeFolder = System.getProperty("user.home");
+          
+            
             File src = new File(selectedFile.getPath());
             File dest = new File("C:/xampp/php/www/pidev/events/");
             java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/events/" + selectedFile.getName());
-            selectedFile.renameTo(newDes);
+            File newDes = new File("C:/xampp/php/www/pidev/events/" + txt_nom.getText());
+            try {
+                copyContent(selectedFile,newDes);
+            } catch (Exception ex) {
+                Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Events\\" + txt_nom.getText());
+           
+           
+           
+            try {
+                copyContent(newDes, local.toFile());
+            } catch (Exception ex) {
+                Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        path = "C:/xampp/php/www/pidev/events/" + selectedFile.getName().toString();
-        return selectedFile.getName();
+        path = "C:/xampp/php/www/pidev/events/" + txt_nom.getText().toString();
+        return txt_nom.getText();
 
     }
+        
 
     public void downloadFile() throws MalformedURLException, IOException {
         long wut = Download.download("https://github.com/JanStureNielsen/so-downloader/archive/main.zip", "img/so-downloader-source.zip");
@@ -308,6 +327,34 @@ public Captcha setCaptcha() {
 
 
 
-
+public static void copyContent(File a, File b)
+        throws Exception
+    {
+        FileInputStream in = new FileInputStream(a);
+        FileOutputStream out = new FileOutputStream(b);
+  
+        try {
+  
+            int n;
+  
+            
+            while ((n = in.read()) != -1) {
+                
+                out.write(n);
+            }
+        }
+        finally {
+            if (in != null) {
+  
+               
+                in.close();
+            }
+            
+            if (out != null) {
+                out.close();
+            }
+        }
+        System.out.println("File Copied");
+    }
 
 }

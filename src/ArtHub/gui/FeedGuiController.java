@@ -32,11 +32,18 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import ArtHub.gui.MyListener;
 import static java.time.Clock.system;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 /**
@@ -75,6 +82,8 @@ public class FeedGuiController implements Initializable {
     private MyListener myListener;
     @FXML
     private HBox music_postes;
+    @FXML
+    private Label lblfeedback;
       
     /**
      * Initializes the controller class.
@@ -213,6 +222,24 @@ public class FeedGuiController implements Initializable {
     public void affiche(URL location, ResourceBundle resources) {
        
          
+    }
+
+    @FXML
+    private void addFeedback(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddFeedback.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Statistiques");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     

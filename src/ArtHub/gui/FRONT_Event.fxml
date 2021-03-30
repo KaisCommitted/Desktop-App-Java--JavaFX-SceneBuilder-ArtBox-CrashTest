@@ -19,9 +19,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="parentContainer1" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_EventController">
+<StackPane fx:id="parentContainer1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_EventController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="2004.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+      <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
             <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1537.0" layoutY="21.0" onAction="#AddEvent" onMouseEntered="#onEffectBtnHost" onMouseExited="#offEffectBtnHost" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Host an event" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
@@ -81,7 +81,7 @@
             </JFXButton>
             <ScrollPane fx:id="scroll22" layoutX="526.0" layoutY="139.0" prefHeight="897.0" prefWidth="1282.0" style="-fx-background-color: transparent;">
                <content>
-                  <VBox alignment="CENTER_LEFT" onMouseClicked="#EventClicked" prefHeight="710.0" prefWidth="1527.0" spacing="20.0" style="-fx-background-color: transparent;">
+                  <VBox alignment="CENTER_LEFT" onMouseClicked="#EventClicked" prefHeight="830.0" prefWidth="1283.0" spacing="20.0" style="-fx-background-color: transparent;">
                      <children>
                         <Label fx:id="label_layout" prefHeight="40.0" prefWidth="354.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="All upcoming Events" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" translateY="10.0" wrapText="true">
                            <font>
@@ -139,7 +139,7 @@
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="BtnClose" fitHeight="27.0" fitWidth="40.0" layoutX="1957.0" layoutY="7.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" translateX="-25.0">
+            <ImageView fx:id="BtnClose" fitHeight="27.0" fitWidth="40.0" layoutX="1910.0" layoutY="8.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" translateX="-25.0">
                <image>
                   <Image url="@../images/close.png" />
                </image>
@@ -224,6 +224,11 @@
                   <Insets top="20.0" />
                </padding>
             </AnchorPane>
+            <Label layoutX="1871.0" layoutY="1035.0" onMouseClicked="#AddFeedback" prefHeight="35.0" prefWidth="43.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             
             
             

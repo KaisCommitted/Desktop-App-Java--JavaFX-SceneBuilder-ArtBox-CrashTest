@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class AddFeedbackController implements Initializable {
@@ -48,8 +49,10 @@ public class AddFeedbackController implements Initializable {
             Feedback f = new Feedback(rcontenufeedback,rtypefeedback);
             FeedbackCRUD feed = new FeedbackCRUD();
             feed.ajouterFeedback(f);
-            
-            
+            Stage stage;
+           stage= (Stage) btnEnvoyerFeedback.getScene().getWindow();
+           stage.close();
+           
         }catch (Exception ex) {
         Logger.getLogger(AddFeedbackController.class.getName()).log(Level.SEVERE, null, ex);
         }
