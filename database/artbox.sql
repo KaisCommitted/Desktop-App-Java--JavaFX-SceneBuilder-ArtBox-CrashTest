@@ -2,10 +2,10 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 29, 2021 at 12:11 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Hôte : 127.0.0.1
+-- Généré le : mar. 30 mars 2021 à 13:29
+-- Version du serveur :  10.4.17-MariaDB
+-- Version de PHP : 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `artbox`
+-- Base de données : `artbox`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `annonce`
+-- Structure de la table `annonce`
 --
 
 CREATE TABLE `annonce` (
@@ -38,7 +38,7 @@ CREATE TABLE `annonce` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `annonce`
+-- Déchargement des données de la table `annonce`
 --
 
 INSERT INTO `annonce` (`id_ann`, `id_user`, `titre_ann`, `desc_ann`, `pay`, `categorie`, `ddl_ann`) VALUES
@@ -51,7 +51,20 @@ INSERT INTO `annonce` (`id_ann`, `id_user`, `titre_ann`, `desc_ann`, `pay`, `cat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorie`
+-- Structure de la table `candidats`
+--
+
+CREATE TABLE `candidats` (
+  `id_cand` int(11) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `id_ann` int(11) DEFAULT NULL,
+  `cv` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie`
 --
 
 CREATE TABLE `categorie` (
@@ -60,7 +73,7 @@ CREATE TABLE `categorie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categorie`
+-- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`categorie_name`, `id`) VALUES
@@ -73,7 +86,7 @@ INSERT INTO `categorie` (`categorie_name`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Structure de la table `comments`
 --
 
 CREATE TABLE `comments` (
@@ -86,7 +99,7 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evenement`
+-- Structure de la table `evenement`
 --
 
 CREATE TABLE `evenement` (
@@ -105,7 +118,7 @@ CREATE TABLE `evenement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `evenement`
+-- Déchargement des données de la table `evenement`
 --
 
 INSERT INTO `evenement` (`id`, `id_org`, `date`, `nom_event`, `type_event`, `categorie`, `description`, `capacite_event`, `nb_max`, `image_event`, `location_event`, `rating_event`) VALUES
@@ -145,7 +158,7 @@ INSERT INTO `evenement` (`id`, `id_org`, `date`, `nom_event`, `type_event`, `cat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `interactions`
+-- Structure de la table `interactions`
 --
 
 CREATE TABLE `interactions` (
@@ -158,7 +171,7 @@ CREATE TABLE `interactions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `label`
+-- Structure de la table `label`
 --
 
 CREATE TABLE `label` (
@@ -168,7 +181,7 @@ CREATE TABLE `label` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `label`
+-- Déchargement des données de la table `label`
 --
 
 INSERT INTO `label` (`id`, `name`, `type`) VALUES
@@ -178,7 +191,7 @@ INSERT INTO `label` (`id`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `participant`
+-- Structure de la table `participant`
 --
 
 CREATE TABLE `participant` (
@@ -189,7 +202,7 @@ CREATE TABLE `participant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `participant`
+-- Déchargement des données de la table `participant`
 --
 
 INSERT INTO `participant` (`id_participation`, `id_user`, `id_event`, `ticket`) VALUES
@@ -232,7 +245,7 @@ INSERT INTO `participant` (`id_participation`, `id_user`, `id_event`, `ticket`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postes`
+-- Structure de la table `postes`
 --
 
 CREATE TABLE `postes` (
@@ -249,7 +262,7 @@ CREATE TABLE `postes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `postes`
+-- Déchargement des données de la table `postes`
 --
 
 INSERT INTO `postes` (`id_post`, `Description`, `Nom_post`, `categorie`, `file`, `post_date`, `album_cover`, `Likes`, `desc_analys`, `id_user`) VALUES
@@ -258,7 +271,7 @@ INSERT INTO `postes` (`id_post`, `Description`, `Nom_post`, `categorie`, `file`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rating_event`
+-- Structure de la table `rating_event`
 --
 
 CREATE TABLE `rating_event` (
@@ -269,7 +282,7 @@ CREATE TABLE `rating_event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `rating_event`
+-- Déchargement des données de la table `rating_event`
 --
 
 INSERT INTO `rating_event` (`id_rating`, `id_user`, `id_event`, `rating`) VALUES
@@ -299,7 +312,7 @@ INSERT INTO `rating_event` (`id_rating`, `id_user`, `id_event`, `rating`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE `user` (
@@ -315,7 +328,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id_user`, `nom`, `prenom`, `username`, `mail`, `date_naissance`, `pwd_user`, `ref_admin`, `id_label`) VALUES
@@ -327,23 +340,31 @@ INSERT INTO `user` (`id_user`, `nom`, `prenom`, `username`, `mail`, `date_naissa
 (16, 'Jeddou', 'Louay', 'louay', 'louay.jeddou@esprit.tn', '1936-02-12', '0000', 0, NULL);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `annonce`
+-- Index pour la table `annonce`
 --
 ALTER TABLE `annonce`
   ADD PRIMARY KEY (`id_ann`);
 
 --
--- Indexes for table `categorie`
+-- Index pour la table `candidats`
+--
+ALTER TABLE `candidats`
+  ADD PRIMARY KEY (`id_cand`),
+  ADD KEY `FK_UserCand` (`id_user`),
+  ADD KEY `FK_UserAnn` (`id_ann`);
+
+--
+-- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `comments`
+-- Index pour la table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id_comment`),
@@ -351,14 +372,14 @@ ALTER TABLE `comments`
   ADD KEY `id_use2` (`id_user`);
 
 --
--- Indexes for table `evenement`
+-- Index pour la table `evenement`
 --
 ALTER TABLE `evenement`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_org` (`id_org`);
 
 --
--- Indexes for table `interactions`
+-- Index pour la table `interactions`
 --
 ALTER TABLE `interactions`
   ADD PRIMARY KEY (`id_inter`),
@@ -366,13 +387,13 @@ ALTER TABLE `interactions`
   ADD KEY `id_post` (`id_post`);
 
 --
--- Indexes for table `label`
+-- Index pour la table `label`
 --
 ALTER TABLE `label`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `participant`
+-- Index pour la table `participant`
 --
 ALTER TABLE `participant`
   ADD PRIMARY KEY (`id_participation`),
@@ -380,14 +401,14 @@ ALTER TABLE `participant`
   ADD KEY `fk_idevt` (`id_event`);
 
 --
--- Indexes for table `postes`
+-- Index pour la table `postes`
 --
 ALTER TABLE `postes`
   ADD PRIMARY KEY (`id_post`),
   ADD KEY `ctn1` (`id_user`);
 
 --
--- Indexes for table `rating_event`
+-- Index pour la table `rating_event`
 --
 ALTER TABLE `rating_event`
   ADD PRIMARY KEY (`id_rating`),
@@ -395,107 +416,120 @@ ALTER TABLE `rating_event`
   ADD KEY `fk_user` (`id_user`);
 
 --
--- Indexes for table `user`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `annonce`
+-- AUTO_INCREMENT pour la table `annonce`
 --
 ALTER TABLE `annonce`
   MODIFY `id_ann` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `categorie`
+-- AUTO_INCREMENT pour la table `candidats`
+--
+ALTER TABLE `candidats`
+  MODIFY `id_cand` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
   MODIFY `id_comment` int(100) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `evenement`
+-- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
--- AUTO_INCREMENT for table `interactions`
+-- AUTO_INCREMENT pour la table `interactions`
 --
 ALTER TABLE `interactions`
   MODIFY `id_inter` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
 
 --
--- AUTO_INCREMENT for table `label`
+-- AUTO_INCREMENT pour la table `label`
 --
 ALTER TABLE `label`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `participant`
+-- AUTO_INCREMENT pour la table `participant`
 --
 ALTER TABLE `participant`
   MODIFY `id_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
--- AUTO_INCREMENT for table `postes`
+-- AUTO_INCREMENT pour la table `postes`
 --
 ALTER TABLE `postes`
   MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `rating_event`
+-- AUTO_INCREMENT pour la table `rating_event`
 --
 ALTER TABLE `rating_event`
   MODIFY `id_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `comments`
+-- Contraintes pour la table `candidats`
+--
+ALTER TABLE `candidats`
+  ADD CONSTRAINT `FK_UserAnn` FOREIGN KEY (`id_ann`) REFERENCES `annonce` (`id_ann`),
+  ADD CONSTRAINT `FK_UserCand` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Contraintes pour la table `comments`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `id_post2` FOREIGN KEY (`id_post`) REFERENCES `postes` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_use2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `evenement`
+-- Contraintes pour la table `evenement`
 --
 ALTER TABLE `evenement`
   ADD CONSTRAINT `fk_org` FOREIGN KEY (`id_org`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `participant`
+-- Contraintes pour la table `participant`
 --
 ALTER TABLE `participant`
   ADD CONSTRAINT `fk_idevt` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id`),
   ADD CONSTRAINT `fk_userid` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `postes`
+-- Contraintes pour la table `postes`
 --
 ALTER TABLE `postes`
   ADD CONSTRAINT `ctn1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `rating_event`
+-- Contraintes pour la table `rating_event`
 --
 ALTER TABLE `rating_event`
   ADD CONSTRAINT `fk_event` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id`),

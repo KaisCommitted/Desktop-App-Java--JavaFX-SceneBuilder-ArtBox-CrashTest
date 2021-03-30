@@ -26,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import java.awt.Dimension;
 
 
 /**
@@ -46,9 +47,10 @@ public class Kais extends Application {
             Rectangle2D bounds = screen.getVisualBounds();
             // Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("CRUDParticipant.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("CategoriePicker.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
-            Scene scene = new Scene(root);//root, 1920, 1080);
+            //Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            Scene scene = new Scene(root );//root, 1920, 1080);
             scene.setFill(Color.LIGHTGRAY);
 //            primaryStage.setX(bounds.getMinX());
 //            primaryStage.setY(bounds.getMinY());
@@ -60,6 +62,7 @@ public class Kais extends Application {
             primaryStage.setTitle("ArtBox");
             primaryStage.setScene(scene);
             primaryStage.setResizable(true);
+            
             primaryStage.show();
 
         } catch (IOException ex) {

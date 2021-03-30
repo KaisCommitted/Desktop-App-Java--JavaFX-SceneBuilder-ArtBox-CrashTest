@@ -85,8 +85,8 @@ Participant P = new Participant();
                  QR.setImage(img);
                  username.setText("Organized by: " + org); 
                  
-                 date.setText("Event date :" + E.getDate_event().format(formatters));
-                 location.setText("Event link" + E.getLocation_event());
+                 date.setText(" " + E.getDate_event().format(formatters));
+                 location.setText(" " + E.getLocation_event());
                
                 
                  
@@ -118,7 +118,7 @@ Participant P = new Participant();
        P= pc.FindParticipant(CurrentUser.getId_user(), id_clicked);
        System.out.println("TICKTICK   "+P.getTicket()); 
        String str =  P.getTicket();
-       String content = "Ticket code: " +P.getTicket()   + "\n" + "User Full Name: " + u.FindUser(CurrentUser.getId_user()).getNom() + " " + u.FindUser(CurrentUser.getId_user()).getPrenom() + "\n" +"Event name: " +E.getNom_event()  + "\n" + "Event date: " +E.getDate_event()  + "\n";
+       String content = "Ticket code: " +P.getTicket()   + "\n" + "Participant Full Name: " + u.FindUser(CurrentUser.getId_user()).getNom() + " " + u.FindUser(CurrentUser.getId_user()).getPrenom() + "\n" +"Event name: " +E.getNom_event()  + "\n" + "Event date: " +E.getDate_event()  + "\n";
           
         
         try {

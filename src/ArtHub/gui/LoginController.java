@@ -30,6 +30,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
+import java.awt.Dimension;
 
 /**
  * FXML Controller class
@@ -76,7 +77,7 @@ public class LoginController implements Initializable {
                   
                   if (CurrentUser.getRef_admin()== "1") {
                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));  
-                      
+                      Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
                           
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -97,8 +98,10 @@ public class LoginController implements Initializable {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Host an event" );
             
-           
-            stage.setScene(new Scene(root1));
+           //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
+            Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            
+            stage.setScene(new Scene(root1, screenSize.getWidth(), screenSize.getHeight()));
             
             stage.show();
    

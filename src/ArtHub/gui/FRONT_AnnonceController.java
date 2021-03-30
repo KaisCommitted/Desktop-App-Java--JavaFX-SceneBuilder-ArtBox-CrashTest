@@ -9,6 +9,7 @@ import ArtHub.entities.Annonce;
 import ArtHub.services.AnnonceCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -57,13 +58,19 @@ public class FRONT_AnnonceController implements Initializable {
     @FXML
     private ImageView BtnClose;
     @FXML
-    private AnchorPane addFeedback3;
+    private AnchorPane anchor;
+   
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            
+           
+        anchor.setPrefSize(screenSize.getWidth(), screenSize.getHeight());
+        parentContainer1.setPrefSize(screenSize.getWidth(), screenSize.getHeight());
         Notifications notificationBuilder = Notifications.create()
                .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
                .position(Pos.BASELINE_CENTER)

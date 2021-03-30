@@ -12,14 +12,18 @@ import ArtHub.services.EvenementCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import static java.lang.ProcessBuilder.Redirect.to;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +38,7 @@ import javafx.scene.control.TextField;
 import javax.xml.bind.DatatypeConverter;
 import java.sql.Date;
 import java.time.LocalDate;
+import static java.time.LocalDate.from;
 import static java.time.LocalDate.now;
 import java.util.List;
 import javafx.animation.Interpolator;
@@ -107,6 +112,7 @@ public class ADD_EventController implements Initializable {
     private TextField code;
     @FXML
     private Button reset;
+    EvenementCRUD evt = new EvenementCRUD();
     /**
      * Initializes the controller class.
      */
@@ -126,17 +132,8 @@ public class ADD_EventController implements Initializable {
     private void addEvent(ActionEvent event) {
          
 if (captcha.isCorrect(code.getText())) {
-
-            String tilte = "Captcha";
-            String message = "Correct";
-            TrayNotification tray = new TrayNotification();
-            AnimationType type = AnimationType.POPUP;
-
-            tray.setAnimationType(type);
-            tray.setTitle(tilte);
-            tray.setMessage(message);
-            tray.setNotificationType(NotificationType.SUCCESS);
-            tray.showAndDismiss(Duration.millis(3000)); 
+            
+            
        
         try {
             
@@ -154,9 +151,17 @@ if (captcha.isCorrect(code.getText())) {
                     || event_location.getText().trim().isEmpty()) {
                 control = "Make sure to fill all the fields";
                // Control.setVisible(true);
-                Control.setText(control);
+                Control.setText(control);  
                  notificationShow("Alert!",control);
-            } else if (Evenement.isNotInteger(txt_capacite.getText())) {
+            } else if (evt.CheckEvenementByName(txt_nom.getText())) {
+                control += "\nEvent name already exists";
+                txt_capacite.clear();
+                Control.setText(control);
+               // Control.setVisible(true);
+                notificationShow("Alert!",control);
+                txt_capacite.setStyle("background-color: rgba(255,0,0,0.2);");
+            } 
+            else if (Evenement.isNotInteger(txt_capacite.getText())) {
                 control += "\nEvent capacity should be an integer";
                 txt_capacite.clear();
                 Control.setText(control);
@@ -188,12 +193,12 @@ if (captcha.isCorrect(code.getText())) {
                 String location = event_location.getText();
                 C.setCategorie_name(Categorie);
                 Evenement e = new Evenement(CurrentUser, Datenaiss, rNom, rType,C, rDescription, Capacite, Capacite, path, location);
-                EvenementCRUD evt = new EvenementCRUD();
+                
                 evt.ajouterEvenement(e);
 
                 // if (CurrentUser.getRef_admin().equals("0")) {
                  Notifications notificationBuilder = Notifications.create()
-               .title("Event added").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
+               .title("Event added").text("Click me to exit").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
                .position(Pos.CENTER)
                .onAction(new EventHandler<ActionEvent>(){
                    public void handle(ActionEvent event)
@@ -239,19 +244,34 @@ if (captcha.isCorrect(code.getText())) {
         File selectedFile = fileChooser.showOpenDialog(currentStage);
 
         if (selectedFile != null) {
-            //System.out.println("C:/" + selectedFile.getPath());
-            //System.out.println("userfiles/"+UNAME+"/"+ANAME+"/");
+            String userHomeFolder = System.getProperty("user.home");
+          
+            
             File src = new File(selectedFile.getPath());
             File dest = new File("C:/xampp/php/www/pidev/events/");
             java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/events/" + selectedFile.getName());
-            selectedFile.renameTo(newDes);
+            File newDes = new File("C:/xampp/php/www/pidev/events/" + txt_nom.getText());
+            try {
+                copyContent(selectedFile,newDes);
+            } catch (Exception ex) {
+                Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Events\\" + txt_nom.getText());
+           
+           
+           
+            try {
+                copyContent(newDes, local.toFile());
+            } catch (Exception ex) {
+                Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        path = "C:/xampp/php/www/pidev/events/" + selectedFile.getName().toString();
-        return selectedFile.getName();
+        path = "C:/xampp/php/www/pidev/events/" + txt_nom.getText().toString();
+        return txt_nom.getText();
 
     }
+        
 
     public void downloadFile() throws MalformedURLException, IOException {
         long wut = Download.download("https://github.com/JanStureNielsen/so-downloader/archive/main.zip", "img/so-downloader-source.zip");
@@ -307,6 +327,34 @@ public Captcha setCaptcha() {
 
 
 
-
+public static void copyContent(File a, File b)
+        throws Exception
+    {
+        FileInputStream in = new FileInputStream(a);
+        FileOutputStream out = new FileOutputStream(b);
+  
+        try {
+  
+            int n;
+  
+            
+            while ((n = in.read()) != -1) {
+                
+                out.write(n);
+            }
+        }
+        finally {
+            if (in != null) {
+  
+               
+                in.close();
+            }
+            
+            if (out != null) {
+                out.close();
+            }
+        }
+        System.out.println("File Copied");
+    }
 
 }
