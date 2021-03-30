@@ -23,6 +23,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.util.Duration;
 import ArtHub.entities.Post;
+import static ArtHub.gui.FRONT_EventController.setImage;
+import static ArtHub.gui.FRONT_EventController.userHomeFolder;
 import ArtHub.services.postCRUD;
 import java.util.List;
 import ArtHub.gui.MyListener;
@@ -38,6 +40,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -84,6 +87,10 @@ public class FeedGuiController implements Initializable {
     private HBox music_postes;
     @FXML
     private Label lblfeedback;
+    @FXML
+    private ImageView BtnClose;
+    @FXML
+    private ImageView btnSearch;
       
     /**
      * Initializes the controller class.
@@ -91,7 +98,8 @@ public class FeedGuiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //Load poste de type image *******************
-         
+        setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
+          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
         ph_postes.setSpacing(20);
         scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
         scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
@@ -240,6 +248,43 @@ public class FeedGuiController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void load_jobs(ActionEvent event) {
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("FRONT_annonce.fxml"));
+            Scene scene = btn_event.getScene();
+            
+            root.translateXProperty().set(scene.getHeight());
+            parentContainer.getChildren().add(root);
+            
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
+            timeline.getKeyFrames().add(kf);
+            
+            timeline.play();
+            //parentContainer.getChildren().remove(anchorRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void close(MouseEvent event) {
+          Stage CurrentStage = (Stage) BtnClose.getScene().getWindow();
+        CurrentStage.close();
+    }
+
+     @FXML
+    private void closeOFF(MouseEvent event) {
+         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+    }
+
+    @FXML
+    private void closeON(MouseEvent event) {
+         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
     }
 
     

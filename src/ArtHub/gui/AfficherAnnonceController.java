@@ -23,6 +23,8 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import ArtHub.entities.Annonce;
+import static ArtHub.gui.FRONT_EventController.setImage;
+import static ArtHub.gui.FRONT_EventController.userHomeFolder;
 import ArtHub.services.AnnonceCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
@@ -56,6 +58,7 @@ public class AfficherAnnonceController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         AnnonceCRUD ps = new AnnonceCRUD();
         // id table view
         JFXTreeTableColumn<Annonce, String> id_ann = new JFXTreeTableColumn<>("id_ann");
