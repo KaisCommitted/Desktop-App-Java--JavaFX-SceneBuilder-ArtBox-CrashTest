@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.CommentsController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="74.0" prefWidth="600.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="ArtHub.gui.CommentsController">
+   <styleClass>
+      <String fx:value="fruit-item" />
+      <String fx:value="shadow" />
+   </styleClass>
+   <children>
+      <Label fx:id="cmnt" layoutX="18.0" layoutY="22.0" prefHeight="31.0" prefWidth="572.0" text="Comment" />
+      <Label fx:id="time_cmnt" layoutX="491.0" layoutY="52.0" prefHeight="17.0" prefWidth="71.0" text="time" />
+      <Label fx:id="user_cmnt" layoutX="18.0" layoutY="6.0" prefHeight="17.0" prefWidth="49.0" text="user" />
+   </children>
 </AnchorPane>

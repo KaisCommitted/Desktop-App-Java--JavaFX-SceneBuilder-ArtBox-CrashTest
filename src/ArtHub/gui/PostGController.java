@@ -280,6 +280,20 @@ public class PostGController implements Initializable {
 
     @FXML
     private void Comments(MouseEvent event) {
+        
+        
+        
+        try{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FullPost.fxml"));
+Parent root2 = (Parent) fxmlLoader.load();
+Stage stage = new Stage();
+stage.setScene(new Scene(root2));  
+stage.show();
+        }catch(IOException e){
+            System.out.println("Cant load teh window");
+        }
+        
+        
     }
     
     
