@@ -65,6 +65,9 @@ public class FRONT_AnnonceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        anchor.setPrefSize(1366, 768);
+        parentContainer1.setPrefSize(1366, 768);
         Notifications notificationBuilder = Notifications.create()
                .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
                .position(Pos.BASELINE_CENTER)

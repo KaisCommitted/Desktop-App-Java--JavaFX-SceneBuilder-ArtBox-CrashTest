@@ -17,11 +17,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="parentContainer1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_AnnonceController">
+<StackPane fx:id="parentContainer1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_AnnonceController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+      <AnchorPane id="AnchorPane" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
-            <JFXButton layoutX="294.0" layoutY="15.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
+            <JFXButton layoutX="309.0" layoutY="16.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f" AnchorPane.leftAnchor="309.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -31,7 +31,7 @@
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" onKeyReleased="#filterEvent" onMouseEntered="#onEffectSearch" onMouseExited="#offEffectSearch" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
+            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" onKeyReleased="#filterEvent" onMouseEntered="#onEffectSearch" onMouseExited="#offEffectSearch" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.leftAnchor="721.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -40,19 +40,19 @@
                   <String fx:value="text-fieldf" />
                </styleClass>
             </JFXTextField>
-            <JFXButton layoutX="389.0" layoutY="15.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
+            <JFXButton layoutX="389.0" layoutY="15.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f" AnchorPane.leftAnchor="198.0">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
             <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="145.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
-            <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="189.0" startX="32.0" startY="-106.0" stroke="#fffffffa" />
-            <JFXButton fx:id="feed_button" layoutX="198.0" layoutY="20.0" onAction="#load_feed" prefHeight="41.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button2" text="Feed" textFill="#99999f">
+            <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="189.0" startX="32.0" startY="-106.0" stroke="#fffffffa" AnchorPane.leftAnchor="197.5" />
+            <JFXButton fx:id="feed_button" layoutX="402.0" layoutY="19.0" onAction="#load_feed" prefHeight="41.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button2" text="Feed" textFill="#99999f" AnchorPane.leftAnchor="402.0">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
             </JFXButton>
-            <ImageView fx:id="BtnClose" fitHeight="27.0" fitWidth="40.0" layoutX="1916.0" layoutY="7.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" translateX="-25.0">
+            <ImageView fx:id="BtnClose" fitHeight="27.0" fitWidth="40.0" layoutX="1916.0" layoutY="7.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true" translateX="-25.0" AnchorPane.rightAnchor="-23.0">
                <image>
                   <Image url="@../images/close.png" />
                </image>
@@ -70,7 +70,7 @@
                   </ScrollPane>
                </children>
             </HBox>
-            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Add an announcement" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Add an announcement" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.rightAnchor="122.0">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -82,7 +82,7 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <Label layoutX="1861.0" layoutY="1040.0" onMouseClicked="#AddFeedback" text="Label" textFill="WHITE">
+            <Label layoutX="1861.0" layoutY="1040.0" onMouseClicked="#AddFeedback" text="Label" textFill="WHITE" AnchorPane.rightAnchor="29.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
