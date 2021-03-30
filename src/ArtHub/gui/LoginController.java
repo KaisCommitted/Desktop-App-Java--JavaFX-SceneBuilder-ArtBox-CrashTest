@@ -91,7 +91,7 @@ public class LoginController implements Initializable {
                   
                   } 
                   else  {
-                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FRONT_event.fxml"));
+                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FRONT_annonce.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -99,9 +99,9 @@ public class LoginController implements Initializable {
             stage.setTitle("Host an event" );
             
            //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
-            Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            //Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
             
-            stage.setScene(new Scene(root1, screenSize.getWidth(), screenSize.getHeight()));
+            stage.setScene(new Scene(root1));//, screenSize.getWidth(), screenSize.getHeight()));
             
             stage.show();
    

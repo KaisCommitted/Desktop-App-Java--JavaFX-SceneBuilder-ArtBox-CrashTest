@@ -57,7 +57,8 @@ public class FRONT_AnnonceController implements Initializable {
     @FXML
     private ImageView BtnClose;
     @FXML
-    private AnchorPane addFeedback3;
+    private AnchorPane anchor;
+   
 
     /**
      * Initializes the controller class.
