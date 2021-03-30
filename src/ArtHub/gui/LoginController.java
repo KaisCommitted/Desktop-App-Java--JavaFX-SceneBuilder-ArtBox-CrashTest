@@ -77,7 +77,7 @@ public class LoginController implements Initializable {
                   
                   if (CurrentUser.getRef_admin()== "1") {
                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));  
-                      
+                      Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
                           
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
