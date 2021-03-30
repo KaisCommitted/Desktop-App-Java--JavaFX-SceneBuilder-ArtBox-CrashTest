@@ -182,9 +182,11 @@ public class FRONT_EventController implements Initializable {
     private ImageView imgcat;
     @FXML
     private ImageView imgorg;
-String userHomeFolder = System.getProperty("user.home");
+public static String userHomeFolder = System.getProperty("user.home");
     @FXML
     private ImageView catshow;
+    @FXML
+    private ImageView btnSearch;
     /**
      * Initializes the controller class.
      */
@@ -194,6 +196,8 @@ String userHomeFolder = System.getProperty("user.home");
             //////////////////////////////////WHATSAPPP MAKE 24H window + check credentials//////////////////////////////////////////
             //sendWhatsapp();
             ///////////////////////////////////WHATSAAAAAP////////////////////////////////////////////
+           setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
+            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Person_32px.png", imgspots);
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\calendar.png", imgdate);
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\location.png", imglocation);
@@ -890,7 +894,7 @@ notifyme();
        notificationBuilder.darkStyle();
        notificationBuilder.show();}
       
-    public void setImage(String from,ImageView image) {
+    public static void setImage(String from,ImageView image) {
         try {
             Image img3 = new Image(new FileInputStream(from));
             image.setImage(img3);
@@ -1077,5 +1081,15 @@ notifyme();
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+     @FXML
+    private void closeOFF(MouseEvent event) {
+         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+    }
+
+    @FXML
+    private void closeON(MouseEvent event) {
+         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
     }
 }

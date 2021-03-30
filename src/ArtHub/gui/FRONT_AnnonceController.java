@@ -6,6 +6,8 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Annonce;
+import static ArtHub.gui.FRONT_EventController.setImage;
+import static ArtHub.gui.FRONT_EventController.userHomeFolder;
 import ArtHub.services.AnnonceCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -16,6 +18,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -36,6 +42,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -59,6 +66,8 @@ public class FRONT_AnnonceController implements Initializable {
     private ImageView BtnClose;
     @FXML
     private AnchorPane anchor;
+    @FXML
+    private ImageView btnSearch;
    
 
     /**
@@ -67,8 +76,8 @@ public class FRONT_AnnonceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-            
-           
+            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
+          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
         anchor.setPrefSize(screenSize.getWidth(), screenSize.getHeight());
         parentContainer1.setPrefSize(screenSize.getWidth(), screenSize.getHeight());
         Notifications notificationBuilder = Notifications.create()
@@ -127,28 +136,35 @@ public class FRONT_AnnonceController implements Initializable {
             
     }    
 
-    @FXML
-    private void AddEvent(ActionEvent event) {
-        Notifications notificationBuilder = Notifications.create()
-               .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
-               .position(Pos.BASELINE_CENTER)
-               .onAction(new EventHandler<ActionEvent>(){
-                   public void handle(ActionEvent event)
-                   {
-                       
-                       System.out.println("clicked ON ");
-               }}); 
-        
-    }
+   
 
     @FXML
     private void filterEvent(KeyEvent event) {
+        
     }
 
 
     @FXML
     private void load_feed(ActionEvent event) {
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("feed gui.fxml"));
+            Scene scene = feed_button.getScene();
+            
+            root.translateXProperty().set(scene.getHeight());
+            parentContainer1.getChildren().add(root);
+            
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
+            timeline.getKeyFrames().add(kf);
+            
+            timeline.play();
+            //parentContainer.getChildren().remove(anchorRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
 
     @FXML
     private void offEffectSearch(MouseEvent event) {
@@ -180,6 +196,41 @@ public class FRONT_AnnonceController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void load_events(ActionEvent event) {
+          try {
+            Parent root = FXMLLoader.load(getClass().getResource("FRONT_event.fxml"));
+            Scene scene = feed_button.getScene();
+            
+            root.translateXProperty().set(scene.getHeight());
+            parentContainer1.getChildren().add(root);
+            
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
+            timeline.getKeyFrames().add(kf);
+            
+            timeline.play();
+            //parentContainer.getChildren().remove(anchorRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void AddAnnonce(ActionEvent event) {
+    }
+
+    @FXML
+    private void closeOFF(MouseEvent event) {
+         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+    }
+
+    @FXML
+    private void closeON(MouseEvent event) {
+         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
     }
     
 }

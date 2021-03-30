@@ -47,7 +47,7 @@ public class Kais extends Application {
             Rectangle2D bounds = screen.getVisualBounds();
             // Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("CategoriePicker.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("Affichepostes.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
             //Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
             Scene scene = new Scene(root );//root, 1920, 1080);

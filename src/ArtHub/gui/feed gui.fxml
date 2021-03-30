@@ -24,7 +24,12 @@
    <children>
       <AnchorPane id="AnchorPane" fx:id="anchorRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
-            <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="16.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef">
+            <Label fx:id="lblfeedback" layoutX="1904.0" layoutY="187.0" onMouseClicked="#addFeedback" prefHeight="18.0" prefWidth="64.0" text="Feedback" textFill="#fff8f8" translateX="-80.0" translateY="850.0" AnchorPane.bottomAnchor="875.0" AnchorPane.rightAnchor="-48.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="16.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -50,22 +55,17 @@
                   <Image url="@../../../Images/SDFDSFDSF.png" />
                </image>
             </ImageView>
-            <JFXButton layoutX="316.0" layoutY="16.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
+            <JFXButton fx:id="btn_event" layoutX="449.0" layoutY="16.0" onAction="#load_event" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f" AnchorPane.leftAnchor="342.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btn_event" layoutX="449.0" layoutY="16.0" onAction="#load_event" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
+            <JFXButton layoutX="560.0" layoutY="17.0" onAction="#load_jobs" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="560.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXButton>
-            <JFXButton fx:id="cp_btn" buttonType="RAISED" layoutX="1450.0" layoutY="18.0" onAction="#load_ajoute" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Create a project" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="cp_btn" buttonType="RAISED" layoutX="1450.0" layoutY="18.0" onAction="#load_ajoute" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Create a project" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -77,7 +77,7 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <JFXTextField focusColor="#405aa800" layoutX="721.0" layoutY="17.0" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
+            <JFXTextField focusColor="#405aa800" layoutX="721.0" layoutY="17.0" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -86,19 +86,6 @@
                   <String fx:value="text-fieldf" />
                </styleClass>
             </JFXTextField>
-            <JFXButton layoutX="1851.0" layoutY="4.0" prefHeight="23.0" prefWidth="86.0" styleClass="button2" text="  " textFill="WHITE">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <graphic>
-            
-         </graphic>
-            </JFXButton>
-            <ImageView fitHeight="34.0" fitWidth="29.0" layoutX="730.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Images/search.png" />
-               </image>
-            </ImageView>
             <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="236.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
             <JFXTabPane layoutX="1.0" layoutY="172.0" prefHeight="827.0" prefWidth="1920.0" styleClass="panel">
                <tabs>
@@ -155,11 +142,16 @@
                   </Tab>
                </tabs>
             </JFXTabPane>
-            <Label fx:id="lblfeedback" layoutX="1908.0" layoutY="153.0" onMouseClicked="#addFeedback" prefHeight="18.0" prefWidth="64.0" text="Feedback" textFill="#fff8f8" translateX="-80.0" translateY="850.0">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
+            <ImageView fx:id="BtnClose" fitHeight="32.0" fitWidth="32.0" layoutX="1326.0" layoutY="74.0" onMouseClicked="#close" onMouseEntered="#closeON" onMouseExited="#closeOFF" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
+               <image>
+                  <Image url="@../images/close.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnSearch" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="750.0" AnchorPane.topAnchor="21.0">
+               <image>
+                  <Image url="@../images/icons8_Search_52px.png" />
+               </image>
+            </ImageView>
             
             
             
