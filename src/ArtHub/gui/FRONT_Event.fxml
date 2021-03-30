@@ -54,7 +54,7 @@
                   <String fx:value="text-fieldf" />
                </styleClass>
             </JFXTextField>
-            <JFXButton layoutX="558.0" layoutY="18.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f">
+            <JFXButton layoutX="558.0" layoutY="18.0" onAction="#load_jobs" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f">
                <font>
                   <Font size="20.0" />
                </font>

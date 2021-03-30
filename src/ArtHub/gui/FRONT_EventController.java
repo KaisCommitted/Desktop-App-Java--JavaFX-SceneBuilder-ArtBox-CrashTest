@@ -1057,4 +1057,25 @@ notifyme();
          
    
 }
+
+    @FXML
+    private void load_jobs(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("FRONT_annonce.fxml"));
+            Scene scene = feed_button.getScene();
+            
+            root.translateXProperty().set(scene.getHeight());
+            parentContainer1.getChildren().add(root);
+            
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
+            timeline.getKeyFrames().add(kf);
+            
+            timeline.play();
+            //parentContainer.getChildren().remove(anchorRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
