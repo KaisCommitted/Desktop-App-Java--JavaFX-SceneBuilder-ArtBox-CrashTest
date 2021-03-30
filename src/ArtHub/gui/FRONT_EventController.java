@@ -9,6 +9,7 @@ import ArtHub.entities.Evenement;
 import ArtHub.entities.Participant;
 import ArtHub.entities.Post;
 import ArtHub.entities.Whatsapp;
+import static ArtHub.gui.CategoriePickerController.clicked_cat;
 import static ArtHub.gui.ItemBoxController.highlight;
 import static ArtHub.gui.ItemBoxController.highlightBtn;
 import static ArtHub.gui.LoginController.CurrentUser;
@@ -61,6 +62,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ComboBox;
@@ -72,6 +76,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -82,6 +88,7 @@ import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.controlsfx.control.Notifications;
 //import javafx.scene.control.Tab;
 
 /**
@@ -165,17 +172,36 @@ public class FRONT_EventController implements Initializable {
     private Label ticketlbl;
     @FXML
     private ImageView ticketimg;
-
+    @FXML
+    private ImageView imgspots;
+    @FXML
+    private ImageView imgdate;
+    @FXML
+    private ImageView imglocation;
+    @FXML
+    private ImageView imgcat;
+    @FXML
+    private ImageView imgorg;
+String userHomeFolder = System.getProperty("user.home");
+    @FXML
+    private ImageView catshow;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            //////////////////////////////////WHATSAPPP//////////////////////////////////////////
+            //////////////////////////////////WHATSAPPP MAKE 24H window + check credentials//////////////////////////////////////////
             //sendWhatsapp();
             ///////////////////////////////////WHATSAAAAAP////////////////////////////////////////////
-
+            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Person_32px.png", imgspots);
+            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\calendar.png", imgdate);
+            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\location.png", imglocation);
+            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
+            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\event-planner.png", imgorg);
+              setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\ticket.png",ticketimg);
+              setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
+            
             scroll21.setFitToHeight(true);
             scroll21.setFitToWidth(true);
             scroll21.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -202,7 +228,7 @@ public class FRONT_EventController implements Initializable {
             scroll1.setFitToWidth(true);
             scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
             scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
-
+notifyme();
             EvenementCRUD ps = new EvenementCRUD();
             List<Evenement> myLst;
 
@@ -779,7 +805,28 @@ public class FRONT_EventController implements Initializable {
             }
 
     }
+    
+     private void notifyme() {
+       List<Evenement> myLiist;
+           EvenementCRUD ec = new EvenementCRUD();
+            ParticipantCRUD pc = new ParticipantCRUD();
+            myLiist = ec.TodayEvenement();
+            if (!myLiist.isEmpty()) {
 
+                for (int i = 0; i < myLiist.size(); i++) {
+                    if (pc.CheckUserExists(CurrentUser.getId_user(), myLiist.get(i).getId())) {
+                        
+                        String content = "";
+                        content =  myLiist.get(i).getNom_event() + " is happening TODAY and we have a spot reserved especially for you, find us in " + myLiist.get(i).getLocation_event();
+                        notificationShow("Don't forget to show up today!", content);
+                   }
+                }
+            }
+
+    }
+
+    
+    
     @FXML
     private void GetYourTicket(MouseEvent event) {
               
@@ -830,7 +877,184 @@ public class FRONT_EventController implements Initializable {
         }
     }
      
+      public void notificationShow(String title,String message) {
+    Notifications notificationBuilder = Notifications.create()
+               .title(title).text(message).graphic(null).hideAfter(javafx.util.Duration.seconds(20))
+               .position(Pos.BASELINE_RIGHT)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {    
+                       
+                       System.out.println("clicked ON ");
+               }});
+       notificationBuilder.darkStyle();
+       notificationBuilder.show();}
+      
+    public void setImage(String from,ImageView image) {
+        try {
+            Image img3 = new Image(new FileInputStream(from));
+            image.setImage(img3);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
+    }
+    public void filterCat(String toCompare) {
+
+       
+            EvenementCRUD ps = new EvenementCRUD();
+            List<Evenement> myLst;
+            if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Default") {
+                myLst = ps.AllFiltered(toCompare);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+
+            if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Most Popular") {
+                myLst = ps.AllFiltered(toCompare);
+                Collections.sort(myLst, compareByParticipants);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Most Recent") {
+                myLst = ps.AllFiltered(toCompare);
+                Collections.sort(myLst, compareByMostRecent);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "All Events" && comboTrend.getValue() == "Alphabetical") {
+                myLst = ps.AllFiltered(toCompare);
+                Collections.sort(myLst, compareByAlphabetical);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+
+            if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Default") {
+                myLst = ps.consulterFiltered(toCompare);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+
+            if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Most Popular") {
+                myLst = ps.consulterFiltered(toCompare);
+                Collections.sort(myLst, compareByParticipants);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Most Recent") {
+                myLst = ps.consulterFiltered(toCompare);
+                Collections.sort(myLst, compareByMostRecent);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "Upcoming" && comboTrend.getValue() == "Alphabetical") {
+                myLst = ps.consulterFiltered(toCompare);
+                Collections.sort(myLst, compareByAlphabetical);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+
+            if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Default") {
+                myLst = ps.TodayEvenementFiltered(toCompare);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+
+            if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Most Popular") {
+                myLst = ps.TodayEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByParticipants);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Most Recent") {
+                myLst = ps.TodayEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByMostRecent);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "Today" && comboTrend.getValue() == "Alphabetical") {
+                myLst = ps.TodayEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByAlphabetical);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+
+            if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Default") {
+                myLst = ps.ThisMonthEvenementFiltered(toCompare);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Most Popular") {
+                myLst = ps.ThisMonthEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByParticipants);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Most Recent") {
+                myLst = ps.ThisMonthEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByMostRecent);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "This Month" && comboTrend.getValue() == "Alphabetical") {
+                myLst = ps.ThisMonthEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByAlphabetical);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+
+            if (comboDate.getValue() == "This Week" && comboTrend.getValue() == "Default") {
+                myLst = ps.ThisWeekEvenementFiltered(toCompare);
+                FillHbox1(myLst, event_mostPop);
+
+            }
+            if (comboDate.getValue() == "This Week" && comboTrend.getValue() == "Most Popular") {
+                myLst = ps.ThisWeekEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByParticipants);
+                FillHbox1(myLst, event_mostPop);
+            }
+            if (comboDate.getValue() == "This Week" && comboTrend.getValue() == "Most Recent") {
+                myLst = ps.ThisWeekEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByMostRecent);
+                FillHbox1(myLst, event_mostPop);
+            }
+            if (comboDate.getValue() == "This Week" && comboTrend.getValue() == "Alphabetical") {
+                myLst = ps.ThisWeekEvenementFiltered(toCompare);
+                Collections.sort(myLst, compareByAlphabetical);
+                FillHbox1(myLst, event_mostPop);
+            }
+
+        
+    }
+
     
+    @FXML
+    private void catshow(MouseEvent event) {
+        
+        try {
+           
+            if(clicked_cat!="") {filterCat(clicked_cat);
+           clicked_cat="";
+          //catshow(event);
+           
+           }
+           else{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CategoriePicker.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event");
+          
+            stage.setScene(new Scene(root1));
+
+            stage.show();
+               
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
    
+}
 }

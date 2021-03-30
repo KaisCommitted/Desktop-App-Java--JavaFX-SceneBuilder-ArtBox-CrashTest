@@ -50,6 +50,7 @@ import com.google.zxing.common.BitMatrix;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.List;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -117,6 +118,9 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
     String Empty;
     String Full;
     String AVG;
+    String locationpng;
+    String datepng;
+    String spotspng;
     RatingCRUD rc = new RatingCRUD();
     EvenementCRUD ec = new EvenementCRUD();
     @FXML
@@ -125,6 +129,12 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
     private ImageView ratedImg;
     @FXML
     private Label ratedLbl;
+    @FXML
+    private ImageView imgspots;
+    @FXML
+    private ImageView imgdate;
+    @FXML
+    private ImageView imglocation;
     
     /**
      * Initializes the controller class.
@@ -136,11 +146,20 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
         Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Empty.png";
         Full = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Full.png";
         AVG = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\peach.png";
-        
+        locationpng = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\location.png";
+        datepng =  userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\calendar.png";
+         spotspng =  userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Person_32px.png";
 
     }
 
     public void setData(Evenement p) throws IOException {
+         Image img1 = new Image(new FileInputStream(spotspng));
+          Image img2 = new Image(new FileInputStream(datepng));
+           Image img3 = new Image(new FileInputStream(locationpng));
+           imgspots.setImage(img1);
+           imgdate.setImage(img2);
+           imglocation.setImage(img3);
+           
         Image emptyStar = new Image(new FileInputStream(Empty));
         Image coloredStar = new Image(new FileInputStream(Full));
         if (p.getDate_event().isBefore(LocalDate.now())) {
@@ -224,7 +243,7 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
             Event_spots1.setText(Integer.toString(Integer.parseInt(aux1) - 1) + " Participants");
             Btn_participer.setText("Join");
         } else {
-            {
+            { notificationShow("You joined "+CurrentEvent.getNom_event(), "See you in "+ DAYS.between(LocalDate.now(),CurrentEvent.getDate_event() ) + " days!" );
                 ppt.ajouterParticipant(p);
                 ec.modifierEvenement(CurrentEvent.getId(), "capacite_event", CurrentEvent.getCapacite_event() - 1);
                 Btn_participer.setText("Going");
@@ -232,17 +251,7 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
                 Event_spots1.setText(Integer.toString(Integer.parseInt(aux1) + 1) + " Participants");
             }
         }
-       /* Notifications notificationBuilder = Notifications.create()
-               .title("Alert").text("You joined").graphic(null).hideAfter(javafx.util.Duration.minutes(10))
-               .position(Pos.TOP_RIGHT)
-               .onAction(new EventHandler<ActionEvent>(){
-                   public void handle(ActionEvent event)
-                   {
-                       System.out.println("clicked ON ");
-               }});
-       notificationBuilder.darkStyle();
-       notificationBuilder.show();
-*/
+       
     }
 
     @FXML
@@ -621,5 +630,17 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
         ItemBox.setCursor(Cursor.HAND);
     }
     
-   
+   public void notificationShow(String title,String message) {
+    Notifications notificationBuilder = Notifications.create()
+               .title(title).text(message).graphic(null).hideAfter(javafx.util.Duration.seconds(20))
+               .position(Pos.BASELINE_RIGHT)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {    
+                       
+                       System.out.println("clicked ON ");
+               }});
+       notificationBuilder.darkStyle();
+       notificationBuilder.show();}
+    
 }
