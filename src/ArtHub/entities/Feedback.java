@@ -13,6 +13,7 @@ import java.sql.Date;
 
 public class Feedback extends RecursiveTreeObject<Feedback> implements Serializable {
     private int id_feedback;
+    private User id_user;
     private String contenu_feedback;
     private String type_feedback;
     private String etat_feedback;
@@ -51,6 +52,10 @@ public class Feedback extends RecursiveTreeObject<Feedback> implements Serializa
 
     public int getId_feedback() {
         return id_feedback;
+    }
+    
+    public int getId_user() {
+        return id_user;
     }
 
     public String getContenu_feedback() {

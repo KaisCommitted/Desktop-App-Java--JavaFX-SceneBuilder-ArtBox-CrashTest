@@ -13,8 +13,8 @@ import java.sql.Date;
 
 public class Signalisation extends RecursiveTreeObject<Signalisation> implements Serializable {
     private int id_signal;
-    private int id_user;
-    private int id_post;
+    private User id_user;
+    private Post id_post;
     private String contenu_signal;
     private String type_signal;
     private String etat_signal;
