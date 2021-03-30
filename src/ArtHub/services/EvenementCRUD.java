@@ -723,6 +723,25 @@ public List<Evenement> GoingTo(int id) {
 
     }
   
-    
+     public boolean CheckEvenementByName(String name) {
+
+        boolean p = false;
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE nom_event='" + name + "'");
+
+            while (rs.next()) {
+                 p=true;
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return p;
+
+    }
 
 }

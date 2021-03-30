@@ -85,8 +85,8 @@ Participant P = new Participant();
                  QR.setImage(img);
                  username.setText("Organized by: " + org); 
                  
-                 date.setText("Event date :" + E.getDate_event().format(formatters));
-                 location.setText("Event link" + E.getLocation_event());
+                 date.setText(" " + E.getDate_event().format(formatters));
+                 location.setText(" " + E.getLocation_event());
                
                 
                  

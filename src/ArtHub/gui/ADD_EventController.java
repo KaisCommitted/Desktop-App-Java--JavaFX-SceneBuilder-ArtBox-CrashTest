@@ -112,6 +112,7 @@ public class ADD_EventController implements Initializable {
     private TextField code;
     @FXML
     private Button reset;
+    EvenementCRUD evt = new EvenementCRUD();
     /**
      * Initializes the controller class.
      */
@@ -131,17 +132,8 @@ public class ADD_EventController implements Initializable {
     private void addEvent(ActionEvent event) {
          
 if (captcha.isCorrect(code.getText())) {
-
-            String tilte = "Captcha";
-            String message = "Correct";
-            TrayNotification tray = new TrayNotification();
-            AnimationType type = AnimationType.POPUP;
-
-            tray.setAnimationType(type);
-            tray.setTitle(tilte);
-            tray.setMessage(message);
-            tray.setNotificationType(NotificationType.SUCCESS);
-            tray.showAndDismiss(Duration.millis(3000)); 
+            
+            
        
         try {
             
@@ -159,9 +151,17 @@ if (captcha.isCorrect(code.getText())) {
                     || event_location.getText().trim().isEmpty()) {
                 control = "Make sure to fill all the fields";
                // Control.setVisible(true);
-                Control.setText(control);
+                Control.setText(control);  
                  notificationShow("Alert!",control);
-            } else if (Evenement.isNotInteger(txt_capacite.getText())) {
+            } else if (evt.CheckEvenementByName(txt_nom.getText())) {
+                control += "\nEvent name already exists";
+                txt_capacite.clear();
+                Control.setText(control);
+               // Control.setVisible(true);
+                notificationShow("Alert!",control);
+                txt_capacite.setStyle("background-color: rgba(255,0,0,0.2);");
+            } 
+            else if (Evenement.isNotInteger(txt_capacite.getText())) {
                 control += "\nEvent capacity should be an integer";
                 txt_capacite.clear();
                 Control.setText(control);
@@ -193,12 +193,12 @@ if (captcha.isCorrect(code.getText())) {
                 String location = event_location.getText();
                 C.setCategorie_name(Categorie);
                 Evenement e = new Evenement(CurrentUser, Datenaiss, rNom, rType,C, rDescription, Capacite, Capacite, path, location);
-                EvenementCRUD evt = new EvenementCRUD();
+                
                 evt.ajouterEvenement(e);
 
                 // if (CurrentUser.getRef_admin().equals("0")) {
                  Notifications notificationBuilder = Notifications.create()
-               .title("Event added").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
+               .title("Event added").text("Click me to exit").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
                .position(Pos.CENTER)
                .onAction(new EventHandler<ActionEvent>(){
                    public void handle(ActionEvent event)
