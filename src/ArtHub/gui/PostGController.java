@@ -71,6 +71,12 @@ public class PostGController implements Initializable {
     @FXML
     private ImageView addsignal;
  
+    @FXML
+    private JFXButton cmnt_btn;
+    
+    
+      @FXML
+    private ImageView cmntbtn;
  
  
  
@@ -97,8 +103,7 @@ public class PostGController implements Initializable {
      
  
  
-        
-       
+      
         
  
  
@@ -118,6 +123,24 @@ public class PostGController implements Initializable {
         System.out.println(post.getFile());
        Image image =new Image(new FileInputStream(post.getFile())); 
       img.setImage(image);
+      
+      
+      
+      
+        
+       try {
+           //String path="file:///C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\gui\\post_pics\\like_selec.png" ;
+           
+           
+           //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
+           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\cmnt.gif";
+           Image image3 =new Image(new FileInputStream(Empty));
+           cmntbtn.setImage(image3);
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+      
+      
       
       
       // set a clip to apply rounded border to the original image.
@@ -254,6 +277,17 @@ public class PostGController implements Initializable {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void Comments(MouseEvent event) {
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     
