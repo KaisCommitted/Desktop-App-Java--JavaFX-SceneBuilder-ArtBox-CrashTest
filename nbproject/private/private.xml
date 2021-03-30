@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/ArtHub/gui/ItemBoxController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/EventTicketController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FRONT_EventController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Participant.java</file>
+            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/LoginController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/ParticipantCRUD.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/CategoriePickerController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Whatsapp.java</file>
@@ -14,32 +23,8 @@
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ItemBoxController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/Kais.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/FeedbackCRUD.java</file>
-            <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ADD_EventController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/EventTicket.fxml</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/EvenementCRUD.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Kais.java</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/feed%20gui.css</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/style.css</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/FRONT_AnnonceController.java</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/ItemBoxController.java</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AddAnnonceController.java</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/FRONT_EventController.java</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/AddUserController.java</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/FRONT_Annonce.fxml</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/ADD_EventController.java</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/TestFXMainAnnonce.java</file>
-            <file>file:/C:/Users/Yasmine/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/ItemAnnonceController.java</file>
-=======
-            <file>file:/C:/Users/Moetez/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/entities/Feedback.java</file>
-            <file>file:/C:/Users/Moetez/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/TestFXMainMoetezMathalan.java</file>
-            <file>file:/C:/Users/Moetez/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FRONT_AnnonceController.java</file>
-            <file>file:/C:/Users/Moetez/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FeedGuiController.java</file>
-            <file>file:/C:/Users/Moetez/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FRONT_EventController.java</file>
-            <file>file:/C:/Users/Moetez/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/AfficherFeedbackController.java</file>
->>>>>>> 9733bb3d005472836fdd9456adee632a28c3029c
->>>>>>> 9ca591fc118975a1a42c70e1b94d9007f53348d7
         </group>
     </open-files>
 </project-private>

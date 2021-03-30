@@ -17,9 +17,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="parentContainer1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_AnnonceController">
+<StackPane fx:id="parentContainer1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FRONT_AnnonceController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="addFeedback3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#AddFeedback" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+      <AnchorPane id="AnchorPane" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
             <JFXButton layoutX="294.0" layoutY="15.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
                <font>
@@ -57,7 +57,7 @@
                   <Image url="@../images/close.png" />
                </image>
             </ImageView>
-            <HBox layoutX="459.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="1014.0" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="531.0" AnchorPane.topAnchor="199.0">
+            <HBox layoutX="459.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="656.0" prefWidth="1014.0" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="531.0" AnchorPane.topAnchor="199.0">
                <children>
                   <ScrollPane prefHeight="674.0" prefWidth="990.0">
                      <content>
@@ -70,7 +70,7 @@
                   </ScrollPane>
                </children>
             </HBox>
-            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" onAction="#AddEvent" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Add an announcement" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Add an announcement" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -82,7 +82,7 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <Label fx:id="addFeedback3" layoutX="1855.0" layoutY="111.0" onMouseClicked="#AddFeedback" prefHeight="18.0" prefWidth="110.0" text="Feedback" textFill="WHITE" translateY="939.0">
+            <Label layoutX="1861.0" layoutY="1040.0" onMouseClicked="#AddFeedback" text="Label" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
