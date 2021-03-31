@@ -24,8 +24,8 @@ public class SignalisationCRUD {
         try {
             ste = cnx.prepareStatement(req);
             ste.setInt(1, s.getId_signal());
-            ste.setInt(2, s.getId_user());
-            ste.setInt(3, s.getId_post());
+            ste.setInt(2, s.getId_user().getId_user());
+            ste.setInt(3, s.getId_post().getId_post());
             ste.setString(4, s.getContenu_signal());
             ste.setString(5, s.getType_signal());
             ste.setString(6, s.getEtat_signal());
@@ -63,9 +63,9 @@ public class SignalisationCRUD {
                 
                 
                 
-                Signalisation s = new Signalisation(id_signal,id_user,id_post, contenu_signal, type_signal,etat_signal,date_signal);
-                s.setId_signal(rs.getInt("id_signal"));
-                myList.add(s);
+              //  Signalisation s = new Signalisation(id_signal,id_user,id_post, contenu_signal, type_signal,etat_signal,date_signal);
+              //  s.setId_signal(rs.getInt("id_signal"));
+               // myList.add(s);
 
             }
         } catch (SQLException ex) {

@@ -54,7 +54,7 @@ public class Feedback extends RecursiveTreeObject<Feedback> implements Serializa
         return id_feedback;
     }
     
-    public int getId_user() {
+    public User getId_user() {
         return id_user;
     }
 
