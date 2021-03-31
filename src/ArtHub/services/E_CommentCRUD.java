@@ -183,7 +183,7 @@ public class E_CommentCRUD {
            E_Comment C = new E_Comment();
             Statement stmt = cnx.createStatement();
 
-            String sql = "SELECT * from comment_event " + " WHERE id_event=" + id;
+            String sql = "SELECT * from comment_event " + " WHERE id_event=" + id +" order by commentDate";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
 
