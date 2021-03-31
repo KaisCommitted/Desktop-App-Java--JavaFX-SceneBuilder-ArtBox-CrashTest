@@ -109,6 +109,9 @@ public class FRONT_EventController implements Initializable {
     @FXML
     private JFXButton Btn_AddEvent;
 
+     @FXML
+    private JFXButton Btn_profile;
+     
     @FXML
     private HBox event_mostPop;
     @FXML
@@ -321,7 +324,7 @@ notifyme();
 
     }
 
-    @FXML
+       @FXML
     private void AddEvent(ActionEvent event) {
         try {
            
@@ -332,6 +335,24 @@ notifyme();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Host an event");
+
+            stage.setScene(new Scene(root1));
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    @FXML
+    private void showProfile(ActionEvent event) {
+        try {
+           
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
 
             stage.setScene(new Scene(root1));
 

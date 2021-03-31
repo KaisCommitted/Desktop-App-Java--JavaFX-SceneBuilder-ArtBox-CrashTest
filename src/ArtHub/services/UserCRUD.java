@@ -75,8 +75,9 @@ public class UserCRUD {
                 Date date_naissance = rs.getDate("date_naissance");
                 String pwd_user = rs.getString("pwd_user");
                 String ref_admin = rs.getString("ref_admin");
+                String image = rs.getString("image");
             
-                User u = new User(id_user,nom,prenom,username,mail,date_naissance,pwd_user,ref_admin);
+                User u = new User(id_user,nom,prenom,username,mail,date_naissance,pwd_user,ref_admin,image);
                 myList.add(u);
                 
             }
@@ -175,6 +176,8 @@ public class UserCRUD {
                             user.setDate_naissance(rs.getDate("date_naissance"));
                             user.setPwd_user(rs.getString("pwd_user"));
                             user.setRef_admin(rs.getString("ref_admin"));
+                            user.setImage(rs.getString("image"));
+                            
                             
  return true;
                         }
@@ -212,6 +215,7 @@ public class UserCRUD {
                             user.setDate_naissance(rs.getDate("date_naissance"));
                             user.setPwd_user(rs.getString("pwd_user"));
                             user.setRef_admin(rs.getString("ref_admin"));
+                            user.setImage(rs.getString("image"));
                             System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEF  "+user.getRef_admin());
                             
                         }
