@@ -24,8 +24,8 @@ public class SignalisationCRUD {
         try {
             ste = cnx.prepareStatement(req);
             ste.setInt(1, s.getId_signal());
-            ste.setInt(2, s.getId_user());
-            ste.setInt(3, s.getId_post());
+            ste.setInt(2, s.getId_user().getId_user());
+            ste.setInt(3, s.getId_post().getId_post());
             ste.setString(4, s.getContenu_signal());
             ste.setString(5, s.getType_signal());
             ste.setString(6, s.getEtat_signal());
@@ -54,8 +54,8 @@ public class SignalisationCRUD {
 
                
                 int id_signal = rs.getInt("id_signal");
-                int id_user = rs.getInt("id_user");
-                int id_post = rs.getInt("id_post");
+                User id_user = rs.getInt("id_user");
+                Post id_post = rs.getInt("id_post");
                 String contenu_signal = rs.getString("contenu_signal");
                 String type_signal = rs.getString("type_signal");
                 String etat_signal = rs.getString("etat_signal");
