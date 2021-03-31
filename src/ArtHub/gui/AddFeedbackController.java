@@ -47,7 +47,7 @@ public class AddFeedbackController implements Initializable {
             String rcontenufeedback = txtContenuFeedback.getText();
          
            
-            Feedback f = new Feedback(CurrentUser.getId_user(),rcontenufeedback,rtypefeedback,"Not treated");
+            Feedback f = new Feedback(CurrentUser,rcontenufeedback,rtypefeedback,"Not treated");
             FeedbackCRUD feed = new FeedbackCRUD();
             feed.ajouterFeedback(f);
             Stage stage;

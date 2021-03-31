@@ -38,6 +38,10 @@ public class Signalisation extends RecursiveTreeObject<Signalisation> implements
         this.date_signal = date_signal;
     }
 
+    public Signalisation(int id_signal, int id_user, int id_post, String contenu_signal, String type_signal, String etat_signal, Date date_signal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
 
 

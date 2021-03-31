@@ -22,21 +22,27 @@ public class FeedbackCRUD {
     }
     
     public void ajouterFeedback(Feedback f){
-        String req ="INSERT INTO Feedback ( id_feedback,id_user,contenu_feedback,type_feedback,etat_feedback,date_feedback)"+"values (?,?,?,?,?,?)";
+        String req ="INSERT INTO Feedback ( id_feedback,id_user,contenu_feedback,type_feedback,etat_feedback)"+"values (?,?,?,?,?)";
         try {
+            User u = new User();
             ste = cnx.prepareStatement(req);
             ste.setInt(1, f.getId_feedback());
-            ste.setInt(2, f.getId_user().getId_user());
+           ste.setInt(2, f.getId_user().getId_user());
             ste.setString(3, f.getContenu_feedback());
             ste.setString(4, f.getType_feedback());
             ste.setString(5, f.getEtat_feedback());
-            ste.setDate(6, f.getDate_feedback());
+            
 
             ste.executeUpdate();
+            
+            
+            
+            
+            
             System.out.println("Feedback ajouté");
             
         } catch (SQLException ex) {
-            System.out.println("Problème");
+            System.out.println("Problème d'ajout feedback");
             System.out.println(ex.getMessage());
             
         }
@@ -53,9 +59,27 @@ public class FeedbackCRUD {
             ResultSet rs = pst.executeQuery("SELECT * from feedback");
             while (rs.next()) {
 
+                
+//                Feedback f = new Feedback();
+//                f.setId_feedback(rs.getInt(1));
+//                
+//                f.setId_user(rs.getObject(2, User));
+//                               
+//                f.setContenu_feedback(rs.getString(3));
+//                
+//                f.setType_feedback(rs.getString(4));          
+//                f.setEtat_feedback(rs.getString(5));          
+//                f.setDate_feedback(rs.getDate(6));   
+//                myList.add(f);
+
+                
                
                 int id_feedback = rs.getInt("id_feedback");
-                User id_user = rs.getInt("id_user");
+                UserCRUD uc = new UserCRUD();
+                User u = new User();
+               
+                u = uc.FindUser(rs.getInt("id_user"));
+                
                 String contenu_feedback = rs.getString("contenu_feedback");
                 String type_feedback = rs.getString("type_feedback");
                 String etat_feedback = rs.getString("etat_feedback");
@@ -63,7 +87,7 @@ public class FeedbackCRUD {
                 
                 
                 
-                Feedback f = new Feedback(id_feedback, User id_user, contenu_feedback, type_feedback,etat_feedback,date_feedback);
+                Feedback f = new Feedback(id_feedback,u, contenu_feedback, type_feedback,etat_feedback,date_feedback);
                 f.setId_feedback(rs.getInt("id_feedback"));
                 myList.add(f);
 

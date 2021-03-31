@@ -1,6 +1,8 @@
 
 package ArtHub.services;
+import ArtHub.entities.Post;
 import ArtHub.entities.Signalisation;
+import ArtHub.entities.User;
 import ArtHub.tools.MyConnection;
 import java.sql.Connection;
 import java.sql.Date;
@@ -20,7 +22,7 @@ public class SignalisationCRUD {
     }
     
     public void ajouterSignalisation(Signalisation s){
-        String req ="INSERT INTO signalisation ( id_signal,id_user,id_post,contenu_signal,type_signal,etat_signal,date_signal)"+"values (?,?,?,?,?,?,?)";
+        String req ="INSERT INTO signalisation ( id_signal,id_user,id_post,contenu_signal,type_signal,etat_signal)"+"values (?,?,?,?,?,?)";
         try {
             ste = cnx.prepareStatement(req);
             ste.setInt(1, s.getId_signal());
@@ -29,7 +31,7 @@ public class SignalisationCRUD {
             ste.setString(4, s.getContenu_signal());
             ste.setString(5, s.getType_signal());
             ste.setString(6, s.getEtat_signal());
-            ste.setDate(7, s.getDate_signal());
+            
 
             ste.executeUpdate();
             System.out.println("Signalisation ajoutée");
@@ -54,8 +56,16 @@ public class SignalisationCRUD {
 
                
                 int id_signal = rs.getInt("id_signal");
-                User id_user = rs.getInt("id_user");
-                Post id_post = rs.getInt("id_post");
+                UserCRUD uc = new UserCRUD();
+                User u = new User();
+               
+                u = uc.FindUser(rs.getInt("id_user"));
+                
+               Post p = new Post(rs.getInt("id_post"));
+               
+               
+                
+               
                 String contenu_signal = rs.getString("contenu_signal");
                 String type_signal = rs.getString("type_signal");
                 String etat_signal = rs.getString("etat_signal");
@@ -63,7 +73,7 @@ public class SignalisationCRUD {
                 
                 
                 
-                Signalisation s = new Signalisation(id_signal,id_user,id_post, contenu_signal, type_signal,etat_signal,date_signal);
+                Signalisation s = new Signalisation(id_signal,u,p, contenu_signal, type_signal,etat_signal,date_signal);
                 s.setId_signal(rs.getInt("id_signal"));
                 myList.add(s);
 
