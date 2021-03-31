@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Kais.java</file>
-            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Home.fxml</file>
-            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/TestFXMainTarek.java</file>
-            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/ADD_EventController.java</file>
-            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Home.java</file>
-            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/Adam.java</file>
-            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/gui/HomeController.java</file>
-            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-arthub/src/ArtHub/entities/Labell.java</file>
+            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-ArtBox/src/ArtHub/services/FeedbackCRUD.java</file>
+            <file>file:/C:/Users/Tarek/Documents/GitHub/crashtest-ArtBox/src/ArtHub/services/SignalisationCRUD.java</file>
         </group>
     </open-files>
 </project-private>
