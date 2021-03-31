@@ -22,7 +22,7 @@ public class Feedback extends RecursiveTreeObject<Feedback> implements Serializa
     public Feedback() {
     }
 
-    public Feedback(int id_feedback, String contenu_feedback, String type_feedback, String etat_feedback, Date date_feedback) {
+    public Feedback(int id_feedback,User id_user, String contenu_feedback, String type_feedback, String etat_feedback, Date date_feedback) {
         this.id_feedback = id_feedback;
         this.contenu_feedback =contenu_feedback;
         this.type_feedback = type_feedback;
@@ -82,6 +82,10 @@ public class Feedback extends RecursiveTreeObject<Feedback> implements Serializa
         this.contenu_feedback = contenu_feedback;
     }
 
+    public void setId_user(User id_user) {
+        this.id_user = id_user;
+    }
+    
     public void setType_feedback(String type_feedback) {
         this.type_feedback = type_feedback;
     }

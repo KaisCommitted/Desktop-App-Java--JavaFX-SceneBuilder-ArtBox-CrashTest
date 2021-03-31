@@ -1,6 +1,7 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Feedback;
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.FeedbackCRUD;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,7 +47,7 @@ public class AddFeedbackController implements Initializable {
             String rcontenufeedback = txtContenuFeedback.getText();
          
            
-            Feedback f = new Feedback(rcontenufeedback,rtypefeedback);
+            Feedback f = new Feedback(CurrentUser.getId_user(),rcontenufeedback,rtypefeedback,"Not treated");
             FeedbackCRUD feed = new FeedbackCRUD();
             feed.ajouterFeedback(f);
             Stage stage;

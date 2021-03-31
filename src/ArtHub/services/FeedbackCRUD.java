@@ -2,6 +2,7 @@
 package ArtHub.services;
 import ArtHub.entities.Feedback;
 import ArtHub.entities.Feedback;
+import ArtHub.entities.User;
 import ArtHub.tools.MyConnection;
 import java.sql.Connection;
 import java.sql.Date;
@@ -21,14 +22,15 @@ public class FeedbackCRUD {
     }
     
     public void ajouterFeedback(Feedback f){
-        String req ="INSERT INTO Feedback ( id_feedback,contenu_feedback,type_feedback,etat_feedback,date_feedback)"+"values (?,?,?,?,?)";
+        String req ="INSERT INTO Feedback ( id_feedback,id_user,contenu_feedback,type_feedback,etat_feedback,date_feedback)"+"values (?,?,?,?,?,?)";
         try {
             ste = cnx.prepareStatement(req);
             ste.setInt(1, f.getId_feedback());
-            ste.setString(2, f.getContenu_feedback());
-            ste.setString(3, f.getType_feedback());
-            ste.setString(4, f.getEtat_feedback());
-            ste.setDate(5, f.getDate_feedback());
+            ste.setInt(2, f.getId_user().getId_user());
+            ste.setString(3, f.getContenu_feedback());
+            ste.setString(4, f.getType_feedback());
+            ste.setString(5, f.getEtat_feedback());
+            ste.setDate(6, f.getDate_feedback());
 
             ste.executeUpdate();
             System.out.println("Feedback ajouté");
@@ -53,6 +55,7 @@ public class FeedbackCRUD {
 
                
                 int id_feedback = rs.getInt("id_feedback");
+                User id_user = rs.getInt("id_user");
                 String contenu_feedback = rs.getString("contenu_feedback");
                 String type_feedback = rs.getString("type_feedback");
                 String etat_feedback = rs.getString("etat_feedback");
@@ -60,7 +63,7 @@ public class FeedbackCRUD {
                 
                 
                 
-                Feedback f = new Feedback(id_feedback, contenu_feedback, type_feedback,etat_feedback,date_feedback);
+                Feedback f = new Feedback(id_feedback, User id_user, contenu_feedback, type_feedback,etat_feedback,date_feedback);
                 f.setId_feedback(rs.getInt("id_feedback"));
                 myList.add(f);
 
