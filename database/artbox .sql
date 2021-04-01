@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2021 at 11:53 PM
+-- Generation Time: Apr 01, 2021 at 12:02 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -86,6 +86,27 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comment_event`
+--
+
+CREATE TABLE `comment_event` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_event` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `commentDate` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment_event`
+--
+
+INSERT INTO `comment_event` (`id`, `id_user`, `id_event`, `content`, `commentDate`) VALUES
+(1, 11, 72, 'very noice, am coming', '2021-03-31');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `evenement`
 --
 
@@ -142,7 +163,7 @@ INSERT INTO `evenement` (`id`, `id_org`, `date`, `nom_event`, `type_event`, `cat
 (100, 11, '2020-03-31', 'AmIGoing', 'Exposée', 'Street Art', 'here', 15, 20, 'C:\\xampp\\php\\www\\pidev\\events\\1 (15).jpg', 'Dar jamila', 2),
 (101, 11, '2021-03-31', 'Law', 'Exposé', 'Slam', 'xx', 19, 20, 'C:\\xampp\\php\\www\\pidev\\events\\1 (10).png', 'PastaCosy', 0),
 (102, 11, '2021-03-31', 'TryingCopy', 'Exposé', 'Singing', 'whatever', 20, 20, 'C:/xampp/php/www/pidev/events/1 (21).jpg', 'Machine', 0),
-(103, 11, '2021-04-02', 'wait', 'Exposé', 'Dancing', 'xoxo', 20, 20, 'C:/xampp/php/www/pidev/events/1 (23).jpg', 'Salle', 0),
+(103, 11, '2021-04-02', 'wait', 'Exposé', 'Dancing', 'xoxo', 19, 20, 'C:/xampp/php/www/pidev/events/1 (23).jpg', 'Salle', 0),
 (104, 11, '2021-03-31', 'nope', 'Exposé', 'Singing', 'xoxo', 20, 20, 'C:/xampp/php/www/pidev/events/1 (22).jpg', '24/7', 0),
 (105, 11, '2021-03-31', 'pleasework', 'Exposé', 'Singing', 'sz', 20, 20, 'C:/xampp/php/www/pidev/events/andydoo (32).jpg', 'zz', 0),
 (106, 11, '2021-03-31', 'NewD', 'Festival', 'Singing', 'yes bueno', 20, 20, 'C:/xampp/php/www/pidev/events/NewDB', 'no bueno', 0),
@@ -161,7 +182,7 @@ CREATE TABLE `feedback` (
   `contenu_feedback` varchar(255) NOT NULL,
   `type_feedback` varchar(30) NOT NULL,
   `etat_feedback` varchar(30) NOT NULL,
-  `date_feedback` datetime DEFAULT NULL
+  `date_feedback` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -169,7 +190,7 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`id_feedback`, `id_user`, `contenu_feedback`, `type_feedback`, `etat_feedback`, `date_feedback`) VALUES
-(1, 12, 'very good my friends', 'Others', 'Treated', '2021-03-17 21:36:37');
+(1, 12, 'very good my friends', 'Others', 'Treated', '2021-03-17');
 
 -- --------------------------------------------------------
 
@@ -266,7 +287,8 @@ INSERT INTO `participant` (`id_participation`, `id_user`, `id_event`, `ticket`) 
 (254, 16, 80, '01680'),
 (256, 11, 108, '011108'),
 (259, 11, 72, '01172'),
-(264, 11, 70, '01170');
+(264, 11, 70, '01170'),
+(265, 11, 103, '011103');
 
 -- --------------------------------------------------------
 
@@ -349,7 +371,7 @@ CREATE TABLE `signalisation` (
   `contenu_signal` varchar(150) NOT NULL,
   `type_signal` varchar(30) NOT NULL,
   `etat_signal` varchar(30) NOT NULL,
-  `date_signal` datetime(6) DEFAULT NULL
+  `date_signal` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -406,6 +428,14 @@ ALTER TABLE `comments`
   ADD PRIMARY KEY (`id_comment`),
   ADD KEY `id_post2` (`id_post`),
   ADD KEY `id_use2` (`id_user`);
+
+--
+-- Indexes for table `comment_event`
+--
+ALTER TABLE `comment_event`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userr` (`id_user`),
+  ADD KEY `eventt` (`id_event`);
 
 --
 -- Indexes for table `evenement`
@@ -495,6 +525,12 @@ ALTER TABLE `comments`
   MODIFY `id_comment` int(100) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `comment_event`
+--
+ALTER TABLE `comment_event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `evenement`
 --
 ALTER TABLE `evenement`
@@ -522,7 +558,7 @@ ALTER TABLE `label`
 -- AUTO_INCREMENT for table `participant`
 --
 ALTER TABLE `participant`
-  MODIFY `id_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
+  MODIFY `id_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
 
 --
 -- AUTO_INCREMENT for table `postes`
@@ -558,6 +594,13 @@ ALTER TABLE `user`
 ALTER TABLE `comments`
   ADD CONSTRAINT `id_post2` FOREIGN KEY (`id_post`) REFERENCES `postes` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_use2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `comment_event`
+--
+ALTER TABLE `comment_event`
+  ADD CONSTRAINT `eventt` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `userr` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `evenement`

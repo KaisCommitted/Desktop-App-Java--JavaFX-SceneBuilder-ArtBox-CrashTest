@@ -21,7 +21,7 @@ public class SentimentAPI{
 
     public static String GetSentiment(String text) throws IOException {
 
-        String url = "https://yassine-ta.cognitiveservices.azure.com/text/analytics/v3.1-preview.3/sentiment?opinionMining=true/";
+        String url = "https://adamr.cognitiveservices.azure.com/text/analytics/v3.1-preview.3/sentiment?opinionMining=true/";
         String urlParameters = "{ documents: [{ id: \"1\", text: \"" + text + "\"}]}";
         byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
 
@@ -33,7 +33,7 @@ public class SentimentAPI{
             con.setDoOutput(true);
             con.setRequestMethod("POST");
             con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("Ocp-Apim-Subscription-Key", "b03caeec01f042f3bf1be7db300c0cd5");
+            con.setRequestProperty("Ocp-Apim-Subscription-Key", "c0bfc3ef5e114befbfcba3c123b86819");
 
             try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
 

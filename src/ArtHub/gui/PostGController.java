@@ -79,7 +79,7 @@ public class PostGController implements Initializable {
     private ImageView cmntbtn;
  
  
- 
+  static int current_post=0;
  
  
  
@@ -125,7 +125,7 @@ public class PostGController implements Initializable {
       img.setImage(image);
       
       
-      
+      current_post=post.getId_post();
       
         
        try {

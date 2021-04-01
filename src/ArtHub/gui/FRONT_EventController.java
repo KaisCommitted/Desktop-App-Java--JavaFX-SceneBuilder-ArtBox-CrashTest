@@ -50,6 +50,7 @@ import javax.swing.JFileChooser;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import com.kieferlam.javafxblur.Blur;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
@@ -79,8 +80,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -241,7 +244,13 @@ notifyme();
             String max = par.RecommendParticip(CurrentUser.getId_user());
 
             myLst = ps.RecommendEvenement(max);
-
+            ParticipantCRUD pc = new ParticipantCRUD();
+            for(int i=0 ; i<myLst.size() ; i++ ) {
+            if ((pc.CheckUserExists(CurrentUser.getId_user(),myLst.get(i).getId())))
+                     {
+                myLst.remove(i);
+               }
+            }
             recommended_layout.getChildren().clear();
             FillHbox1(myLst, recommended_layout);
 
@@ -326,19 +335,27 @@ notifyme();
         try {
            
             
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ADD_Event.fxml"));
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ADD_event.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+          
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Host an event");
-
-            stage.setScene(new Scene(root1));
+            //stage.setOpacity(0.2);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            Blur.applyBlur(stage, Blur.BLUR_BEHIND);
+            root1.setStyle(" -fx-background-color:rgba(	0, 0, 0,0.9);");
+            Scene scene = new Scene(root1);
+             scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            
 
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
     }
 
@@ -1091,5 +1108,31 @@ notifyme();
     @FXML
     private void closeON(MouseEvent event) {
          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
+    }
+
+     
+    @FXML
+    private void showComments(MouseEvent event) { 
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EventComments.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+          
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            //stage.setOpacity(0.2);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            Blur.applyBlur(stage, Blur.ACRYLIC);
+            root1.setStyle(" -fx-background-color:rgba(	0, 0, 0,0.7);");
+            Scene scene = new Scene(root1);
+             scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

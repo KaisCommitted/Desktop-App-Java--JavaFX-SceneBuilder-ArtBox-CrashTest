@@ -208,7 +208,7 @@ public class HomeController implements Initializable {
              ShowUsers();
             pnlUsers.setStyle("-fx-background-color : #02030A");
             pnlUsers.toFront();
-                System.out.println("YO");
+                
             
         }
         if(actionEvent.getSource()==btnJobs)
@@ -921,8 +921,8 @@ public class HomeController implements Initializable {
             }
         }); 
         
-        /* input.setPromptText("Rechercher ..");
-        input.textProperty().addListener(new ChangeListener<String>() {
+        //inputLabels.setPromptText("Rechercher ..");
+       /* inputLabels.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 treeview.setPredicate(new Predicate<TreeItem<Label>>() {
