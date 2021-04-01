@@ -7,6 +7,7 @@ package ArtHub.gui;
 
 
 import ArtHub.entities.Signalisation;
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.SignalisationCRUD;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,9 +41,10 @@ public class AddSignalisationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     cmboTypeSignal.getItems().add("Harcélement");
-     cmboTypeSignal.getItems().add("Nom Inapproprié");
-     cmboTypeSignal.getItems().add("Violence verbale");
+     cmboTypeSignal.getItems().add("Harassement");
+     cmboTypeSignal.getItems().add("Verbal Violence");
+     cmboTypeSignal.getItems().add("Nudity");
+     cmboTypeSignal.getItems().add("Sexual content");
 
     }    
     @FXML
@@ -53,7 +55,7 @@ public class AddSignalisationController implements Initializable {
             String rcontenusignal = txtContenuSignal.getText();
          
            
-            Signalisation s = new Signalisation(rcontenusignal,rtypesignal);
+            Signalisation s = new Signalisation(CurrentUser,rcontenusignal,rtypesignal,"Not treated");
             SignalisationCRUD feed = new SignalisationCRUD();
             feed.ajouterSignalisation(s);
             

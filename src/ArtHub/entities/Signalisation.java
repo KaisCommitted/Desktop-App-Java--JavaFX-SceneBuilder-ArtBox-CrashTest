@@ -42,6 +42,14 @@ public class Signalisation extends RecursiveTreeObject<Signalisation> implements
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Signalisation(User CurrentUser, String rcontenusignal, String rtypesignal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Signalisation(User CurrentUser, String rcontenusignal, String rtypesignal, String not_treated) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
 
 

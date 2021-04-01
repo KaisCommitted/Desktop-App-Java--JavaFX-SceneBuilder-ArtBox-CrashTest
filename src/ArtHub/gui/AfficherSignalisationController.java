@@ -67,6 +67,7 @@ public class AfficherSignalisationController implements Initializable {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_signal()));
             }
         });
+        // id_post table view
          JFXTreeTableColumn<Signalisation, String> id_user = new JFXTreeTableColumn<>("id_user");
         id_signal.setPrefWidth(150);
         id_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
@@ -75,6 +76,7 @@ public class AfficherSignalisationController implements Initializable {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user().getId_user()));
             }
         });
+        // id_user table view
          JFXTreeTableColumn<Signalisation, String> id_post = new JFXTreeTableColumn<>("id_post");
         id_signal.setPrefWidth(150);
         id_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
