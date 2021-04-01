@@ -1,5 +1,6 @@
 package ArtHub.services;
 
+import ArtHub.entities.Comment;
 import ArtHub.entities.Post;
 import ArtHub.entities.User;
 import ArtHub.gui.Ajout_PostController;
@@ -304,6 +305,76 @@ public class postCRUD {
     
     
     }
+    
+    
+    
+    
+    
+    public void ajouterComment(Comment c)throws Exception{
+    
+        
+    
+    
+        String req ="INSERT INTO comments (id_post,id_user,comment,Comment_analys,comment_date)"+"values (?,?,?,?,CURRENT_TIMESTAMP)";
+        try {
+            
+            
+            ste = cnx.prepareStatement(req);
+            ste.setInt(1, c.getId_post().getId_post());
+            ste.setInt(2, c.getId_user().getId_user());
+            ste.setString(3, c.getComment());
+            ste.setString(4,c.getComment_analys());
+            ste.executeUpdate();
+            System.out.println("Comment Added");
+            
+        } catch (SQLException ex) {
+            System.out.println("Probléme");
+            System.out.println(ex.getMessage());
+            
+        }
+        
+    }
+    
+    
+    
+    
+    public Post FindPost(int id) {
+
+        Post p = new Post();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from postes WHERE id=" + id + "");
+
+            while (rs.next()) {
+                
+               int id_post = rs.getInt("id_post");
+                String nom_post = rs.getString("nom_post");
+                String Description = rs.getString("Description");
+                String post_date = rs.getString("post_date");
+                String file = rs.getString("file");
+                int Likes = rs.getInt("Likes");
+ 
+                User id_user = new User();
+               
+                id_user.setId_user(rs.getInt("id_user"));
+                p.setId_post(id);
+                p.setId_user(id_user);
+                p.setNom_post(nom_post);
+                p.setDescription(Description);
+                p.setFile(file);
+                p.setLikes(Likes);
+               
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return p;
+
+    }
+    
     
     
 }

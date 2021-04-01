@@ -1,19 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ArtHub.gui;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import ArtHub.entities.Comment;
 import ArtHub.entities.Post;
 import ArtHub.entities.User;
 import ArtHub.entities.interactions;
-import static ArtHub.gui.ItemBoxController.stripNonDigits;
-import ArtHub.services.postCRUD;
-import ArtHub.gui.MyListener;
+import static ArtHub.gui.FRONT_EventController.userHomeFolder;
+import static ArtHub.gui.LoginController.CurrentUser;
+import static ArtHub.gui.PostGController.id_post_clicked;
+import static ArtHub.gui.PostGController.stripNonDigits;
 import ArtHub.services.InteractionsCrud;
+import ArtHub.services.postCRUD;
+import SentimentAnalysis.SentimentAPI;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,99 +25,64 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-
-public class PostGController implements Initializable {
-   @FXML
-    private Label nameLabel;
-
-    @FXML
-    private Label likesLabel;
-public static int id_post_clicked = 0;
+/**
+ * FXML Controller class
+ *
+ * @author Adam Khalfaoui
+ */
+public class FullPostController implements Initializable {
 
     @FXML
     private ImageView img;
-    
-     @FXML
-    private ImageView imgbtn = new ImageView();
-
-     String userHomeFolder = System.getProperty("user.home");
-
-
- @FXML
+    @FXML
+    private Label nameLabel;
+    @FXML
     private Label descreption;
-   
-  @FXML
-    private Label idLabel;
-    
-  @FXML
+    @FXML
     private JFXButton like_btn;
-  
- User CurrentUser = new User(2);
-    //@FXML
-    //private void click(MouseEvent mouseEvent) {
-       // myListener.onClickListener(post);
-    //}
     @FXML
-    private ImageView addsignal;
- 
+    private ImageView imgbtn;
     @FXML
-    private JFXButton cmnt_btn;
-    
-    
-      @FXML
-    private ImageView cmntbtn;
- 
- 
-  static int current_post=0;
- 
- 
- 
- 
- 
- 
+    private Label likesLabel;
+    @FXML
+    private Label idLabel;
+    @FXML
+    private JFXTextField new_cmnt;
+    @FXML
+    private JFXButton btn_cmnt;
+    @FXML
+    private ImageView img_cmnt;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-       try {
-           //String path="file:///C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\gui\\post_pics\\like_selec.png" ;
-           
-           
-           //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
-           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\flag.png";
-           Image image =new Image(new FileInputStream(Empty));
-           addsignal.setImage(image);
-       } catch (FileNotFoundException ex) {
-           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
-       }
-     
- 
- 
-      
-        
- 
- 
- 
-        
+        try {
+            postCRUD pc = new postCRUD();
+            Post p = new Post();
+            p = pc.FindPost(id_post_clicked);
+            setData(p);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FullPostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-    //private MyListener myListener;
 
-    public void setData(Post post) throws FileNotFoundException {
+
+public void setData(Post post) throws FileNotFoundException {
         
         
         nameLabel.setText(post.getNom_post());
@@ -125,20 +94,10 @@ public static int id_post_clicked = 0;
       img.setImage(image);
       
       
-      current_post=post.getId_post();
+      
       
         
-       try {
-           //String path="file:///C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\gui\\post_pics\\like_selec.png" ;
-           
-           
-           //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
-           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\cmnt.gif";
-           Image image3 =new Image(new FileInputStream(Empty));
-           cmntbtn.setImage(image3);
-       } catch (FileNotFoundException ex) {
-           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+       
       
       
       
@@ -201,21 +160,13 @@ public static int id_post_clicked = 0;
       
         
     }
+
+   
     
-    public static String stripNonDigits(
-            final CharSequence input /* inspired by seh's comment */){
-    final StringBuilder sb = new StringBuilder(
-            input.length() /* also inspired by seh's comment */);
-    for(int i = 0; i < input.length(); i++){
-        final char c = input.charAt(i);
-        if(c > 47 && c < 58){
-            sb.append(c);
-        }
-    }
-    return sb.toString();
-    }
+
     @FXML
-    void like(ActionEvent event) {
+    private void like(ActionEvent event) {
+        
         
         Post CurrentPost = new Post(Integer.parseInt(idLabel.getText()));   
         interactions p = new interactions(CurrentPost, CurrentUser);
@@ -257,55 +208,84 @@ public static int id_post_clicked = 0;
         
         }
         
-
     }
+
+    
+    
 
     @FXML
-    private void addReport(MouseEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddSignalisation.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Statistiques");
-            
-            stage.setScene(new Scene(root1));
-            
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void Add_comment(ActionEvent event) {
+        
+        
+         try {
+             
+             
+             Post CurrentPost = new Post(Integer.parseInt(idLabel.getText()));
+             
+             
+             Image image3;
+             try {
+                 image3 = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\comment.gif"));
+                 
+                 img_cmnt.setImage(image3);
+                 
+             } catch (FileNotFoundException ex) {
+                 Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             
+             
+             
+             
+             String resp=null;
+             try{
+                 resp = SentimentAPI.GetSentiment(new_cmnt.getText());
+                 
+                 
+             }catch(IOException ex){
+                 System.out.println("Check the bugs in the Sent API on Azure");
+             }
+             
+             
+             
+             User id_user = CurrentUser;
+             String comment = new_cmnt.getText();
+             String comment_analys= resp;
+             
+             Comment c = new Comment(CurrentPost,id_user,comment,comment_analys);
+             postCRUD prc = new postCRUD();
+             prc.ajouterComment(c);
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+         } catch (Exception ex) {
+           Logger.getLogger(FullPostController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+   
+        
+         
+         
+         
+         
+         
+         
+         
+         
+         
     }
 
-    
-    @FXML
-    private void Comments(ActionEvent event) {
-          try {
-           
-            id_post_clicked= Integer.parseInt(idLabel.getText());
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FullPost.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Host an event");
-
-            stage.setScene(new Scene(root1));
-
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
+   
     
     
 }
+
+
+
+
