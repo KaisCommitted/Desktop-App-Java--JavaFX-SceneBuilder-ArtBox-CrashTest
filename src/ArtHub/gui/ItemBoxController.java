@@ -178,6 +178,9 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
 
         Image img6 = new Image(new FileInputStream(pat));
         BoxImage.setImage(img6);
+        BoxImage.setStyle("-fx-background-radius: 15;");
+                
+              
         id_event.setText(Integer.toString(p.getId()));
         ItemBox.setStyle("-fx-background-color: #" + colors[(int) (Math.random() * colors.length)] + ";"
                 + "-fx-background-radius: 15;"

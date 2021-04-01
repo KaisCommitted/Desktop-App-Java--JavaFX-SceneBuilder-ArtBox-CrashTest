@@ -8,7 +8,6 @@ package ArtHub.gui;
 import ArtHub.entities.Post;
 import ArtHub.entities.User;
 import ArtHub.entities.interactions;
-import static ArtHub.gui.FRONT_EventController.userHomeFolder;
 import ArtHub.services.InteractionsCrud;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
@@ -117,7 +116,7 @@ public class mp3Controller implements Initializable {
            
            
        try {
-           image1 = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like_selec.png"));
+           image1 = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like_selec.png"));
            
            imgbtn.setImage(image1);
            
@@ -131,7 +130,7 @@ public class mp3Controller implements Initializable {
        
        
         try {
-           image1 = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like_null.png"));
+           image1 = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like_null.png"));
            
            imgbtn.setImage(image1);
            
@@ -230,7 +229,7 @@ void like(ActionEvent event) {
           
            Image image;
        try {
-           image = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like2.gif"));
+           image = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like2.gif"));
            
            imgbtn.setImage(image);
        } catch (FileNotFoundException ex) {
@@ -247,7 +246,7 @@ void like(ActionEvent event) {
         
         Image image;
        try {
-           image = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\crashtest-ArtBox\\src\\ArtHub\\post_pics\\like.gif"));
+           image = new Image(new FileInputStream("C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like.gif"));
            
            imgbtn.setImage(image);
        } catch (FileNotFoundException ex) {

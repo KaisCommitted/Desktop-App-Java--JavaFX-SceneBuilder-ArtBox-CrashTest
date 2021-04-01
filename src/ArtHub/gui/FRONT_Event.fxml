@@ -145,7 +145,7 @@
             </ImageView>
             <AnchorPane fx:id="MoreDetails" layoutX="75.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="663.0" prefWidth="425.0" AnchorPane.leftAnchor="75.0">
                <children>
-                  <Label fx:id="name" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="94.0" layoutY="5.0" prefHeight="43.0" prefWidth="255.0" text="Description" textAlignment="CENTER" textFill="#2b052bd1">
+                  <Label fx:id="name" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="94.0" layoutY="5.0" onMouseClicked="#showComments" prefHeight="43.0" prefWidth="255.0" text="Description" textAlignment="CENTER" textFill="#2b052bd1">
                      <font>
                         <Font name="Impact" size="34.0" />
                      </font>
