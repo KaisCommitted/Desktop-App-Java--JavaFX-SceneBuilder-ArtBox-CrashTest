@@ -173,10 +173,8 @@ public class PartenaireCRUD {
 
             ResultSet rs = pst.executeQuery("SELECT * from partenaire where id_user="+id);
             while (rs.next()) {
-                int status = rs.getInt("status");
-                System.out.println(status);
-                if(status==1)
-                    return true;
+               
+               return true;
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -184,5 +182,32 @@ public class PartenaireCRUD {
 
         return false;
 
+    }
+      public Partenaire FindByPartenaire(int id) {
+          Partenaire P = new Partenaire();
+        try { 
+              UserCRUD uc = new UserCRUD();
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from partenaire where id_user="+id);
+            while (rs.next()) {
+                User U = new User();
+                U = uc.FindUser(rs.getInt("id_user"));
+                int status = rs.getInt("status");
+            P.setNom(rs.getString("nom"));
+            P.setAdresse(rs.getString("adresse"));
+            P.setLogo(rs.getString("logo"));
+            P.setRib(rs.getString("rib"));
+            P.setTel(rs.getString("tel"));
+            P.setStatus(rs.getInt("status"));
+            P.setId_user(U);
+            
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+       return P; 
     }
 }

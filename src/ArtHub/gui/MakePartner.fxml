@@ -53,7 +53,7 @@
             </LinearGradient>
          </ripplerFill>
       </JFXButton>
-      <Text fill="#cfd5da" layoutX="163.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Became a Partner" textAlignment="CENTER" wrappingWidth="418.32421875">
+      <Text fill="#cfd5da" layoutX="163.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Become a Partner" textAlignment="CENTER" wrappingWidth="418.32421875">
          <font>
             <Font name="Trebuchet MS Bold" size="36.0" />
          </font>

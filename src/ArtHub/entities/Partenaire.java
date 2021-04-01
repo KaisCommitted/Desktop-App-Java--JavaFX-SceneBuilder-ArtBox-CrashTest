@@ -21,6 +21,17 @@ public class Partenaire extends RecursiveTreeObject<Partenaire> implements Seria
     public Partenaire() {
     }
 
+    public Partenaire(int id_part, String nom, String adresse, String logo, String rib, String tel, int status, User id_user) {
+        this.id_part = id_part;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.logo = logo;
+        this.rib = rib;
+        this.tel = tel;
+        this.status = status;
+        this.id_user = id_user;
+    }
+
     public int getId_part() {
         return id_part;
     }

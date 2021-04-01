@@ -196,14 +196,17 @@ public static String userHomeFolder = System.getProperty("user.home");
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         PartenaireCRUD pc = new PartenaireCRUD();
-        if(pc.checkPartenaire(CurrentUser.getId_user())){
+        if (!pc.checkPartenaire(CurrentUser.getId_user())) {
+           Btn_partner.setVisible(true);  
+          Btn_AddEvent.setVisible(false); 
+        }else if(pc.FindByPartenaire(CurrentUser.getId_user()).getStatus()==0 ){
           Btn_partner.setVisible(false);  
-          Btn_AddEvent.setVisible(true);  
+          Btn_AddEvent.setVisible(false);  
         }
-        else{
-            Btn_partner.setVisible(true);
-            Btn_AddEvent.setVisible(false); 
-        }
+        else if(pc.FindByPartenaire(CurrentUser.getId_user()).getStatus()==1 ){
+            Btn_partner.setVisible(false);
+            Btn_AddEvent.setVisible(true); 
+        } 
         
         try {
             //////////////////////////////////WHATSAPPP MAKE 24H window + check credentials//////////////////////////////////////////
@@ -1108,7 +1111,7 @@ notifyme();
 
     @FXML
     private void AddPartner(ActionEvent event) {
-          try {
+         try {
            
             
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MakePartner.fxml"));
@@ -1124,6 +1127,7 @@ notifyme();
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 
     }
 }

@@ -8,7 +8,7 @@ package ArtHub.gui;
 import ArtHub.entities.Partenaire;
 import static ArtHub.gui.LoginController.CurrentUser;
 import static ArtHub.gui.ADD_EventController.copyContent;
-import static ArtHub.gui.ADD_EventController.path;
+
 import ArtHub.services.PartenaireCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
@@ -41,23 +41,32 @@ public class MakePartnerController implements Initializable {
 
     @FXML
     private AnchorPane anchor;
+    @FXML
     private JFXButton upload_image;
+    @FXML
     private TextField txt_Name;
+    @FXML
     private TextField txt_PhoneNumber;
+    @FXML
     private TextField txt_rib;
+    @FXML
     private TextField txt_Adress;
+    String path;
+    @FXML
+    private Button btnValiderA_Partner;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
-
+    @FXML
     private String image_file(ActionEvent event) {
-         //upload_image
-        path="";
+        //upload_image
+        path = "";
         Stage currentStage = (Stage) upload_image.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisissez une image");
@@ -70,37 +79,36 @@ public class MakePartnerController implements Initializable {
 
         if (selectedFile != null) {
             String userHomeFolder = System.getProperty("user.home");
-          
-            
+
             File src = new File(selectedFile.getPath());
             File dest = new File("C:/xampp/php/www/pidev/imagepartenaire/");
             java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/imagepartenaire/" + txt_Name.getText()+txt_PhoneNumber.getText());
+            File newDes = new File("C:/xampp/php/www/pidev/imagepartenaire/" + txt_Name.getText() + txt_PhoneNumber.getText());
             try {
-                copyContent(selectedFile,newDes);
+                copyContent(selectedFile, newDes);
             } catch (Exception ex) {
 
             }
-             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\img" + txt_Name.getText()+txt_PhoneNumber.getText());
-           
-           
-           
+            Path local = Paths.get(userHomeFolder + "\\Documents\\GitHub\\ArtBox-CrashTest\\img" + txt_Name.getText() + txt_PhoneNumber.getText());
+
             try {
                 copyContent(newDes, local.toFile());
             } catch (Exception ex) {
-   
+
             }
         }
-        path = "C:/xampp/php/www/pidev/events/" + txt_Name.getText()+txt_PhoneNumber.getText();
-        return txt_Name.getText()+txt_PhoneNumber.getText();
+        path = "C:/xampp/php/www/pidev/events/" + txt_Name.getText() + txt_PhoneNumber.getText();
+        return txt_Name.getText() + txt_PhoneNumber.getText();
     }
 
+    @FXML
     private void addPartner(ActionEvent event) {
-        Partenaire part = new Partenaire(txt_Name.getText(), txt_Adress.getText(), path, txt_rib.getText(), txt_PhoneNumber.getText(), 0,CurrentUser);
-        PartenaireCRUD pc = new PartenaireCRUD();
-        pc.ajouterPartenaire(part);
+        {
+            Partenaire part = new Partenaire(txt_Name.getText(), txt_Adress.getText(), path, txt_rib.getText(), txt_PhoneNumber.getText(), 0, CurrentUser);
+            PartenaireCRUD pc = new PartenaireCRUD();
+            pc.ajouterPartenaire(part);
+        }
     }
 
-    
 }
