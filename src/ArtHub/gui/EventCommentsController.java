@@ -30,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -62,16 +63,19 @@ public class EventCommentsController implements Initializable {
     @FXML
     private Button btnComment;
     List <E_Comment> myLst ;
+    URL url;
+    ResourceBundle rb;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println("INIIIIIIIIIIIIIIIIIIIIIIIIIT");
     e= ec.FindEvenement(id_clicked);
         FRONT_EventController.setImage(e.getImage_event(), ImageEvent);
         name.setText(e.getNom_event());
         u = uc.FindUser(e.getId_org().getId_user());
-        username.setText(u.getNom());
+        username.setText("Organized by "+u.getNom());
         commentScroll.setFitToHeight(true);
             commentScroll.setFitToWidth(true);
             commentScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -79,6 +83,8 @@ public class EventCommentsController implements Initializable {
       
       myLst = cc.FindComments(id_clicked);
         FillVbox(myLst, CommentsVBox);
+        
+        
     }    
 
     @FXML
@@ -87,6 +93,9 @@ public class EventCommentsController implements Initializable {
        c.setId_event(ec.FindEvenement(id_clicked));
        c.setId_user(CurrentUser);
         cc.ajouterE_Comment(c);
+        content.clear();
+        initialize(url, rb);
+        
         
     }
      private void FillVbox(List<E_Comment> myLst, VBox DisplayInMe) {
@@ -94,6 +103,7 @@ public class EventCommentsController implements Initializable {
         for (int i = 0; i < myLst.size(); i++) {
 
             try {
+                        
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("E_CommentItem.fxml"));
                 AnchorPane EventBox = fxmlLoader.load();
@@ -107,4 +117,14 @@ public class EventCommentsController implements Initializable {
         }
 
     }
+      
+
+   
+     public void refresh(){initialize(url,rb);}
+
+    @FXML
+    private void Reloadui(MouseEvent event) {
+        refresh();
+    }
+    
 }

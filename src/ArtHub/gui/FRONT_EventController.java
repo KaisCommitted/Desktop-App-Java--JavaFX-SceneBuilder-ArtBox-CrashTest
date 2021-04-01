@@ -51,6 +51,7 @@ import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.kieferlam.javafxblur.Blur;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
@@ -76,6 +77,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseDragEvent;
@@ -1127,6 +1129,11 @@ notifyme();
             Scene scene = new Scene(root1);
              scene.setFill(Color.TRANSPARENT);
             stage.setScene(scene);
+              stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event1) -> {
+        if (KeyCode.ESCAPE == event1.getCode()) {
+            stage.close();
+        }
+    });
             
 
             stage.show();

@@ -218,7 +218,9 @@ public void setData(Post post) throws FileNotFoundException {
         
         
          try {
-             
+             System.out.println("WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
+              System.out.println("WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
+               System.out.println("WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
              
              Post CurrentPost = new Post(Integer.parseInt(idLabel.getText()));
              

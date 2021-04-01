@@ -345,7 +345,7 @@ public class postCRUD {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from postes WHERE id=" + id + "");
+            ResultSet rs = pst.executeQuery("SELECT * from postes WHERE id_post=" + id + "");
 
             while (rs.next()) {
                 

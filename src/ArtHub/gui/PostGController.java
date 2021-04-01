@@ -284,6 +284,7 @@ public static int id_post_clicked = 0;
           try {
            
             id_post_clicked= Integer.parseInt(idLabel.getText());
+              
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FullPost.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
