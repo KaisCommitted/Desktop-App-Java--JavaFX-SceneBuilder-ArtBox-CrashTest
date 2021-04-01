@@ -17,6 +17,7 @@ import static ArtHub.gui.ItemBoxController.id_clicked;
 import static ArtHub.gui.ItemBoxController.style;
 import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.EvenementCRUD;
+import ArtHub.services.PartenaireCRUD;
 import ArtHub.services.ParticipantCRUD;
 import ArtHub.services.UserCRUD;
 import ArtHub.services.postCRUD;
@@ -86,7 +87,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
-
+import static ArtHub.gui.LoginController.CurrentUser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.controlsfx.control.Notifications;
 //import javafx.scene.control.Tab;
@@ -187,11 +188,23 @@ public static String userHomeFolder = System.getProperty("user.home");
     private ImageView catshow;
     @FXML
     private ImageView btnSearch;
+    @FXML
+    private JFXButton Btn_partner;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        PartenaireCRUD pc = new PartenaireCRUD();
+        if(pc.checkPartenaire(CurrentUser.getId_user())){
+          Btn_partner.setVisible(false);  
+          Btn_AddEvent.setVisible(true);  
+        }
+        else{
+            Btn_partner.setVisible(true);
+            Btn_AddEvent.setVisible(false); 
+        }
+        
         try {
             //////////////////////////////////WHATSAPPP MAKE 24H window + check credentials//////////////////////////////////////////
             //sendWhatsapp();
@@ -1091,5 +1104,26 @@ notifyme();
     @FXML
     private void closeON(MouseEvent event) {
          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
+    }
+
+    @FXML
+    private void AddPartner(ActionEvent event) {
+          try {
+           
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MakePartner.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event");
+
+            stage.setScene(new Scene(root1));
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

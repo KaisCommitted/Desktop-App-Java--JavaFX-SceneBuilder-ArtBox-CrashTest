@@ -5,6 +5,7 @@ import ArtHub.entities.Categorie;
 import ArtHub.entities.Evenement;
 import ArtHub.entities.Feedback;
 import ArtHub.entities.Labell;
+import ArtHub.entities.Partenaire;
 import ArtHub.entities.Participant;
 import ArtHub.entities.Post;
 import ArtHub.entities.User;
@@ -12,6 +13,7 @@ import ArtHub.services.AnnonceCRUD;
 import ArtHub.services.EvenementCRUD;
 import ArtHub.services.FeedbackCRUD;
 import ArtHub.services.LabelCRUD;
+import ArtHub.services.PartenaireCRUD;
 import ArtHub.services.ParticipantCRUD;
 import ArtHub.services.UserCRUD;
 import ArtHub.services.postCRUD;
@@ -171,11 +173,15 @@ public class HomeController implements Initializable {
     private HBox Posts_stats;
     @FXML
     private VBox ItemsPosts;
+    @FXML
+    private TextField inputLabels;
+    @FXML
+    private ImageView addPt;
     
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        showHistory111.setVisible(true);
 
     }
 
@@ -1304,41 +1310,6 @@ public class HomeController implements Initializable {
     //ShowEvents ahayka louta if u need guidance CSS etc
     
     
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public void ShowEvents(){ 
         SwitchFront.setVisible(true);
    
@@ -2039,6 +2010,145 @@ public class HomeController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void addPt(MouseEvent event) {
+     /*   PartenaireCRUD pc = new PartenaireCRUD();
+        itemsLabels.getChildren().clear();
+        // nom table view
+        JFXTreeTableColumn<Partenaire, String> nom = new JFXTreeTableColumn<>("nom");
+        nom.setPrefWidth(50);
+        nom.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Partenaire, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Partenaire, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getNom());
+            }
+        });
+         // adress table view
+        JFXTreeTableColumn<Partenaire, String> adress = new JFXTreeTableColumn<>("adresse");
+        nom.setPrefWidth(50);
+        nom.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Partenaire, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Partenaire, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getAdresse());
+            }
+        });
+         // rib table view
+        JFXTreeTableColumn<Partenaire, String> rib = new JFXTreeTableColumn<>("rib");
+        nom.setPrefWidth(50);
+        nom.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Partenaire, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Partenaire, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getRib());
+            }
+        });
+         // Phone table view
+        JFXTreeTableColumn<Partenaire, String> Phone = new JFXTreeTableColumn<>("tel");
+        nom.setPrefWidth(50);
+        nom.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Partenaire, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Partenaire, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getTel());
+            }
+        });
+         // status table view
+        JFXTreeTableColumn<Partenaire, String> status = new JFXTreeTableColumn<>("status");
+        nom.setPrefWidth(50);
+        nom.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Partenaire, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Partenaire, String> param) {
+                return new SimpleStringProperty(Integer.toString( param.getValue().getValue().getStatus()));
+            }
+        });
+        
+        List<Partenaire> myLst;
+        myLst = pc.consulterPartenaire();
+        ObservableList<Partenaire> Partenaire = FXCollections.observableArrayList();
+
+        myLst.forEach(p -> Partenaire.add(p));
+        System.out.println(myLst);
+        JFXTreeTableView<Partenaire> treeview = new JFXTreeTableView<>();
+        final TreeItem<Partenaire> root = new RecursiveTreeItem<Partenaire>(Partenaire, RecursiveTreeObject::getChildren);
+        treeview.getColumns().setAll(nom,adress,rib,Phone,status);
+        treeview.setRoot(root);
+        treeview.setShowRoot(false);
+        treeview.setEditable(true);
+        treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
+        
+       
+        
+        //declarer la button supprimer
+        JFXButton DltBtn = new JFXButton("Remove");
+        DltBtn.setLayoutY(410D);
+        DltBtn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            //eventHandler de la button supprimer
+            public void handle(ActionEvent event) {
+                Dialog confirmation = new Dialog();
+                GridPane grid2 = new GridPane();
+                Label l1 = new Label("Delete Partenaire?");
+                grid2.add(l1, 2, 2);
+                confirmation.setTitle("Confirmation de suppression!");
+                confirmation.getDialogPane().setContent(grid2);
+                ButtonType Confi = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
+                confirmation.getDialogPane().getButtonTypes().add(Confi);
+                confirmation.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+                confirmation.setResultConverter(new Callback<ButtonType, Partenaire>() {
+                    @Override
+                    public Partenaire call(ButtonType param) {
+                        if (param == Confi) {
+                            Partenaire p = treeview.getSelectionModel().getSelectedItem().getValue();
+                            pc.supprimerPartenaire((Partenaire) p);
+                            Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
+                            cancelButton.fire();
+                            
+                        }
+
+                        return null;
+                    }
+                });
+                confirmation.showAndWait();
+            }
+        }); 
+        
+        inputLabels.setPromptText("Rechercher ..");
+        inputLabels.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                treeview.setPredicate(new Predicate<TreeItem<Partenaire>>() {
+                    @Override
+                    public boolean test(TreeItem<Partenaire> t) {
+
+                        boolean flag = String.valueOf(t.getValue().getId_part()).contains(newValue);
+                        return flag;
+                    }
+                });
+            }
+        });
+        
+        
+        itemsEvents.getChildren().addAll(treeview,DltBtn);*/
+               try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UpdateUserasPar.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+    }
+    @FXML
+    private void refresh1(MouseEvent event) {
+        //ShowLabels();
     }
     
 }

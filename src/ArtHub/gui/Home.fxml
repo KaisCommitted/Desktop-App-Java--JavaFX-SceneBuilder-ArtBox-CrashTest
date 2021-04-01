@@ -378,7 +378,7 @@
             </Pane>
             <Pane fx:id="pnlLabels" layoutX="10.0" layoutY="10.0" prefHeight="671.0" prefWidth="793.0">
                <children>
-                  <TextField layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <TextField fx:id="inputLabels" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
                   <Label layoutX="57.0" layoutY="25.0" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
@@ -426,9 +426,14 @@
                               <Label text="Orders on Hold" textFill="#e7e5e5" />
                            </children>
                         </VBox>
-                        <ImageView fx:id="showHistory111" fitHeight="41.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true" translateX="230.0" translateY="20.0">
+                        <ImageView fx:id="showHistory111" fitHeight="41.0" fitWidth="49.0" onMouseClicked="#refresh1" pickOnBounds="true" preserveRatio="true" translateX="230.0" translateY="20.0">
                            <image>
                               <Image url="@../images/icons8_Box_32px.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="addPt" fitHeight="27.0" fitWidth="33.0" onMouseClicked="#addPt" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/+.png" />
                            </image>
                         </ImageView>
                      </children>

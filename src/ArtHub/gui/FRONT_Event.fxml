@@ -242,6 +242,18 @@
                   <Image url="@../images/icons8_Search_52px.png" />
                </image>
             </ImageView>
+            <JFXButton fx:id="Btn_partner" buttonType="RAISED" layoutX="1556.0" layoutY="22.0" onAction="#AddPartner" onMouseEntered="#onEffectBtnHost" onMouseExited="#offEffectBtnHost" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Become a Partner" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                     <color>
+                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </JFXButton>
             
             
             
