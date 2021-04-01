@@ -30,17 +30,17 @@
       </HBox>
       <AnchorPane prefHeight="523.0" prefWidth="909.0">
          <children>
-            <Label layoutX="48.0" layoutY="1.0" text="Feedback">
+            <Label layoutX="48.0" layoutY="1.0" prefHeight="54.0" prefWidth="511.0" text="Feedback statistics">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <BarChart fx:id="stat" layoutX="124.0" layoutY="62.0" title="Statistique">
+            <BarChart fx:id="stat" layoutX="124.0" layoutY="62.0" title="Number / Type">
               <xAxis>
-                <CategoryAxis label="Type du feedback" side="BOTTOM" />
+                <CategoryAxis label="Feedback type" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis label="Nombre de feedbacks" side="LEFT" />
+                <NumberAxis label="Number of feedbacks" side="LEFT" />
               </yAxis>
             </BarChart>
          </children>

@@ -12,6 +12,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 public class FeedbackCRUD {
     private final Connection cnx;
@@ -40,6 +48,18 @@ public class FeedbackCRUD {
             
             
             System.out.println("Feedback ajouté");
+            Notifications notificationBuilder = Notifications.create()
+               .title("Feedback sent!").text("Your feedback has been successfully processed.").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
+               .position(Pos.CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   @Override
+                   public void handle(ActionEvent event)
+                   {
+                       System.out.println("clicked ON ");
+               }});
+       notificationBuilder.darkStyle();
+       notificationBuilder.show();
+       Parent root;
             
         } catch (SQLException ex) {
             System.out.println("Problème d'ajout feedback");
@@ -58,21 +78,6 @@ public class FeedbackCRUD {
 
             ResultSet rs = pst.executeQuery("SELECT * from feedback");
             while (rs.next()) {
-
-                
-//                Feedback f = new Feedback();
-//                f.setId_feedback(rs.getInt(1));
-//                
-//                f.setId_user(rs.getObject(2, User));
-//                               
-//                f.setContenu_feedback(rs.getString(3));
-//                
-//                f.setType_feedback(rs.getString(4));          
-//                f.setEtat_feedback(rs.getString(5));          
-//                f.setDate_feedback(rs.getDate(6));   
-//                myList.add(f);
-
-                
                
                 int id_feedback = rs.getInt("id_feedback");
                 UserCRUD uc = new UserCRUD();
@@ -130,9 +135,9 @@ public class FeedbackCRUD {
             System.out.println("Feedback modifié avec succées");
 
 //            Notifications notifs = Notifications.create()
-//                            .title("Produit ajouté")
-//                            .text("Le produit a été ajouter avec succées!")
-//                            .graphic(new ImageView("file:C:/Feedbacks/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
+//                            .title("Feedback added")
+//                            .text("Your feedback has been sent successfully!")
+//                            
 //                            .hideAfter(Duration.seconds(5))
 //                            .position(Pos.BOTTOM_RIGHT);
 //

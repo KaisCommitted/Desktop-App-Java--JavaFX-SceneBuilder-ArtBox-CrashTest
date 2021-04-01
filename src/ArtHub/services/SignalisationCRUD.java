@@ -57,6 +57,7 @@ public class SignalisationCRUD {
                
                 int id_signal = rs.getInt("id_signal");
                 UserCRUD uc = new UserCRUD();
+                
                 User u = new User();
                
                 u = uc.FindUser(rs.getInt("id_user"));
