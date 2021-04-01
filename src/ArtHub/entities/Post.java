@@ -35,6 +35,12 @@ public class Post extends RecursiveTreeObject<Post> implements Serializable {
         this.desc_analys=desc_analys;
         
     }
+
+    public Post() {
+    }
+    
+    
+    
     
 
     public Post(int id_post, String nom_post, String Description, String categorie, String post_date, String file, int Likes, String desc_analys,User id_user) {
