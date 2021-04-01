@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2021 at 12:02 AM
+-- Generation Time: Apr 01, 2021 at 09:51 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -80,8 +80,17 @@ CREATE TABLE `comments` (
   `id_comment` int(100) NOT NULL,
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `comment` varchar(100) NOT NULL
+  `comment` varchar(100) NOT NULL,
+  `comment_analys` varchar(255) NOT NULL,
+  `comment_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id_comment`, `id_post`, `id_user`, `comment`, `comment_analys`, `comment_date`) VALUES
+(1, 8, 11, 'ty bara saleeem', 'positive', '2021-04-01 07:26:09');
 
 -- --------------------------------------------------------
 
@@ -102,7 +111,10 @@ CREATE TABLE `comment_event` (
 --
 
 INSERT INTO `comment_event` (`id`, `id_user`, `id_event`, `content`, `commentDate`) VALUES
-(1, 11, 72, 'very noice, am coming', '2021-03-31');
+(3, 12, 72, 'Am joining !', '2021-04-01'),
+(4, 12, 72, 'Hey there , am looking for an uber to go there', '2021-04-01'),
+(5, 12, 72, 'Wadup', '2021-03-09'),
+(14, 11, 72, 'Lets gooo', '2021-04-01');
 
 -- --------------------------------------------------------
 
@@ -221,16 +233,34 @@ INSERT INTO `interactions` (`id_inter`, `id_post`, `id_user`, `like_check`) VALU
 CREATE TABLE `label` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL
+  `type` varchar(255) NOT NULL,
+  `imageLabel` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `label`
 --
 
-INSERT INTO `label` (`id`, `name`, `type`) VALUES
-(1, 'sdfd', 'housem'),
-(2, 'hsin', 'hsan');
+INSERT INTO `label` (`id`, `name`, `type`, `imageLabel`) VALUES
+(1, 'sdfd', 'housem', ''),
+(2, 'hsin', 'hsan', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `partenaire`
+--
+
+CREATE TABLE `partenaire` (
+  `id_part` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `rib` varchar(255) NOT NULL,
+  `tel` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -286,9 +316,9 @@ INSERT INTO `participant` (`id_participation`, `id_user`, `id_event`, `ticket`) 
 (253, 16, 74, '01674'),
 (254, 16, 80, '01680'),
 (256, 11, 108, '011108'),
-(259, 11, 72, '01172'),
 (264, 11, 70, '01170'),
-(265, 11, 103, '011103');
+(265, 11, 103, '011103'),
+(266, 11, 72, '01172');
 
 -- --------------------------------------------------------
 
@@ -466,6 +496,13 @@ ALTER TABLE `label`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `partenaire`
+--
+ALTER TABLE `partenaire`
+  ADD PRIMARY KEY (`id_part`),
+  ADD KEY `fk_useerr` (`id_user`);
+
+--
 -- Indexes for table `participant`
 --
 ALTER TABLE `participant`
@@ -522,13 +559,13 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id_comment` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comment` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `comment_event`
 --
 ALTER TABLE `comment_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `evenement`
@@ -555,10 +592,16 @@ ALTER TABLE `label`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `partenaire`
+--
+ALTER TABLE `partenaire`
+  MODIFY `id_part` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `participant`
 --
 ALTER TABLE `participant`
-  MODIFY `id_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `id_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
 
 --
 -- AUTO_INCREMENT for table `postes`
@@ -613,6 +656,12 @@ ALTER TABLE `evenement`
 --
 ALTER TABLE `feedback`
   ADD CONSTRAINT `fk_usee` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
+-- Constraints for table `partenaire`
+--
+ALTER TABLE `partenaire`
+  ADD CONSTRAINT `fk_useerr` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `participant`
