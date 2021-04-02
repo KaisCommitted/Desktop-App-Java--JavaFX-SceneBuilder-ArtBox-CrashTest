@@ -99,9 +99,9 @@ public class LoginController implements Initializable {
             stage.setTitle("Host an event" );
             
            //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
-            //Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
             
-            stage.setScene(new Scene(root1));//, screenSize.getWidth(), screenSize.getHeight()));
+            stage.setScene(new Scene(root1, screenSize.getWidth(), screenSize.getHeight()));
             
             stage.show();
    

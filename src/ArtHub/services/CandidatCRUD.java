@@ -1,7 +1,6 @@
 
 package ArtHub.services;
-import ArtHub.entities.Categorie;
-import ArtHub.entities.Annonce;
+import ArtHub.entities.Candidat;
 import ArtHub.tools.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,55 +15,47 @@ import java.sql.Date;
  * wadup
  * @author Fayechi
  */
-public class AnnonceCRUD {
+public class CandidatCRUD {
     private Connection cnx;
     private PreparedStatement ste;
 
-    public AnnonceCRUD() {
+    public CandidatCRUD() {
         cnx = MyConnection.getInstance().getConnection();
     }
     
-    public void ajouterAnnonce(Annonce p){
-        String req ="INSERT INTO annonce (id_user,titre_ann,desc_ann,pay,categorie,ddl_ann)"+"values (?,?,?,?,?,?)";
+    public void ajouterCandidat(Candidat p){
+        String req ="INSERT INTO candidat (id_user,id_ann,cv)"+"values (?,?,?)";
         try {
             ste = cnx.prepareStatement(req);
             ste.setInt(1, p.getId_user());
-            ste.setString(2, p.getTitre_ann());
-            ste.setString(3, p.getDesc_ann());
-            ste.setInt(4, p.getPay());
-            ste.setString(5, p.getCategorie().getCategorie_name());
-            ste.setDate(6, p.getDdl_ann());
+            ste.setInt(2, p.getId_ann());
+            ste.setString(3, p.getCv());
             ste.executeUpdate();
-            System.out.println("Annonce ajoutée");
+            System.out.println("Candidat ajouté.");
             
         } catch (SQLException ex) {
-            System.out.println("Probléme");
+            System.out.println("Error");
             System.out.println(ex.getMessage());
             
         }
         
     }
     
-      public List<Annonce> consulterAnnonce() {
+      public List<Candidat> consulterCandidat() {
 
-        List<Annonce> myList = new ArrayList<>();
+        List<Candidat> myList = new ArrayList<>();
         try {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from annonce");
+            ResultSet rs = pst.executeQuery("SELECT * from candidat");
             while (rs.next()) {
-   Categorie categorie = new Categorie();
-                 categorie.setCategorie_name(rs.getString("categorie"));
-         
+
                 int id_user = rs.getInt("id_user");
-                String titre_ann = rs.getString("titre_ann");
-                String desc_ann = rs.getString("desc_ann");
-                int pay = rs.getInt("pay");
-                 Date ddl_ann = rs.getDate("ddl_ann");
-                
-                Annonce p = new Annonce(id_user,titre_ann, desc_ann, pay,categorie,ddl_ann);
-                p.setId_ann(rs.getInt("id_ann"));
+                int id_ann = rs.getInt("id_ann");
+                String cv = rs.getString("cv");
+                Candidat p = new Candidat(id_user,id_ann,cv);
+                p.setId_cand(rs.getInt("id_cand"));
                 myList.add(p);
 
             }
@@ -75,23 +66,23 @@ public class AnnonceCRUD {
         return myList;
 
     }
-     public void supprimerAnnonce(Annonce p) {
+     public void supprimerCandidat(Candidat p) {
          try {
-            String requete = "DELETE FROM annonce WHERE id_ann=?";
+            String requete = "DELETE FROM candidat WHERE id_cand=?";
 
             PreparedStatement pst = cnx.prepareStatement(requete);
-            pst.setInt(1, p.getId_ann());
+            pst.setInt(1, p.getId_cand());
             pst.executeUpdate();
-            System.out.println("Annonce supprimée avec succées");
+            System.out.println("Candidat supprimé avec succés");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
 
-    public void modifierAnnonce(int id, String object, Object obj) {
+    public void modifierCandidat(int id, String object, Object obj) {
         try {
-            String requete = "UPDATE annonce SET ? = ? WHERE id_ann = ?";
+            String requete = "UPDATE candidat SET ? = ? WHERE id_cand = ?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, object);
             pst.setObject(2, obj);
@@ -103,12 +94,12 @@ public class AnnonceCRUD {
             System.out.println(ch3);
             pst = cnx.prepareStatement(ch3);
             pst.executeUpdate();
-            System.out.println("Annonce modifié avec succées");
+            System.out.println("Candidat modifié avec succés");
 
 //            Notifications notifs = Notifications.create()
 //                            .title("Produit ajouté")
 //                            .text("Le produit a été ajouter avec succées!")
-//                            .graphic(new ImageView("file:C:/annonces/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
+//                            .graphic(new ImageView("file:C:/candidats/samia/Documents/NetBeansProjects/PIDEV/Images/Tick.png"))
 //                            .hideAfter(Duration.seconds(5))
 //                            .position(Pos.BOTTOM_RIGHT);
 //

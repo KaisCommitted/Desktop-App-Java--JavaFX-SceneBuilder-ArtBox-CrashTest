@@ -5,8 +5,11 @@
  */
 package ArtHub.gui;
 
+import ArtHub.entities.Categorie;
 import ArtHub.entities.Annonce;
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.AnnonceCRUD;
+import ArtHub.services.CategorieCRUD;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,8 +24,10 @@ import javafx.scene.control.TextField;
 import javax.xml.bind.DatatypeConverter;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 
@@ -33,7 +38,6 @@ import org.controlsfx.control.Notifications;
  */
 public class AddAnnonceController implements Initializable {
 
-    @FXML
     private TextField txt_id_user;
     @FXML
     private TextField txt_titre_ann;
@@ -46,7 +50,10 @@ public class AddAnnonceController implements Initializable {
     @FXML
     private JFXDatePicker txt_ddl_ann;
     @FXML
-    private Button btnAddAnn;
+    private Button btnAddAnn; 
+     int i=0;
+    List<Categorie> myLst;
+             CategorieCRUD CC= new CategorieCRUD();
 
     /**
      * Initializes the controller class.
@@ -54,7 +61,7 @@ public class AddAnnonceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       //  Control.setVisible(false);
- Notifications notificationBuilder = Notifications.create()
+ /*Notifications notificationBuilder = Notifications.create()
                .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
                .position(Pos.BASELINE_CENTER)
                .onAction(new EventHandler<ActionEvent>(){
@@ -63,14 +70,15 @@ public class AddAnnonceController implements Initializable {
                        Stage stage = (Stage) btnAddAnn.getScene().getWindow();
                        stage.close();
                        System.out.println("clicked ON ");
-               }});
-      txt_categorie.getItems().addAll("Dancing", "Theatre", "Painting", "Singing", "Photography");
-
+               }}); */
+            myLst = CC.consulterCategorie();
+             for (i=0;i<myLst.size();i++) { txt_categorie.getItems().add(myLst.get(i).getCategorie_name());}
+           
     }
 
-    @FXML
-    private void addAnnonce(ActionEvent event) {
-        try {
+    private void pleaseEkhdem(ActionEvent event) {
+         try {
+           
             /*if(i>0){initialize(urll, rbb)
                     ;}
             i++;  
@@ -103,9 +111,25 @@ public class AddAnnonceController implements Initializable {
             }else {*/
             System.out.println("Pressed");
             // Ajouter Annonce
+            
+            String rIdUser = txt_id_user.getText();
+            String rTitreAnn = txt_titre_ann.getText();
+            String rDescAnn = txt_desc_ann.getText();
+            String rPay = txt_pay.getText();
+            Categorie C =new Categorie();
+            LocalDate auxDdlAnn = txt_ddl_ann.getValue();
+            Date rDdlAnn = Date.valueOf(auxDdlAnn);
+
+            int IdUser = DatatypeConverter.parseInt(rIdUser);
+            int Pay = DatatypeConverter.parseInt(rPay);
+            C.setCategorie_name(txt_categorie.getValue());
+            Annonce a = new Annonce(CurrentUser.getId_user(), rTitreAnn, rDescAnn, Pay, C, rDdlAnn);
+            AnnonceCRUD ann = new AnnonceCRUD();
+            ann.ajouterAnnonce(a);
+            
              Notifications notificationBuilder = Notifications.create()
                .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
-               .position(Pos.BASELINE_CENTER)
+               .position(Pos.CENTER)
                .onAction(new EventHandler<ActionEvent>(){
                    public void handle(ActionEvent event)
                    {
@@ -113,27 +137,61 @@ public class AddAnnonceController implements Initializable {
                        stage.close();
                        System.out.println("clicked ON ");
                }});
-            String rIdUser = txt_id_user.getText();
-            String rTitreAnn = txt_titre_ann.getText();
-            String rDescAnn = txt_desc_ann.getText();
-            String rPay = txt_pay.getText();
-            String Categorie = txt_categorie.getValue();
-            LocalDate auxDdlAnn = txt_ddl_ann.getValue();
-            Date rDdlAnn = Date.valueOf(auxDdlAnn);
-
-            int IdUser = DatatypeConverter.parseInt(rIdUser);
-            int Pay = DatatypeConverter.parseInt(rPay);
-
-            Annonce a = new Annonce(IdUser, rTitreAnn, rDescAnn, Pay, Categorie, rDdlAnn);
-            AnnonceCRUD ann = new AnnonceCRUD();
-            ann.ajouterAnnonce(a);
-            
-           
+            notificationBuilder.darkStyle();
+       notificationBuilder.show();
+       
        // }
         } catch (Exception ex) {
             Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
+    @FXML
+    private void addAnnonce(ActionEvent event) {
+          try {
+         System.out.println("Pressed");
+            // Ajouter Annonce
+            
+           // String rIdUser = txt_id_user.getText();
+            String rTitreAnn = txt_titre_ann.getText();
+            String rDescAnn = txt_desc_ann.getText();
+            String rPay = txt_pay.getText();
+            Categorie C =new Categorie();
+            LocalDate auxDdlAnn = txt_ddl_ann.getValue();
+            Date rDdlAnn = Date.valueOf(auxDdlAnn);
+
+            //int IdUser = DatatypeConverter.parseInt(rIdUser);
+            int Pay = DatatypeConverter.parseInt(rPay);
+            C.setCategorie_name(txt_categorie.getValue());
+            Annonce a = new Annonce(CurrentUser.getId_user(), rTitreAnn, rDescAnn, Pay, C, rDdlAnn);
+            AnnonceCRUD ann = new AnnonceCRUD();
+            ann.ajouterAnnonce(a);
+            
+             Notifications notificationBuilder = Notifications.create()
+               .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
+               .position(Pos.CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   public void handle(ActionEvent event)
+                   {
+                       Stage stage = (Stage) btnAddAnn.getScene().getWindow();
+                       stage.close();
+                       System.out.println("clicked ON ");
+               }});
+            notificationBuilder.darkStyle();
+       notificationBuilder.show();
+       
+        }
+        
+    catch (Exception ex) {
+            Logger.getLogger(AddAnnonceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
+
+
+
+
+
+
+

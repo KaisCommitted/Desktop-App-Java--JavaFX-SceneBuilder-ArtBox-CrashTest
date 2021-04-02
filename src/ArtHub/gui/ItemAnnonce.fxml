@@ -27,7 +27,7 @@
             </HBox>
             <HBox prefHeight="51.0" prefWidth="198.0">
                <children>
-                  <Label fx:id="categ_annonce" prefHeight="59.0" prefWidth="150.0" text="Label" textFill="WHITE" translateX="20.0">
+                  <Label fx:id="desc_annonce" prefHeight="59.0" prefWidth="150.0" text="Label" textFill="WHITE" translateX="20.0">
                      <font>
                         <Font name="Lato Regular" size="17.0" />
                      </font>

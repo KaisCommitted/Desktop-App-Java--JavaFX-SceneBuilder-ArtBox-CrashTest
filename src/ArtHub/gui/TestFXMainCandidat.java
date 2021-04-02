@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,7 @@ import javafx.stage.StageStyle;
  *
  * @author Fayechi
  */
-public class TestFXMainAnnonce extends Application {
+public class TestFXMainCandidat extends Application {
     
     @Override
     public void start(Stage primaryStage) {
@@ -35,10 +36,9 @@ public class TestFXMainAnnonce extends Application {
             /// Color c = Color.rgb(10,30,255,1.200);
             Screen screen = Screen.getPrimary();
             //Rectangle2D bounds = screen.getVisualBounds();
-            // Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
-           Parent root = FXMLLoader.load(getClass().getResource("AddAnnonce.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("FRONT_Annonce.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("AddCandidat.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("AddCandidat.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("CRUDCandidat.fxml"));
             Scene scene = new Scene(root);//, 1920, 1080);
             scene.setFill(Color.LIGHTGRAY);
          //  primaryStage.setX(bounds.getMinX());
