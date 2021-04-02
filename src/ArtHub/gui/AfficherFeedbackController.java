@@ -15,9 +15,11 @@ import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -26,6 +28,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -39,9 +43,13 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -57,9 +65,18 @@ import javafx.util.Callback;
  */
 public class AfficherFeedbackController implements Initializable {
 
+    private ObservableList<Feedback> fedData = FXCollections.observableArrayList();
     @FXML
     private AnchorPane anchorfeedback;
     FeedbackCRUD ps;
+    @FXML
+    private TextField search;
+    private TableColumn<Feedback, Integer>id;
+    private TableColumn<Feedback, Integer> id_user;
+    private TableColumn <Feedback, String> contenu;
+    private TableColumn<Feedback, String> type;
+    private TableColumn<Feedback, String> etat;
+    private TableView<Feedback> table;
     /**
      * Initializes the controller class.
      * @param url
@@ -67,6 +84,14 @@ public class AfficherFeedbackController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
+        
+        
+        
+    
+        
+        
+        
         FeedbackCRUD ps = new FeedbackCRUD();
         // id_feedback table view
         JFXTreeTableColumn<Feedback, String> id_feedback = new JFXTreeTableColumn<>("id_feedback");
@@ -111,6 +136,12 @@ public class AfficherFeedbackController implements Initializable {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
+                 
+                 
+                 
+                 
+                 
+                 
         //setting the new value for editable etat_feedback text field
         etat_feedback.setOnEditCommit((CellEditEvent<Feedback, String> t) -> {
             int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_feedback();
@@ -203,6 +234,47 @@ public class AfficherFeedbackController implements Initializable {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
  
+        
+    }
+
+    @FXML
+    private void search(ActionEvent event) {
+//         FilteredList<Feedback> filteredData = new FilteredList<>(fedData, b -> true);
+//		
+//		// 2. Set the filter Predicate whenever the filter changes.
+//		search.textProperty().addListener((observable, oldValue, newValue) -> {
+//			filteredData.setPredicate(Feedback -> {
+//				// If filter text is empty, display all persons.
+//								
+//				if (newValue == null || newValue.isEmpty()) {
+//					return true;
+//				}
+//				
+//				// Compare first name and last name of every person with filter text.
+//				String lowerCaseFilter = newValue.toLowerCase();
+//				
+//				if (Feedback.getEtat_feedback().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+//					return true; // Filter matches first name.
+//				}
+//				else if (String.valueOf(Feedback.getId_feedback()).contains(lowerCaseFilter))
+//				     return true;
+//				     else  
+//				    	 return false; // Does not match.
+//			});
+//		});
+//		// 3. Wrap the FilteredList in a SortedList. 
+//		SortedList<Feedback> sortedData = new SortedList<>(filteredData);
+//		// 4. Bind the SortedList comparator to the TableView comparator.
+//		// 	  Otherwise, sorting the TableView would have no effect.
+//		sortedData.comparatorProperty().bind( .comparatorProperty());
+//		// 5. Add sorted (and filtered) data to the table.
+//		treeview.setItems(sortedData);
+//    
+        
+        
+        
+        
+        
     }
     
 }

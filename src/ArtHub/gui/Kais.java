@@ -7,6 +7,7 @@ package ArtHub.gui;
 
 
 //import com.azure.ai.textanalytics.TextAnalyticsClient;
+import com.kieferlam.javafxblur.Blur;
 import static java.awt.Color.blue;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -42,12 +43,13 @@ public class Kais extends Application {
         */
 
         try {   
+            Blur.loadBlurLibrary();
             // Color c = Color.rgb(10,30,255,1.200);
             Screen screen = Screen.getPrimary();
             Rectangle2D bounds = screen.getVisualBounds();
             // Parent root = FXMLLoader.load(getClass().getResource("ADD-Event.fxml"));
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("CategoriePicker.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("Affichepostes.fxml"));
             //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
             //Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
             Scene scene = new Scene(root );//root, 1920, 1080);

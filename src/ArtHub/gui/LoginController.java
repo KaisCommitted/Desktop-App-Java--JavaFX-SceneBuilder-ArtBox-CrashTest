@@ -50,6 +50,7 @@ public class LoginController implements Initializable {
     @FXML
     private Hyperlink signup;
     static public User CurrentUser = new User();
+   static public String userHomeFolder = System.getProperty("user.home");
     /**
      * Initializes the controller class.
      */
@@ -75,7 +76,8 @@ public class LoginController implements Initializable {
                      CurrentUser = us.AssignCurrentUser(usr.getUsername(),usr.getPwd_user());
                   Stage primaryStage;
                   
-                  if (CurrentUser.getRef_admin()== "1") {
+                  if ("+".equals(CurrentUser.getRef_admin())) {
+                      
                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));  
                       Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
                           
@@ -91,7 +93,7 @@ public class LoginController implements Initializable {
                   
                   } 
                   else  {
-                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FRONT_annonce.fxml"));
+                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("feed gui.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -135,7 +137,7 @@ tfusername.getScene().setRoot(root);
     @FXML
     private void forgotpwd(ActionEvent event) {
     }
-
+  
     @FXML
     private void register(ActionEvent event) {
         try {

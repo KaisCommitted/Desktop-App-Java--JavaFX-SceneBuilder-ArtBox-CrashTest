@@ -1,6 +1,8 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Feedback;
+import ArtHub.entities.SmsSender;
+import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.FeedbackCRUD;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,12 +48,20 @@ public class AddFeedbackController implements Initializable {
             String rcontenufeedback = txtContenuFeedback.getText();
          
            
-            Feedback f = new Feedback(rcontenufeedback,rtypefeedback);
+            Feedback f = new Feedback(CurrentUser,rcontenufeedback,rtypefeedback,"Not treated");
             FeedbackCRUD feed = new FeedbackCRUD();
             feed.ajouterFeedback(f);
-            Stage stage;
-           stage= (Stage) btnEnvoyerFeedback.getScene().getWindow();
-           stage.close();
+            
+                 //   SmsSender s= new SmsSender() ;
+                 // s.send(" You recieved a new feedback ", "b");
+                   
+            
+            
+            
+            
+//            Stage stage;
+//           stage= (Stage) btnEnvoyerFeedback.getScene().getWindow();
+//           stage.close();
            
         }catch (Exception ex) {
         Logger.getLogger(AddFeedbackController.class.getName()).log(Level.SEVERE, null, ex);

@@ -67,20 +67,22 @@ public class AfficherSignalisationController implements Initializable {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_signal()));
             }
         });
+        // id_post table view
          JFXTreeTableColumn<Signalisation, String> id_user = new JFXTreeTableColumn<>("id_user");
         id_signal.setPrefWidth(150);
         id_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Signalisation, String> param) {
-                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user()));
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user().getId_user()));
             }
         });
+        // id_user table view
          JFXTreeTableColumn<Signalisation, String> id_post = new JFXTreeTableColumn<>("id_post");
         id_signal.setPrefWidth(150);
         id_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Signalisation, String> param) {
-                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_post()));
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_post().getId_post()));
             }
         });
         
