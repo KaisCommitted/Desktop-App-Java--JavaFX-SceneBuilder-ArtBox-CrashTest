@@ -15,19 +15,23 @@ public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializab
     private String titre_ann;
     private String desc_ann;
     private int pay;
-    private String categorie;
+    private Categorie categorie;
     private Date ddl_ann;
      
     public Annonce() {
     }
 
-    public Annonce(int id_user, String titre_ann, String desc_ann, int pay, String categorie, Date ddl_ann) {
+    public Annonce(int id_user, String titre_ann, String desc_ann, int pay, Categorie categorie, Date ddl_ann) {
         this.id_user = id_user;
         this.titre_ann = titre_ann;
         this.desc_ann = desc_ann;
         this.pay = pay;
         this.categorie = categorie;
         this.ddl_ann = ddl_ann;
+    }
+
+    public Annonce(int IdUser, String rTitreAnn, String rDescAnn, int Pay, String Categorie, Date rDdlAnn) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId_ann() {
@@ -50,7 +54,7 @@ public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializab
         return pay;
     }
 
-    public String getCategorie() {
+    public Categorie getCategorie() {
         return categorie;
     }
 
@@ -78,7 +82,7 @@ public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializab
         this.pay = pay;
     }
 
-    public void setCategorie(String categorie) {
+    public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }
 

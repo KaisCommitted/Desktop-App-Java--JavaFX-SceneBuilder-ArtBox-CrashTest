@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 01, 2021 at 12:02 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Hôte : 127.0.0.1
+-- Généré le : ven. 02 avr. 2021 à 05:18
+-- Version du serveur :  10.4.18-MariaDB
+-- Version de PHP : 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,40 +18,49 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `artbox`
+-- Base de données : `artbox`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `annonce`
+-- Structure de la table `annonce`
 --
 
 CREATE TABLE `annonce` (
   `id_ann` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
   `titre_ann` varchar(250) NOT NULL,
   `desc_ann` varchar(250) NOT NULL,
   `pay` int(11) NOT NULL,
-  `categorie` int(11) NOT NULL,
+  `categorie` varchar(255) NOT NULL,
   `ddl_ann` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `annonce`
+-- Déchargement des données de la table `annonce`
 --
 
 INSERT INTO `annonce` (`id_ann`, `id_user`, `titre_ann`, `desc_ann`, `pay`, `categorie`, `ddl_ann`) VALUES
-(2, NULL, 'Designer', 'Logo+poster', 7560, 1, '2021-03-01'),
-(3, NULL, 'Pianiste', 'Devenez membre dans un nouveau groupe', 500, 2, '2021-03-02'),
-(4, NULL, 'exemple de ttitre', 'exemple de description', 78, 1, '2021-03-09'),
-(6, NULL, 'Summer job', 'graphic designer stage', 500, 5, '2021-03-02'),
-(7, 7, 'fff', 'eeee', 4, 8, '2021-03-01');
+(8, 11, 'lala', 'lala', 20, 'Dancing', '2021-04-15');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorie`
+-- Structure de la table `candidat`
+--
+
+CREATE TABLE `candidat` (
+  `id_cand` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_ann` int(11) NOT NULL,
+  `cv` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie`
 --
 
 CREATE TABLE `categorie` (
@@ -60,7 +69,7 @@ CREATE TABLE `categorie` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categorie`
+-- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`categorie_name`, `id`) VALUES
@@ -73,20 +82,29 @@ INSERT INTO `categorie` (`categorie_name`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Structure de la table `comments`
 --
 
 CREATE TABLE `comments` (
   `id_comment` int(100) NOT NULL,
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `comment` varchar(100) NOT NULL
+  `comment` varchar(100) NOT NULL,
+  `comment_analys` varchar(255) NOT NULL,
+  `comment_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `comments`
+--
+
+INSERT INTO `comments` (`id_comment`, `id_post`, `id_user`, `comment`, `comment_analys`, `comment_date`) VALUES
+(1, 8, 11, 'ty bara saleeem', 'positive', '2021-04-01 07:26:09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment_event`
+-- Structure de la table `comment_event`
 --
 
 CREATE TABLE `comment_event` (
@@ -98,16 +116,19 @@ CREATE TABLE `comment_event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `comment_event`
+-- Déchargement des données de la table `comment_event`
 --
 
 INSERT INTO `comment_event` (`id`, `id_user`, `id_event`, `content`, `commentDate`) VALUES
-(1, 11, 72, 'very noice, am coming', '2021-03-31');
+(3, 12, 72, 'Am joining !', '2021-04-01'),
+(4, 12, 72, 'Hey there , am looking for an uber to go there', '2021-04-01'),
+(5, 12, 72, 'Wadup', '2021-03-09'),
+(14, 11, 72, 'Lets gooo', '2021-04-01');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evenement`
+-- Structure de la table `evenement`
 --
 
 CREATE TABLE `evenement` (
@@ -126,7 +147,7 @@ CREATE TABLE `evenement` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `evenement`
+-- Déchargement des données de la table `evenement`
 --
 
 INSERT INTO `evenement` (`id`, `id_org`, `date`, `nom_event`, `type_event`, `categorie`, `description`, `capacite_event`, `nb_max`, `image_event`, `location_event`, `rating_event`) VALUES
@@ -165,15 +186,12 @@ INSERT INTO `evenement` (`id`, `id_org`, `date`, `nom_event`, `type_event`, `cat
 (102, 11, '2021-03-31', 'TryingCopy', 'Exposé', 'Singing', 'whatever', 20, 20, 'C:/xampp/php/www/pidev/events/1 (21).jpg', 'Machine', 0),
 (103, 11, '2021-04-02', 'wait', 'Exposé', 'Dancing', 'xoxo', 19, 20, 'C:/xampp/php/www/pidev/events/1 (23).jpg', 'Salle', 0),
 (104, 11, '2021-03-31', 'nope', 'Exposé', 'Singing', 'xoxo', 20, 20, 'C:/xampp/php/www/pidev/events/1 (22).jpg', '24/7', 0),
-(105, 11, '2021-03-31', 'pleasework', 'Exposé', 'Singing', 'sz', 20, 20, 'C:/xampp/php/www/pidev/events/andydoo (32).jpg', 'zz', 0),
-(106, 11, '2021-03-31', 'NewD', 'Festival', 'Singing', 'yes bueno', 20, 20, 'C:/xampp/php/www/pidev/events/NewDB', 'no bueno', 0),
-(107, 11, '2021-03-31', 'WhatsUP', 'Exposé', 'Slam', 'haha', 20, 20, 'C:/xampp/php/www/pidev/events/WhatsUP', 'here', 0),
-(108, 11, '2021-03-29', 'WhatsUPP', 'Festival', 'Dancing', 'Break dance', 19, 20, 'C:/xampp/php/www/pidev/events/WhatsUPP', 'here', 0);
+(105, 11, '2021-03-31', 'pleasework', 'Exposé', 'Singing', 'sz', 20, 20, 'C:/xampp/php/www/pidev/events/andydoo (32).jpg', 'zz', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `feedback`
+-- Structure de la table `feedback`
 --
 
 CREATE TABLE `feedback` (
@@ -186,7 +204,7 @@ CREATE TABLE `feedback` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `feedback`
+-- Déchargement des données de la table `feedback`
 --
 
 INSERT INTO `feedback` (`id_feedback`, `id_user`, `contenu_feedback`, `type_feedback`, `etat_feedback`, `date_feedback`) VALUES
@@ -195,7 +213,7 @@ INSERT INTO `feedback` (`id_feedback`, `id_user`, `contenu_feedback`, `type_feed
 -- --------------------------------------------------------
 
 --
--- Table structure for table `interactions`
+-- Structure de la table `interactions`
 --
 
 CREATE TABLE `interactions` (
@@ -206,7 +224,7 @@ CREATE TABLE `interactions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `interactions`
+-- Déchargement des données de la table `interactions`
 --
 
 INSERT INTO `interactions` (`id_inter`, `id_post`, `id_user`, `like_check`) VALUES
@@ -215,27 +233,52 @@ INSERT INTO `interactions` (`id_inter`, `id_post`, `id_user`, `like_check`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `label`
+-- Structure de la table `label`
 --
 
 CREATE TABLE `label` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL
+  `type` varchar(255) NOT NULL,
+  `imageLabel` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `label`
+-- Déchargement des données de la table `label`
 --
 
-INSERT INTO `label` (`id`, `name`, `type`) VALUES
-(1, 'sdfd', 'housem'),
-(2, 'hsin', 'hsan');
+INSERT INTO `label` (`id`, `name`, `type`, `imageLabel`) VALUES
+(1, 'sdfd', 'housem', ''),
+(2, 'hsin', 'hsan', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `participant`
+-- Structure de la table `partenaire`
+--
+
+CREATE TABLE `partenaire` (
+  `id_part` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `rib` varchar(255) NOT NULL,
+  `tel` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `partenaire`
+--
+
+INSERT INTO `partenaire` (`id_part`, `nom`, `adresse`, `logo`, `rib`, `tel`, `status`, `id_user`) VALUES
+(1, 'lamifa', 'lamifa', 'C:/xampp/php/www/pidev/imagepartenaire/lamifaicona-partnership.png', 'lamifa', 'lamifa', '0', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participant`
 --
 
 CREATE TABLE `participant` (
@@ -246,7 +289,7 @@ CREATE TABLE `participant` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `participant`
+-- Déchargement des données de la table `participant`
 --
 
 INSERT INTO `participant` (`id_participation`, `id_user`, `id_event`, `ticket`) VALUES
@@ -286,14 +329,14 @@ INSERT INTO `participant` (`id_participation`, `id_user`, `id_event`, `ticket`) 
 (253, 16, 74, '01674'),
 (254, 16, 80, '01680'),
 (256, 11, 108, '011108'),
-(259, 11, 72, '01172'),
 (264, 11, 70, '01170'),
-(265, 11, 103, '011103');
+(265, 11, 103, '011103'),
+(266, 11, 72, '01172');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `postes`
+-- Structure de la table `postes`
 --
 
 CREATE TABLE `postes` (
@@ -310,7 +353,7 @@ CREATE TABLE `postes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `postes`
+-- Déchargement des données de la table `postes`
 --
 
 INSERT INTO `postes` (`id_post`, `Description`, `Nom_post`, `categorie`, `file`, `post_date`, `album_cover`, `Likes`, `desc_analys`, `id_user`) VALUES
@@ -320,7 +363,7 @@ INSERT INTO `postes` (`id_post`, `Description`, `Nom_post`, `categorie`, `file`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rating_event`
+-- Structure de la table `rating_event`
 --
 
 CREATE TABLE `rating_event` (
@@ -331,7 +374,7 @@ CREATE TABLE `rating_event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `rating_event`
+-- Déchargement des données de la table `rating_event`
 --
 
 INSERT INTO `rating_event` (`id_rating`, `id_user`, `id_event`, `rating`) VALUES
@@ -361,7 +404,7 @@ INSERT INTO `rating_event` (`id_rating`, `id_user`, `id_event`, `rating`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `signalisation`
+-- Structure de la table `signalisation`
 --
 
 CREATE TABLE `signalisation` (
@@ -377,7 +420,7 @@ CREATE TABLE `signalisation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE `user` (
@@ -389,40 +432,50 @@ CREATE TABLE `user` (
   `date_naissance` date NOT NULL,
   `pwd_user` varchar(255) NOT NULL,
   `ref_admin` varchar(1) NOT NULL,
-  `id_label` int(11) DEFAULT NULL
+  `id_label` int(11) DEFAULT NULL,
+  `image` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`id_user`, `nom`, `prenom`, `username`, `mail`, `date_naissance`, `pwd_user`, `ref_admin`, `id_label`) VALUES
-(11, 'Kais', 'Lamine', 'kais', 'kais.lamine@esprit.tn', '1999-03-04', '0000', '-', NULL),
-(12, 'Adam', 'Khalfaoui', 'adam', 'adam.khalfaoui@esprit.tn', '1999-03-04', '0000', '-', NULL),
-(13, 'Zerai', 'Yasmine', 'yasmine', 'yasmine.zerai@esprit.tn', '1936-02-12', '0000', '-', NULL),
-(14, 'Karoui', 'Moetez', 'moetez', 'moetez.karoui@esprit.tn', '1936-02-12', '0000', '-', NULL),
-(15, 'Hammemi', 'Tarek', 'tarek', 'Tarek.hammemi@esprit.tn', '1936-02-12', '0000', '-', NULL),
-(16, 'Jeddou', 'Louay', 'louay', 'louay.jeddou@esprit.tn', '1936-02-12', '0000', '-', NULL),
-(17, 'Chef', 'Projet', 'admin', 'moetez.karoui@esprit.tn', '1999-03-04', '0000', '+', NULL);
+INSERT INTO `user` (`id_user`, `nom`, `prenom`, `username`, `mail`, `date_naissance`, `pwd_user`, `ref_admin`, `id_label`, `image`) VALUES
+(11, 'Kais', 'Lamine', 'kais', 'kais.lamine@esprit.tn', '1999-03-04', '0000', '-', NULL, 'C:/xampp/php/www/pidev/avatar/kaisicona-partnership.png'),
+(12, 'Adam', 'Khalfaoui', 'adam', 'adam.khalfaoui@esprit.tn', '1999-03-04', '0000', '-', NULL, 'C:\\Users\\Tarek\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png'),
+(13, 'Zerai', 'Yasmine', 'yasmine', 'yasmine.zerai@esprit.tn', '1936-02-12', '0000', '-', NULL, 'C:\\Users\\Tarek\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png'),
+(14, 'Karoui', 'Moetez', 'moetez', 'moetez.karoui@esprit.tn', '1936-02-12', '0000', '-', NULL, 'C:\\Users\\Tarek\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png'),
+(15, 'Hammemi', 'Tarek', 'tarek', 'Tarek.hammemi@esprit.tn', '1936-02-12', '0000', '-', NULL, 'C:\\Users\\Tarek\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png'),
+(16, 'Jeddou', 'Louay', 'louay', 'louay.jeddou@esprit.tn', '1936-02-12', '0000', '-', NULL, 'C:\\Users\\Tarek\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png'),
+(17, 'Chef', 'Projet', 'admin', 'moetez.karoui@esprit.tn', '1999-03-04', '0000', '+', NULL, 'C:\\Users\\Tarek\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `annonce`
+-- Index pour la table `annonce`
 --
 ALTER TABLE `annonce`
-  ADD PRIMARY KEY (`id_ann`);
+  ADD PRIMARY KEY (`id_ann`),
+  ADD KEY `fkkkk` (`id_user`);
 
 --
--- Indexes for table `categorie`
+-- Index pour la table `candidat`
+--
+ALTER TABLE `candidat`
+  ADD PRIMARY KEY (`id_cand`),
+  ADD KEY `fkfkkf` (`id_user`),
+  ADD KEY `fok` (`id_ann`);
+
+--
+-- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `comments`
+-- Index pour la table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id_comment`),
@@ -430,7 +483,7 @@ ALTER TABLE `comments`
   ADD KEY `id_use2` (`id_user`);
 
 --
--- Indexes for table `comment_event`
+-- Index pour la table `comment_event`
 --
 ALTER TABLE `comment_event`
   ADD PRIMARY KEY (`id`),
@@ -438,21 +491,21 @@ ALTER TABLE `comment_event`
   ADD KEY `eventt` (`id_event`);
 
 --
--- Indexes for table `evenement`
+-- Index pour la table `evenement`
 --
 ALTER TABLE `evenement`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_org` (`id_org`);
 
 --
--- Indexes for table `feedback`
+-- Index pour la table `feedback`
 --
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id_feedback`),
   ADD KEY `fk_usee` (`id_user`);
 
 --
--- Indexes for table `interactions`
+-- Index pour la table `interactions`
 --
 ALTER TABLE `interactions`
   ADD PRIMARY KEY (`id_inter`),
@@ -460,13 +513,20 @@ ALTER TABLE `interactions`
   ADD KEY `id_post` (`id_post`);
 
 --
--- Indexes for table `label`
+-- Index pour la table `label`
 --
 ALTER TABLE `label`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `participant`
+-- Index pour la table `partenaire`
+--
+ALTER TABLE `partenaire`
+  ADD PRIMARY KEY (`id_part`),
+  ADD KEY `fk_useerr` (`id_user`);
+
+--
+-- Index pour la table `participant`
 --
 ALTER TABLE `participant`
   ADD PRIMARY KEY (`id_participation`),
@@ -474,14 +534,14 @@ ALTER TABLE `participant`
   ADD KEY `fk_idevt` (`id_event`);
 
 --
--- Indexes for table `postes`
+-- Index pour la table `postes`
 --
 ALTER TABLE `postes`
   ADD PRIMARY KEY (`id_post`),
   ADD KEY `ctn1` (`id_user`);
 
 --
--- Indexes for table `rating_event`
+-- Index pour la table `rating_event`
 --
 ALTER TABLE `rating_event`
   ADD PRIMARY KEY (`id_rating`),
@@ -489,7 +549,7 @@ ALTER TABLE `rating_event`
   ADD KEY `fk_user` (`id_user`);
 
 --
--- Indexes for table `signalisation`
+-- Index pour la table `signalisation`
 --
 ALTER TABLE `signalisation`
   ADD PRIMARY KEY (`id_signal`),
@@ -497,145 +557,176 @@ ALTER TABLE `signalisation`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `user`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `annonce`
+-- AUTO_INCREMENT pour la table `annonce`
 --
 ALTER TABLE `annonce`
-  MODIFY `id_ann` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_ann` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `categorie`
+-- AUTO_INCREMENT pour la table `candidat`
+--
+ALTER TABLE `candidat`
+  MODIFY `id_cand` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id_comment` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comment` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `comment_event`
+-- AUTO_INCREMENT pour la table `comment_event`
 --
 ALTER TABLE `comment_event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `evenement`
+-- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
--- AUTO_INCREMENT for table `feedback`
+-- AUTO_INCREMENT pour la table `feedback`
 --
 ALTER TABLE `feedback`
   MODIFY `id_feedback` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `interactions`
+-- AUTO_INCREMENT pour la table `interactions`
 --
 ALTER TABLE `interactions`
   MODIFY `id_inter` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
 
 --
--- AUTO_INCREMENT for table `label`
+-- AUTO_INCREMENT pour la table `label`
 --
 ALTER TABLE `label`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `participant`
+-- AUTO_INCREMENT pour la table `partenaire`
 --
-ALTER TABLE `participant`
-  MODIFY `id_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+ALTER TABLE `partenaire`
+  MODIFY `id_part` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `postes`
+-- AUTO_INCREMENT pour la table `participant`
+--
+ALTER TABLE `participant`
+  MODIFY `id_participation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=267;
+
+--
+-- AUTO_INCREMENT pour la table `postes`
 --
 ALTER TABLE `postes`
   MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `rating_event`
+-- AUTO_INCREMENT pour la table `rating_event`
 --
 ALTER TABLE `rating_event`
   MODIFY `id_rating` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- AUTO_INCREMENT for table `signalisation`
+-- AUTO_INCREMENT pour la table `signalisation`
 --
 ALTER TABLE `signalisation`
   MODIFY `id_signal` int(30) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `comments`
+-- Contraintes pour la table `annonce`
+--
+ALTER TABLE `annonce`
+  ADD CONSTRAINT `fkkkk` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `candidat`
+--
+ALTER TABLE `candidat`
+  ADD CONSTRAINT `fkfkkf` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fok` FOREIGN KEY (`id_ann`) REFERENCES `annonce` (`id_ann`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `comments`
 --
 ALTER TABLE `comments`
   ADD CONSTRAINT `id_post2` FOREIGN KEY (`id_post`) REFERENCES `postes` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_use2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `comment_event`
+-- Contraintes pour la table `comment_event`
 --
 ALTER TABLE `comment_event`
   ADD CONSTRAINT `eventt` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `userr` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `evenement`
+-- Contraintes pour la table `evenement`
 --
 ALTER TABLE `evenement`
   ADD CONSTRAINT `fk_org` FOREIGN KEY (`id_org`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `feedback`
+-- Contraintes pour la table `feedback`
 --
 ALTER TABLE `feedback`
   ADD CONSTRAINT `fk_usee` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `participant`
+-- Contraintes pour la table `partenaire`
+--
+ALTER TABLE `partenaire`
+  ADD CONSTRAINT `fk_useerr` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `participant`
 --
 ALTER TABLE `participant`
   ADD CONSTRAINT `fk_idevt` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id`),
   ADD CONSTRAINT `fk_userid` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `postes`
+-- Contraintes pour la table `postes`
 --
 ALTER TABLE `postes`
   ADD CONSTRAINT `ctn1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `rating_event`
+-- Contraintes pour la table `rating_event`
 --
 ALTER TABLE `rating_event`
   ADD CONSTRAINT `fk_event` FOREIGN KEY (`id_event`) REFERENCES `evenement` (`id`),
   ADD CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
--- Constraints for table `signalisation`
+-- Contraintes pour la table `signalisation`
 --
 ALTER TABLE `signalisation`
   ADD CONSTRAINT `fk_post` FOREIGN KEY (`id_post`) REFERENCES `postes` (`id_post`),

@@ -35,6 +35,19 @@
                   </DropShadow>
                </effect>
             </JFXButton>
+             <ImageView fx:id="user_image" fitHeight="52.0" fitWidth="52.0" layoutX="1385.0" layoutY="18.0" onMouseClicked="#showUserProfile" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton fx:id="Btn_partner" buttonType="RAISED" layoutX="1556.0" layoutY="22.0" onAction="#AddPartner" onMouseEntered="#onEffectBtnHost" onMouseExited="#offEffectBtnHost" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Become a Partner" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                     <color>
+                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </JFXButton>
             <JFXButton layoutX="342.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" style="-fx-border-radius: 20;" styleClass="button1" text="Events" textFill="#0ec3f5" AnchorPane.leftAnchor="342.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font size="20.0" />
@@ -74,9 +87,9 @@
                   <Font name="Calibri" size="20.0" />
                </font>
             </JFXButton>
-            <ScrollPane fx:id="scroll22" layoutX="526.0" layoutY="139.0" prefHeight="897.0" prefWidth="1282.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="526.0">
+            <ScrollPane fx:id="scroll22" layoutX="526.0" layoutY="139.0" prefHeight="830.0" prefWidth="1282.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="526.0">
                <content>
-                  <VBox alignment="CENTER_LEFT" onMouseClicked="#EventClicked" prefHeight="830.0" prefWidth="1283.0" spacing="20.0" style="-fx-background-color: transparent;">
+                  <VBox alignment="CENTER_LEFT" onMouseClicked="#EventClicked" prefHeight="823.0" prefWidth="1283.0" spacing="20.0" style="-fx-background-color: transparent;">
                      <children>
                         <Label fx:id="label_layout" prefHeight="40.0" prefWidth="354.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="button2" stylesheets="@feed%20gui.css" text="All upcoming Events" textFill="#68b8c9" textOverrun="CENTER_ELLIPSIS" translateY="10.0" wrapText="true">
                            <font>
@@ -133,6 +146,11 @@
                   </DropShadow>
                </effect>
             </JFXButton>
+            <ScrollPane fx:id="scrollPartner" layoutX="535.0" layoutY="1024.0" prefHeight="76.0" prefWidth="600.0" translateY="-50.0">
+               <content>
+                  <HBox fx:id="PartnerHbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="600.0" />
+               </content>
+            </ScrollPane>
             <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="1677.0" layoutY="95.0" onMouseClicked="#refresh2" onMouseEntered="#onEffectBtn" onMouseExited="#offEffectBtn" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/refr.png" />

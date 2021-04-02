@@ -1,6 +1,7 @@
 package ArtHub.services;
 
 import ArtHub.entities.User;
+import static ArtHub.gui.FRONT_EventController.userHomeFolder;
 import ArtHub.tools.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class UserCRUD {
     }
     
     public void ajouterUser(User u){
-        String req ="INSERT INTO user (nom,prenom,username,mail,date_naissance,pwd_user,ref_admin)"+"values (?,?,?,?,?,?,?)";
+        String req ="INSERT INTO user (nom,prenom,username,mail,date_naissance,pwd_user,ref_admin,image)"+"values (?,?,?,?,?,?,?,?)";
         try {
             ste = cnx.prepareStatement(req);
             ste.setString(1, u.getNom());
@@ -40,6 +41,7 @@ public class UserCRUD {
             ste.setDate(5, u.getDate_naissance());
             ste.setString(6, u.getPwd_user());
             ste.setString(7, u.getRef_admin());
+            ste.setString(8, userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png");
             
             
             ste.executeUpdate();
@@ -75,8 +77,9 @@ public class UserCRUD {
                 Date date_naissance = rs.getDate("date_naissance");
                 String pwd_user = rs.getString("pwd_user");
                 String ref_admin = rs.getString("ref_admin");
+                String image = rs.getString("image");
             
-                User u = new User(id_user,nom,prenom,username,mail,date_naissance,pwd_user,ref_admin);
+                User u = new User(id_user,nom,prenom,username,mail,date_naissance,pwd_user,ref_admin,image);
                 myList.add(u);
                 
             }
@@ -137,6 +140,7 @@ public class UserCRUD {
                 p.setNom(rs.getString("nom"));
                 p.setPrenom(rs.getString("prenom"));
                 p.setUsername(rs.getString("Username"));
+                p.setImage(rs.getString("image"));
             //Kamel lbe9i wahdek 
 
 
@@ -175,6 +179,8 @@ public class UserCRUD {
                             user.setDate_naissance(rs.getDate("date_naissance"));
                             user.setPwd_user(rs.getString("pwd_user"));
                             user.setRef_admin(rs.getString("ref_admin"));
+                            user.setImage(rs.getString("image"));
+                            
                             
  return true;
                         }
@@ -212,7 +218,8 @@ public class UserCRUD {
                             user.setDate_naissance(rs.getDate("date_naissance"));
                             user.setPwd_user(rs.getString("pwd_user"));
                             user.setRef_admin(rs.getString("ref_admin"));
-                            System.out.println("REEEEEEEEEEEEEEEEEEEEEEEEEF  "+user.getRef_admin());
+                            user.setImage(rs.getString("image"));
+                            
                             
                         }
             }
@@ -249,6 +256,7 @@ public class UserCRUD {
                             user.setDate_naissance(rs.getDate("date_naissance"));
                             user.setPwd_user(rs.getString("pwd_user"));
                             user.setRef_admin(rs.getString("ref_admin"));
+                            user.setImage(rs.getString("image"));
                             
                         }
             }
