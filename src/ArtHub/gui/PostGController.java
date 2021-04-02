@@ -309,8 +309,7 @@ public static int id_post_clicked = 0;
         }
     }
 
-<<<<<<< Updated upstream
-=======
+
    
     @FXML
     private void effectOff(MouseEvent event) {
@@ -323,7 +322,7 @@ public static int id_post_clicked = 0;
         ItemBox.setEffect(null);
     }
 
->>>>>>> Stashed changes
+
     @FXML
     private void Comments(MouseEvent event) {
     }

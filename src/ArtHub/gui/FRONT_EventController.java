@@ -52,12 +52,12 @@ import javax.swing.JFileChooser;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
-<<<<<<< Updated upstream
+
 import com.kieferlam.javafxblur.Blur;
 
-=======
+
 //import com.kieferlam.javafxblur.Blur;
->>>>>>> Stashed changes
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
