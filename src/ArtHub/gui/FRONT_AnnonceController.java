@@ -234,7 +234,7 @@ public class FRONT_AnnonceController implements Initializable {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Host an event");
+            stage.setTitle("Post a job opportunity");
 
             stage.setScene(new Scene(root1));
 
