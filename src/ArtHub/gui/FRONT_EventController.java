@@ -6,6 +6,7 @@
 package ArtHub.gui;
 
 import ArtHub.entities.Evenement;
+import ArtHub.entities.Partenaire;
 import ArtHub.entities.Participant;
 import ArtHub.entities.Post;
 import ArtHub.entities.Whatsapp;
@@ -17,6 +18,7 @@ import static ArtHub.gui.ItemBoxController.id_clicked;
 import static ArtHub.gui.ItemBoxController.style;
 import static ArtHub.gui.LoginController.CurrentUser;
 import ArtHub.services.EvenementCRUD;
+import ArtHub.services.PartenaireCRUD;
 import ArtHub.services.ParticipantCRUD;
 import ArtHub.services.UserCRUD;
 import ArtHub.services.postCRUD;
@@ -192,12 +194,52 @@ public static String userHomeFolder = System.getProperty("user.home");
     private ImageView catshow;
     @FXML
     private ImageView btnSearch;
+    @FXML
+    private JFXButton Btn_partner;
+    @FXML
+    private ScrollPane scrollPartner;
+    @FXML
+    private HBox PartnerHbox;
+    Partenaire P = new Partenaire();
+    @FXML
+    private ImageView user_image;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+             PartenaireCRUD pt = new PartenaireCRUD();
+        if (!pt.checkPartenaire(CurrentUser.getId_user())) {
+            Btn_partner.setVisible(true);  
+          Btn_AddEvent.setVisible(false); 
+        }else if(pt.FindByPartenaire(CurrentUser.getId_user()).getStatus()==0 ){
+          Btn_partner.setVisible(false);  
+          Btn_AddEvent.setVisible(false);  
+          
+        }
+        else if(pt.FindByPartenaire(CurrentUser.getId_user()).getStatus()==1 ){
+            Btn_partner.setVisible(false);
+            
+              Btn_AddEvent.setVisible(true);
+        } 
+        
+        List<Partenaire> myLest;
+        myLest = pt.consulterPartenaire();
+          PartnerHbox.getChildren().clear();
+       for (int i = 0; i < myLest.size(); i++) {
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemPartner.fxml"));
+                AnchorPane EventBox = fxmlLoader.load();
+                ItemPartnerController controller = fxmlLoader.getController();
+                controller.setData(myLest.get(i));
+                PartnerHbox.getChildren().add(EventBox);
+            } catch (IOException ex) {
+                Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+            }   }
+       
             //////////////////////////////////WHATSAPPP MAKE 24H window + check credentials//////////////////////////////////////////
             //sendWhatsapp();
             ///////////////////////////////////WHATSAAAAAP////////////////////////////////////////////
@@ -210,7 +252,7 @@ public static String userHomeFolder = System.getProperty("user.home");
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\event-planner.png", imgorg);
               setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\ticket.png",ticketimg);
               setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
-            
+            setImage(CurrentUser.getImage(), user_image);
             scroll21.setFitToHeight(true);
             scroll21.setFitToWidth(true);
             scroll21.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -243,9 +285,9 @@ notifyme();
 
             Participant aux = new Participant();
             ParticipantCRUD par = new ParticipantCRUD();
-            String max = par.RecommendParticip(CurrentUser.getId_user());
+           // String max = par.RecommendParticip(CurrentUser.getId_user());
 
-            myLst = ps.RecommendEvenement(max);
+            /*myLst = ps.RecommendEvenement(max);
             ParticipantCRUD pc = new ParticipantCRUD();
             for(int i=0 ; i<myLst.size() ; i++ ) {
             if ((pc.CheckUserExists(CurrentUser.getId_user(),myLst.get(i).getId())))
@@ -254,7 +296,7 @@ notifyme();
                }
             }
             recommended_layout.getChildren().clear();
-            FillHbox1(myLst, recommended_layout);
+            FillHbox1(myLst, recommended_layout);*/
 
             myLst = ps.consulterEvenement();
             FillHbox1(myLst, event_mostPop);
@@ -262,7 +304,7 @@ notifyme();
             MoreDetails.setStyle("-fx-background-color: #b0ffa7;" + "-fx-background-radius: 15;" + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
             EvenementCRUD p = new EvenementCRUD();
             Evenement Evenement = new Evenement();
-            Evenement = p.consulterEvenement().get(0);
+            Evenement = p.consulterEvenement().get(5);
             UserCRUD u = new UserCRUD();
             event_description.setText("Description :" + Evenement.getDescription());
             String pat = Evenement.getImage_event();
@@ -1142,4 +1184,54 @@ notifyme();
         }
         
     }
+
+    @FXML
+    private void AddPartner(ActionEvent event) {
+          try {
+           
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MakePartner.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event");
+
+            stage.setScene(new Scene(root1));
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void showUserProfile(MouseEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("UserProfile.fxml"));
+            Scene scene = feed_button.getScene();
+            
+            root.translateXProperty().set(scene.getHeight());
+            parentContainer1.getChildren().add(root);
+            
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
+            timeline.getKeyFrames().add(kf);
+            
+            timeline.play();
+            //parentContainer.getChildren().remove(anchorRoot);
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+    
+
+
+
 }
+
+   
+
+    

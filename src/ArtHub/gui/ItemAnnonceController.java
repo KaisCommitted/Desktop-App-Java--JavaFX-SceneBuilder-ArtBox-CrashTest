@@ -28,7 +28,7 @@ public class ItemAnnonceController implements Initializable {
     @FXML
     private Label titre_annonce;
     @FXML
-    private Label categ_annonce;
+    private Label desc_annonce;
 
     /**
      * Initializes the controller class.
@@ -45,10 +45,13 @@ public class ItemAnnonceController implements Initializable {
     public void setData(Annonce p) {
 
         titre_annonce.setText(p.getTitre_ann());
-        categ_annonce.setText(p.getCategorie());
+        desc_annonce.setText(p.getDesc_ann());
     }
 
     @FXML
     private void JoinEvent(ActionEvent event) {
+        
+        
+        
     }
 }

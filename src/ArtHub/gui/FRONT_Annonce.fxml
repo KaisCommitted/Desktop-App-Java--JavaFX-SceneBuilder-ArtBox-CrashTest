@@ -65,7 +65,11 @@
                   </ScrollPane>
                </children>
             </HBox>
+<<<<<<< HEAD
+            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" onAction="#AddJob" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Add a job offer" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.rightAnchor="122.0">
+=======
             <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" onAction="#AddAnnonce" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Add an announcement" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="21.0">
+>>>>>>> f3dbd54bc0989ef3ebb3102ddffc5853aa5d6599
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>

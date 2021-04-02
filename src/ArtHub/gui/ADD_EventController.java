@@ -239,7 +239,7 @@ if (captcha.isCorrect(code.getText())) {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
 
-        File f = new File("C:/Users/21698/Desktop");
+        File f = new File("C:/Users/Tarek/Desktop");
         fileChooser.setInitialDirectory(f);
         File selectedFile = fileChooser.showOpenDialog(currentStage);
 
@@ -251,13 +251,13 @@ if (captcha.isCorrect(code.getText())) {
             File dest = new File("C:/xampp/php/www/pidev/events/");
             java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/events/" + txt_nom.getText());
+            File newDes = new File("C:/xampp/php/www/pidev/events/" + txt_nom.getText()+ selectedFile.getName());
             try {
                 copyContent(selectedFile,newDes);
             } catch (Exception ex) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
-             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Events\\" + txt_nom.getText());
+             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Events\\" + txt_nom.getText()+ selectedFile.getName());
            
            
            
@@ -267,7 +267,7 @@ if (captcha.isCorrect(code.getText())) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        path = "C:/xampp/php/www/pidev/events/" + txt_nom.getText().toString();
+        path = "C:/xampp/php/www/pidev/events/" +  txt_nom.getText() + selectedFile.getName();
         return txt_nom.getText();
 
     }
