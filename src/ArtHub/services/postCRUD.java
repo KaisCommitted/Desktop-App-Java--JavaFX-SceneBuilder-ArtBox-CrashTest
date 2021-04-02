@@ -395,10 +395,11 @@ public class postCRUD {
                 String comment = rs.getString("comment");
                 //String Description = rs.getString("Description");
                 String comment_date = rs.getString("comment_date");
+                User id_user = new User();
+                id_user.setId_user(rs.getInt("id_user"));
                 
                 
-                Comment c = new Comment(comment,comment_date); 
-                U.setId_user(rs.getInt("id_user"))  ; 
+                Comment c = new Comment(comment,comment_date,id_user); 
                 c.setId_comment(rs.getInt("id_comment"));
                 myList.add(c);
 

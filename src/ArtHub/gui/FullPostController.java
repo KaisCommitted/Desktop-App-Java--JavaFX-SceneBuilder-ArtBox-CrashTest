@@ -43,6 +43,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 
 /**
@@ -281,11 +284,26 @@ public void setData(Post post) throws FileNotFoundException {
     @FXML
     private void Add_comment(ActionEvent event) {
         
+        if (new_cmnt.getText() == null || new_cmnt.getText().trim().isEmpty()){
+            
+       
+            String title = "Error";
+        String message = "Write a comment !";
+        //Notification notification = Notifications.SUCCESS;
+        
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.ERROR);
+        tray.showAndDismiss(Duration.millis(12000));
+        
+        }
+        
+        
+        
         
          try {
-             System.out.println("WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
-              System.out.println("WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
-               System.out.println("WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
+            
              
              Post CurrentPost = new Post(Integer.parseInt(idLabel.getText()));
              
@@ -325,7 +343,15 @@ public void setData(Post post) throws FileNotFoundException {
              
              
              
-             
+               String title = "Thank you";
+        String message = "Comment added";
+        //Notification notification = Notifications.SUCCESS;
+        
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotificationType(NotificationType.SUCCESS);
+        tray.showAndDismiss(Duration.millis(12000));
              
              
              
@@ -336,12 +362,17 @@ public void setData(Post post) throws FileNotFoundException {
            Logger.getLogger(FullPostController.class.getName()).log(Level.SEVERE, null, ex);
        }
          
+         
+       
          FillVbox(myLst,CommentsVBox); 
+         
+         
+         
+         
+         
     }
 
-    
-    private void like(MouseEvent event) {
-    }
+   
    
       
    

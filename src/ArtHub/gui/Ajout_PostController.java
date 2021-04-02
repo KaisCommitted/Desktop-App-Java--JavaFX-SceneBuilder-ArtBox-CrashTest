@@ -59,6 +59,12 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
+
+import org.controlsfx.validation.ValidationResult;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
+
+
 //import javafx.scene.control.Tab;
 
 
@@ -131,6 +137,27 @@ public class Ajout_PostController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ValidationSupport validation = new ValidationSupport();
+	validation.registerValidator(song_name, Validator.createEmptyValidator("Name is Required"));
+       
+        ValidationSupport validation1 = new ValidationSupport();
+        validation1.registerValidator(song_desc, Validator.createEmptyValidator("Description is Required"));
+        
+        ValidationSupport validation2 = new ValidationSupport();
+        validation2.registerValidator(video_name, Validator.createEmptyValidator("Name is Required"));
+        
+        ValidationSupport validation3 = new ValidationSupport();
+        validation3.registerValidator(video_desc, Validator.createEmptyValidator("Description is Required"));
+        
+        ValidationSupport validation4 = new ValidationSupport();
+        validation4.registerValidator(p_name, Validator.createEmptyValidator("Name is Required"));
+        
+        ValidationSupport validation5 = new ValidationSupport();
+        validation5.registerValidator(p_desc, Validator.createEmptyValidator("Descrition is Required"));
+        
+        
+        
+        
         // TODO
     }  
      @FXML
@@ -142,6 +169,8 @@ public class Ajout_PostController implements Initializable {
       parentContainer1.getChildren().add(root);
       
            
+      
+      
       
       
       

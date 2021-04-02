@@ -19,6 +19,12 @@ public class Comment extends RecursiveTreeObject<Post> implements Serializable {
     private String Comment;
     private String Comment_analys;
 
+    public Comment( String Comment,String date_comment,User id_user) {
+        this.id_user = id_user;
+        this.Comment = Comment;
+        this.date_comment = date_comment;
+    }
+
     public Comment(String Comment, String date_comment) {
         this.Comment = Comment;
         this.date_comment = date_comment;
