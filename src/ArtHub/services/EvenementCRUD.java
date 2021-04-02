@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static ArtHub.gui.LoginController.CurrentUser;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * wadup
@@ -445,10 +448,13 @@ if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAft
             ResultSet rs = pst.executeQuery("SELECT * from evenement WHERE DATEDIFF(date,NOW()) <= 30");
             while (rs.next()) {
 
-                if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
-
+                if (rs.getInt("id") != 0  ) {
+                     
                     Evenement p = FindEvenement(rs.getInt("id"));
-                    myList.add(p);
+                    System.out.println("LOCAAAL DATE "+LocalDate.now());
+                    System.out.println("EVENT DAATE "+p.getDate_event());
+                    if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAfter(LocalDate.now()) ) {
+                    myList.add(p); }
                 }
 
             }
@@ -576,8 +582,9 @@ if (rs.getInt("id") != 0 && FindEvenement(rs.getInt("id")).getDate_event().isAft
             while (rs.next()) {
 
                 if (rs.getInt("id_event") != 0 && FindEvenement(rs.getInt("id_event")).getDate_event().isBefore(LocalDate.now()) ) {
-
+                   
                     Evenement p = FindEvenement(rs.getInt("id_event"));
+                     System.out.println("EVENT "+ p);
                     myList.add(p);
                 }
             }
@@ -599,15 +606,16 @@ public List<Evenement> GoingTo(int id) {
         List<Evenement> myList = new ArrayList<>();
         try {
 
-            Statement stmt = cnx.createStatement();
+             Statement stmt = cnx.createStatement();
             String sql = "SELECT * from participant " + " WHERE id_user=" + id;
 
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
 
                 if (rs.getInt("id_event") != 0 && FindEvenement(rs.getInt("id_event")).getDate_event().isAfter(LocalDate.now()) ) {
-
+                   
                     Evenement p = FindEvenement(rs.getInt("id_event"));
+                     System.out.println("EVENT "+ p);
                     myList.add(p);
                 }
             }
@@ -616,6 +624,8 @@ public List<Evenement> GoingTo(int id) {
         }
 
         return myList;
+
+        
 
     }
 
@@ -658,7 +668,8 @@ public List<Evenement> GoingTo(int id) {
             while (rs.next()) {
 
                 if (rs.getInt("id") != 0  ) {
-
+                   
+                    
                     Evenement p = FindEvenement(rs.getInt("id"));
                     myList.add(p);
                 }
