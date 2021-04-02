@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.awt.Dimension;
 import java.net.URL;
 import javax.mail.Session;
 import java.util.ResourceBundle;
@@ -21,7 +22,13 @@ import javafx.fxml.Initializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -78,6 +85,24 @@ public class AddUserController implements Initializable {
                 
                 
                 m.sendMail("0artbox1@gmail.com", rMail, subject, message);
+               FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Login" );
+            
+           //Parent root = FXMLLoader.load(getClass().getResource("CRUDEvent.fxml"));
+            Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            
+            stage.setScene(new Scene(root1, screenSize.getWidth(), screenSize.getHeight()));
+            
+            stage.show();
+   
+                  
+          
+                //Stage CurrentStage = (Stage)Login.getScene().getWindow();
+                //CurrentStage.close();
                 
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());

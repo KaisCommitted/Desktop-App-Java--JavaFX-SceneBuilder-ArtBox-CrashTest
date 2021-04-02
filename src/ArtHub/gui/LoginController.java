@@ -136,6 +136,22 @@ tfusername.getScene().setRoot(root);
 
     @FXML
     private void forgotpwd(ActionEvent event) {
+        try{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PwdRecovery.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Password Recovery" );
+            
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        }catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
   
     @FXML

@@ -108,9 +108,9 @@ public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
     return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
 }
      @FXML
-    private void updateImage(ActionEvent event) {
+    private String updateImage(ActionEvent event) {
          
-/*        
+     
 //upload_image
         path="";
         Stage currentStage = (Stage) upload_image.getScene().getWindow();
@@ -119,7 +119,7 @@ public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
 
-        File f = new File("C:/Users/21698/Desktop");
+        File f = new File("C:/Users/louay/Desktop");
         fileChooser.setInitialDirectory(f);
         File selectedFile = fileChooser.showOpenDialog(currentStage);
 
@@ -131,13 +131,13 @@ public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
             File dest = new File("C:/xampp/php/www/pidev/avatar/");
             java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/avatar/" + txt_nom.getText());
+            File newDes = new File("C:/xampp/php/www/pidev/avatar/" + username.getText() + selectedFile.getName());
             try {
                 copyContent(selectedFile,newDes);
             } catch (Exception ex) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
-             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Events\\" + txt_nom.getText());
+             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\users\\" + username.getText() + selectedFile.getName());
            
            
            
@@ -147,10 +147,10 @@ public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        path = "C:/xampp/php/www/pidev/events/" + txt_nom.getText().toString();
-        return txt_nom.getText();
-*/
-  JOptionPane.showMessageDialog(null, "Not Implimented Yet !" );
+        path = "C:/xampp/php/www/pidev/avatar/" + username.getText() + selectedFile.getName().toString();
+        return username.getText();
+
+ 
     }
     
          @FXML
@@ -164,7 +164,8 @@ public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
           userService.modifierUser(user.getId_user(),"username",username.getText());
            userService.modifierUser(user.getId_user(),"mail",mail.getText());
             userService.modifierUser(user.getId_user(),"date_naissance",Date.from(birth_date_selector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-   JOptionPane.showMessageDialog(null, "User update Successfully !" );
+            userService.modifierUser(user.getId_user(),"image",path);
+            JOptionPane.showMessageDialog(null, "User update Successfully !" );
     }
          @FXML
     private void close_ui(ActionEvent event) {

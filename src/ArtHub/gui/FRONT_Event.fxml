@@ -40,7 +40,7 @@
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="794.0" layoutY="21.0" onKeyReleased="#filterEvent" onMouseEntered="#onEffectSearch" onMouseExited="#offEffectSearch" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="21.0">
+            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="769.0" layoutY="22.0" onKeyReleased="#filterEvent" onMouseEntered="#onEffectSearch" onMouseExited="#offEffectSearch" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.rightAnchor="608.5999999999999" AnchorPane.topAnchor="22.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -133,6 +133,7 @@
                   </DropShadow>
                </effect>
             </JFXButton>
+            <ImageView fx:id="user_image" fitHeight="52.0" fitWidth="52.0" layoutX="1322.0" layoutY="24.0" onMouseClicked="#showUserProfile" onMouseEntered="#showUserProfile" onMouseExited="#showUserProfile" onMousePressed="#showUserProfile" pickOnBounds="true" preserveRatio="true" />
             <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="1677.0" layoutY="95.0" onMouseClicked="#refresh2" onMouseEntered="#onEffectBtn" onMouseExited="#offEffectBtn" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/refr.png" />
@@ -237,12 +238,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="btnSearch" fitHeight="41.0" fitWidth="36.0" layoutX="1375.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="750.0" AnchorPane.topAnchor="21.0">
+            <ImageView fx:id="btnSearch" fitHeight="41.0" fitWidth="36.0" layoutX="719.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="719.0" AnchorPane.topAnchor="23.0">
                <image>
                   <Image url="@../images/icons8_Search_52px.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="Btn_profile" buttonType="RAISED" layoutX="1358.0" layoutY="20.0" onAction="#showProfile" onMouseEntered="#onEffectBtnHost" onMouseExited="#offEffectBtnHost" prefHeight="43.0" prefWidth="182.0" ripplerFill="WHITE" styleClass="button3" text="Profile" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <JFXButton fx:id="buttontest" buttonType="RAISED" layoutX="1387.0" layoutY="19.0" onAction="#showUserProfile" onMouseEntered="#onEffectBtnHost" onMouseExited="#offEffectBtnHost" prefHeight="46.0" prefWidth="166.0" ripplerFill="WHITE" styleClass="button3" text="Profile" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>

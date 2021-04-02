@@ -8,6 +8,7 @@ package ArtHub.gui;
 import ArtHub.entities.Evenement;
 import ArtHub.entities.Participant;
 import ArtHub.entities.Post;
+import ArtHub.entities.User;
 import ArtHub.entities.Whatsapp;
 import static ArtHub.gui.CategoriePickerController.clicked_cat;
 import static ArtHub.gui.ItemBoxController.highlight;
@@ -190,6 +191,16 @@ public static String userHomeFolder = System.getProperty("user.home");
     private ImageView catshow;
     @FXML
     private ImageView btnSearch;
+    @FXML
+    private ImageView user_image;
+    @FXML
+    private JFXButton buttontest;
+    
+    //var
+     User user;
+    UserCRUD userService;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -207,8 +218,9 @@ public static String userHomeFolder = System.getProperty("user.home");
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\event-planner.png", imgorg);
               setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\ticket.png",ticketimg);
-              setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
-            
+              setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);          
+            System.out.println("PATTTTTTTTTTTTTTTTTTTTTTH "+CurrentUser.getImage());
+              setImage(CurrentUser.getImage(), user_image);
             scroll21.setFitToHeight(true);
             scroll21.setFitToWidth(true);
             scroll21.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -362,7 +374,23 @@ notifyme();
         }
 
     }
+    @FXML
+    private void showUserProfile(ActionEvent event) {
+        try {
+           
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserProfile.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
 
+            stage.setScene(new Scene(root1));
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     @FXML
     private void filterEvent(KeyEvent event) {
 
@@ -1113,4 +1141,7 @@ notifyme();
     private void closeON(MouseEvent event) {
          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
     }
+    
+    
+    
 }

@@ -32,6 +32,17 @@ public class User extends RecursiveTreeObject<User> implements Serializable  {
         this.ref_admin = ref_admin;
     }
 
+    public User(String nom, String prenom, String username, String mail, Date date_naissance, String pwd_user, String ref_admin, String image) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.username = username;
+        this.mail = mail;
+        this.date_naissance = date_naissance;
+        this.pwd_user = pwd_user;
+        this.ref_admin = ref_admin;
+        this.image = image;
+    }
+
     
     
 
@@ -101,7 +112,7 @@ public class User extends RecursiveTreeObject<User> implements Serializable  {
 
     public void setId_user(int id_user) {
         this.id_user = id_user;
-    }
+    }   
 
     public void setNom(String nom) {
         this.nom = nom;
