@@ -68,7 +68,10 @@ public class FRONT_AnnonceController implements Initializable {
     private ImageView BtnClose;
     @FXML
     private AnchorPane anchor;
-   
+    @FXML
+    private ImageView user_image;
+   URL url;
+   ResourceBundle rb;
 
     /**
      * Initializes the controller class.
@@ -266,9 +269,6 @@ public class FRONT_AnnonceController implements Initializable {
         }
     }
 
-    @FXML
-    private void AddAnnonce(ActionEvent event) {
-    }
 
     @FXML
     private void closeOFF(MouseEvent event) {
@@ -278,6 +278,16 @@ public class FRONT_AnnonceController implements Initializable {
     @FXML
     private void closeON(MouseEvent event) {
          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
+    }
+
+    @FXML
+    private void showUserProfile(MouseEvent event) {
+        
+    }
+
+    @FXML
+    private void load_jobs(ActionEvent event) {
+        initialize(url,rb);
     }
     
 }

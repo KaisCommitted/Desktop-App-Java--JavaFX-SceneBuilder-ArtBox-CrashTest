@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 02 avr. 2021 à 04:17
+-- Généré le : ven. 02 avr. 2021 à 05:18
 -- Version du serveur :  10.4.18-MariaDB
 -- Version de PHP : 8.0.3
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `annonce` (
   `id_ann` int(11) NOT NULL,
-  `id_user` int(11) DEFAULT NULL,
+  `id_user` int(11) NOT NULL,
   `titre_ann` varchar(250) NOT NULL,
   `desc_ann` varchar(250) NOT NULL,
   `pay` int(11) NOT NULL,
-  `categorie` int(11) NOT NULL,
+  `categorie` varchar(255) NOT NULL,
   `ddl_ann` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -42,11 +42,20 @@ CREATE TABLE `annonce` (
 --
 
 INSERT INTO `annonce` (`id_ann`, `id_user`, `titre_ann`, `desc_ann`, `pay`, `categorie`, `ddl_ann`) VALUES
-(2, NULL, 'Designer', 'Logo+poster', 7560, 1, '2021-03-01'),
-(3, NULL, 'Pianiste', 'Devenez membre dans un nouveau groupe', 500, 2, '2021-03-02'),
-(4, NULL, 'exemple de ttitre', 'exemple de description', 78, 1, '2021-03-09'),
-(6, NULL, 'Summer job', 'graphic designer stage', 500, 5, '2021-03-02'),
-(7, 7, 'fff', 'eeee', 4, 8, '2021-03-01');
+(8, 11, 'lala', 'lala', 20, 'Dancing', '2021-04-15');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `candidat`
+--
+
+CREATE TABLE `candidat` (
+  `id_cand` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_ann` int(11) NOT NULL,
+  `cv` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -448,7 +457,16 @@ INSERT INTO `user` (`id_user`, `nom`, `prenom`, `username`, `mail`, `date_naissa
 -- Index pour la table `annonce`
 --
 ALTER TABLE `annonce`
-  ADD PRIMARY KEY (`id_ann`);
+  ADD PRIMARY KEY (`id_ann`),
+  ADD KEY `fkkkk` (`id_user`);
+
+--
+-- Index pour la table `candidat`
+--
+ALTER TABLE `candidat`
+  ADD PRIMARY KEY (`id_cand`),
+  ADD KEY `fkfkkf` (`id_user`),
+  ADD KEY `fok` (`id_ann`);
 
 --
 -- Index pour la table `categorie`
@@ -552,7 +570,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `annonce`
 --
 ALTER TABLE `annonce`
-  MODIFY `id_ann` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_ann` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT pour la table `candidat`
+--
+ALTER TABLE `candidat`
+  MODIFY `id_cand` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `categorie`
@@ -635,6 +659,19 @@ ALTER TABLE `user`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `annonce`
+--
+ALTER TABLE `annonce`
+  ADD CONSTRAINT `fkkkk` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `candidat`
+--
+ALTER TABLE `candidat`
+  ADD CONSTRAINT `fkfkkf` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fok` FOREIGN KEY (`id_ann`) REFERENCES `annonce` (`id_ann`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `comments`
