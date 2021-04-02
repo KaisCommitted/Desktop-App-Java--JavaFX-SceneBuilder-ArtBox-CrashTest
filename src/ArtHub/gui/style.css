@@ -119,3 +119,11 @@
     -fx-background-color: transparent;
     -fx-pref-height: 0px;
 }
+
+
+.center{
+    -fx-justify-content:center;
+    
+}
+
+

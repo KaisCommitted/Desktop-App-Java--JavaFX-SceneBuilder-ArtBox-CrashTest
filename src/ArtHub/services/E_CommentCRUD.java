@@ -223,6 +223,7 @@ public class E_CommentCRUD extends RecursiveTreeObject<E_CommentCRUD> implements
         return C;
     }
     
+<<<<<<< Updated upstream
     public E_Comment FindUserExistsByID(int id) {
 
         E_Comment C = new E_Comment();
@@ -296,5 +297,33 @@ public class E_CommentCRUD extends RecursiveTreeObject<E_CommentCRUD> implements
        
  return myList;
     }
+=======
+     
+        public List<E_Comment> FindComments(int id) {
+
+          List<E_Comment> myList = new ArrayList<>();
+          try {
+             E_Comment C = new E_Comment();
+              Statement stmt = cnx.createStatement();
+
+              String sql = "SELECT * from comment_event " + " WHERE id_event=" + id +" order by commentDate";
+              ResultSet rs = stmt.executeQuery(sql);
+              while (rs.next()) {
+           
+                  if (rs.getInt("id_event") != 0) {
+                       C =FindUserExists(rs.getInt("id_user"), rs.getInt("id_event"));
+
+                       myList.add(C);
+
+                  }
+              }
+          } catch (SQLException ex) {
+              System.out.println(ex.getMessage());
+          }
+
+          return myList;
+
+      }
+>>>>>>> Stashed changes
 
 }

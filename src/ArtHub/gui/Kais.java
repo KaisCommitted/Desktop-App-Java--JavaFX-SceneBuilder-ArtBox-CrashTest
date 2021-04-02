@@ -7,7 +7,7 @@ package ArtHub.gui;
 
 
 //import com.azure.ai.textanalytics.TextAnalyticsClient;
-import com.kieferlam.javafxblur.Blur;
+//import com.kieferlam.javafxblur.Blur;
 import static java.awt.Color.blue;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -43,7 +43,7 @@ public class Kais extends Application {
         */
 
         try {   
-            Blur.loadBlurLibrary();
+//            Blur.loadBlurLibrary();
             // Color c = Color.rgb(10,30,255,1.200);
             Screen screen = Screen.getPrimary();
             Rectangle2D bounds = screen.getVisualBounds();

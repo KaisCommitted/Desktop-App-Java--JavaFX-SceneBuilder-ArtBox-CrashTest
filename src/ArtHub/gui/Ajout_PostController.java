@@ -54,7 +54,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.ws.spi.http.HttpContext;
 
 
-import sun.net.www.http.HttpClient;
+//import sun.net.www.http.HttpClient;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
@@ -364,6 +364,7 @@ public class Ajout_PostController implements Initializable {
         tray.setTitle(title);
         tray.setMessage(message);
         tray.setNotificationType(NotificationType.SUCCESS);
+        
         tray.showAndDismiss(Duration.millis(3000));
 
 

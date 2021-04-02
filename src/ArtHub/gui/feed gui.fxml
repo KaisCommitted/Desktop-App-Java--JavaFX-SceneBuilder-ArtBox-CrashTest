@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="parentContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FeedGuiController">
+<StackPane fx:id="parentContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FeedGuiController">
    <children>
       <AnchorPane id="AnchorPane" fx:id="anchorRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
@@ -38,12 +38,12 @@
                      <stops>
                         <Stop>
                            <color>
-                              <Color red="0.6035699844360352" green="0.17669999599456787" blue="0.9300000071525574" opacity="0.8782608509063721" />
+                              <Color blue="0.9300000071525574" green="0.17669999599456787" opacity="0.8782608509063721" red="0.6035699844360352" />
                            </color>
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color red="0.007843137718737125" green="0.6117647290229797" blue="0.8823529481887817" />
+                              <Color blue="0.8823529481887817" green="0.6117647290229797" red="0.007843137718737125" />
                            </color>
                         </Stop>
                      </stops>
@@ -72,12 +72,12 @@
                <effect>
                   <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
                      <color>
-                        <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                        <Color blue="0.9843137264251709" green="0.929411768913269" red="0.2078431397676468" />
                      </color>
                   </DropShadow>
                </effect>
             </JFXButton>
-            <JFXTextField focusColor="#405aa800" layoutX="721.0" layoutY="17.0" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="21.0">
+            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -87,27 +87,17 @@
                </styleClass>
             </JFXTextField>
             <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="236.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
-            <JFXTabPane layoutX="1.0" layoutY="172.0" prefHeight="827.0" prefWidth="1920.0" styleClass="panel">
+            <JFXTabPane fx:id="pan2" layoutX="1.0" layoutY="172.0" prefHeight="827.0" prefWidth="1920.0" styleClass="panel">
                <tabs>
-                  <Tab text="Following">
-                     
-                     <content>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background: transparent; -fx-background-color: transparent;" stylesheets="@feed%20gui.css">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                          </content>
-                        </ScrollPane>
-                     </content>
-                  </Tab>
                   <Tab text="New">
                      <content>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                        <ScrollPane fx:id="bigscroll1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
                            <content>
-                              <VBox prefHeight="790.0" prefWidth="2047.0">
+                              <VBox prefHeight="790.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
                                  <children>
-                                    <Label prefHeight="74.0" prefWidth="339.0" text="      Photography" textFill="WHITE">
+                                    <Label prefHeight="74.0" prefWidth="339.0" styleClass="text" stylesheets="@style.css" text="PHOTOGRAPHY" textFill="WHITE">
                                        <font>
-                                          <Font size="39.0" />
+                                          <Font name="Nirmala UI Bold" size="30.0" />
                                        </font>
                                     </Label>
                                     <ScrollPane fx:id="scroll1" prefHeight="332.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
@@ -115,14 +105,15 @@
                                           <HBox fx:id="ph_postes" prefHeight="201.0" prefWidth="2031.0" />
                                        </content>
                                     </ScrollPane>
-                                    <Label prefHeight="74.0" prefWidth="339.0" text="    Music" textFill="WHITE">
+                                    <Line endX="1794.95947265625" endY="-1.3732290267944336" startX="-100.0" />
+                                    <Label prefHeight="74.0" prefWidth="339.0" text="MUSIC" textFill="WHITE">
                                        <font>
-                                          <Font size="39.0" />
+                                          <Font name="System Bold" size="30.0" />
                                        </font>
                                     </Label>
-                                    <ScrollPane prefHeight="256.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                    <ScrollPane fx:id="scrol2" prefHeight="256.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
                                        <content>
-                                          <HBox fx:id="music_postes" />
+                                          <HBox fx:id="music_postes" style="-fx-background-color: transparent;" />
                                        </content>
                                     </ScrollPane>
                                  </children>
@@ -133,10 +124,34 @@
                   </Tab>
                   <Tab text="Popular">
                      <content>
-                        <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                          </content>
+                        <ScrollPane fx:id="bigscroll2" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <VBox prefHeight="790.0" prefWidth="2047.0">
+                                 <children>
+                                    <Label prefHeight="74.0" prefWidth="339.0" text="PHOTOGRAPHY" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="39.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="scroll11" prefHeight="332.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                       <content>
+                                          <HBox fx:id="ph_postes1" prefHeight="201.0" prefWidth="2031.0" />
+                                       </content>
+                                    </ScrollPane>
+                                    <Line endX="1800.2928466796875" endY="-2.8967857360839844E-5" startX="-100.0" />
+                                    <Label prefHeight="74.0" prefWidth="339.0" text="Music" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="scroll222" prefHeight="256.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                       <content>
+                                          <HBox fx:id="music_postes1" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </content>
                         </ScrollPane>
                      </content>
                   </Tab>

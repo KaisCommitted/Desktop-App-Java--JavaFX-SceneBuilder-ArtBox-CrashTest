@@ -8,17 +8,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< Updated upstream
 <AnchorPane prefHeight="206.0" prefWidth="467.0" style="-fx-background-color: rgba(0,0,0,0.4);;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.PostGController">
+=======
+<AnchorPane fx:id="ItemBox" onMouseEntered="#effectOff" onMouseExited="#effectOn" prefHeight="206.0" prefWidth="467.0" style="-fx-background-color: rgba(0,0,0,0.4);;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.PostGController">
+>>>>>>> Stashed changes
    <children>
-      <ImageView fx:id="img" fitHeight="168.0" fitWidth="246.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nameLabel" layoutX="302.0" layoutY="23.0" prefHeight="39.0" prefWidth="147.0" text="Name" textFill="WHITE">
+      <ImageView fx:id="img" fitHeight="185.0" fitWidth="341.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nameLabel" layoutX="366.0" layoutY="25.0" prefHeight="56.0" prefWidth="185.0" text="Name" textFill="WHITE">
          <font>
-            <Font name="Lucida Sans Unicode" size="27.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="descreption" layoutX="302.0" layoutY="56.0" prefHeight="56.0" prefWidth="219.0" text="Descition" textFill="#ffffffc4">
+      <Label fx:id="descreption" layoutX="366.0" layoutY="53.0" prefHeight="56.0" prefWidth="219.0" text="Descition" textFill="#ffffffc4">
          <font>
-            <Font name="Lucida Sans Unicode" size="12.0" />
+            <Font size="13.0" />
          </font>
       </Label>
       <JFXButton fx:id="like_btn" layoutX="32.0" layoutY="224.0" onAction="#like" style="-fx-background-color: transparent;" text="  ">
@@ -26,13 +30,22 @@
             <ImageView fx:id="imgbtn" fitHeight="23.0" fitWidth="25.0" />
          </graphic>
       </JFXButton>
-      <Label fx:id="likesLabel" layoutX="71.0" layoutY="231.0" text="Likes" textFill="WHITE" />
+      <Label fx:id="likesLabel" layoutX="69.0" layoutY="230.0" text="Likes" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
       <Label fx:id="idLabel" layoutX="209.0" layoutY="250.0" opacity="0.0" text="id" textFill="WHITE" />
+<<<<<<< Updated upstream
       <ImageView fx:id="addsignal" fitHeight="50.0" fitWidth="52.0" layoutX="431.0" layoutY="14.0" onMouseClicked="#addReport" pickOnBounds="true" preserveRatio="true" />
       <Line endX="368.0" layoutX="115.0" layoutY="211.0" opacity="0.33" startX="-100.0" />
       <JFXButton fx:id="cmnt_btn" buttonType="RAISED" layoutX="117.0" layoutY="220.0" onAction="#Comments" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: transparent;" text="  ">
+=======
+      <ImageView fx:id="addsignal" fitHeight="31.0" fitWidth="33.0" layoutX="542.0" layoutY="224.0" onMouseClicked="#addReport" pickOnBounds="true" preserveRatio="true" />
+      <Line endX="445.0" layoutX="116.0" layoutY="211.0" opacity="0.33" startX="-100.0" />
+      <JFXButton fx:id="cmnt_btn" buttonType="RAISED" layoutX="120.0" layoutY="225.0" onAction="#Comments" prefHeight="31.0" prefWidth="40.0" style="-fx-background-color: transparent;" text="  ">
+>>>>>>> Stashed changes
          <graphic>
-            <ImageView fx:id="cmntbtn" fitHeight="31.0" fitWidth="43.0" onDragDetected="#Comments" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="cmntbtn" fitHeight="24.0" fitWidth="32.0" onDragDetected="#Comments" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </JFXButton>
    </children>
