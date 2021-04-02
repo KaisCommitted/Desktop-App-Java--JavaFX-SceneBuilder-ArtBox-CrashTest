@@ -1,4 +1,3 @@
-
 package ArtHub.entities;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
@@ -8,16 +7,29 @@ import java.io.Serializable;
  *
  * @author Fayechi
  */
-public class Partenaire  extends RecursiveTreeObject<Partenaire> implements Serializable {
+public class Partenaire extends RecursiveTreeObject<Partenaire> implements Serializable {
+
     private int id_part;
     private String nom;
     private String adresse;
     private String logo;
     private String rib;
     private String tel;
-   
-     
+    private int status;
+    private User id_user;
+
     public Partenaire() {
+    }
+
+    public Partenaire(int id_part, String nom, String adresse, String logo, String rib, String tel, int status, User id_user) {
+        this.id_part = id_part;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.logo = logo;
+        this.rib = rib;
+        this.tel = tel;
+        this.status = status;
+        this.id_user = id_user;
     }
 
     public int getId_part() {
@@ -68,12 +80,63 @@ public class Partenaire  extends RecursiveTreeObject<Partenaire> implements Seri
         this.tel = tel;
     }
 
-    public Partenaire(String nom, String adresse, String logo, String rib, String tel) {
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public User getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(User id_user) {
+        this.id_user = id_user;
+    }
+
+    public Partenaire(String nom, String adresse, String logo, String rib, String tel, int status, User id_user) {
         this.nom = nom;
         this.adresse = adresse;
         this.logo = logo;
         this.rib = rib;
         this.tel = tel;
+        this.status = status;
+        this.id_user = id_user;
+    }
+
+    public Partenaire(String nom, String adresse, String logo, String rib, String tel, int status) {
+        this.nom = nom;
+        this.adresse = adresse;
+        this.logo = logo;
+        this.rib = rib;
+        this.tel = tel;
+        this.status = status;
+    }
+
+    public Partenaire(String nom, String adresse, String rib, String tel, int status) {
+        this.nom = nom;
+        this.adresse = adresse;
+
+        this.rib = rib;
+        this.tel = tel;
+        this.status = status;
+    }
+
+    public Partenaire(int id_part, String nom, String adresse, String rib, String tel, int status) {
+
+        this.id_part = id_part;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.rib = rib;
+        this.tel = tel;
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return nom;
     }
 
     /**
@@ -82,6 +145,4 @@ public class Partenaire  extends RecursiveTreeObject<Partenaire> implements Seri
      * @param name
      * @param type
      */
-   
-    
 }
