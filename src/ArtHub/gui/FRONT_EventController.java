@@ -201,6 +201,8 @@ public static String userHomeFolder = System.getProperty("user.home");
     @FXML
     private HBox PartnerHbox;
     Partenaire P = new Partenaire();
+    @FXML
+    private ImageView user_image;
     /**
      * Initializes the controller class.
      */
@@ -250,7 +252,7 @@ public static String userHomeFolder = System.getProperty("user.home");
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\event-planner.png", imgorg);
               setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\ticket.png",ticketimg);
               setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
-            
+            setImage(CurrentUser.getImage(), user_image);
             scroll21.setFitToHeight(true);
             scroll21.setFitToWidth(true);
             scroll21.setHbarPolicy(ScrollBarPolicy.NEVER);
@@ -1202,4 +1204,29 @@ notifyme();
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void showUserProfile(MouseEvent event) {
+        try {
+           
+            
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserProfile.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+
+            stage.setScene(new Scene(root1));
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+
+
+
 }
+
+   
+
+    

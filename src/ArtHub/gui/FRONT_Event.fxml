@@ -35,6 +35,7 @@
                   </DropShadow>
                </effect>
             </JFXButton>
+             <ImageView fx:id="user_image" fitHeight="52.0" fitWidth="52.0" layoutX="1385.0" layoutY="18.0" onMouseClicked="#showUserProfile" pickOnBounds="true" preserveRatio="true" />
             <JFXButton fx:id="Btn_partner" buttonType="RAISED" layoutX="1556.0" layoutY="22.0" onAction="#AddPartner" onMouseEntered="#onEffectBtnHost" onMouseExited="#offEffectBtnHost" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Become a Partner" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Calibri" size="20.0" />
