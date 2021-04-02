@@ -35,7 +35,7 @@ public class FeedbackCRUD {
             User u = new User();
             ste = cnx.prepareStatement(req);
             ste.setInt(1, f.getId_feedback());
-           ste.setInt(2, f.getId_user().getId_user());
+            ste.setInt(2, f.getId_user().getId_user());
             ste.setString(3, f.getContenu_feedback());
             ste.setString(4, f.getType_feedback());
             ste.setString(5, f.getEtat_feedback());
@@ -84,6 +84,7 @@ public class FeedbackCRUD {
                 User u = new User();
                
                 u = uc.FindUser(rs.getInt("id_user"));
+                
                 
                 String contenu_feedback = rs.getString("contenu_feedback");
                 String type_feedback = rs.getString("type_feedback");

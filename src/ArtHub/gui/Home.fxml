@@ -42,9 +42,6 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -504,6 +501,13 @@
                               <Image url="@../images/icons8_Box_32px.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="statsback" mnemonicParsing="false" onMouseClicked="#GoToStat" text="Stats" />
+                        <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="btnSignal" fitHeight="35.0" fitWidth="41.0" onMouseClicked="#showSignal" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_GPS_Antenna_64px_1.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </HBox>
                   <ScrollPane layoutX="14.0" layoutY="154.0" prefHeight="459.0" prefWidth="927.0" stylesheets="@style.css">
@@ -597,7 +601,7 @@
             </Pane>
             <Pane fx:id="pnlPosts" layoutX="10.0" layoutY="10.0" prefHeight="671.0" prefWidth="793.0">
                <children>
-                  <TextField layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+                  <TextField fx:id="inputFeedback" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
                   <Label layoutX="57.0" layoutY="25.0" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />

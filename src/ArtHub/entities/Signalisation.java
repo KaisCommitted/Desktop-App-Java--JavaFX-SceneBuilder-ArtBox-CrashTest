@@ -25,6 +25,23 @@ public class Signalisation extends RecursiveTreeObject<Signalisation> implements
         this.type_signal = type_signal;
         this.etat_signal="non traité";
     }
+
+    public Signalisation(User id_user, Post id_post, String contenu_signal, String type_signal, String etat_signal) {
+        this.id_user = id_user;
+        this.id_post = id_post;
+        this.contenu_signal = contenu_signal;
+        this.type_signal = type_signal;
+        this.etat_signal = etat_signal;
+    }
+
+    public Signalisation(User id_user, Post id_post, String contenu_signal, String type_signal, String etat_signal, Date date_signal) {
+        this.id_user = id_user;
+        this.id_post = id_post;
+        this.contenu_signal = contenu_signal;
+        this.type_signal = type_signal;
+        this.etat_signal = etat_signal;
+        this.date_signal = date_signal;
+    }
      
     
 

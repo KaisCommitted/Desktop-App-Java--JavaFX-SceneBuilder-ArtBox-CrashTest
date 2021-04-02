@@ -24,9 +24,9 @@
    <children>
       <AnchorPane id="AnchorPane" fx:id="anchorRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
-            <Label fx:id="lblfeedback" layoutX="1904.0" layoutY="187.0" onMouseClicked="#addFeedback" prefHeight="18.0" prefWidth="64.0" text="Feedback" textFill="#fff8f8" translateX="-80.0" translateY="850.0" AnchorPane.bottomAnchor="875.0" AnchorPane.rightAnchor="-48.0">
+            <Label fx:id="lblfeedback" layoutX="1904.0" layoutY="187.0" onMouseClicked="#addFeedback" prefHeight="18.0" prefWidth="163.0" text="Give us your feedback" textFill="#fff8f8" translateX="-80.0" translateY="810.0" AnchorPane.bottomAnchor="875.0" AnchorPane.rightAnchor="-65.0">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="HoloLens MDL2 Assets" size="14.0" />
                </font>
             </Label>
             <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="16.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="21.0">

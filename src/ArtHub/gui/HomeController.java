@@ -7,12 +7,14 @@ import ArtHub.entities.Feedback;
 import ArtHub.entities.Labell;
 import ArtHub.entities.Participant;
 import ArtHub.entities.Post;
+import ArtHub.entities.Signalisation;
 import ArtHub.entities.User;
 import ArtHub.services.AnnonceCRUD;
 import ArtHub.services.EvenementCRUD;
 import ArtHub.services.FeedbackCRUD;
 import ArtHub.services.LabelCRUD;
 import ArtHub.services.ParticipantCRUD;
+import ArtHub.services.SignalisationCRUD;
 import ArtHub.services.UserCRUD;
 import ArtHub.services.postCRUD;
 import com.jfoenix.controls.JFXButton;
@@ -86,7 +88,9 @@ public class HomeController implements Initializable {
     @FXML
     private Button btnCategories;
     @FXML
-    private Button btnSignout;
+    private Button btnSignout; 
+    @FXML
+    private ImageView btnSignal;
     @FXML
     private Pane pnlEvents;
     @FXML
@@ -171,6 +175,14 @@ public class HomeController implements Initializable {
     private HBox Posts_stats;
     @FXML
     private VBox ItemsPosts;
+    @FXML
+    private TextField inputFeedback;
+   
+    @FXML
+    private Button statsback;
+    
+    private VBox itemsSignalisation;
+    private ImageView SignalShow;
     
 
     @Override
@@ -190,18 +202,19 @@ public class HomeController implements Initializable {
            
         }
         if (actionEvent.getSource() == btnCategories) {
-            ShowCategorie();
+           ShowCategorie();
             pnlCategorie.setStyle("-fx-background-color : #02030A");
             pnlCategorie.toFront();
             
            
         }
         if (actionEvent.getSource() == btnFeedbacks) {
-             ShowFeeback();
+             ShowFeedback();
             pnlFeedback.setStyle("-fx-background-color : #02030A");
             pnlFeedback.toFront();
             
         }
+       
         if (actionEvent.getSource() == btnUsers)
        
         {
@@ -940,13 +953,14 @@ public class HomeController implements Initializable {
        itemsLabels.getChildren().addAll(treeview,DltBtn);
           Labels_stats.setVisible(true);
       }
-     public void ShowFeeback()
+     public void ShowFeedback()
       { 
+          statsback.setVisible(true);
             FeedbackCRUD ps = new FeedbackCRUD();
             
             itemsFeedback.getChildren().clear();
         // id_feedback table view
-        JFXTreeTableColumn<Feedback, String> id_feedback = new JFXTreeTableColumn<>("id_feedback");
+        JFXTreeTableColumn<Feedback, String> id_feedback = new JFXTreeTableColumn<>("Feedback ID");
         id_feedback.setPrefWidth(250);
         id_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
             @Override
@@ -954,9 +968,18 @@ public class HomeController implements Initializable {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_feedback()));
             }
         });
+        /*// id_user table view
+        JFXTreeTableColumn<Feedback, String> id_user= new JFXTreeTableColumn<>("User ID");
+        id_user.setPrefWidth(250);
+        id_user.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Feedback, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user().getId_user()));
+            }
+        });*/
         
          //contenu_feedback table view
-        JFXTreeTableColumn<Feedback, String> contenu_feedback = new JFXTreeTableColumn<>("contenu_feedback");
+        JFXTreeTableColumn<Feedback, String> contenu_feedback = new JFXTreeTableColumn<>("Description");
         contenu_feedback.setPrefWidth(250);
         contenu_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
             @Override
@@ -966,7 +989,7 @@ public class HomeController implements Initializable {
         });
         
         // type_feedback table view
-        JFXTreeTableColumn<Feedback, String> type_feedback = new JFXTreeTableColumn<>("type_feedback");
+        JFXTreeTableColumn<Feedback, String> type_feedback = new JFXTreeTableColumn<>("Feedback type");
         type_feedback.setPrefWidth(250);
         type_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
             @Override
@@ -976,7 +999,7 @@ public class HomeController implements Initializable {
         });
         
          // etat_feedback table view
-        JFXTreeTableColumn<Feedback, String> etat_feedback = new JFXTreeTableColumn<>("etat_feedback");
+        JFXTreeTableColumn<Feedback, String> etat_feedback = new JFXTreeTableColumn<>("Status");
         etat_feedback.setPrefWidth(250);
         etat_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
             @Override
@@ -1047,28 +1070,27 @@ public class HomeController implements Initializable {
         }
         });
          
-        /* input.setPromptText("Rechercher ..");
-        input.textProperty().addListener(new ChangeListener<String>() {
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-        treeview.setPredicate(new Predicate<TreeItem<Feedback>>() {
-        @Override
-        public boolean test(TreeItem<Produits> t) {
-        boolean flag = t.getValue().getEtat_feedback().getValue().contains(newValue);
-        return flag;
-        }
-        });
-        }
+      /* inputEvents.setPromptText("Rechercher ..");
+        inputEvents.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                treeview.setPredicate(new Predicate<TreeItem<Feedback>>() {
+                    @Override.
+                    public boolean test(TreeItem<Feedbackt> t) {
+
+                        boolean flag = String.valueOf(t.getValue().getId_participation()).contains(newValue);
+                        return flag;
+                    }
+                });
+            }
         });*/
         treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
        treeview.setStyle("-fx-background-color:rgba(0,255,255,0.2);");
         itemsFeedback.getChildren().addAll(treeview,DltBtn);
            Feedback_stats.setVisible(true);
       }
-      public void ShowCategorie()
-      { 
-           Categorie_stats.setVisible(true);
-      }
+     
+     
           
      public void ShowPost()
       {     ItemsPosts.getChildren().clear();
@@ -2040,7 +2062,177 @@ public class HomeController implements Initializable {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    @FXML
+    private void GoToStat(MouseEvent event) {
+         try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StatFeedback.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Statistiques");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void GoToAfficherSignal(MouseEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AfficherSignalisation.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Statistiques");
+            
+            stage.setScene(new Scene(root1));
+            
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void showSignal(MouseEvent event) {
+//         SignalShow.setVisible(true);
+//          statsback.setVisible(true);
+            SignalisationCRUD ps = new SignalisationCRUD();
+            
+            itemsFeedback.getChildren().clear();
+        // id_signal table view
+        JFXTreeTableColumn<Signalisation, String> id_signal = new JFXTreeTableColumn<>("id signal");
+        id_signal.setPrefWidth(250);
+        id_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Signalisation, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_signal()));
+            }
+        });
+        
+         //contenu_signal table view
+        JFXTreeTableColumn<Signalisation, String> contenu_signal = new JFXTreeTableColumn<>("contenu_signal");
+        contenu_signal.setPrefWidth(250);
+        contenu_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Signalisation, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getContenu_signal());
+            }
+        });
+        
+        // type_signal table view
+        JFXTreeTableColumn<Signalisation, String> type_signal = new JFXTreeTableColumn<>("type_signal");
+        type_signal.setPrefWidth(250);
+        type_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Signalisation, String> param) {
+               return new SimpleStringProperty(param.getValue().getValue().getType_signal());
+           }
+        });
+        
+         // etat_signal table view
+        JFXTreeTableColumn<Signalisation, String> etat_signal = new JFXTreeTableColumn<>("etat_signal");
+        etat_signal.setPrefWidth(250);
+        etat_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Signalisation, String> param) {
+                return new SimpleStringProperty(param.getValue().getValue().getEtat_signal());
+            }
+        });
+                 etat_signal.setCellFactory((TreeTableColumn<Signalisation, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        //setting the new value for editable etat_signal text field
+        etat_signal.setOnEditCommit((CellEditEvent<Signalisation, String> t) -> {
+            int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_signal();
+            String newValue = t.getNewValue();
+
+            t.getTreeTableView()
+                    .getTreeItem(t.getTreeTablePosition()
+                            .getRow())
+                    .getValue().setEtat_signal(t.getNewValue());
+            ps.modifierSignalisation(idd, "etat_signal", newValue);
+        });
+        
+        
+        List<Signalisation> myLst;
+        myLst = ps.consulterSignalisation();
+        ObservableList<Signalisation> Signalisations = FXCollections.observableArrayList();
+        myLst.forEach(s -> Signalisations.add(s));
+        JFXTreeTableView<Signalisation> treeview = new JFXTreeTableView<>();
+        final TreeItem<Signalisation> root = new RecursiveTreeItem<>(Signalisations, RecursiveTreeObject::getChildren);
+        treeview.getColumns().setAll(id_signal,contenu_signal,type_signal,etat_signal);
+        treeview.setRoot(root);
+        treeview.setShowRoot(false);
+        treeview.setEditable(true);
+         
+        
+        //declarer la bouton supprimer
+        JFXButton DltBtn = new JFXButton("Remove");
+        DltBtn.setLayoutY(410D);
+        DltBtn.setOnAction(new EventHandler<ActionEvent>() {
+        //eventHandler de la button supprimer
+        @Override
+        public void handle(ActionEvent event) {
+        Dialog confirmation = new Dialog();
+        GridPane grid2 = new GridPane();
+        Label l1 = new Label("Delete Signalisation?");
+        grid2.add(l1, 2, 2);
+        confirmation.setTitle("Confirmation de suppression!");
+        confirmation.getDialogPane().setContent(grid2);
+        ButtonType Confi = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType Ann = new ButtonType("No", ButtonBar.ButtonData.OK_DONE);
+        confirmation.getDialogPane().getButtonTypes().add(Confi);
+        confirmation.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        confirmation.setResultConverter(new Callback<ButtonType, Signalisation>() {
+        @Override
+        public Signalisation call(ButtonType param) {
+        if (param == Confi) {
+        Signalisation p = treeview.getSelectionModel().getSelectedItem().getValue();
+        ps.supprimerSignalisation((Signalisation) p);
+        Button cancelButton = (Button) confirmation.getDialogPane().lookupButton(ButtonType.CLOSE);
+        cancelButton.fire();
+        //initialize(url, rb);
+        }
+        return null;
+        }
+        });
+        confirmation.showAndWait();
+        }
+        });
+         
+        /* input.setPromptText("Rechercher ..");
+        input.textProperty().addListener(new ChangeListener<String>() {
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        treeview.setPredicate(new Predicate<TreeItem<Signalisation>>() {
+        @Override
+        public boolean test(TreeItem<Produits> t) {
+        boolean flag = t.getValue().getEtat_feedback().getValue().contains(newValue);
+        return flag;
+        }
+        });
+        }
+        });*/
+        treeview.getStylesheets().add(getClass().getResource("treetableview.css").toExternalForm());
+       treeview.setStyle("-fx-background-color:rgba(0,255,255,0.2);");
+        itemsFeedback.getChildren().addAll(treeview,DltBtn);
+          // Signalisation_stats.setVisible(true);
+      }
+     
+      public void ShowCategorie()
+      { 
+           Categorie_stats.setVisible(true);
+    }
+    
     
 }
+   
 
 

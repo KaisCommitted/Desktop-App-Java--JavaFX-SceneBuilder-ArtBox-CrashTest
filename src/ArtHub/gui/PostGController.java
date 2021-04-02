@@ -263,12 +263,13 @@ public static int id_post_clicked = 0;
     @FXML
     private void addReport(MouseEvent event) {
         try {
+            id_post_clicked= Integer.parseInt(idLabel.getText());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddSignalisation.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Statistiques");
+            
             
             stage.setScene(new Scene(root1));
             
@@ -297,6 +298,10 @@ public static int id_post_clicked = 0;
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void Comments(MouseEvent event) {
     }
     
     
