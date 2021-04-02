@@ -10,6 +10,10 @@ import java.sql.Date;
  * @author Fayechi
  */
 public class Annonce  extends RecursiveTreeObject<Annonce> implements Serializable {
+
+    public static boolean isNotInteger(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int id_ann;
     private int id_user;
     private String titre_ann;
