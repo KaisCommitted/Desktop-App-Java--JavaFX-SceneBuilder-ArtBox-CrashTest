@@ -119,7 +119,7 @@ public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
 
-        File f = new File("C:/Users/louay/Desktop");
+        File f = new File("C:/Users/Tarek/Desktop");
         fileChooser.setInitialDirectory(f);
         File selectedFile = fileChooser.showOpenDialog(currentStage);
 

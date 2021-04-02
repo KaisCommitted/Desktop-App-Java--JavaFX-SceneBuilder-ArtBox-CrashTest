@@ -1208,18 +1208,23 @@ notifyme();
     @FXML
     private void showUserProfile(MouseEvent event) {
         try {
-           
+            Parent root = FXMLLoader.load(getClass().getResource("UserProfile.fxml"));
+            Scene scene = feed_button.getScene();
             
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserProfile.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-
-            stage.setScene(new Scene(root1));
-
-            stage.show();
+            root.translateXProperty().set(scene.getHeight());
+            parentContainer1.getChildren().add(root);
+            
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(0.4), kv);
+            timeline.getKeyFrames().add(kf);
+            
+            timeline.play();
+            //parentContainer.getChildren().remove(anchorRoot);
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }
     
 
