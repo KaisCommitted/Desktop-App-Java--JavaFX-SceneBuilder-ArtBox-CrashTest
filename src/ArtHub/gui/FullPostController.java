@@ -84,7 +84,8 @@ public class FullPostController implements Initializable {
     @FXML
     private Label user_name;
     
-    
+    URL url ;
+    ResourceBundle rb;
     
     User u = new User();
     Comment c = new Comment();
@@ -283,6 +284,8 @@ public void setData(Post post) throws FileNotFoundException {
 
     @FXML
     private void Add_comment(ActionEvent event) {
+        
+        //initialize(url,rb);
         
         if (new_cmnt.getText() == null || new_cmnt.getText().trim().isEmpty()){
             
