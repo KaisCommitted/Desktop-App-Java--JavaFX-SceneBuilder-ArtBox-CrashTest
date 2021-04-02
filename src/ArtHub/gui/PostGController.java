@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
@@ -80,6 +81,12 @@ public static int id_post_clicked = 0;
  
  
   static int current_post=0;
+  
+  
+  public static final DropShadow highlight = new DropShadow(80, Color.web("#8cb6f5"));
+ 
+    @FXML
+    private AnchorPane ItemBox;
  
  
  
@@ -94,7 +101,7 @@ public static int id_post_clicked = 0;
            
            
            //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
-           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\flag.png";
+           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\redflag.gif";
            Image image =new Image(new FileInputStream(Empty));
            addsignal.setImage(image);
        } catch (FileNotFoundException ex) {
@@ -113,6 +120,7 @@ public static int id_post_clicked = 0;
     
     //private MyListener myListener;
 
+    
     public void setData(Post post) throws FileNotFoundException {
         
         
@@ -284,7 +292,6 @@ public static int id_post_clicked = 0;
           try {
            
             id_post_clicked= Integer.parseInt(idLabel.getText());
-              
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FullPost.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -298,6 +305,22 @@ public static int id_post_clicked = 0;
         } catch (IOException ex) {
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+   
+    @FXML
+    private void effectOff(MouseEvent event) {
+        ItemBox.setEffect(highlight);
+        ItemBox.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    private void effectOn(MouseEvent event) {
+        ItemBox.setEffect(null);
+    }
+
+    @FXML
+    private void Comments(MouseEvent event) {
     }
     
     

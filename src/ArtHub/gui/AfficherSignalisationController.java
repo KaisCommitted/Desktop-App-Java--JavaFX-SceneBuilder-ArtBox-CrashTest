@@ -59,7 +59,7 @@ public class AfficherSignalisationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         SignalisationCRUD ps = new SignalisationCRUD();
         // id_signal table view
-        JFXTreeTableColumn<Signalisation, String> id_signal = new JFXTreeTableColumn<>("id_signal");
+        JFXTreeTableColumn<Signalisation, String> id_signal = new JFXTreeTableColumn<>("Report Id");
         id_signal.setPrefWidth(150);
         id_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
             @Override
@@ -67,19 +67,19 @@ public class AfficherSignalisationController implements Initializable {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_signal()));
             }
         });
-        // id_post table view
-         JFXTreeTableColumn<Signalisation, String> id_user = new JFXTreeTableColumn<>("id_user");
-        id_signal.setPrefWidth(150);
-        id_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
+        // id_user table view
+         JFXTreeTableColumn<Signalisation, String> id_user = new JFXTreeTableColumn<>("Reporting User");
+        id_user.setPrefWidth(150);
+        id_user.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Signalisation, String> param) {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user().getId_user()));
             }
         });
-        // id_user table view
-         JFXTreeTableColumn<Signalisation, String> id_post = new JFXTreeTableColumn<>("id_post");
-        id_signal.setPrefWidth(150);
-        id_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
+        // id_post table view
+         JFXTreeTableColumn<Signalisation, String> id_post = new JFXTreeTableColumn<>("Reported post id");
+        id_post.setPrefWidth(150);
+        id_post.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Signalisation, String> param) {
                 return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_post().getId_post()));
@@ -87,7 +87,7 @@ public class AfficherSignalisationController implements Initializable {
         });
         
          //contenu_signal table view
-        JFXTreeTableColumn<Signalisation, String> contenu_signal = new JFXTreeTableColumn<>("contenu_signal");
+        JFXTreeTableColumn<Signalisation, String> contenu_signal = new JFXTreeTableColumn<>("Description");
         contenu_signal.setPrefWidth(150);
         contenu_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
             @Override
@@ -97,7 +97,7 @@ public class AfficherSignalisationController implements Initializable {
         });
         
         // type_signal table view
-        JFXTreeTableColumn<Signalisation, String> type_signal = new JFXTreeTableColumn<>("type_signal");
+        JFXTreeTableColumn<Signalisation, String> type_signal = new JFXTreeTableColumn<>("Signal type");
         type_signal.setPrefWidth(150);
         type_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
             @Override
@@ -107,7 +107,7 @@ public class AfficherSignalisationController implements Initializable {
         });
         
          // etat_signal table view
-        JFXTreeTableColumn<Signalisation, String> etat_signal = new JFXTreeTableColumn<>("etat_signal");
+        JFXTreeTableColumn<Signalisation, String> etat_signal = new JFXTreeTableColumn<>("Signal state");
         etat_signal.setPrefWidth(150);
         etat_signal.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Signalisation, String>, ObservableValue<String>>(){
             @Override
@@ -128,7 +128,7 @@ public class AfficherSignalisationController implements Initializable {
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
                     .getValue().setEtat_signal(t.getNewValue());
-            ps.modifierSignalisation(idd, "etat_signal", newValue);
+          ps.modifierSignalisation(idd, "etat_signal", newValue);
         });
         
         

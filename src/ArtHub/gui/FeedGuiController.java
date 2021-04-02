@@ -33,6 +33,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import ArtHub.gui.MyListener;
+import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextField;
 import static java.time.Clock.system;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,21 +94,65 @@ public class FeedGuiController implements Initializable {
     @FXML
     private ImageView btnSearch;
       
+    int tindex;
+    @FXML
+    private JFXTabPane pan2;
+    @FXML
+    private ScrollPane scroll11;
+    @FXML
+    private HBox ph_postes1;
+    @FXML
+    private HBox music_postes1;
+    @FXML
+    private JFXTextField input;
+    @FXML
+    private ScrollPane scrol2;
+    @FXML
+    private ScrollPane scroll222;
+    @FXML
+    private ScrollPane bigscroll1;
+    @FXML
+    private ScrollPane bigscroll2;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Load poste de type image *******************
-        setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
+      pan2.getSelectionModel().select(1);
+        tindex = pan2.getSelectionModel().getSelectedIndex();
+         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
           setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+       
+         //****************************NEW****************    
+       
         ph_postes.setSpacing(20);
         scroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
         scroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
+        
+         bigscroll1.setHbarPolicy(ScrollBarPolicy.NEVER);
+         bigscroll1.setVbarPolicy(ScrollBarPolicy.NEVER);
+         
+         
+        bigscroll2.setHbarPolicy(ScrollBarPolicy.NEVER);
+        bigscroll2.setVbarPolicy(ScrollBarPolicy.NEVER);
+         
+         
+         scroll222.setHbarPolicy(ScrollBarPolicy.NEVER);
+         scroll222.setVbarPolicy(ScrollBarPolicy.NEVER);
+         
+         
+          scrol2.setHbarPolicy(ScrollBarPolicy.NEVER);
+         scrol2.setVbarPolicy(ScrollBarPolicy.NEVER);
+         
+         scroll11.setHbarPolicy(ScrollBarPolicy.NEVER);
+         scroll11.setVbarPolicy(ScrollBarPolicy.NEVER);
        
         postCRUD ps = new postCRUD();
         List<Post> postes ;
-        postes = ps.consulteImage();
+        
+       postes = ps.consulteImage();
+      
         
         try {
             for (int i = 0; i < postes.size(); i++) {
@@ -156,17 +202,80 @@ public class FeedGuiController implements Initializable {
         }
         
         
+    //****************************NEW****************    
+        
+           
+         ph_postes1.setSpacing(20);
+        
+        music_postes1.setSpacing(20);
+        
+         postCRUD ps2 = new postCRUD();
+        List<Post> postes2 ;
+        
+       postes2 = ps2.consulteImagePouplar();
+      
+        
+        try {
+            for (int k = 0; k < postes2.size(); k++) {
+                
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("PostG.fxml"));
+                AnchorPane PostBox = fxmlLoader.load();
+                PostGController postController = fxmlLoader.getController();
+                postController.setData(postes2.get(k));
+                ph_postes1.getChildren().add(PostBox);
+                
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+      
+        // TODO
+        
+        //Load poste de type music*************************
         
         
+        ph_postes.setSpacing(20);
+        
+        music_postes.setSpacing(20);
+       
+        postCRUD ps3 = new postCRUD();
+        List<Post> postes3  ;
+        postes3 = ps3.consulteMusicPopular();
         
         
+        try {
+            for (int f = 0; f < postes3.size(); f++) {
+              
+                FXMLLoader fxmlLoader1 = new FXMLLoader();
+                fxmlLoader1.setLocation(getClass().getResource("mp3.fxml"));
+                
+                AnchorPane MusicBox = fxmlLoader1.load();
+                System.out.println("heeeeeeeeeere");
+                mp3Controller mp3Controller = fxmlLoader1.getController();
+                mp3Controller.setData(postes3.get(f));
+                music_postes1.getChildren().add(MusicBox);
+                
+            }   
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         
         
+         //****************************Followed****************    
         
-        
-        
-        
-    }    
+    
+    
+    
+    
+    
+    
+    
+    }  
+    
+    
+    
     @FXML
     private void load_ajoute(ActionEvent event ) throws IOException {
       Parent root = FXMLLoader.load(getClass().getResource("Ajout_post.fxml"));

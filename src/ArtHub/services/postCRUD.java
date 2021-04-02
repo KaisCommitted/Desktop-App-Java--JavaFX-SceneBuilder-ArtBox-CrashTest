@@ -13,7 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -173,7 +175,7 @@ public class postCRUD {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'photography' ");
+            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'photography' order by post_date ASC ");
             while (rs.next()) {
 
                
@@ -377,4 +379,154 @@ public class postCRUD {
     
     
     
+     public List<Comment> Findcomment(int id) {
+
+        List<Comment> myList = new ArrayList<>();
+        User U = new User();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from comments where id_post = " + id + " order by comment_date ");
+            while (rs.next()) {
+
+               
+                
+                String comment = rs.getString("comment");
+                //String Description = rs.getString("Description");
+                String comment_date = rs.getString("comment_date");
+                
+                
+                Comment c = new Comment(comment,comment_date); 
+                U.setId_user(rs.getInt("id_user"))  ; 
+                c.setId_comment(rs.getInt("id_comment"));
+                myList.add(c);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+    
+    
+    
+     
+     
+     
+      public Post FindPostmusic (int id) {
+
+        Post p = new Post();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from postes WHERE id_post=" + id + " and categorie = 'music' ");
+
+            while (rs.next()) {
+                
+               int id_post = rs.getInt("id_post");
+                String nom_post = rs.getString("nom_post");
+                String Description = rs.getString("Description");
+                String post_date = rs.getString("post_date");
+                String file = rs.getString("file");
+                String album_cover = rs.getString("album_cover");
+                int Likes = rs.getInt("Likes");
+ 
+                User id_user = new User();
+               
+                id_user.setId_user(rs.getInt("id_user"));
+                p.setId_post(id);
+                p.setId_user(id_user);
+                p.setNom_post(nom_post);
+                p.setDescription(Description);
+                p.setFile(file);
+                p.setLikes(Likes);
+                p.setAlbum_cover(album_cover);
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return p;
+
+    }
+     
+     
+      
+      public List<Post> consulteImagePouplar() {
+
+        List<Post> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'photography' order by Likes DESC ");
+            while (rs.next()) {
+
+               
+                int id_post = rs.getInt("id_post");
+                String nom_post = rs.getString("nom_post");
+                String Description = rs.getString("Description");
+                String categorie = rs.getString("categorie");
+                String post_date = rs.getString("post_date");
+                String file = rs.getString("file");
+                int Likes = rs.getInt("Likes");
+                String desc_analys = rs.getString("desc_analys");
+                
+                
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes,desc_analys);  
+                p.setId_post(rs.getInt("id_post"));
+                myList.add(p);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    }
+      
+      
+       public List<Post> consulteMusicPopular() {
+
+        List<Post> myList = new ArrayList<>();
+        try {
+
+            Statement pst = cnx.createStatement();
+
+            ResultSet rs = pst.executeQuery("SELECT * from postes where categorie = 'music' order by Likes DESC ");
+            while (rs.next()) {
+
+               
+                int id_post = rs.getInt("id_post");
+                String nom_post = rs.getString("nom_post");
+                String Description = rs.getString("Description");
+                String categorie = rs.getString("categorie");
+                String post_date = rs.getString("post_date");
+                String file = rs.getString("file");
+                int Likes = rs.getInt("Likes");
+                String album_cover = rs.getString("album_cover");
+                String desc_analys = rs.getString("desc_analys");
+                
+                
+                Post p = new Post(id_post,nom_post,Description,categorie,post_date,file,Likes,album_cover,desc_analys);  
+                p.setId_post(rs.getInt("id_post"));
+                myList.add(p);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+
+    } 
+      
+      
+      
 }

@@ -52,7 +52,11 @@ import javax.swing.JFileChooser;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+
 import com.kieferlam.javafxblur.Blur;
+
+
+//import com.kieferlam.javafxblur.Blur;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

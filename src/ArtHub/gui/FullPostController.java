@@ -14,6 +14,7 @@ import static ArtHub.gui.LoginController.CurrentUser;
 import static ArtHub.gui.PostGController.id_post_clicked;
 import static ArtHub.gui.PostGController.stripNonDigits;
 import ArtHub.services.InteractionsCrud;
+import ArtHub.services.UserCRUD;
 import ArtHub.services.postCRUD;
 import SentimentAnalysis.SentimentAPI;
 import com.jfoenix.controls.JFXButton;
@@ -22,12 +23,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -35,8 +39,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
 
 /**
  * FXML Controller class
@@ -65,21 +72,77 @@ public class FullPostController implements Initializable {
     private JFXButton btn_cmnt;
     @FXML
     private ImageView img_cmnt;
-
+    @FXML
+    private VBox CommentsVBox;
+    List <Comment> myLst ;
+     
+    AnchorPane EventBox;
+    int idPost;
+    @FXML
+    private Label user_name;
+    
+    
+    
+    User u = new User();
+    Comment c = new Comment();
+    UserCRUD uc = new UserCRUD();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+           
             postCRUD pc = new postCRUD();
             Post p = new Post();
             p = pc.FindPost(id_post_clicked);
             setData(p);
+            u = uc.FindUser(p.getId_user().getId_user());
+        user_name.setText(u.getNom());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FullPostController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        idPost=id_post_clicked;
+       
+       FillVbox(myLst,CommentsVBox); 
     }
+    
+    
+    private void FillVbox(List<Comment> myLst, VBox DisplayInMe) {
+        postCRUD cm = new postCRUD();
+        List<Comment> comments ;
+        comments = cm.Findcomment(id_post_clicked);
+        System.err.println("waaaaaaaaaa");
+        
+        
+        try {
+            for (int i = 0; i < comments.size(); i++) {
+                
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("comments.fxml"));
+                AnchorPane Commentbox = fxmlLoader.load();
+                CommentsController commentController = fxmlLoader.getController();
+                commentController.setData(comments.get(i));
+                CommentsVBox.getChildren().add(Commentbox);
+                
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        
+          CommentsVBox.setSpacing(20);
+          CommentsVBox.setAlignment(Pos.CENTER);
+        
+
+    }
+    
+    
+    
+    
+    
+    
 
 
 public void setData(Post post) throws FileNotFoundException {
@@ -89,6 +152,8 @@ public void setData(Post post) throws FileNotFoundException {
         descreption.setText(post.getDescription());
          likesLabel.setText(Integer.toString(post.getLikes()));
          idLabel.setText(Integer.toString(post.getId_post()));
+         
+         //user_name
         System.out.println(post.getFile());
        Image image =new Image(new FileInputStream(post.getFile())); 
       img.setImage(image);
@@ -270,23 +335,22 @@ public void setData(Post post) throws FileNotFoundException {
          } catch (Exception ex) {
            Logger.getLogger(FullPostController.class.getName()).log(Level.SEVERE, null, ex);
        }
+         
+         FillVbox(myLst,CommentsVBox); 
+    }
+
+    
+    private void like(MouseEvent event) {
+    }
    
-        
-         
-         
-         
-         
-         
-         
-         
-         
-         
+      
+   
     }
 
    
     
     
-}
+
 
 
 

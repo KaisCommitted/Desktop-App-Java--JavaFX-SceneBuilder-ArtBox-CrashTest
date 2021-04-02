@@ -6,9 +6,12 @@
 package ArtHub.gui;
 
 
+import ArtHub.entities.Post;
 import ArtHub.entities.Signalisation;
 import static ArtHub.gui.LoginController.CurrentUser;
+import static ArtHub.gui.PostGController.id_post_clicked;
 import ArtHub.services.SignalisationCRUD;
+import ArtHub.services.postCRUD;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -53,11 +56,16 @@ public class AddSignalisationController implements Initializable {
              //Ajouter Signalisation
             String rtypesignal = cmboTypeSignal.getValue();
             String rcontenusignal = txtContenuSignal.getText();
-         
-           
-            Signalisation s = new Signalisation(CurrentUser,rcontenusignal,rtypesignal,"Not treated");
+         Post P = new Post();
+         postCRUD PC = new postCRUD();
+          P = PC.FindPost( id_post_clicked);
+          
+            Signalisation s = new Signalisation(CurrentUser, P,rcontenusignal,rtypesignal,"Not treated");
             SignalisationCRUD feed = new SignalisationCRUD();
+            
+            
             feed.ajouterSignalisation(s);
+            
             
             
         }catch (Exception ex) {
