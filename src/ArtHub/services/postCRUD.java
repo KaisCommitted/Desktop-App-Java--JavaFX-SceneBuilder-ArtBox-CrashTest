@@ -317,7 +317,7 @@ public class postCRUD {
         
     
     
-        String req ="INSERT INTO comments (id_post,id_user,comment,Comment_analys,coment_date)"+"values (?,?,?,?,CURRENT_TIMESTAMP)";
+        String req ="INSERT INTO comments (id_post,id_user,comment,Comment_analys,comment_date)"+"values (?,?,?,?,CURRENT_TIMESTAMP)";
         try {
             
             
@@ -387,14 +387,14 @@ public class postCRUD {
 
             Statement pst = cnx.createStatement();
 
-            ResultSet rs = pst.executeQuery("SELECT * from comments where id_post = " + id + " order by coment_date ");
+            ResultSet rs = pst.executeQuery("SELECT * from comments where id_post = " + id + " order by comment_date ");
             while (rs.next()) {
 
                
                 
                 String comment = rs.getString("comment");
                 //String Description = rs.getString("Description");
-                String comment_date = rs.getString("coment_date");
+                String comment_date = rs.getString("comment_date");
                 
                 
                 Comment c = new Comment(comment,comment_date); 

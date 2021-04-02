@@ -339,7 +339,7 @@ public void setData(Post post) throws FileNotFoundException {
          FillVbox(myLst,CommentsVBox); 
     }
 
-    @FXML
+    
     private void like(MouseEvent event) {
     }
    
