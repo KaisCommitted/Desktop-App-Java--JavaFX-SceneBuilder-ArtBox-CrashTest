@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<<<<<<< HEAD
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Yasmine/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/LoginController.java</file>
+            <file>file:/C:/Users/Yasmine/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FRONT_AnnonceController.java</file>
+            <file>file:/C:/Users/Yasmine/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/FRONT_EventController.java</file>
+            <file>file:/C:/Users/Yasmine/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/Kais.java</file>
+            <file>file:/C:/Users/Yasmine/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/ItemAnnonceController.java</file>
+=======
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/AffichepostesController.java</file>
@@ -42,6 +52,7 @@
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/gui/HomeController.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/UserCRUD.java</file>
             <file>file:/C:/Users/21698/Documents/GitHub/ArtBox-CrashTest/src/ArtHub/services/EvenementCRUD.java</file>
+>>>>>>> f3dbd54bc0989ef3ebb3102ddffc5853aa5d6599
         </group>
     </open-files>
 </project-private>
