@@ -641,7 +641,7 @@ public class HomeController implements Initializable {
         categorie.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Annonce, String>, ObservableValue<String>>(){
             @Override
             public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Annonce, String> param) {
-               return new SimpleStringProperty(param.getValue().getValue().getCategorie());
+               return new SimpleStringProperty(param.getValue().getValue().getCategorie().getCategorie_name());
            }
 
        });
@@ -651,7 +651,7 @@ public class HomeController implements Initializable {
                     new TextFieldEditorBuilder());
         });
         //setting the new value for editable categorie text field
-        categorie.setOnEditCommit((CellEditEvent<Annonce, String> t) -> {
+       /* categorie.setOnEditCommit((CellEditEvent<Annonce, String> t) -> {
             int idd = t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().getId_ann();
             String newValue = t.getNewValue();
 
@@ -660,7 +660,7 @@ public class HomeController implements Initializable {
                             .getRow())
                     .getValue().setCategorie(t.getNewValue());
             ps.modifierAnnonce(idd, "categorie", newValue);
-        });
+        });*/
         
         
         
