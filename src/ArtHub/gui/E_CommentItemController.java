@@ -67,6 +67,8 @@ public class E_CommentItemController implements Initializable {
     ResourceBundle rb;
     @FXML
     private Label id;
+    @FXML
+    private ImageView imageUser;
     /**
      * Initializes the controller class.
      */
@@ -89,7 +91,7 @@ public class E_CommentItemController implements Initializable {
        username.setText(i);
         System.out.println("IIIIIIIIIIIIIIII "+i+" CURRRRENT "+CurrentUser.getUsername());
         content.setText(C.getContent());   
-    
+         setImage(uc.FindUser(C.getId_user().getId_user()).getImage(),imageUser);
           id.setText(Integer.toString(C.getId()));
         
         if ( x == CurrentUser.getId_user()) {

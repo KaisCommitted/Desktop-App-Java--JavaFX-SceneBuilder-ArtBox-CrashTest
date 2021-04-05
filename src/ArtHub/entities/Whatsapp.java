@@ -18,7 +18,7 @@ public class Whatsapp {
     
      // Find your Account Sid and Token at twilio.com/console 
     public static final String ACCOUNT_SID = "AC989043320961d4e8814d4a98bd2b8a4e"; 
-    public static final String AUTH_TOKEN = "4760a1b7798dafd818bd15e832fae757"; 
+    public static final String AUTH_TOKEN = "8a7dcee8719743232065fa6783fc4516"; 
  public static void send(String content) { 
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN); 
         Message message = Message.creator( 

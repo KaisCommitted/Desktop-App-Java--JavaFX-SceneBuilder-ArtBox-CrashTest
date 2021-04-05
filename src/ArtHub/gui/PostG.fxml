@@ -28,7 +28,7 @@
       </JFXButton>
       <Label fx:id="likesLabel" layoutX="71.0" layoutY="231.0" text="Likes" textFill="WHITE" />
       <Label fx:id="idLabel" layoutX="209.0" layoutY="250.0" opacity="0.0" text="id" textFill="WHITE" />
-      <ImageView fx:id="addsignal" fitHeight="50.0" fitWidth="52.0" layoutX="397.0" layoutY="14.0" onMouseClicked="#addReport" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="addsignal" fitHeight="25.0" fitWidth="26.0" layoutX="484.0" layoutY="227.0" onMouseClicked="#addReport" pickOnBounds="true" preserveRatio="true" />
       <Line endX="368.0" layoutX="115.0" layoutY="211.0" opacity="0.33" startX="-100.0" />
       <JFXButton fx:id="cmnt_btn" buttonType="RAISED" layoutX="117.0" layoutY="220.0" onAction="#Comments" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: transparent;" text="  ">
          <graphic>

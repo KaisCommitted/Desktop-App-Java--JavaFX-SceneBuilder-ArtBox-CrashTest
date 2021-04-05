@@ -260,6 +260,16 @@
                   <Image url="@../images/icons8_Search_52px.png" />
                </image>
             </ImageView>
+            <Label fx:id="usernameCurrent" layoutX="1437.0" layoutY="35.0" prefHeight="21.0" prefWidth="86.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="1499.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/badge.png" />
+               </image>
+            </ImageView>
             
             
             

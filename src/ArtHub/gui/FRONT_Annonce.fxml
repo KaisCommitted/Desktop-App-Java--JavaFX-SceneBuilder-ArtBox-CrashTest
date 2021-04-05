@@ -21,12 +21,23 @@
    <children>
       <AnchorPane id="AnchorPane" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
          <children>
-            <JFXButton layoutX="519.0" layoutY="14.0" prefHeight="44.0" prefWidth="172.0" style="-fx-border-radius: 20;" styleClass="button1" text="Jobs" textFill="#0ec3f5" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="21.0">
+             <JFXButton layoutX="342.0" layoutY="17.0" onAction="#load_events" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f" AnchorPane.leftAnchor="342.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" onKeyReleased="#filterEvent" onMouseEntered="#onEffectSearch" onMouseExited="#offEffectSearch" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="21.0">
+             <JFXButton fx:id="feed_button" layoutX="200.0" layoutY="21.0" onAction="#load_feed" prefHeight="41.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button2" text="Feed" textFill="#99999f" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </JFXButton>
+           <ImageView fx:id="user_image" fitHeight="52.0" fitWidth="52.0" layoutX="1385.0" layoutY="18.0" onMouseClicked="#showUserProfile" pickOnBounds="true" preserveRatio="true" />
+             <JFXButton layoutX="548.0" layoutY="19.0" onAction="#load_jobs" prefHeight="44.0" prefWidth="172.0" style="-fx-background-radius: 20;" styleClass="button1" text="Jobs" textFill="#0ec3f5" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+           <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="794.0" layoutY="21.0" onKeyReleased="#filterEvent" onMouseEntered="#onEffectSearch" onMouseExited="#offEffectSearch" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -35,24 +46,16 @@
                   <String fx:value="text-fieldf" />
                </styleClass>
             </JFXTextField>
-            <JFXButton layoutX="395.0" layoutY="16.0" onAction="#load_events" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f" AnchorPane.leftAnchor="342.0" AnchorPane.topAnchor="21.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </JFXButton>
+           
             <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="145.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
             <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="189.0" startX="32.0" startY="-106.0" stroke="#fffffffa" AnchorPane.leftAnchor="197.5" />
-            <JFXButton fx:id="feed_button" layoutX="198.0" layoutY="19.0" onAction="#load_feed" prefHeight="41.0" prefWidth="145.0" styleClass="button2" text="Feed" textFill="#99999f" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="21.0">
-               <font>
-                  <Font name="Calibri" size="20.0" />
-               </font>
-            </JFXButton>
-            <ImageView fx:id="BtnClose" fitHeight="32.0" fitWidth="32.0" layoutX="1916.0" layoutY="7.0" onMouseClicked="#close" onMouseEntered="#closeON" onMouseExited="#closeOFF" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+            
+           <ImageView fx:id="BtnClose" fitHeight="32.0" fitWidth="32.0" layoutX="1910.0" layoutY="8.0" onMouseClicked="#close" onMouseEntered="#closeON" onMouseExited="#closeOFF" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
                <image>
                   <Image url="@../images/close.png" />
                </image>
             </ImageView>
-            <HBox layoutX="459.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="656.0" prefWidth="1014.0" AnchorPane.leftAnchor="520.0" AnchorPane.topAnchor="199.0">
+            <HBox layoutX="459.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="656.0" prefWidth="1014.0" AnchorPane.bottomAnchor="225.0" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="531.0" AnchorPane.topAnchor="199.0">
                <children>
                   <ScrollPane prefHeight="674.0" prefWidth="990.0">
                      <content>
@@ -65,11 +68,7 @@
                   </ScrollPane>
                </children>
             </HBox>
-<<<<<<< HEAD
             <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" onAction="#AddJob" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Add a job offer" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.rightAnchor="122.0">
-=======
-            <JFXButton fx:id="Btn_AddEvent" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" onAction="#AddAnnonce" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Add an announcement" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="21.0">
->>>>>>> f3dbd54bc0989ef3ebb3102ddffc5853aa5d6599
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>
@@ -81,16 +80,11 @@
                   </DropShadow>
                </effect>
             </JFXButton>
-            <Label layoutX="1861.0" layoutY="1040.0" onMouseClicked="#AddFeedback" text="Feedback" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="29.0">
+            <Label layoutX="1861.0" layoutY="1040.0" onMouseClicked="#AddFeedback" text="Label" textFill="WHITE" AnchorPane.rightAnchor="29.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <ImageView fx:id="btnSearch" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="750.0" AnchorPane.topAnchor="21.0">
-               <image>
-                  <Image url="@../images/icons8_Search_52px.png" />
-               </image>
-            </ImageView>
             
             
             

@@ -12,6 +12,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import org.controlsfx.control.Notifications;
 
 public class SignalisationCRUD {
     private final Connection cnx;
@@ -22,20 +27,36 @@ public class SignalisationCRUD {
     }
     
     public void ajouterSignalisation(Signalisation s){
-        String req ="INSERT INTO signalisation ( id_signal,id_user,id_post,contenu_signal,type_signal,etat_signal)"+"values (?,?,?,?,?,?)";
+        String req ="INSERT INTO signalisation (id_user,id_post,contenu_signal,type_signal,etat_signal)"+"values (?,?,?,?,?)";
         try {
+            
+                     
             ste = cnx.prepareStatement(req);
-            ste.setInt(1, s.getId_signal());
-            ste.setInt(2, s.getId_user().getId_user());
-            ste.setInt(3, s.getId_post().getId_post());
-            ste.setString(4, s.getContenu_signal());
-            ste.setString(5, s.getType_signal());
-            ste.setString(6, s.getEtat_signal());
+           
+            ste.setInt(1, s.getId_user().getId_user());
+            ste.setInt(2, s.getId_post().getId_post());
+            ste.setString(3, s.getContenu_signal());
+            ste.setString(4, s.getType_signal());
+            ste.setString(5, s.getEtat_signal());
             
 
             ste.executeUpdate();
             System.out.println("Signalisation ajoutée");
+            Notifications notificationBuilder = Notifications.create()
+               .title("Report sent!").text("Your report has been successfully processed.").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
+               .position(Pos.CENTER)
+               .onAction(new EventHandler<ActionEvent>(){
+                   @Override
+                   public void handle(ActionEvent event)
+                   {
+                       System.out.println("clicked ON ");
+               }});
+       notificationBuilder.darkStyle();
+       notificationBuilder.show();
+       Parent root;
             
+
+ 
         } catch (SQLException ex) {
             System.out.println("Problème");
             System.out.println(ex.getMessage());
@@ -88,7 +109,7 @@ public class SignalisationCRUD {
     }
     public void supprimerSignalisation(Signalisation s) {
          try {
-            String requete = "DELETE FROM signalisation WHERE id_signal=?";
+            String requete = "DELETE FROM signalisation WHERE id_signal = ?";
 
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, s.getId_signal());
@@ -100,7 +121,7 @@ public class SignalisationCRUD {
     }
 
 
-    public void modifierSignalisation(int id, String object, Object obj) {
+   public void modifierSignalisation(int id, String object, Object obj) {
         try {
             String requete = "UPDATE signalisation SET ? = ? WHERE id_signal = ?";
             PreparedStatement pst = cnx.prepareStatement(requete);

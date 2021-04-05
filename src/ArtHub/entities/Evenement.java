@@ -56,6 +56,11 @@ public class Evenement extends RecursiveTreeObject<Evenement> implements Seriali
         this.nb_max = nb_max;
     }
 
+    @Override
+    public String toString() {
+        return "Evenement{" + "id=" + id + ", id_org=" + id_org + ", date_event=" + date_event + ", nom_event=" + nom_event + ", type_event=" + type_event + ", categorie=" + categorie + ", description=" + description + ", capacite_event=" + capacite_event + ", nb_max=" + nb_max + ", image_event=" + image_event + ", location_event=" + location_event + ", rating=" + rating + '}';
+    }
+
     public String getImage_event() {
         return image_event;
     }

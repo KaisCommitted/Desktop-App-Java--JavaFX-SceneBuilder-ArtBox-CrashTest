@@ -18,22 +18,31 @@
             <AnchorPane prefHeight="821.0" prefWidth="1090.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
                <children>
                   <ImageView fx:id="img" fitHeight="357.0" fitWidth="573.0" layoutX="258.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="259.0" layoutY="42.0" text="User" textFill="WHITE" />
-                  <Label fx:id="nameLabel" layoutX="271.0" layoutY="417.0" prefHeight="44.0" prefWidth="87.0" text="Name" textFill="WHITE" />
+                  <Label fx:id="user_name" layoutX="256.0" layoutY="22.0" text="User" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font></Label>
+                  <Label fx:id="nameLabel" layoutX="271.0" layoutY="417.0" prefHeight="44.0" prefWidth="87.0" text="Name" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font></Label>
                   <Label fx:id="descreption" layoutX="268.0" layoutY="461.0" prefHeight="49.0" prefWidth="542.0" text="Description" textFill="WHITE" />
                   <ScrollPane layoutX="1.0" layoutY="607.0" prefHeight="211.0" prefWidth="1087.0">
                      <content>
-                        <VBox prefHeight="200.0" prefWidth="1072.0" />
+                        <VBox fx:id="CommentsVBox" prefHeight="200.0" prefWidth="1072.0" />
                      </content>
                   </ScrollPane>
-                  <JFXButton fx:id="like_btn" layoutX="692.0" layoutY="438.0" onAction="#like" prefHeight="28.0" prefWidth="67.0" text="  ">
+                  <JFXButton fx:id="like_btn" layoutX="685.0" layoutY="425.0" onAction="#like" prefHeight="28.0" prefWidth="67.0" text="  ">
                      <graphic>
                         <ImageView fx:id="imgbtn" fitHeight="20.0" fitWidth="34.0" onDragDetected="#like" pickOnBounds="true" preserveRatio="true" />
                      </graphic>
                   </JFXButton>
-                  <Label fx:id="likesLabel" layoutX="748.0" layoutY="444.0" text="LIke" textFill="WHITE" />
+                  <Label fx:id="likesLabel" layoutX="745.0" layoutY="429.0" text="LIke" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Label>
                   <Label fx:id="idLabel" layoutX="25.0" layoutY="51.0" opacity="0.0" text="Label" />
-                  <JFXTextField fx:id="new_cmnt" layoutX="283.0" layoutY="567.0" prefHeight="35.0" prefWidth="504.0" />
+                  <JFXTextField fx:id="new_cmnt" layoutX="283.0" layoutY="567.0" prefHeight="35.0" prefWidth="504.0" promptText="Comment.." />
                   <JFXButton fx:id="btn_cmnt" layoutX="787.0" layoutY="563.0" onAction="#Add_comment" prefHeight="43.0" prefWidth="43.0" text="   ">
                      <graphic>
                         <ImageView fx:id="img_cmnt" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
@@ -44,12 +53,12 @@
                      </graphic>
                   </JFXButton>
                   <Line endX="168.0" layoutX="276.0" layoutY="530.0" startX="-227.0" stroke="WHITE" />
-                  <Label layoutX="468.0" layoutY="508.0" prefHeight="43.0" prefWidth="142.0" text="Comments" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                  <Label layoutX="458.0" layoutY="507.0" prefHeight="46.0" prefWidth="174.0" text="Comments" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                      <font>
-                        <Font size="29.0" />
+                        <Font name="System Bold" size="31.0" />
                      </font>
                   </Label>
-                  <Line endX="243.0" layoutX="381.0" layoutY="531.0" startX="685.0" stroke="WHITE" />
+                  <Line endX="261.0" layoutX="381.0" layoutY="531.0" startX="685.0" stroke="WHITE" />
                </children>
             </AnchorPane>
          </content>

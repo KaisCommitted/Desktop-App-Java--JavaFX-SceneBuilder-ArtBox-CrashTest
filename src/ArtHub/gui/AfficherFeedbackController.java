@@ -6,8 +6,11 @@
 package ArtHub.gui;
 
 
+import ArtHub.entities.Evenement;
 import ArtHub.entities.Feedback;
+import ArtHub.entities.User;
 import ArtHub.services.FeedbackCRUD;
+import ArtHub.services.UserCRUD;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
@@ -69,14 +72,7 @@ public class AfficherFeedbackController implements Initializable {
     @FXML
     private AnchorPane anchorfeedback;
     FeedbackCRUD ps;
-    @FXML
-    private TextField search;
-    private TableColumn<Feedback, Integer>id;
-    private TableColumn<Feedback, Integer> id_user;
-    private TableColumn <Feedback, String> contenu;
-    private TableColumn<Feedback, String> type;
-    private TableColumn<Feedback, String> etat;
-    private TableView<Feedback> table;
+    
     /**
      * Initializes the controller class.
      * @param url
@@ -94,7 +90,7 @@ public class AfficherFeedbackController implements Initializable {
         
         FeedbackCRUD ps = new FeedbackCRUD();
         // id_feedback table view
-        JFXTreeTableColumn<Feedback, String> id_feedback = new JFXTreeTableColumn<>("id_feedback");
+        JFXTreeTableColumn<Feedback, String> id_feedback = new JFXTreeTableColumn<>("feedback id");
         id_feedback.setPrefWidth(150);
         id_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
             @Override
@@ -103,8 +99,20 @@ public class AfficherFeedbackController implements Initializable {
             }
         });
         
+        // id_user table view
+        JFXTreeTableColumn<Feedback, String> id_user = new JFXTreeTableColumn<>("User id");
+        id_user.setPrefWidth(150);
+        id_user.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
+            @Override
+            public ObservableValue<String> call(TreeTableColumn.CellDataFeatures<Feedback, String> param) {
+                return new SimpleStringProperty(Integer.toString(param.getValue().getValue().getId_user().getId_user()));
+            }
+        });
+        
+       
+        
          //contenu_feedback table view
-        JFXTreeTableColumn<Feedback, String> contenu_feedback = new JFXTreeTableColumn<>("contenu_feedback");
+        JFXTreeTableColumn<Feedback, String> contenu_feedback = new JFXTreeTableColumn<>("Feedback content");
         contenu_feedback.setPrefWidth(150);
         contenu_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
             @Override
@@ -114,7 +122,7 @@ public class AfficherFeedbackController implements Initializable {
         });
         
         // type_feedback table view
-        JFXTreeTableColumn<Feedback, String> type_feedback = new JFXTreeTableColumn<>("type_feedback");
+        JFXTreeTableColumn<Feedback, String> type_feedback = new JFXTreeTableColumn<>("Feedback type");
         type_feedback.setPrefWidth(150);
         type_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
             @Override
@@ -124,7 +132,7 @@ public class AfficherFeedbackController implements Initializable {
         });
         
          // etat_feedback table view
-        JFXTreeTableColumn<Feedback, String> etat_feedback = new JFXTreeTableColumn<>("etat_feedback");
+        JFXTreeTableColumn<Feedback, String> etat_feedback = new JFXTreeTableColumn<>("Status");
         etat_feedback.setPrefWidth(150);
         etat_feedback.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<Feedback, String>, ObservableValue<String>>(){
             @Override
@@ -161,7 +169,7 @@ public class AfficherFeedbackController implements Initializable {
         myLst.forEach(f -> Feedbacks.add(f));
         JFXTreeTableView<Feedback> treeview = new JFXTreeTableView<>();
         final TreeItem<Feedback> root = new RecursiveTreeItem<>(Feedbacks, RecursiveTreeObject::getChildren);
-        treeview.getColumns().setAll(id_feedback,contenu_feedback,type_feedback,etat_feedback);
+        treeview.getColumns().setAll(id_feedback,id_user,contenu_feedback,type_feedback,etat_feedback);
         treeview.setRoot(root);
         treeview.setShowRoot(false);
         treeview.setEditable(true);

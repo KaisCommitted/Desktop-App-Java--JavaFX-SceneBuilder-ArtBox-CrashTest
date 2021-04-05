@@ -8,6 +8,8 @@ package ArtHub.gui;
 import ArtHub.entities.Post;
 import ArtHub.entities.User;
 import ArtHub.entities.interactions;
+import static ArtHub.gui.FRONT_EventController.userHomeFolder;
+import static ArtHub.gui.PostGController.highlight;
 import ArtHub.services.InteractionsCrud;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
@@ -24,8 +26,12 @@ import javafx.beans.Observable;
 import javafx.collections.MapChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -33,12 +39,16 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
@@ -79,7 +89,18 @@ public class mp3Controller implements Initializable {
     private Label likesLabel;
     String s;
     
+    public static int id_post_clicked = 0;
+    static int current_post=0;
+    
  User CurrentUser = new User(2);
+    @FXML
+    private JFXButton cmnt_btn;
+    @FXML
+    private ImageView cmntbtn;
+    
+    public static int id_post_clicked_mp3 = 0;
+    @FXML
+    private AnchorPane ItemBox;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -99,6 +120,8 @@ public class mp3Controller implements Initializable {
          idLabel.setText(Integer.toString(post.getId_post()));
         System.out.println(post.getId_post());
         
+        current_post=post.getId_post();
+        
        Image image =new Image(new FileInputStream(post.getAlbum_cover()));
        s=post.getFile();
        img.setImage(image);
@@ -106,7 +129,7 @@ public class mp3Controller implements Initializable {
        
        
        
-       
+        
        
         Post CurrentPost = new Post(Integer.parseInt(idLabel.getText()));
          interactions p = new interactions(CurrentPost, CurrentUser);      
@@ -140,6 +163,23 @@ public class mp3Controller implements Initializable {
        
        
        }
+       
+       
+       
+       
+       try {
+           //String path="file:///C:\\Users\\Adam Khalfaoui\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\gui\\post_pics\\like_selec.png" ;
+           
+           
+           //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
+           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\cmnt.gif";
+           Image image3 =new Image(new FileInputStream(Empty));
+           cmntbtn.setImage(image3);
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(PostGController.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+       
         
     }
     
@@ -257,8 +297,48 @@ void like(ActionEvent event) {
         
 
     }
+
+    @FXML
+    private void Comments(ActionEvent event) {
+        
+        
+         try {
+           
+            id_post_clicked_mp3= Integer.parseInt(idLabel.getText());
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Fullmp3.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setTitle("Host an event");
+
+            stage.setScene(new Scene(root1));
+
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void effectOn(MouseEvent event) {
+        ItemBox.setEffect(null);
+    }
+
+    @FXML
+    private void effectOff(MouseEvent event) {
+          ItemBox.setEffect(highlight);
+        ItemBox.setCursor(Cursor.HAND);
+    }
+        
+        
+        
+        
+        
+        
+    }
     
+   
    
 
 
-}

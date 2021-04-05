@@ -3,16 +3,20 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="74.0" prefWidth="600.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="ArtHub.gui.CommentsController">
+<AnchorPane id="AnchorPane" maxHeight="47.0" maxWidth="330.0" prefHeight="41.0" prefWidth="330.0" style="-fx-max-height: 80; -fx-max-width: 80;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.CommentsController">
    <styleClass>
       <String fx:value="fruit-item" />
       <String fx:value="shadow" />
+      <String fx:value="center" />
    </styleClass>
    <children>
-      <Label fx:id="cmnt" layoutX="18.0" layoutY="22.0" prefHeight="31.0" prefWidth="572.0" text="Comment" />
-      <Label fx:id="time_cmnt" layoutX="491.0" layoutY="52.0" prefHeight="17.0" prefWidth="71.0" text="time" />
-      <Label fx:id="user_cmnt" layoutX="18.0" layoutY="6.0" prefHeight="17.0" prefWidth="49.0" text="user" />
+      <Label fx:id="cmnt" layoutX="12.0" layoutY="21.0" prefHeight="14.0" prefWidth="274.0" text="Comment" />
+      <Label fx:id="time_cmnt" layoutX="170.0" layoutY="30.0" prefHeight="17.0" prefWidth="101.0" text="time" />
+      <Label fx:id="user_cmnt" layoutX="12.0" layoutY="6.0" prefHeight="6.0" prefWidth="78.0" text="user">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
    </children>
 </AnchorPane>

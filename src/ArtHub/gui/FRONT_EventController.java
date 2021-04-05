@@ -54,6 +54,8 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.kieferlam.javafxblur.Blur;
 
+
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
@@ -203,12 +205,16 @@ public static String userHomeFolder = System.getProperty("user.home");
     Partenaire P = new Partenaire();
     @FXML
     private ImageView user_image;
+    @FXML
+    private Label usernameCurrent;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        sendWhatsapp();
         try {
+            usernameCurrent.setText(CurrentUser.getUsername());
              PartenaireCRUD pt = new PartenaireCRUD();
         if (!pt.checkPartenaire(CurrentUser.getId_user())) {
             Btn_partner.setVisible(true);  
@@ -241,7 +247,7 @@ public static String userHomeFolder = System.getProperty("user.home");
             }   }
        
             //////////////////////////////////WHATSAPPP MAKE 24H window + check credentials//////////////////////////////////////////
-            //sendWhatsapp();
+            
             ///////////////////////////////////WHATSAAAAAP////////////////////////////////////////////
            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
@@ -285,9 +291,9 @@ notifyme();
 
             Participant aux = new Participant();
             ParticipantCRUD par = new ParticipantCRUD();
-           // String max = par.RecommendParticip(CurrentUser.getId_user());
+           String max = par.RecommendParticip(CurrentUser.getId_user());
 
-            /*myLst = ps.RecommendEvenement(max);
+            myLst = ps.RecommendEvenement(max);
             ParticipantCRUD pc = new ParticipantCRUD();
             for(int i=0 ; i<myLst.size() ; i++ ) {
             if ((pc.CheckUserExists(CurrentUser.getId_user(),myLst.get(i).getId())))
@@ -296,7 +302,7 @@ notifyme();
                }
             }
             recommended_layout.getChildren().clear();
-            FillHbox1(myLst, recommended_layout);*/
+            FillHbox1(myLst, recommended_layout);
 
             myLst = ps.consulterEvenement();
             FillHbox1(myLst, event_mostPop);
@@ -388,7 +394,7 @@ notifyme();
             stage.initStyle(StageStyle.UNDECORATED);
             //stage.setOpacity(0.2);
             stage.initStyle(StageStyle.TRANSPARENT);
-            Blur.applyBlur(stage, Blur.BLUR_BEHIND);
+           
             root1.setStyle(" -fx-background-color:rgba(	0, 0, 0,0.9);");
             Scene scene = new Scene(root1);
              scene.setFill(Color.TRANSPARENT);
@@ -715,42 +721,7 @@ notifyme();
 
     }
 
-    @FXML
-    private void GoingTo(ActionEvent event) {
-
-        label_layout.setText("Going To..");
-        comboDate.setVisible(false);
-        comboTrend.setVisible(false);
-        MoreDetails.setVisible(false);
-        comboDate.getItems().clear();
-        comboTrend.getItems().clear();
-
-        EvenementCRUD ps = new EvenementCRUD();
-        List<Evenement> myLst;
-        myLst = ps.GoingTo(CurrentUser.getId_user());
-        FillHbox1(myLst, event_mostPop);
-
-        MoreDetails.setVisible(true);
-
-    }
-
-    @FXML
-    private void WentTo(ActionEvent event) {
-        label_layout.setText("Went To..");
-        comboDate.setVisible(false);
-        comboTrend.setVisible(false);
-        MoreDetails.setVisible(false);
-        comboDate.getItems().clear();
-        comboTrend.getItems().clear();
-
-        EvenementCRUD ps = new EvenementCRUD();
-        List<Evenement> myLst;
-        myLst = ps.WentTo(CurrentUser.getId_user());
-        FillHbox1(myLst, event_mostPop);
-
-        MoreDetails.setVisible(true);
-
-    }
+    
 
     @FXML
     private void refresh2(MouseEvent event) {
@@ -1166,7 +1137,7 @@ notifyme();
             stage.initStyle(StageStyle.UNDECORATED);
             //stage.setOpacity(0.2);
             stage.initStyle(StageStyle.TRANSPARENT);
-            Blur.applyBlur(stage, Blur.ACRYLIC);
+            //Blur.applyBlur(stage, Blur.ACRYLIC);
             root1.setStyle(" -fx-background-color:rgba(	0, 0, 0,0.7);");
             Scene scene = new Scene(root1);
              scene.setFill(Color.TRANSPARENT);
@@ -1225,6 +1196,41 @@ notifyme();
             Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
+    }
+
+    @FXML
+    private void GoingTo(ActionEvent event) {
+         label_layout.setText("Going To..");
+        comboDate.setVisible(false);
+        comboTrend.setVisible(false);
+        MoreDetails.setVisible(false);
+        comboDate.getItems().clear();
+        comboTrend.getItems().clear();
+
+        EvenementCRUD ps = new EvenementCRUD();
+        List<Evenement> myLst;
+        myLst = ps.GoingTo(CurrentUser.getId_user());
+        FillHbox1(myLst, event_mostPop);
+
+        MoreDetails.setVisible(true);
+    }
+
+    @FXML
+    private void WentTo(ActionEvent event) {
+          label_layout.setText("Went To..");
+        comboDate.setVisible(false);
+        comboTrend.setVisible(false);
+        MoreDetails.setVisible(false);
+        comboDate.getItems().clear();
+        comboTrend.getItems().clear();
+
+        EvenementCRUD ps = new EvenementCRUD();
+        List<Evenement> myLst;
+        myLst = ps.WentTo(CurrentUser.getId_user());
+        FillHbox1(myLst, event_mostPop);
+
+        MoreDetails.setVisible(true);
+
     }
     
 

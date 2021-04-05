@@ -47,5 +47,6 @@
          </font>
       </Button>
       <Label fx:id="id" layoutX="296.0" layoutY="12.0" text="Label" visible="false" />
+      <ImageView fx:id="imageUser" fitHeight="41.0" fitWidth="43.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

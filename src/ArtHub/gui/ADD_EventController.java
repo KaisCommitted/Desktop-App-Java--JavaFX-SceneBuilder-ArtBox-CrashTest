@@ -144,7 +144,7 @@ if (captcha.isCorrect(code.getText())) {
             Control.setVisible(false);
             String control = "";
             
-                
+            //controle de saisie    
             if (txt_nom.getText() == null || txt_nom.getText().trim().isEmpty() || combo_type.getValue() == null || combo_type.getValue().isEmpty()
                     || txt_categorie.getValue() == null || txt_categorie.getValue().isEmpty() || tDatenaiss.getValue() == null || txt_description.getText() == null
                     || txt_description.getText().trim().isEmpty() || txt_capacite.getText() == null || txt_capacite.getText().trim().isEmpty() || event_location.getText() == null
