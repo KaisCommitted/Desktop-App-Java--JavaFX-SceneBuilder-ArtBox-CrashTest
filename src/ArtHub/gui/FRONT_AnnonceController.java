@@ -78,17 +78,16 @@ public class FRONT_AnnonceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-<<<<<<< HEAD
+
             
           //notifications
         anchor.setPrefSize( screenSize.getWidth(), screenSize.getHeight());
         parentContainer1.setPrefSize( screenSize.getWidth(), screenSize.getHeight());
-=======
+
             setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
           setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
         anchor.setPrefSize(screenSize.getWidth(), screenSize.getHeight());
         parentContainer1.setPrefSize(screenSize.getWidth(), screenSize.getHeight());
->>>>>>> f3dbd54bc0989ef3ebb3102ddffc5853aa5d6599
         Notifications notificationBuilder = Notifications.create()
                .title("Job offer added successfully!").text("Hover to close").graphic(null).hideAfter(javafx.util.Duration.seconds(60))
                .position(Pos.BASELINE_CENTER)
@@ -147,7 +146,7 @@ public class FRONT_AnnonceController implements Initializable {
             
     }    
 
-<<<<<<< HEAD
+
     private void AddEvent(ActionEvent event) {
         try {
            
@@ -177,9 +176,7 @@ public class FRONT_AnnonceController implements Initializable {
                        System.out.println("clicked ON ");
                }}); */
     }
-=======
-   
->>>>>>> f3dbd54bc0989ef3ebb3102ddffc5853aa5d6599
+
 
     @FXML
     private void filterEvent(KeyEvent event) {
@@ -242,7 +239,6 @@ public class FRONT_AnnonceController implements Initializable {
     }
 
     @FXML
-<<<<<<< HEAD
     private void AddJob(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddAnnonce.fxml"));
@@ -258,8 +254,7 @@ public class FRONT_AnnonceController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FRONT_AnnonceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-=======
+
     private void load_events(ActionEvent event) {
           try {
             Parent root = FXMLLoader.load(getClass().getResource("FRONT_event.fxml"));
@@ -292,7 +287,7 @@ public class FRONT_AnnonceController implements Initializable {
     @FXML
     private void closeON(MouseEvent event) {
          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
->>>>>>> f3dbd54bc0989ef3ebb3102ddffc5853aa5d6599
+
     }
     
 }

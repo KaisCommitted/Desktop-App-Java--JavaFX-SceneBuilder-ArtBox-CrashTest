@@ -13,6 +13,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: rgba(0,0,255,0.2);" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.EventCommentsController">
    <children>
+      <AnchorPane layoutX="-326.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="988.0" prefWidth="834.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css" translateX="895.0" />
       <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="426.0" layoutY="62.0" prefHeight="132.0" prefWidth="960.0" text="name" textFill="SKYBLUE" wrapText="true">
          <font>
             <Font name="Ink Free" size="72.0" />
@@ -23,9 +24,9 @@
             <Font name="Cambria Bold" size="17.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="commentScroll" layoutX="594.0" layoutY="701.0" prefHeight="269.0" prefWidth="787.0">
+      <ScrollPane fx:id="commentScroll" layoutX="594.0" layoutY="701.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="787.0">
          <content>
-            <VBox fx:id="CommentsVBox" onMouseExited="#Reloadui" prefHeight="266.0" prefWidth="790.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css" />
+            <VBox fx:id="CommentsVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseExited="#Reloadui" prefHeight="269.0" prefWidth="787.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css" />
          </content>
       </ScrollPane>
       <TextField id="txt_nom" fx:id="content" layoutX="594.0" layoutY="970.0" prefHeight="28.0" prefWidth="781.0" promptText="Add a comment.." style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" stylesheets="@feed%20gui.css">
