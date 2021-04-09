@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit RatingEvent{% endblock %}
+
+{% block body %}
+{% block content %}
+    <h1>Edit RatingEvent</h1>
+
+    {{ include('rating_event/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('rating_event_index') }}">back to list</a>
+
+    {{ include('rating_event/_delete_form.html.twig') }}
+{% endblock %}
+{% endblock %}

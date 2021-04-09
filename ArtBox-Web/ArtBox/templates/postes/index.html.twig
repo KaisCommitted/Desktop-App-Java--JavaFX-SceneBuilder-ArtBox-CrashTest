@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Postes index{% endblock %}
+
+{% block body %}
+{% block content %}
+    <h1>Postes index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdPost</th>
+                <th>Description</th>
+                <th>NomPost</th>
+                <th>File</th>
+                <th>PostDate</th>
+                <th>AlbumCover</th>
+                <th>Likes</th>
+                <th>DescAnalys</th>
+                <th>PostType</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for poste in postes %}
+            <tr>
+                <td>{{ poste.idPost }}</td>
+                <td>{{ poste.description }}</td>
+                <td>{{ poste.nomPost }}</td>
+                <td>{{ poste.file }}</td>
+                <td>{{ poste.postDate ? poste.postDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ poste.albumCover }}</td>
+                <td>{{ poste.likes }}</td>
+                <td>{{ poste.descAnalys }}</td>
+                <td>{{ poste.postType }}</td>
+                <td>
+                    <a href="{{ path('postes_show', {'idPost': poste.idPost}) }}">show</a>
+                    <a href="{{ path('postes_edit', {'idPost': poste.idPost}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('postes_new') }}">Create new</a>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New RatingEvent{% endblock %}
+
+{% block body %}
+{% block content %}
+    <h1>Create new RatingEvent</h1>
+
+    {{ include('rating_event/_form.html.twig') }}
+
+    <a href="{{ path('rating_event_index') }}">back to list</a>
+{% endblock %}
+{% endblock %}
