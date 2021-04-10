@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" onMouseClicked="#close" prefHeight="198.0" prefWidth="874.0" style="-fx-background-color: cyan; -fx-border-color: #11042e; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.EventTicketController">
+   <children>
+      <ImageView fx:id="event_img" fitHeight="234.0" fitWidth="346.0" layoutX="4.0" pickOnBounds="true" translateY="5.0" />
+      <ImageView fx:id="QR" fitHeight="120.0" fitWidth="129.0" layoutX="745.0" layoutY="113.0" pickOnBounds="true" translateX="4.0" translateY="5.0" />
+      <Label fx:id="name" alignment="TOP_LEFT" layoutX="358.0" layoutY="-28.0" prefHeight="132.0" prefWidth="516.0" text="name" textFill="#11042e" wrapText="true">
+         <font>
+            <Font name="Ink Free" size="72.0" />
+         </font>
+      </Label>
+      <Label fx:id="date" layoutX="397.0" layoutY="123.0" onMouseClicked="#FindThem" prefHeight="31.0" prefWidth="136.0" text="date" textFill="#11042e">
+         <font>
+            <Font name="Cambria Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="location" layoutX="397.0" layoutY="155.0" prefHeight="30.0" prefWidth="136.0" text="location" textFill="#11042e">
+         <font>
+            <Font name="Cambria Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="username" layoutX="483.0" layoutY="90.0" prefHeight="29.0" prefWidth="226.0" text="username" textFill="#11042e">
+         <font>
+            <Font name="Cambria Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="355.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/calendar.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="QR_code" fitHeight="31.0" fitWidth="30.0" layoutX="355.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/location.png" />
+         </image>
+      </ImageView>
+   </children>
+   <effect>
+      <DropShadow height="188.53" offsetX="10.0" offsetY="10.0" radius="88.205" spread="0.48" width="166.29">
+         <color>
+            <Color red="0.8600000143051147" green="0.24079999327659607" blue="0.26762455701828003" />
+         </color>
+      </DropShadow>
+   </effect>
+</AnchorPane>
