@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="parentContainer1" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.Ajout_PostController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="anchorRoot1" prefHeight="1000.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+         <children>
+            <ImageView fitHeight="998.0" fitWidth="2049.0" layoutX="168.0" layoutY="81.0">
+               <image>
+                  <Image url="@../../../Images/beautiful-illustrations-design-inspiration-38@2x.png" />
+               </image>
+            </ImageView>
+            <ImageView layoutX="4.0" layoutY="20.0">
+               <image>
+                  <Image url="@../../../Images/SDFDSFDSF.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="349.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Discover" textFill="#99999f">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btn_event" layoutX="449.0" layoutY="16.0" onAction="#load_event" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="541.0" layoutY="17.0" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField focusColor="#405aa800" layoutX="721.0" layoutY="17.0" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-field" />
+                  <String fx:value="text-fieldf" />
+               </styleClass>
+            </JFXTextField>
+            <JFXButton layoutX="1851.0" layoutY="4.0" prefHeight="23.0" prefWidth="86.0" styleClass="button2" text="  " textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+            
+         </graphic>
+            </JFXButton>
+            <ImageView fitHeight="34.0" fitWidth="29.0" layoutX="730.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/search.png" />
+               </image>
+            </ImageView>
+            <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="236.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
+            <Line endX="1510.0" endY="-106.0" layoutX="166.0" layoutY="261.0" startX="32.0" startY="-106.0" stroke="#fffffffa" />
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="822.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a project" textAlignment="CENTER" wrappingWidth="254.8203125">
+               <font>
+                  <Font name="Leelawadee UI Semilight" size="34.0" />
+               </font>
+            </Text>
+            <JFXTabPane fx:id="pan1" layoutX="-9.0" layoutY="198.0" prefHeight="827.0" prefWidth="2049.0" styleClass="panel">
+               <tabs>
+                  <Tab text="Pictures">
+                     <content>
+                        <AnchorPane prefHeight="774.0" prefWidth="2049.0">
+                           <children>
+                              <JFXTextField fx:id="p_name" focusColor="TRANSPARENT" layoutX="693.0" layoutY="78.0" prefHeight="41.0" prefWidth="542.0" promptText="Name" style="-fx-background-radius: 20; -fx-background-color: white; -fx-text-fill: black;" unFocusColor="TRANSPARENT">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXButton fx:id="create_image" buttonType="RAISED" layoutX="699.0" layoutY="638.0" onAction="#create_image" prefHeight="60.0" prefWidth="530.0" ripplerFill="WHITE" styleClass="button3" text="Create " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Calibri" size="31.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                                       <color>
+                                          <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </JFXButton>
+                              <JFXTextArea fx:id="p_desc" focusColor="WHITE" layoutX="697.0" layoutY="160.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="188.0" prefWidth="533.0" promptText="Descritpion" style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" unFocusColor="#f5f5f500">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font></JFXTextArea>
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="410.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name :" textAlignment="CENTER" wrappingWidth="254.8203125">
+                                 <font>
+                                    <Font name="Leelawadee UI Semilight" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="413.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Descreption :" textAlignment="CENTER" wrappingWidth="254.8203125">
+                                 <font>
+                                    <Font name="Leelawadee UI Semilight" size="22.0" />
+                                 </font>
+                              </Text>
+                              <JFXButton fx:id="upload_image" buttonType="RAISED" layoutX="780.0" layoutY="460.0" onAction="#image_file" prefHeight="38.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-radius: 30;" styleClass="button1" text="UPLOAD YOU PICTURE" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Calibri" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                                       <color>
+                                          <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <ripplerFill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.6078431606292725" green="0.1764705926179886" blue="0.9372549057006836" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </ripplerFill>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Videos">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="763.0" prefWidth="2049.0">
+                           <children>
+                              <JFXTextField fx:id="video_name" focusColor="TRANSPARENT" layoutX="663.0" layoutY="75.0" prefHeight="41.0" prefWidth="542.0" promptText="Name" style="-fx-background-radius: 20; -fx-background-color: white; -fx-text-fill: black;" unFocusColor="TRANSPARENT">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXButton fx:id="create_video" buttonType="RAISED" layoutX="653.0" layoutY="632.0" onAction="#create_video" prefHeight="60.0" prefWidth="530.0" ripplerFill="WHITE" styleClass="button3" text="Create " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Calibri" size="31.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                                       <color>
+                                          <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </JFXButton>
+                              <JFXTextArea fx:id="video_desc" focusColor="WHITE" layoutX="658.0" layoutY="207.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="188.0" prefWidth="533.0" promptText="Descritpion" style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" unFocusColor="#f5f5f500">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </JFXTextArea>
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="395.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name :" textAlignment="CENTER" wrappingWidth="254.8203125">
+                                 <font>
+                                    <Font name="Leelawadee UI Semilight" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="380.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Descreption :" textAlignment="CENTER" wrappingWidth="254.8203125">
+                                 <font>
+                                    <Font name="Leelawadee UI Semilight" size="22.0" />
+                                 </font>
+                              </Text>
+                              <JFXButton fx:id="upload_image1" buttonType="RAISED" layoutX="764.0" layoutY="487.0" onAction="#image_file" prefHeight="38.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-radius: 30;" styleClass="button1" text="UPLOAD YOU VIDEO" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Calibri" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                                       <color>
+                                          <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <ripplerFill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.6078431606292725" green="0.1764705926179886" blue="0.9372549057006836" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </ripplerFill>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Music">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="294.0" prefWidth="1923.0">
+                           <children>
+                              <JFXTextField fx:id="song_name" focusColor="TRANSPARENT" layoutX="640.0" layoutY="81.0" prefHeight="41.0" prefWidth="542.0" promptText="Name" style="-fx-background-radius: 20; -fx-background-color: white; -fx-text-fill: black;" unFocusColor="TRANSPARENT">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXButton fx:id="create_image11" buttonType="RAISED" layoutX="647.0" layoutY="565.0" onAction="#create_music" prefHeight="60.0" prefWidth="530.0" ripplerFill="WHITE" styleClass="button3" text="Create " textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Calibri" size="31.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                                       <color>
+                                          <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                              </JFXButton>
+                              <JFXTextArea fx:id="song_desc" focusColor="WHITE" layoutX="632.0" layoutY="195.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="188.0" prefWidth="533.0" promptText="Descritpion" style="-fx-background-color: white; -fx-background-radius: 20; -fx-text-fill: black;" unFocusColor="#f5f5f500">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </JFXTextArea>
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="343.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name :" textAlignment="CENTER" wrappingWidth="254.8203125">
+                                 <font>
+                                    <Font name="Leelawadee UI Semilight" size="22.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="343.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Descreption :" textAlignment="CENTER" wrappingWidth="254.8203125">
+                                 <font>
+                                    <Font name="Leelawadee UI Semilight" size="22.0" />
+                                 </font>
+                              </Text>
+                              <JFXButton fx:id="upload_image11" buttonType="RAISED" layoutX="552.0" layoutY="427.0" onAction="#image_file" prefHeight="38.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-radius: 30;" styleClass="button1" text="UPLOAD YOU MUSIC" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Calibri" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                                       <color>
+                                          <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <ripplerFill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.6078431606292725" green="0.1764705926179886" blue="0.9372549057006836" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </ripplerFill>
+                              </JFXButton>
+                              <JFXButton fx:id="upload_cover" buttonType="RAISED" layoutX="939.0" layoutY="427.0" onAction="#cover_file" prefHeight="38.0" prefWidth="327.0" style="-fx-background-color: transparent; -fx-border-radius: 30;" styleClass="button1" text="UPLOAD ALBUM COVER" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+                                 <font>
+                                    <Font name="Calibri" size="28.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                                       <color>
+                                          <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <ripplerFill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color red="0.6078431606292725" green="0.1764705926179886" blue="0.9372549057006836" />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.2078431397676468" green="0.929411768913269" blue="0.9843137264251709" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </ripplerFill>
+                              </JFXButton>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+            <JFXButton fx:id="feed_button" layoutX="227.0" layoutY="21.0" onAction="#load_feed" prefHeight="41.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#0ec3f5">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </JFXButton>
+            
+            
+            
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

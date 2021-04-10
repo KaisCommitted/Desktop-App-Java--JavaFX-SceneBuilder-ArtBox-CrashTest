@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="parentContainer1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.UserProfileController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+         <children>
+            <JFXButton layoutX="519.0" layoutY="14.0" onAction="#load_jobs" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#0ec3f5" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="395.0" layoutY="16.0" onAction="#load_events" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f" AnchorPane.leftAnchor="342.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="feed_button" layoutX="198.0" layoutY="19.0" onAction="#load_feed" prefHeight="41.0" prefWidth="145.0" styleClass="button2" text="Feed" textFill="#99999f" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </JFXButton>
+            <ImageView fx:id="BtnClose" fitHeight="32.0" fitWidth="32.0" layoutX="1916.0" layoutY="7.0" onMouseClicked="#close" onMouseEntered="#closeON" onMouseExited="#closeOFF" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/close.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btneditProfile" buttonType="RAISED" layoutX="1555.0" layoutY="18.0" onAction="#EditMyProfile" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Edit my profile" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                     <color>
+                        <Color blue="0.9843137264251709" green="0.929411768913269" red="0.2078431397676468" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </JFXButton>
+            <Label layoutX="1841.4" layoutY="1042.4" onMouseClicked="#AddFeedback" text="Feedback" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="6.0" layoutY="99.0" prefHeight="518.0" prefWidth="1863.0">
+               <children>
+                  <JFXTextField fx:id="txt_first_name" editable="false" layoutX="766.0" layoutY="96.0" prefHeight="49.0" prefWidth="260.0">
+                     <stylesheets>
+                        <URL value="@profile.css" />
+                        <URL value="@feed%20gui.css" />
+                     </stylesheets>
+                     <styleClass>
+                        <String fx:value="jfx-text-field" />
+                        <String fx:value="button3" />
+                     </styleClass>
+                  </JFXTextField>
+                  <ImageView fx:id="user_image" fitHeight="252.0" fitWidth="278.0" layoutX="27.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fill="WHITE" layoutX="1164.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Label" textAlignment="CENTER" wrappingWidth="172.40002441406244">
+                     <font>
+                        <Font size="37.0" />
+                     </font>
+                  </Text>
+                  <JFXTextField fx:id="txt_last_name" editable="false" layoutX="769.0" layoutY="165.0" prefHeight="49.0" prefWidth="260.0" />
+                  <JFXTextField fx:id="username" editable="false" layoutX="771.0" layoutY="230.0" prefHeight="49.0" prefWidth="260.0" styleClass="text-fieldf1" stylesheets="@feed%20gui.css" />
+                  <JFXTextField fx:id="mail" editable="false" layoutX="769.0" layoutY="299.0" prefHeight="49.0" prefWidth="260.0" />
+                  <DatePicker fx:id="birth_date_selector" layoutX="793.0" layoutY="394.0" />
+                  <ImageView fx:id="label_image" fitHeight="98.0" fitWidth="109.0" layoutX="99.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="587.0" layoutY="97.0" prefHeight="43.0" prefWidth="159.0" text="FIRST NAME :" textFill="#dddddd">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="581.0" layoutY="163.0" prefHeight="43.0" prefWidth="159.0" text="SECOND NAME :" textFill="#dddddd">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="585.0" layoutY="239.0" prefHeight="43.0" prefWidth="159.0" text="USERNAME :" textFill="#dddddd">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="593.0" layoutY="305.0" prefHeight="43.0" prefWidth="159.0" text="MAIL :" textFill="#dddddd">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="587.0" layoutY="385.0" prefHeight="43.0" prefWidth="159.0" text="BIRTHDATE :" textFill="#dddddd">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            
+            
+            
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

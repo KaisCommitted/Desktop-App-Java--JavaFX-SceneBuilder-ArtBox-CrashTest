@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="parentContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.FeedGuiController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="anchorRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" styleClass="mainFxmlClass" stylesheets="@feed%20gui.css">
+         <children>
+            <Label fx:id="lblfeedback" layoutX="1904.0" layoutY="187.0" onMouseClicked="#addFeedback" prefHeight="18.0" prefWidth="163.0" text="Give us your feedback" textFill="#fff8f8" translateX="-80.0" translateY="810.0" AnchorPane.bottomAnchor="875.0" AnchorPane.rightAnchor="-65.0">
+               <font>
+                  <Font name="HoloLens MDL2 Assets" size="14.0" />
+               </font>
+            </Label>
+            <JFXButton buttonType="RAISED" layoutX="163.0" layoutY="16.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-radius: 20;" styleClass="button1" text="Feed" textFill="#2dceef" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color blue="0.9300000071525574" green="0.17669999599456787" opacity="0.8782608509063721" red="0.6035699844360352" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color blue="0.8823529481887817" green="0.6117647290229797" red="0.007843137718737125" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
+            <ImageView layoutX="4.0" layoutY="20.0">
+               <image>
+                  <Image url="@../../../Images/SDFDSFDSF.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btn_event" layoutX="449.0" layoutY="16.0" onAction="#load_event" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Events" textFill="#99999f" AnchorPane.leftAnchor="342.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="560.0" layoutY="17.0" onAction="#load_jobs" prefHeight="44.0" prefWidth="172.0" styleClass="button2" text="Jobs" textFill="#99999f" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="cp_btn" buttonType="RAISED" layoutX="1450.0" layoutY="18.0" onAction="#load_ajoute" prefHeight="41.0" prefWidth="243.0" ripplerFill="WHITE" styleClass="button3" text="Create a project" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" radius="21.86" width="68.44">
+                     <color>
+                        <Color blue="0.9843137264251709" green="0.929411768913269" red="0.2078431397676468" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </JFXButton>
+            <JFXTextField fx:id="input" focusColor="#405aa800" layoutX="721.0" layoutY="17.0" opacity="0.52" prefHeight="41.0" prefWidth="542.0" promptText="         Search" unFocusColor="#161a1a" AnchorPane.rightAnchor="584.0" AnchorPane.topAnchor="21.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="text-field" />
+                  <String fx:value="text-fieldf" />
+               </styleClass>
+            </JFXTextField>
+            <Line endX="1699.0" endY="-10.0" layoutX="156.0" layoutY="236.0" startX="-60.0" startY="-10.0" stroke="#998e8e8f" />
+            <JFXTabPane fx:id="pan2" layoutX="1.0" layoutY="172.0" prefHeight="827.0" prefWidth="1920.0" styleClass="panel">
+               <tabs>
+                  <Tab text="New">
+                     <content>
+                        <ScrollPane fx:id="bigscroll1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <VBox prefHeight="790.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                 <children>
+                                    <Label prefHeight="74.0" prefWidth="339.0" styleClass="text" stylesheets="@style.css" text="PHOTOGRAPHY" textFill="WHITE">
+                                       <font>
+                                          <Font name="Nirmala UI Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="scroll1" prefHeight="332.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                       <content>
+                                          <HBox fx:id="ph_postes" prefHeight="201.0" prefWidth="2031.0" />
+                                       </content>
+                                    </ScrollPane>
+                                    <Line endX="1794.95947265625" endY="-1.3732290267944336" startX="-100.0" />
+                                    <Label prefHeight="74.0" prefWidth="339.0" text="MUSIC" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="scrol2" prefHeight="256.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                       <content>
+                                          <HBox fx:id="music_postes" style="-fx-background-color: transparent;" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Popular">
+                     <content>
+                        <ScrollPane fx:id="bigscroll2" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+                           <content>
+                              <VBox prefHeight="790.0" prefWidth="2047.0">
+                                 <children>
+                                    <Label prefHeight="74.0" prefWidth="339.0" text="PHOTOGRAPHY" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="39.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="scroll11" prefHeight="332.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                       <content>
+                                          <HBox fx:id="ph_postes1" prefHeight="201.0" prefWidth="2031.0" />
+                                       </content>
+                                    </ScrollPane>
+                                    <Line endX="1800.2928466796875" endY="-2.8967857360839844E-5" startX="-100.0" />
+                                    <Label prefHeight="74.0" prefWidth="339.0" text="Music" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fx:id="scroll222" prefHeight="256.0" prefWidth="2047.0" style="-fx-background-color: transparent;">
+                                       <content>
+                                          <HBox fx:id="music_postes1" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+            <ImageView fx:id="BtnClose" fitHeight="32.0" fitWidth="32.0" layoutX="1326.0" layoutY="74.0" onMouseClicked="#close" onMouseEntered="#closeON" onMouseExited="#closeOFF" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
+               <image>
+                  <Image url="@../images/close.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnSearch" fitHeight="41.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="750.0" AnchorPane.topAnchor="21.0">
+               <image>
+                  <Image url="@../images/icons8_Search_52px.png" />
+               </image>
+            </ImageView>
+            
+            
+            
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

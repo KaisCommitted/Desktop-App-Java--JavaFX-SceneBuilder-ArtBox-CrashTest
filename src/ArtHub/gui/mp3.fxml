@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="228.0" prefWidth="480.0" style="-fx-background-color: rgba(0,0,0,0.4);" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ArtHub.gui.mp3Controller">
+   <children>
+      <JFXButton fx:id="like_btn" layoutX="473.0" layoutY="119.0" onAction="#like" prefHeight="30.0" prefWidth="45.0" style="-fx-background-color: transparent;" text=" ">
+         <graphic>
+            <ImageView fx:id="imgbtn" fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic>
+      </JFXButton>
+      <Label fx:id="idLabel" layoutX="316.0" layoutY="107.0" prefHeight="73.0" prefWidth="86.0" text="id post" />
+      <ToolBar fx:id="toolContainer" layoutX="-7.0" layoutY="186.0" pickOnBounds="false" prefHeight="40.0" prefWidth="557.0">
+        <items>
+            <ToggleButton fx:id="playPause" mnemonicParsing="false" onAction="#playPauseClicked" prefHeight="30.0" prefWidth="45.0" snapToPixel="false" styleClass="playPause" stylesheets="@styler.css" />
+            <Slider fx:id="volume" blockIncrement="0.0" prefWidth="125.0" value="50.0">          
+            </Slider>
+        </items>
+      </ToolBar>
+      <Label fx:id="nameLabel" layoutX="316.0" layoutY="14.0" prefHeight="32.0" prefWidth="80.0" style="-fx-text-fill: black;" text="Name">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <VBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="308.0">
+         <children>
+            <MediaView fx:id="player" fitHeight="2.0" fitWidth="287.0" opacity="0.0" />
+            <ImageView fx:id="img" fitHeight="187.0" fitWidth="292.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+         </children>
+         <stylesheets>  
+              <URL value="@styler.css" />
+         </stylesheets>
+      </VBox>
+      <Label fx:id="descreption" layoutX="316.0" layoutY="45.0" prefHeight="32.0" prefWidth="156.0" style="-fx-text-fill: black;" text="Descrition" />
+      <Label fx:id="likesLabel" layoutX="506.0" layoutY="126.0" prefHeight="17.0" prefWidth="45.0" style="-fx-text-fill: black;" text="likes" />
+   </children>
+   <styleClass>
+      <String fx:value="shadow" />
+      <String fx:value="fruit-item" />
+   </styleClass>
+</AnchorPane>
