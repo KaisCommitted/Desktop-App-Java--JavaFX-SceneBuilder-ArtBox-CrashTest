@@ -172,7 +172,7 @@ public class mp3Controller implements Initializable {
            
            
            //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
-           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\cmnt.gif";
+           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like_selec.png";
            Image image3 =new Image(new FileInputStream(Empty));
            cmntbtn.setImage(image3);
        } catch (FileNotFoundException ex) {
