@@ -143,12 +143,12 @@ public static final DropShadow highlightBtn = new DropShadow(40, Color.web("#110
      */ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Empty.png";
-        Full = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Full.png";
-        AVG = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\peach.png";
-        locationpng = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\location.png";
-        datepng =  userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\calendar.png";
-         spotspng =  userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Person_32px.png";
+        Empty = "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\Empty.png";
+        Full = "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\Full.png";
+        AVG = "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\peach.png";
+        locationpng = "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\location.png";
+        datepng =  "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\calendar.png";
+         spotspng =  "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Person_32px.png";
 
     }
 

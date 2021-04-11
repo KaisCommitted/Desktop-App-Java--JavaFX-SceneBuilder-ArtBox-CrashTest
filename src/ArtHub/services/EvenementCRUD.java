@@ -119,7 +119,7 @@ public class EvenementCRUD {
                 p.setCategorie(categorie);
                 p.setCapacite_event(capacite_event);
                 p.setDescription(description);
-                p.setImage_event(image_event);
+                p.setImage_event("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\imagesEvent\\"+image_event);
                 p.setNb_max(nb_max);
                 p.setNom_event(nom_event);
                 p.setType_event(type_event);
@@ -165,7 +165,7 @@ public class EvenementCRUD {
                 p.setCategorie(categorie);
                 p.setCapacite_event(capacite_event);
                 p.setDescription(description);
-                p.setImage_event(image_event);
+                p.setImage_event("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\imagesEvent\\"+image_event);
                 p.setNb_max(nb_max);
                 p.setNom_event(nom_event);
                 p.setType_event(type_event);

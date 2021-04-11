@@ -101,7 +101,7 @@ public static int id_post_clicked = 0;
            
            
            //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
-           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\redflag.gif";
+           String Empty = "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\redflag.gif";
            Image image =new Image(new FileInputStream(Empty));
            addsignal.setImage(image);
        } catch (FileNotFoundException ex) {
@@ -141,7 +141,7 @@ public static int id_post_clicked = 0;
            
            
            //Image image = new Image("/ArtHub.postpics/heart-69-xxl.png");
-           String Empty = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\cmnt.gif";
+           String Empty = "C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\\\post_pics\\cmnt.gif";
            Image image3 =new Image(new FileInputStream(Empty));
            cmntbtn.setImage(image3);
        } catch (FileNotFoundException ex) {
@@ -180,7 +180,7 @@ public static int id_post_clicked = 0;
            
            
        try {
-           image1 = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like_selec.png"));
+           image1 = new Image(new FileInputStream("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\\\post_pics\\like_selec.png"));
            
            imgbtn.setImage(image1);
            
@@ -240,7 +240,7 @@ public static int id_post_clicked = 0;
          likesLabel.setText(Integer.toString(Integer.parseInt(aux) -1));
            Image image;
        try {
-           image = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like2.gif"));
+           image = new Image(new FileInputStream("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\\\post_pics\\like2.gif"));
            
            imgbtn.setImage(image);
        } catch (FileNotFoundException ex) {
@@ -255,7 +255,7 @@ public static int id_post_clicked = 0;
        
         Image image;
        try {
-           image = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like.gif"));
+           image = new Image(new FileInputStream("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\\\post_pics\\like.gif"));
            
            imgbtn.setImage(image);
        } catch (FileNotFoundException ex) {

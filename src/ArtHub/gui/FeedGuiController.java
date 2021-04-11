@@ -140,14 +140,14 @@ public class FeedGuiController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(FRONT_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }   }
-
+          usernameCurrent.setText(CurrentUser.getUsername());
           setImage(CurrentUser.getImage(), user_image);
           scrollPartner.setHbarPolicy(ScrollBarPolicy.NEVER);
              scrollPartner.setVbarPolicy(ScrollBarPolicy.NEVER);
       pan2.getSelectionModel().select(1);
         tindex = pan2.getSelectionModel().getSelectedIndex();
-         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
-          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+         setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
+          setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
        
          //****************************NEW****************    
        
@@ -413,12 +413,12 @@ public class FeedGuiController implements Initializable {
 
      @FXML
     private void closeOFF(MouseEvent event) {
-         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+         setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
     }
 
     @FXML
     private void closeON(MouseEvent event) {
-         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
+         setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
     }
 
     @FXML

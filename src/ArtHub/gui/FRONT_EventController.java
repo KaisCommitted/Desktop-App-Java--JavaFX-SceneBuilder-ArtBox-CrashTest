@@ -251,15 +251,15 @@ public static String userHomeFolder = System.getProperty("user.home");
             //////////////////////////////////WHATSAPPP MAKE 24H window + check credentials//////////////////////////////////////////
             
             ///////////////////////////////////WHATSAAAAAP////////////////////////////////////////////
-           setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
-            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
-            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Person_32px.png", imgspots);
-            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\calendar.png", imgdate);
-            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\location.png", imglocation);
-            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
-            setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\event-planner.png", imgorg);
-              setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\ticket.png",ticketimg);
-              setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
+           setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Search_52px.png",btnSearch);
+            setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+            setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\icons8_Person_32px.png", imgspots);
+            setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\calendar.png", imgdate);
+            setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\location.png", imglocation);
+            setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
+            setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\event-planner.png", imgorg);
+              setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\ticket.png",ticketimg);
+              setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\choice.png", imgcat);
             setImage(CurrentUser.getImage(), user_image);
             scroll21.setFitToHeight(true);
             scroll21.setFitToWidth(true);
@@ -314,7 +314,7 @@ notifyme();
             MoreDetails.setStyle("-fx-background-color: #b0ffa7;" + "-fx-background-radius: 15;" + "-fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);");
             EvenementCRUD p = new EvenementCRUD();
             Evenement Evenement = new Evenement();
-            Evenement = p.consulterEvenement().get(5);
+            Evenement = p.consulterEvenement().get(0);
             UserCRUD u = new UserCRUD();
             event_description.setText("Description :" + Evenement.getDescription());
             String pat = Evenement.getImage_event();
@@ -1121,12 +1121,12 @@ notifyme();
 
      @FXML
     private void closeOFF(MouseEvent event) {
-         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+         setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
     }
 
     @FXML
     private void closeON(MouseEvent event) {
-         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
+         setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
     }
 
      

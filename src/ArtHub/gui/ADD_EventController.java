@@ -248,16 +248,16 @@ if (captcha.isCorrect(code.getText())) {
           
             
             File src = new File(selectedFile.getPath());
-            File dest = new File("C:/xampp/php/www/pidev/events/");
+            File dest = new File("C:/xampp/php/www/ArtBox-CrashTest-WEB/public/imagesEvent/");
             java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/events/" + txt_nom.getText()+ selectedFile.getName());
+            File newDes = new File("C:/xampp/php/www/ArtBox-CrashTest-WEB/public/imagesEvent/" + txt_nom.getText()+ selectedFile.getName());
             try {
                 copyContent(selectedFile,newDes);
             } catch (Exception ex) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
-             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Events\\" + txt_nom.getText()+ selectedFile.getName());
+             Path local = Paths.get("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\Events\\" + txt_nom.getText()+ selectedFile.getName());
            
            
            
@@ -267,7 +267,7 @@ if (captcha.isCorrect(code.getText())) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        path = "C:/xampp/php/www/pidev/events/" +  txt_nom.getText() + selectedFile.getName();
+        path =  txt_nom.getText() + selectedFile.getName();
         return txt_nom.getText();
 
     }

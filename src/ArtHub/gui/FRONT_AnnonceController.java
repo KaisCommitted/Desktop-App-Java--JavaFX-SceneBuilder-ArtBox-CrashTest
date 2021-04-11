@@ -307,12 +307,12 @@ public class FRONT_AnnonceController implements Initializable {
 
     @FXML
     private void closeOFF(MouseEvent event) {
-         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
+         setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\close.png",BtnClose);
     }
 
     @FXML
     private void closeON(MouseEvent event) {
-         setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
+         setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\closeON.png",BtnClose);
     }
 
     @FXML

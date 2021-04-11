@@ -81,10 +81,10 @@ public class MakePartnerController implements Initializable {
             String userHomeFolder = System.getProperty("user.home");
 
             File src = new File(selectedFile.getPath());
-            File dest = new File("C:/xampp/php/www/pidev/imagepartenaire/");
+            File dest = new File("C:/xampp/php/www/ArtBox-CrashTest-WEB/public/imagepartenaire/");
             java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/imagepartenaire/" + txt_Name.getText()+ selectedFile.getName());
+            File newDes = new File("C:/xampp/php/www/ArtBox-CrashTest-WEB/public/imagepartenaire/" + txt_Name.getText()+ selectedFile.getName());
             try {
                 copyContent(selectedFile, newDes);
             } catch (Exception ex) {
@@ -98,7 +98,7 @@ public class MakePartnerController implements Initializable {
 
             }
         }
-        path = "C:/xampp/php/www/pidev/imagepartenaire/"  + txt_Name.getText() + selectedFile.getName() ;
+        path = "C:/xampp/php/www/ArtBox-CrashTest-WEB/public/imagepartenaire/"  + txt_Name.getText() + selectedFile.getName() ;
         return txt_Name.getText() + txt_PhoneNumber.getText();
     }
 

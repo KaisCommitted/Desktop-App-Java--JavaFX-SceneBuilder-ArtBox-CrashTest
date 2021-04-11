@@ -56,7 +56,7 @@ public class CategorieCRUD {
 
                 Categorie C = new Categorie();
            
-                C.setId(rs.getInt("id"));
+               
                 C.setCategorie_name(rs.getString("categorie_name"));
                 myList.add(C);
 
@@ -71,7 +71,7 @@ public class CategorieCRUD {
 
     public void supprimerCategorie(Categorie C) {
         try {
-            String requete = "DELETE FROM categorie WHERE id=? ";
+            String requete = "DELETE FROM categorie WHERE categorie_name=? ";
 
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, C.getId());
@@ -85,20 +85,20 @@ public class CategorieCRUD {
 
     
 
-    public List<Categorie> FindCategories(int id) {
+    public List<Categorie> FindCategories(String id) {
 
         List<Categorie> myList = new ArrayList<>();
         try {
 
             Statement stmt = cnx.createStatement();
             
-String sql = "SELECT * from categorie " + " WHERE id=" + id;
+String sql = "SELECT * from categorie " + " WHERE categorie_name=" + id;
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
 
-                if (rs.getInt("id") != 0) {
+                if (rs.getString("id") != "") {
                     CategorieCRUD aux = new CategorieCRUD();
-                    Categorie C = aux.FindCategories(rs.getInt("id")).get(0);
+                    Categorie C = aux.FindCategories(rs.getString("id")).get(0);
                     myList.add(C);
                 }
             }

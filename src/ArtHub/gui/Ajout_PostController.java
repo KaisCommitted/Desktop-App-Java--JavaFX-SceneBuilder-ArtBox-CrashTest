@@ -215,16 +215,16 @@ public class Ajout_PostController implements Initializable {
              String userHomeFolder = System.getProperty("user.home");
              File selectedFile = fileChooser.getSelectedFile();
              File src = new File(selectedFile.getPath());
-             File dest = new File("C:/xampp/php/www/pidev/Postes/");
+             File dest = new File("C:/xampp/php/www/ArtBox-CrashTest-WEB/public/Postes/");
              java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/Postes/" + selectedFile.getName());
+            File newDes = new File("C:/xampp/php/www/ArtBox-CrashTest-WEB/public/Postes/" + selectedFile.getName());
             try {
                 copyContent(selectedFile,newDes);
             } catch (Exception ex) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
-             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\Postes\\" +   selectedFile.getName());
+             Path local = Paths.get("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\Postes\\" +   selectedFile.getName());
            
            
            
@@ -235,7 +235,7 @@ public class Ajout_PostController implements Initializable {
             }
         
         
-            s = "C:/xampp/php/www/pidev/Postes/" + selectedFile.getName().toString();
+            s = "C:/xampp/php/www/ArtBox-CrashTest-WEB/public/Postes/" + selectedFile.getName().toString();
             
               }
          else if(result == JFileChooser.CANCEL_OPTION){

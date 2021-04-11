@@ -78,7 +78,7 @@ Participant P = new Participant();
                  E = ec.FindEvenement(id_clicked);
                  org = u.FindUser(E.getId_org().getId_user()).getUsername();
                  String pat = E.getImage_event();
-                  String path = userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\QR code\\EventTicket"+P.getTicket()+".png";
+                  String path = "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\QR code\\EventTicket"+P.getTicket()+".png";
                  Image img6 = new Image(new FileInputStream(pat));
                 Image img = new Image(new FileInputStream(path));
                  event_img.setImage(img6);
@@ -124,7 +124,7 @@ Participant P = new Participant();
         
         try {
             String imageFormat = "png";
-            String outputFileName =  userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\QR code\\EventTicket"+str+"." + imageFormat;
+            String outputFileName =  "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\QR code\\EventTicket"+str+"." + imageFormat;
             BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, 500, 500);
             MatrixToImageWriter.writeToPath(matrix, imageFormat, Paths.get(outputFileName));
         } catch (WriterException ex) {

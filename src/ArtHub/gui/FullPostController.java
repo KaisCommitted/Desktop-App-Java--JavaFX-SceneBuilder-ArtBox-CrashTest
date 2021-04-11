@@ -200,7 +200,7 @@ public void setData(Post post) throws FileNotFoundException {
            
            
        try {
-           image1 = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like_selec.png"));
+           image1 = new Image(new FileInputStream("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\\\post_pics\\like_selec.png"));
            
            imgbtn.setImage(image1);
            
@@ -252,7 +252,7 @@ public void setData(Post post) throws FileNotFoundException {
          likesLabel.setText(Integer.toString(Integer.parseInt(aux) -1));
            Image image;
        try {
-           image = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like2.gif"));
+           image = new Image(new FileInputStream("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\\\post_pics\\like2.gif"));
            
            imgbtn.setImage(image);
        } catch (FileNotFoundException ex) {
@@ -267,7 +267,7 @@ public void setData(Post post) throws FileNotFoundException {
        
         Image image;
        try {
-           image = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\like.gif"));
+           image = new Image(new FileInputStream("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\\\post_pics\\like.gif"));
            
            imgbtn.setImage(image);
        } catch (FileNotFoundException ex) {
@@ -313,7 +313,7 @@ public void setData(Post post) throws FileNotFoundException {
              
              Image image3;
              try {
-                 image3 = new Image(new FileInputStream(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\post_pics\\comment.gif"));
+                 image3 = new Image(new FileInputStream("C:\\xampp\\php\\www\\ArtBox-CrashTest-WEB\\public\\\\post_pics\\comment.gif"));
                  
                  img_cmnt.setImage(image3);
                  

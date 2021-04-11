@@ -128,16 +128,16 @@ public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
           
             
             File src = new File(selectedFile.getPath());
-            File dest = new File("C:/xampp/php/www/pidev/avatar/");
+            File dest = new File("C:/xampp/php/www/ArtBox-CrashTest-WEB/public/avatar/");
             java.nio.file.Path sr = src.toPath();
             java.nio.file.Path ds = new File(dest, src.getName()).toPath();
-            File newDes = new File("C:/xampp/php/www/pidev/avatar/" + username.getText() + selectedFile.getName());
+            File newDes = new File("C:/xampp/php/www/ArtBox-CrashTest-WEB/public/avatar/" + username.getText() + selectedFile.getName());
             try {
                 copyContent(selectedFile,newDes);
             } catch (Exception ex) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
-             Path local = Paths.get(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\users\\" + username.getText() + selectedFile.getName());
+             Path local = Paths.get("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\users\\" + username.getText() + selectedFile.getName());
            
            
            
@@ -147,7 +147,7 @@ public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
                 Logger.getLogger(ADD_EventController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        path = "C:/xampp/php/www/pidev/avatar/" + username.getText() + selectedFile.getName().toString();
+        path = "C:/xampp/php/www/ArtBox-CrashTest-WEB/public/avatar/" + username.getText() + selectedFile.getName().toString();
         return username.getText();
 
  

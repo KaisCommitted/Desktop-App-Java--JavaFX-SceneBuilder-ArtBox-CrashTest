@@ -41,7 +41,7 @@ public class UserCRUD {
             ste.setDate(5, u.getDate_naissance());
             ste.setString(6, u.getPwd_user());
             ste.setString(7, u.getRef_admin());
-            ste.setString(8, userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png");
+            ste.setString(8, "C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\part.png");
             
             
             ste.executeUpdate();

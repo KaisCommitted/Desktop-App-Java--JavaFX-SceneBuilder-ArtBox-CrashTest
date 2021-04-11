@@ -74,8 +74,8 @@ public class E_CommentItemController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\pencil.png",pencil);
-          setImage(userHomeFolder+"\\Documents\\GitHub\\ArtBox-CrashTest\\src\\ArtHub\\images\\delete.png",delete);
+        setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\pencil.png",pencil);
+          setImage("C:\\xampp\\php\\www\\ArtBox-CrashTest\\src\\ArtHub\\images\\delete.png",delete);
     }    
 
     @FXML
